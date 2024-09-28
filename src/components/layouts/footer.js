@@ -14,7 +14,7 @@ function Footer() {
             width: "100%",
           }}
         />
-        <footer className="flex sm:flex-row flex-col font-sans text-lg font-thin tracking-tight text-gray-400 justify-between my-10 gap-y-10">
+        <footer className="flex sm:flex-row flex-col font-sans text-lg font-thin tracking-tight text-gray-600 justify-between my-10 gap-y-10">
           <div className="flex lg:flex-row flex-col xl:basis-3/5 sm:basis-4/5 lg:space-x-8">
             <div className="flex flex-row gap-1">
               <div>
@@ -27,7 +27,7 @@ function Footer() {
 
             <div>
               <p>
-                <span className="text-gray-400 mt-2 font-semibold">Tel:</span>{" "}
+                <span className="text-gray-700 mt-2 font-thin">Tel:</span>{" "}
                 (+962) 777 935 735
               </p>
             </div>

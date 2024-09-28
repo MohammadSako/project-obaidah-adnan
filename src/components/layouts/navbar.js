@@ -8,8 +8,8 @@ import Link from "next/link";
 import { FaRegCopyright, FaWhatsapp } from "react-icons/fa6";
 
 const navigation = [
-  { name: "About", href: "about", current: false },
-  { name: "Contact", href: "contact", current: false },
+  { name: "About Us", href: "about", current: false },
+  { name: "Contact Us", href: "contact", current: false },
 ];
 
 function classNames(...classes) {
@@ -24,23 +24,23 @@ export default function NavBar() {
 
         <div className="relative flex h-16 items-center justify-between">
           <div className="hidden sm:block">
-            <div className="flex md:space-x-4">
+            <div className="flex space-x-2">
               <Link
                 href="https://wa.me/962777935735"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div className="text-[#31D14F] hover:text-[#1f8131]">
-                  <FaWhatsapp size={25} />
+                <div className="text-gray-500 hover:text-[#31D14F]">
+                  <FaWhatsapp size={18} />
                 </div>
               </Link>
-              <p className="">(+962) 777 935 735</p>
+              <p className="text-sm text-gray-500">(+962) 777 935 735</p>
             </div>
           </div>
           <div className="flex sm:flex-none flex-1 items-center justify-center sm:items-stretch">
             <div className="flex flex-shrink-0 items-center justify-items-start">
               <Link href="/">
-                <h1 className="text-xl font-sans tracking-wide hover:text-gray-300">عربي</h1>
+                <h1 className="text-lg font-sans tracking-wide hover:text-gray-300 sm:block hidden">عربي</h1>
               </Link>
             </div>
           </div>
@@ -51,11 +51,11 @@ export default function NavBar() {
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex flex-row gap-1">
             <Link href="/">
-              <h1 className="text-3xl font-sans lg:block hidden tracking-tight">
+              <h1 className="text-4xl font-sans sm:block hidden tracking-tight">
                 OBAIDAH Shop
               </h1>
             </Link>
-            <div className="mt-2 lg:block hidden">
+            <div className="mt-2 sm:block hidden">
               <FaRegCopyright size={10} />
             </div>
           </div>
@@ -79,11 +79,11 @@ export default function NavBar() {
           <div className="flex sm:flex-none flex-1 items-center justify-center sm:items-stretch">
             <div className="flex flex-shrink-0 items-center">
               <Link href="/">
-                <h1 className="sm:text-2xl text-3xl font-sans tracking-wide lg:invisible visible">
+                <h1 className="sm:text-2xl text-3xl font-sans tracking-wide sm:invisible visible">
                   OBAIDAH Shop
                 </h1>
               </Link>
-              <div className="-mt-2 lg:invisible visible">
+              <div className="-mt-2 sm:invisible visible">
                 <FaRegCopyright size={10} />
               </div>
             </div>
@@ -98,7 +98,7 @@ export default function NavBar() {
                         item.current
                           ? "text-gray-900"
                           : "text-gray-400  hover:text-gray-900",
-                        "rounded-md px-5 py-2 lg:text-xl text-lg font-medium"
+                        "rounded-md py-2 lg:text-xl text-lg font-medium"
                       )}
                     >
                       {item.name}
