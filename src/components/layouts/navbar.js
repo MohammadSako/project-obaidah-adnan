@@ -40,7 +40,9 @@ export default function NavBar() {
           <div className="flex sm:flex-none flex-1 items-center justify-center sm:items-stretch">
             <div className="flex flex-shrink-0 items-center justify-items-start">
               <Link href="/">
-                <h1 className="text-lg font-sans tracking-wide hover:text-gray-300 sm:block hidden">عربي</h1>
+                <h1 className="text-lg font-sans tracking-wide hover:text-gray-300 sm:block hidden">
+                  عربي
+                </h1>
               </Link>
             </div>
           </div>
@@ -52,7 +54,7 @@ export default function NavBar() {
           <div className="flex flex-row gap-1">
             <Link href="/">
               <h1 className="text-4xl font-sans sm:block hidden tracking-tight">
-                OBAIDAH Shop
+                OBAIDAH <span className="font-bold text-[#06b6d4]">Shop</span>
               </h1>
             </Link>
             <div className="mt-2 sm:block hidden">
@@ -80,7 +82,7 @@ export default function NavBar() {
             <div className="flex flex-shrink-0 items-center">
               <Link href="/">
                 <h1 className="sm:text-2xl text-3xl font-sans tracking-wide sm:invisible visible">
-                  OBAIDAH Shop
+                  OBAIDAH <span className="font-bold text-[#db2777]">Shop</span>
                 </h1>
               </Link>
               <div className="-mt-2 sm:invisible visible">
