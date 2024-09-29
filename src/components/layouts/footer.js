@@ -21,7 +21,7 @@ function Footer() {
                 <p>Obaidah Shop 2024</p>
               </div>
               <div className="flex mt-2">
-                <FaRegCopyright size={10} />
+                <FaRegCopyright size={7} color="#6b7280" />
               </div>
             </div>
 
