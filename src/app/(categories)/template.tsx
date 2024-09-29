@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-const CompanyLayout = ({ children }: { children: React.ReactNode }) => {
+const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section className='py-24'>
       <div className='container flex'>
@@ -41,4 +41,4 @@ const CompanyLayout = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default CompanyLayout
+export default CategoriesLayout
