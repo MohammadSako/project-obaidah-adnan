@@ -32,6 +32,18 @@ export function Landing() {
       src: "/p3.jpg",
       alt: "product 3",
     },
+    {
+      src: "/p1.jpg",
+      alt: "product 1",
+    },
+    {
+      src: "/p2.jpg",
+      alt: "product 2",
+    },
+    {
+      src: "/p3.jpg",
+      alt: "product 3",
+    },
   ];
 
   return (
@@ -46,8 +58,8 @@ export function Landing() {
         plugins={[plugin.current]}
         // className="w-full mt-2 max-w-fit relative"
         className="w-[1000px] max-w-fit relative"
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}
+        // onMouseEnter={plugin.current.stop}
+        // onMouseLeave={plugin.current.reset}
       >
         <CarouselContent>
           {Images.map((product, index) => (
