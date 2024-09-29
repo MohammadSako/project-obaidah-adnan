@@ -8,8 +8,8 @@ import Link from "next/link";
 import { FaRegCopyright, FaWhatsapp } from "react-icons/fa6";
 
 const navigation = [
-  { name: "About", href: "about", current: false },
-  { name: "Contact", href: "contact", current: false },
+  { name: "About", href: "/about", current: false },
+  { name: "Contact", href: "/contact", current: false },
 ];
 
 function classNames(...classes) {

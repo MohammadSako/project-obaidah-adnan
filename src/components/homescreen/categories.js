@@ -11,19 +11,19 @@ export function Categories() {
       src: "/c3.jpg",
       alt: "product 1",
       description: "Men",
-      url: "#",
+      url: "/categories/men",
     },
     {
       src: "/c2.jpg",
       alt: "product 2",
       description: "Women",
-      url: "#",
+      url: "/categories/women",
     },
     {
       src: "/c1.jpg",
       alt: "product 3",
       description: "Mixed",
-      url: "#",
+      url: "/categories/mixed",
     },
   ];
 
@@ -35,14 +35,14 @@ export function Categories() {
       transition={{ duration: 0.8, delay: 0.3 }}
       className="flex flex-col items-center my-2 gap-4 w-full overflow-hidden origin-center"
     >
-      <div className="bg-white">
+      <div className="bg-white ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
             <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
               {Images.map((categ, index) => (
                 <Link key={index} href={categ.url}>
                   <div key={index} className="group relative mt-6">
-                    <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                    <div className="relative h-80 w-full overflow-hidden shadow-lg rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
                       <Image
                         src={categ.src}
                         style={{
