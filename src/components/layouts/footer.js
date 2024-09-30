@@ -27,7 +27,7 @@ function Footer() {
 
             <div>
               <p>
-                <span className="text-gray-700 mt-2 font-thin">Tel:</span>{" "}
+                <span className="text-gray-800 mt-2 ">Tel:</span>{" "}
                 (+962) 777 935 735
               </p>
             </div>
@@ -35,15 +35,15 @@ function Footer() {
           <div className="flex flex-row space-x-10 justify-end sm:basis-1/5">
             <FooterLink
               icon={<FaFacebookF size={25} />}
-              href="https://linkedin.com/in/mohammad-murad-850b9970"
+              href="#"
             />
             <FooterLink
               icon={<FaInstagram size={25} />}
-              href="https://github.com/mohammadsako"
+              href="#"
             />
             <FooterLink
               icon={<FaWhatsapp size={25} />}
-              href="https://wa.me/962777277673"
+              href="https://wa.me/962777935735"
             />
           </div>
         </footer>

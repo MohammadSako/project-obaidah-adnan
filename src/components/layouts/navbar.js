@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Disclosure,
   DisclosureButton,
@@ -5,6 +7,7 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaRegCopyright, FaWhatsapp } from "react-icons/fa6";
 
 const navigation = [
@@ -17,6 +20,8 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const url = usePathname();
+
   return (
     <Disclosure as="nav" className="bg-white mb-10 p-2">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -40,7 +45,7 @@ export default function NavBar() {
           <div className="flex sm:flex-none flex-1 items-center justify-center sm:items-stretch">
             <div className="flex flex-shrink-0 items-center justify-items-start">
               <Link href="/">
-                <h1 className="text-lg font-sans tracking-wide hover:text-gray-300 sm:block hidden">
+                <h1 className="text-lg font-sans tracking-wide text-gray-400 hover:text-gray-800 sm:block hidden">
                   عربي
                 </h1>
               </Link>
@@ -96,12 +101,11 @@ export default function NavBar() {
                   <Link key={item.name} href={item.href}>
                     <div
                       aria-current={item.current ? "page" : undefined}
-                      className={classNames(
-                        item.current
-                          ? "text-gray-900"
-                          : "text-gray-400  hover:text-gray-900",
-                        "rounded-md py-2 lg:text-xl text-lg font-medium"
-                      )}
+                      className={
+                        url === `${item.href}`
+                          ? "text-gray-800 text-xl font-medium hover:text-gray-800"
+                          : "text-gray-400 text-xl font-medium hover:text-gray-800"
+                      }
                     >
                       {item.name}
                     </div>
