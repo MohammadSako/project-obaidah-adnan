@@ -6,12 +6,10 @@ import { usePathname } from "next/navigation";
 
 const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
   const url = usePathname();
-  console.log(url);
-
   return (
     <section className="py-24">
       <div className="p-4 flex flex-col">
-        <div className="py-6 pb-12">
+        <div className="py-6">
           <nav className="flex flex-row">
             <ul
               role="list"
@@ -69,7 +67,7 @@ const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
           </nav>
         </div>
 
-        <main className="bg-gray-50 p-6">{children}</main>
+        <main className="">{children}</main>
       </div>
     </section>
   );

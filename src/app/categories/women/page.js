@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import React from "react";
+import { motion } from "framer-motion";
+import ProductList from "../../../components/categories/product-list";
 
 export default function WomenPage() {
   return (
@@ -12,12 +13,8 @@ export default function WomenPage() {
       transition={{ duration: 0.8, delay: 0.3 }}
       className="flex flex-col items-center my-2 gap-4 w-full overflow-hidden origin-center"
     >
-      <main className="flex min-h-screen flex-col items-center p-10 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="mt-28 font-sans">
-          <p className="text-ellipsis basis-3/4 sm:text-7xl text-4xl font-bold tracking-tight">
-            WomenPage
-          </p>
-        </div>
+      <main className="flex min-h-screen flex-col items-center mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <ProductList />
       </main>
     </motion.section>
   );

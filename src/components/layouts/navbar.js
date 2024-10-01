@@ -9,6 +9,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaRegCopyright, FaWhatsapp } from "react-icons/fa6";
+import clsx from "clsx";
 
 const navigation = [
   { name: "About", href: "/about", current: false },
@@ -20,7 +21,7 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-  const url = usePathname();
+  const pathname = usePathname();
 
   return (
     <Disclosure as="nav" className="bg-white mb-10 p-2">
@@ -101,11 +102,18 @@ export default function NavBar() {
                   <Link key={item.name} href={item.href}>
                     <div
                       aria-current={item.current ? "page" : undefined}
-                      className={
-                        url === `${item.href}`
-                          ? "text-gray-800 text-xl font-medium hover:text-gray-800"
-                          : "text-gray-400 text-xl font-medium hover:text-gray-800"
-                      }
+                      // className={
+                      //   pathname === `${item.href}`
+                      //     ? "text-gray-800 text-xl font-medium hover:text-gray-800"
+                      //     : "text-gray-400 text-xl font-medium hover:text-gray-800"
+                      // }
+                      className={clsx(
+                        "text-gray-800 text-xl font-medium hover:text-gray-800",
+                        {
+                          "text-gray-400 text-xl font-medium hover:text-gray-800":
+                            pathname === `${item.href}`,
+                        }
+                      )}
                     >
                       {item.name}
                     </div>
