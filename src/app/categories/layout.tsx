@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
   const url = usePathname();
+
   return (
     <section className="py-24">
       <div className="p-4 flex flex-col">
