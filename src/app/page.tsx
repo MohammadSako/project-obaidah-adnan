@@ -1,29 +1,26 @@
 import { Landing } from "../components/homescreen/landing";
 import { Categories } from "../components/homescreen/categories";
-import { getProducts } from "../lib/mongo/products";
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode } from "react";
+import { supabase } from "@/lib/supabase";
 
-async function fetchProducts() {
-  const { products } = await getProducts();
-  if (!products) throw new Error("Failed to fetch products");
-  return products;
-}
-
-export default async function Home() {
-  const products = await fetchProducts();
+export default function Home() {
+  const addNewProduct = async () => {
+    const { data, error } = await supabase.from("items").insert({
+      title: "T-Shert",
+      price: 10,
+      color: "White",
+      size: "lg",
+      image:
+        "https://tailwindui.com/plus/img/ecommerce-images/product-page-01-related-product-03.jpg",
+    });
+    if (data) console.log(data);
+    if (error) console.log(error);
+  };
+  addNewProduct();
 
   return (
     <main className="flex min-h-screen flex-col items-center font-display">
       <Landing />
       <Categories />
-
-      <ul>
-        {products.map((product: { _id: Key | null | undefined; title: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => (
-          <li key={product._id}>
-            {product.title}
-          </li>
-        ))}
-      </ul>
     </main>
   );
 }
