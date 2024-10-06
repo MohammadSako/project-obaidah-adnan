@@ -84,8 +84,9 @@ export default async function ProductList({ products }) {
                       {product.color}
                     </p>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">
-                    {product.price}
+                  <p className="text-lg font-medium text-gray-900">
+                    <span className="font-semibold text-red-700">{product.price}</span>{" "}
+                    <span className="text-xs -mt-2">JD</span>
                   </p>
                 </div>
               </div>
