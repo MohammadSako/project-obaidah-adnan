@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Radio, RadioGroup } from "@headlessui/react";
+import Image from "next/image";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -66,7 +67,7 @@ export default function ProductOverView({ data }) {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
 
-//   console.log("mmmmmmmmmmmmmmmmmmmmmmmmmm", data.products);
+  //   console.log("mmmmmmmmmmmmmmmmmmmmmmmmmm", data.products);
 
   return (
     <div className="bg-white">
@@ -103,32 +104,40 @@ export default function ProductOverView({ data }) {
         {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-            <img
+            <Image
               alt={data.products.image}
               src={data.products.image}
+              width={500}
+              height={500}
               className="h-full w-full object-cover object-center"
             />
           </div>
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-              <img
-                alt={data.products.image}
-                src={data.products.image}
+            <Image
+              alt={data.products.image}
+              src={data.products.image}
+              width={500}
+              height={500}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-              <img
-                alt={data.products.image}
-                src={data.products.image}
+            <Image
+              alt={data.products.image}
+              src={data.products.image}
+              width={500}
+              height={500}
                 className="h-full w-full object-cover object-center"
               />
             </div>
           </div>
           <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-            <img
+          <Image
               alt={data.products.image}
               src={data.products.image}
+              width={500}
+              height={500}
               className="h-full w-full object-cover object-center"
             />
           </div>
