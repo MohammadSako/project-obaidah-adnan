@@ -2,64 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function ProductList({ products }) {
-  // const products = [
-  //   {
-  //     id: 1,
-  //     name: "Basic Tee",
-  //     href: "1",
-  //     src: "/c3.jpg",
-
-  //     imageAlt: "Front of men's Basic Tee in black.",
-  //     price: "$35",
-  //     color: "Black",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Basic Tee",
-  //     href: "2",
-  //     src: "/c2.jpg",
-
-  //     imageAlt: "Front of men's Basic Tee in black.",
-  //     price: "$35",
-  //     color: "gray",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Basic Tee",
-  //     href: "3",
-  //     src: "/c3.jpg",
-
-  //     imageAlt: "Front of men's Basic Tee in black.",
-  //     price: "$35",
-  //     color: "Black",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Basic Tee",
-  //     href: "4",
-  //     src: "/c2.jpg",
-
-  //     imageAlt: "Front of men's Basic Tee in black.",
-  //     price: "$35",
-  //     color: "gray",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Basic Tee",
-  //     href: "5",
-  //     src: "/c3.jpg",
-
-  //     imageAlt: "Front of men's Basic Tee in black.",
-  //     price: "$35",
-  //     color: "Black",
-  //   },
-  // ];
 
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {products?.map((product) => (
+          {products.map((product) => (
             <Link key={product.id} href={product.id.toString()}>
               <div key={product.id} className="group relative">
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
