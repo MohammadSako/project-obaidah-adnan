@@ -1,4 +1,4 @@
-import { getProductsById } from "@/lib/db/products";
+import { getProductsById } from "../../../lib/db/products";
 import ProductOverView from "../../../components/helpers/productOverView";
 
 export default async function Page({ params }) {
