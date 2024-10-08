@@ -1,8 +1,8 @@
 import { Landing } from "../components/homescreen/landing";
 import { Categories } from "../components/homescreen/categories";
-// import { supabase } from "@/lib/supabase";
 
-export default function Home() {
+export default async function Home() {
+  // without prisma
   // const addNewProduct = async () => {
   //   const { data, error } = await supabase.from("items").insert({
   //     title: "T-Shert",

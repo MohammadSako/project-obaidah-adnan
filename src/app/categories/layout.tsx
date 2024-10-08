@@ -68,7 +68,7 @@ const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
           </nav>
         </div>
 
-        <main className="">{children}</main>
+        <main>{children}</main>
       </div>
     </section>
   );
