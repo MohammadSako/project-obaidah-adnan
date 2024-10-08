@@ -33,7 +33,7 @@ export const getProducts = cache(async function () {
   }
 });
 
-export async function getProductsById(id: string) {
+export async function getProductsById(id) {
   try {
     const products = await prisma.items.findUnique({ where: { id } });
     return { products };

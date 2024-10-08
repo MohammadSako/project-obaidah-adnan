@@ -86,7 +86,7 @@ export default function NavBar() {
           <div className="flex sm:flex-none flex-1 items-center justify-center sm:items-stretch">
             <div className="flex flex-shrink-0 items-center">
               <Link href="/">
-                <h1 className="sm:text-2xl text-3xl font-sans tracking-wide sm:invisible visible">
+                <h1 className="sm:text-xl text-3xl font-sans tracking-wide sm:invisible visible">
                   OBAIDAH <span className="font-bold text-[#db2777]">Shop</span>
                 </h1>
               </Link>
