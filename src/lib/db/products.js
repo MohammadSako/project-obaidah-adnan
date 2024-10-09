@@ -1,10 +1,9 @@
 // old method .......................
-// import { NextApiRequest, NextApiResponse } from 'next';
-// import { supabase } from "../lib/supabase";
+// import { supabase } from "../supabase";
 
 // export const getProducts = async () => {
 //   try {
-//     const { data, error } = await supabase.from("items").select();
+//     const { data, error } = await supabase.from("products").select();
 
 //     if (error) {
 //       console.error("Error fetching products:", error);
@@ -17,7 +16,7 @@
 //     console.error("Unexpected error:", error);
 //   }
 // };
-//  ...................................
+// //  ...................................
 
 // Prisma
 import prisma from "./prisma";
