@@ -9,6 +9,10 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaRegCopyright, FaWhatsapp } from "react-icons/fa6";
+import Search from "../helpers/navbar helpers/search";
+import BrandName from "../helpers/navbar helpers/brand-name";
+import Languages from "../helpers/navbar helpers/languages";
+import Cart from "../helpers/navbar helpers/cart";
 
 const navigation = [
   { name: "About", href: "/about", current: false },
@@ -25,48 +29,25 @@ export default function NavBar() {
   return (
     <Disclosure as="nav" className="bg-white mb-10 p-2">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        {/* ---------------------- */}
 
-        <div className="relative flex h-16 items-center justify-between">
-          <div className="hidden sm:block">
-            <div className="flex space-x-2">
-              <Link
-                href="https://wa.me/962777935735"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="text-gray-500 hover:text-[#31D14F]">
-                  <FaWhatsapp size={18} />
-                </div>
-              </Link>
-              <p className="text-sm text-gray-500">(+962) 777 935 735</p>
-            </div>
+        {/* First Nav ------------------------------- */}
+        <div className="relative flex h-16 items-center justify-between space-x-2">
+          <div>
+            <BrandName />
           </div>
-          <div className="flex sm:flex-none flex-1 items-center justify-center sm:items-stretch">
-            <div className="flex flex-shrink-0 items-center justify-items-start">
-              <Link href="/">
-                <h1 className="text-lg font-sans tracking-wide text-gray-400 hover:text-gray-800 sm:block hidden">
-                  عربي
-                </h1>
-              </Link>
-            </div>
+          <div className="hidden sm:block grow mx-4">
+            <Search />
+          </div>
+          <div>
+            <Languages />
+          </div>
+          <div>
+            <Cart />
           </div>
         </div>
-
-        {/* ---------------------- */}
+        {/* Second Nav ----------------------------------- */}
 
         <div className="relative flex h-16 items-center justify-between">
-          <div className="flex flex-row gap-1">
-            <Link href="/">
-              <h1 className="text-4xl font-sans sm:block hidden tracking-tight">
-                OBAIDAH <span className="font-bold text-[#06b6d4]">Shop</span>
-              </h1>
-            </Link>
-            <div className="mt-2 sm:block hidden">
-              <FaRegCopyright size={10} />
-            </div>
-          </div>
-
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -117,8 +98,11 @@ export default function NavBar() {
         </div>
       </div>
 
+      {/* Mobile ----------------------------- */}
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
+          <Search />
+
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               <DisclosureButton

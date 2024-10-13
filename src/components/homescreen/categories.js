@@ -38,6 +38,11 @@ export function Categories() {
       <div className="bg-white ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
+            <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+              <h1 className="text-2xl font-medium tracking-tighter text-gray-900 sm:text-3xl">
+                Explore Popular Categories
+              </h1>
+            </div>
             <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
               {Images.map((categ, index) => (
                 <Link key={index} href={categ.url}>
@@ -46,8 +51,8 @@ export function Categories() {
                       <Image
                         src={categ.src}
                         style={{
-                          width: '100%',
-                          height: 'auto',
+                          width: "100%",
+                          height: "auto",
                         }}
                         width={200}
                         height={200}
