@@ -4,6 +4,8 @@ import "./globals.css";
 import NavBar from "../components/layouts/navbar";
 import Footer from "../components/layouts/footer";
 import PageLine from "../components/UI/pageLine";
+import { Suspense } from "react";
+import Loading from "./loading";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -32,10 +34,8 @@ export default function RootLayout({
       >
         <PageLine />
         <NavBar />
-        <main>{children}</main>
-        <footer>
-          <Footer />
-        </footer>
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+        <Footer />
       </body>
     </html>
   );

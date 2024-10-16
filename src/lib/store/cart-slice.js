@@ -1,18 +1,25 @@
 // import { createSlice } from "@reduxjs/toolkit";
-// // import { setCookie } from "nookies";
-// // import nookies from "nookies";
+// import { setCookie } from "nookies";
+// import nookies from "nookies";
 // // import getCookies from "../util/getCookies";
 // // const getCookie = getCookies();
 
-// const productSlice = createSlice({
+// const cartSlice = createSlice({
 //   name: "cart",
 //   initialState: {
 //     items: [],
 //     totalQuantity: 0,
 //     totalAllPrice: 0,
 //     shippingFee: 5,
+//     drawer: ""
 //   },
 //   reducers: {
+
+//     openDrawer(state, action) {
+//       const drawer = action.payload;
+//       state.drawer = drawer;
+//     },
+
 //     addItemToCart(state, action) {
 //       const newItem = action.payload;
 //       const existingItem = state.items.find((item) => item.id === newItem.id);
