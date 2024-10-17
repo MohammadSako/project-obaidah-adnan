@@ -8,7 +8,7 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaRegCopyright, FaWhatsapp } from "react-icons/fa6";
+import { FaRegCopyright } from "react-icons/fa6";
 import Search from "../helpers/navbar helpers/search";
 import BrandName from "../helpers/navbar helpers/brand-name";
 import Languages from "../helpers/navbar helpers/languages";
