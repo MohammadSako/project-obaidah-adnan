@@ -5,6 +5,7 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { Radio, RadioGroup } from "@headlessui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { TbShoppingBagPlus } from "react-icons/tb";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -305,6 +306,11 @@ export default function ProductOverView({ data }) {
                   type="submit"
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
+                  <TbShoppingBagPlus
+                    title="Add to bag"
+                    size={30}
+                    className="mr-4"
+                  />
                   Add to bag
                 </button>
               </form>

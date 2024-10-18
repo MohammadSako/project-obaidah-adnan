@@ -8,8 +8,14 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux";
+import CartList from "./cartList";
 
 export default function CartDrawer({ open, onClose, closeButton }) {
+  const cartItems = useSelector((state) => state.cart.items);
+
+  console.log("cartttt", cartItems);
+
   function closeDrawer() {
     closeButton();
   }
@@ -44,11 +50,11 @@ export default function CartDrawer({ open, onClose, closeButton }) {
               <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                 <div className="px-4 sm:px-6">
                   <DialogTitle className="text-base font-semibold leading-6 text-gray-900">
-                    Panel title
+                    Shopping Cart
                   </DialogTitle>
                 </div>
                 <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                  {/* Your content */}
+                  <CartList data={cartItems} />
                 </div>
               </div>
             </DialogPanel>

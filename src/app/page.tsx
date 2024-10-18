@@ -1,7 +1,22 @@
+// "use client";
+
 import { Landing } from "../components/homescreen/landing";
 import { Categories } from "../components/homescreen/categories";
+// import getCookies from "../../util/getCookies";
+// import { useEffect } from "react";
+// import { cartActions } from "../../store/cart-slice";
+// import store from "../../store";
 
-export default async function Home() {
+// interface Items {
+//   id: number;
+//   title: string;
+//   description: string;
+//   image: string;
+//   price: number;
+//   color: string;
+// }
+
+export default function Home() {
   // without prisma
   // const addNewProduct = async () => {
   //   const { data, error } = await supabase.from("items").insert({
@@ -16,6 +31,30 @@ export default async function Home() {
   //   if (error) console.log(error);
   // };
   // addNewProduct();
+
+  // with nookie
+  // const cookies = getCookies();
+  // useEffect(() => {
+  //   return () => {
+  //     const items: Items[] = cookies?.["cartItems"]
+  //       ? JSON.parse(cookies?.["cartItems"])
+  //       : [];
+
+  //     console.log("from Cookies", items);
+
+  //     items?.forEach(({ id, title, price, description, image }) => {
+  //       store.dispatch(
+  //         cartActions.addItemToCart({
+  //           id,
+  //           title,
+  //           price,
+  //           description,
+  //           image,
+  //         })
+  //       );
+  //     });
+  //   };
+  // }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center font-display">
