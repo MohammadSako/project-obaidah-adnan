@@ -1,12 +1,24 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../../../store/cart-slice";
 
-export default function CartList({data}) {
-console.log("sdasdsa",data);
+export default function CartList({ data }) {
+  const dispatch = useDispatch();
+  const totalAllPrice = useSelector((state) => state.cart.totalAllPrice);
 
+  //SubTotal
+  useEffect(() => {
+    dispatch(cartActions.totalAllItems());
+  }, [data, dispatch]);
+
+  const removeItem = (id) => {
+    dispatch(cartActions.removeItemFromCart(id));
+  };
   return (
-    <div>
+    <>
       <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
         <div className="mt-8">
           <div className="flow-root">
@@ -29,9 +41,11 @@ console.log("sdasdsa",data);
                         <h3>
                           <a href={product.href}>{product.title}</a>
                         </h3>
-                        <p className="ml-4">{product.price}</p>
+                        <p className="ml-4">{product.price} JD</p>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                      <p className="mt-1 text-sm text-gray-500">
+                        {product.color}
+                      </p>
                       <p className="mt-1 text-sm text-gray-500">
                         {product.description}
                       </p>
@@ -41,6 +55,7 @@ console.log("sdasdsa",data);
 
                       <div className="flex">
                         <button
+                          onClick={() => removeItem(product.id)}
                           type="button"
                           className="font-medium text-indigo-600 hover:text-indigo-500"
                         >
@@ -59,7 +74,7 @@ console.log("sdasdsa",data);
       <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
         <div className="flex justify-between text-base font-medium text-gray-900">
           <p>Subtotal</p>
-          <p>${data.totalPrice}</p>
+          <p>{totalAllPrice} JD</p>
         </div>
         <p className="mt-0.5 text-sm text-gray-500">
           Shipping and taxes calculated at checkout.
@@ -86,6 +101,6 @@ console.log("sdasdsa",data);
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
