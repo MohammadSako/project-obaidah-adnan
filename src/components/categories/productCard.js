@@ -21,7 +21,7 @@ function ProductCard({ key, id, title, description, image, price, color }) {
         description,
         image,
         price,
-        color,
+        color
       })
     );
 

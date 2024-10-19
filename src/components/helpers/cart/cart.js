@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import { IoCartOutline } from "react-icons/io5";
-import { TbShoppingBag } from "react-icons/tb";
+// import { TbShoppingBag } from "react-icons/tb";
 import HeaderCartButton from "./HeaderCartButton";
 
 import CartDrawer from "./cartDrawer";
