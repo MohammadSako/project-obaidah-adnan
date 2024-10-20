@@ -5,19 +5,15 @@ import Image from "next/image";
 import React, { useCallback } from "react";
 import { TbShoppingBagPlus } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
-// import { setCookie } from "nookies";
-// import getCookies from "../../../util/getCookies";
 
-function ProductCard({ key, id, title, description, image, price, color }) {
-
-  const addItems = useItemStore(state => state.addItem);
+function ProductCard({ id, title, description, image, price, color }) {
+  const addItems = useItemStore((state) => state.addItem);
   const item = useItemStore((state) => state.items);
 
   console.log("zustand....................", item);
-
-  const addToCartHandler = () => {
+  
+  const addToCartHandler = useCallback(() => {
     addItems({
-      key: key,
       id: id,
       title: title,
       description: description,
@@ -25,47 +21,13 @@ function ProductCard({ key, id, title, description, image, price, color }) {
       price: price,
       color: color,
     });
-  };
-
-  // const addToCartHandler = useCallback(() => {
-  //   dispatch(
-  //     cartActions.addItemToCart({
-  //       id,
-  //       title,
-  //       description,
-  //       image,
-  //       price,
-  //       color,
-  //     })
-  //   );
-
-  //   // with nookies
-  //   // const cartItem = getCookie?.["cartItems"]
-  //   //   ? JSON.parse(getCookie?.["cartItems"])
-  //   //   : []; //if the cookie has any items; to merge them with the new one.
-  //   // const addToCookies = [
-  //   //   ...cartItem, //old items in the cookie, merge them with the new one.
-  //   //   {
-  //   //     id,
-  //   //     title,
-  //   //     description,
-  //   //     image,
-  //   //     price,
-  //   //     color,
-  //   //   },
-  //   // ];
-  //   // setCookie(null, "cartItems", JSON.stringify(addToCookies), {
-  //   //   maxAge: 86400,
-  //   //   path: "/",
-  //   // });
-  //   //   }, [dispatch, id, title, price, description, image, color, getCookie]);
-  // }, [key, id, title, price, description, image, color, dispatch]);
+  }, [addItems, id, title, price, description, image, color]);
 
   return (
     <div>
-      <div key={key}>
+      <div key={id}>
         <Link href={id.toString()}>
-          <div key={key} className="group relative">
+          <div key={id} className="group relative">
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
               <Image
                 src={image}
