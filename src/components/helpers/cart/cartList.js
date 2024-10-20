@@ -1,22 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { cartActions } from "../../../../store/cart-slice";
+import { useItemStore } from "../../../lib/store";
 
-export default function CartList({ data }) {
-  const dispatch = useDispatch();
-  const totalAllPrice = useSelector((state) => state.cart.totalAllPrice);
+export default function CartList() {
+  const data = useItemStore((state) => state.items);
+  const removeItem = useItemStore(state => state.removeItem)
 
-  //SubTotal
-  useEffect(() => {
-    dispatch(cartActions.totalAllItems());
-  }, [data, dispatch]);
-
-  const removeItem = (id) => {
-    dispatch(cartActions.removeItemFromCart(id));
-  };
   return (
     <>
       <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
@@ -74,7 +64,7 @@ export default function CartList({ data }) {
       <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
         <div className="flex justify-between text-base font-medium text-gray-900">
           <p>Subtotal</p>
-          <p>{totalAllPrice} JD</p>
+          {/* <p>{totalAllPrice} JD</p> */}
         </div>
         <p className="mt-0.5 text-sm text-gray-500">
           Shipping and taxes calculated at checkout.

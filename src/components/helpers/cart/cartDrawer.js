@@ -8,13 +8,12 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useSelector } from "react-redux";
 import CartList from "./cartList";
+import { useItemStore } from "@/lib/store";
 
 export default function CartDrawer({ open, onClose, closeButton }) {
-  const cartItems = useSelector((state) => state.cart.items);
+  const cartItems = useItemStore((state) => state.items);
 
-  console.log("cartttt", cartItems);
 
   function closeDrawer() {
     closeButton();

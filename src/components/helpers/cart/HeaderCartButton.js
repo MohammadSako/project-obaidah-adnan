@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import classes from "./HeaderCartButton.module.css";
 import { TbShoppingBag } from "react-icons/tb";
+import { useItemStore } from "../../../lib/store";
 
 const HeaderCartButton = (props) => {
-  const cartQuantity = useSelector((state) => state.cart.totalQuantity);
-
+  const item = useItemStore((state) => state.items);
   const [cartEmpty, setCartEmpty] = useState(false);
 
   useEffect(() => {
-    if (cartQuantity > 0) {
+    if (item.length > 0) {
       setCartEmpty(true);
     } else {
       setCartEmpty(false);
     }
-  }, [cartQuantity]);
+  }, [item]);
 
   //cart Bump when clicked
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
@@ -23,7 +23,7 @@ const HeaderCartButton = (props) => {
   }`;
 
   useEffect(() => {
-    if (cartQuantity.length === 0) {
+    if (item.length === 0) {
       return;
     }
     setBtnIsHighlighted(true);
@@ -33,7 +33,7 @@ const HeaderCartButton = (props) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [cartQuantity]);
+  }, [item]);
 
   return (
     <div
@@ -47,7 +47,7 @@ const HeaderCartButton = (props) => {
       />
       {cartEmpty && (
         <div className="-mt-8 ml-4 bg-red-500 w-5 h-5 rounded-full font-bold text-sm text-white absolute flex justify-center">
-          {cartQuantity}
+          {item.length}
         </div>
       )}
     </div>

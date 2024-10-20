@@ -6,7 +6,7 @@ import Footer from "../components/layouts/footer";
 import PageLine from "../components/UI/pageLine";
 import { Suspense } from "react";
 import Loading from "./loading";
-import ReduxProvider from "../../store/reduxProvider";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -33,12 +33,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ReduxProvider>
-          <PageLine />
-          <NavBar />
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-          <Footer />
-        </ReduxProvider>
+        <PageLine />
+        <NavBar />
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+        <Footer />
       </body>
     </html>
   );

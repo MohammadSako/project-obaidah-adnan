@@ -3,49 +3,63 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
 import { TbShoppingBagPlus } from "react-icons/tb";
-import { cartActions } from "../../../store/cart-slice";
+import { useItemStore } from "../../lib/store";
 // import { setCookie } from "nookies";
 // import getCookies from "../../../util/getCookies";
 
 function ProductCard({ key, id, title, description, image, price, color }) {
-  //   const getCookie = getCookies();
-  const dispatch = useDispatch();
 
-  const addToCartHandler = useCallback(() => {
-    dispatch(
-      cartActions.addItemToCart({
-        id,
-        title,
-        description,
-        image,
-        price,
-        color
-      })
-    );
+  const addItems = useItemStore(state => state.addItem);
+  const item = useItemStore((state) => state.items);
 
-    // with nookies
-    // const cartItem = getCookie?.["cartItems"]
-    //   ? JSON.parse(getCookie?.["cartItems"])
-    //   : []; //if the cookie has any items; to merge them with the new one.
-    // const addToCookies = [
-    //   ...cartItem, //old items in the cookie, merge them with the new one.
-    //   {
-    //     id,
-    //     title,
-    //     description,
-    //     image,
-    //     price,
-    //     color,
-    //   },
-    // ];
-    // setCookie(null, "cartItems", JSON.stringify(addToCookies), {
-    //   maxAge: 86400,
-    //   path: "/",
-    // });
-    //   }, [dispatch, id, title, price, description, image, color, getCookie]);
-  }, [dispatch, id, title, price, description, image, color]);
+  console.log("zustand....................", item);
+
+  const addToCartHandler = () => {
+    addItems({
+      key: key,
+      id: id,
+      title: title,
+      description: description,
+      image: image,
+      price: price,
+      color: color,
+    });
+  };
+
+  // const addToCartHandler = useCallback(() => {
+  //   dispatch(
+  //     cartActions.addItemToCart({
+  //       id,
+  //       title,
+  //       description,
+  //       image,
+  //       price,
+  //       color,
+  //     })
+  //   );
+
+  //   // with nookies
+  //   // const cartItem = getCookie?.["cartItems"]
+  //   //   ? JSON.parse(getCookie?.["cartItems"])
+  //   //   : []; //if the cookie has any items; to merge them with the new one.
+  //   // const addToCookies = [
+  //   //   ...cartItem, //old items in the cookie, merge them with the new one.
+  //   //   {
+  //   //     id,
+  //   //     title,
+  //   //     description,
+  //   //     image,
+  //   //     price,
+  //   //     color,
+  //   //   },
+  //   // ];
+  //   // setCookie(null, "cartItems", JSON.stringify(addToCookies), {
+  //   //   maxAge: 86400,
+  //   //   path: "/",
+  //   // });
+  //   //   }, [dispatch, id, title, price, description, image, color, getCookie]);
+  // }, [key, id, title, price, description, image, color, dispatch]);
 
   return (
     <div>
