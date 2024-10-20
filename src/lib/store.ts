@@ -34,21 +34,22 @@ export const useItemStore = create<State & Actions>()(
       decreaseQuantity: () =>
         set((state) => ({ totalQuantity: state.totalQuantity + 1 })),
 
-      addItem: (item: Item) =>
-        set((state) => ({
-          items: [...state.items, item],
-        })),
-
       // addItem: (item: Item) =>
-      //   set((state) => {
-      //     const itemExists = state.items.some(
-      //       (existingItem) => existingItem.id === item.id
-      //     );
-      //     if (!itemExists) {
-      //       return { items: [...state.items, item] };
-      //     }
-      //     return state;
-      //   }),
+      //   set((state) => ({
+      //     items: [...state.items, item],
+      //   })),
+
+      addItem: (item: Item) =>
+        set((state) => {
+          const itemExists = state.items.some(
+            (existingItem) => existingItem.id === item.id
+          );
+          if (!itemExists) {
+            return { items: [...state.items, item] };
+          } else {
+            return { totalQuantity: state.totalQuantity + 1 };
+          }
+        }),
 
       removeItem: (id: string) =>
         set((state) => ({

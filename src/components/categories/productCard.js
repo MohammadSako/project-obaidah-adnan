@@ -9,6 +9,7 @@ import { useItemStore } from "../../lib/store";
 function ProductCard({ id, title, description, image, price, color }) {
   const addItems = useItemStore((state) => state.addItem);
   const item = useItemStore((state) => state.items);
+  const q = useItemStore((state) => state.totalQuantity);
 
   console.log("zustand....................", item);
   
@@ -29,6 +30,7 @@ function ProductCard({ id, title, description, image, price, color }) {
         <Link href={id.toString()}>
           <div key={id} className="group relative">
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+              {q}
               <Image
                 src={image}
                 style={{
