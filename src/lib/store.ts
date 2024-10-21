@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 export type Item = {
   id: string;
@@ -117,6 +117,10 @@ export const useItemStore = create<State & Actions>()(
           };
         }),
     }),
-    { name: "item-store", skipHydration: true }
+    {
+      name: "item-store",
+      storage: createJSONStorage(() => localStorage),
+      // skipHydration: true,
+    }
   )
 );
