@@ -120,6 +120,11 @@ export const useItemStore = create<State & Actions>()(
     {
       name: "item-store",
       storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        items: state.items,
+        totalQuantity: state.totalQuantity,
+        totalAllPrice: state.totalAllPrice,
+      }),
       // skipHydration: true,
     }
   )
