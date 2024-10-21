@@ -6,6 +6,7 @@ import { useItemStore } from "../../../lib/store";
 export default function CartList() {
   const data = useItemStore((state) => state.items);
   const removeItem = useItemStore(state => state.removeItem)
+  const totalAllPrice = useItemStore((state) => state.totalAllPrice);
 
   return (
     <>
@@ -64,7 +65,7 @@ export default function CartList() {
       <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
         <div className="flex justify-between text-base font-medium text-gray-900">
           <p>Subtotal</p>
-          {/* <p>{totalAllPrice} JD</p> */}
+          <p>{totalAllPrice} JD</p>
         </div>
         <p className="mt-0.5 text-sm text-gray-500">
           Shipping and taxes calculated at checkout.
