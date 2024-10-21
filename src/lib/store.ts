@@ -125,7 +125,7 @@ export const useItemStore = create<State & Actions>()(
         totalQuantity: state.totalQuantity,
         totalAllPrice: state.totalAllPrice,
       }),
-      // skipHydration: true,
+      skipHydration: true,
     }
   )
 );
