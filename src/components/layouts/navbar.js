@@ -12,8 +12,8 @@ import { FaRegCopyright } from "react-icons/fa6";
 import Search from "../helpers/navbar helpers/search";
 import BrandName from "../helpers/navbar helpers/brand-name";
 import Languages from "../helpers/navbar helpers/languages";
-import Cart from "../helpers/cart/cart";
-import Favorite from "../helpers/favorite/favorite";
+import Cart from "../cart/cart";
+import Favorite from "../favorite/favorite";
 
 const navigation = [
   { name: "About", href: "/about", current: false },

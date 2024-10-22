@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import classes from "./HeaderCartButton.module.css";
+import classes from "../helpers/HeaderButtonAnimation.module.css";
 import { TbShoppingBag } from "react-icons/tb";
-import { useItemStore } from "../../../lib/store";
+import { useItemStore } from "../../lib/store";
 
 const HeaderCartButton = (props) => {
   const [cartEmpty, setCartEmpty] = useState(false);

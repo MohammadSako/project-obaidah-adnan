@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useItemStore } from "../../../lib/store";
+import { useItemStore } from "../../lib/store";
 
 export default function CartList() {
   const data = useItemStore((state) => state.items);
