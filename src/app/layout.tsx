@@ -6,6 +6,7 @@ import Footer from "../components/layouts/footer";
 import PageLine from "../components/UI/pageLine";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { Toaster } from "@/components/UI/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,6 +35,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <PageLine />
+        <Toaster />
         <NavBar />
         <Suspense fallback={<Loading />}>{children}</Suspense>
         <Footer />

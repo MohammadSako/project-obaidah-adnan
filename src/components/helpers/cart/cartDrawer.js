@@ -14,7 +14,6 @@ import { useItemStore } from "@/lib/store";
 export default function CartDrawer({ open, onClose, closeButton }) {
   const cartItems = useItemStore((state) => state.items);
 
-
   function closeDrawer() {
     closeButton();
   }
@@ -46,16 +45,31 @@ export default function CartDrawer({ open, onClose, closeButton }) {
                   </button>
                 </div>
               </TransitionChild>
-              <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                <div className="px-4 sm:px-6">
-                  <DialogTitle className="text-base font-semibold leading-6 text-gray-900">
-                    Shopping Cart
-                  </DialogTitle>
+              {cartItems.length > 0 && (
+                <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                  <div className="px-4 sm:px-6">
+                    <DialogTitle className="text-base font-semibold leading-6 text-gray-900">
+                      Shopping Cart
+                    </DialogTitle>
+                  </div>
+                  <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                    <CartList data={cartItems} />
+                  </div>
                 </div>
-                <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                  <CartList data={cartItems} />
+              )}
+              {cartItems.length === 0 && (
+                <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                  <div className="px-4 sm:px-6">
+                    <DialogTitle className="text-xl font-semibold leading-6 text-gray-900">
+                      Your bag is empty
+                    </DialogTitle>
+                    <p className="mt-4">
+                      You can add products to your shopping bag, either by
+                      searching or by browsing products.
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </DialogPanel>
           </div>
         </div>

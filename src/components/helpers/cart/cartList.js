@@ -5,7 +5,7 @@ import { useItemStore } from "../../../lib/store";
 
 export default function CartList() {
   const data = useItemStore((state) => state.items);
-  const removeItem = useItemStore(state => state.removeItem)
+  const removeItem = useItemStore((state) => state.removeItem);
   const totalAllPrice = useItemStore((state) => state.totalAllPrice);
 
   return (
@@ -77,19 +77,6 @@ export default function CartList() {
           >
             Checkout
           </a>
-        </div>
-        <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-          <p>
-            or{" "}
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              Continue Shopping
-              <span aria-hidden="true"> &rarr;</span>
-            </button>
-          </p>
         </div>
       </div>
     </>
