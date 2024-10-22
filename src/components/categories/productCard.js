@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { TbShoppingBagPlus, TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
 import { useToast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/ui/toast";
+import { ToastAction } from "@/components/UI/toast";
 import { useRouter } from "next/navigation";
 
 function ProductCard({ id, title, description, image, price, color }) {

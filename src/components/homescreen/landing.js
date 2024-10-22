@@ -4,14 +4,14 @@ import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
 
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent } from "../UI/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "../ui/carousel";
+} from "../UI/carousel";
 import Image from "next/image";
 
 export function Landing() {
