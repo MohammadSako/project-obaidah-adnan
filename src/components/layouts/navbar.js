@@ -13,6 +13,7 @@ import Search from "../helpers/navbar helpers/search";
 import BrandName from "../helpers/navbar helpers/brand-name";
 import Languages from "../helpers/navbar helpers/languages";
 import Cart from "../helpers/cart/cart";
+import Favorite from "../helpers/favorite/favorite";
 
 const navigation = [
   { name: "About", href: "/about", current: false },
@@ -29,7 +30,6 @@ export default function NavBar() {
   return (
     <Disclosure as="nav" className="bg-white mb-10 p-2">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-
         {/* First Nav ------------------------------- */}
         <div className="relative flex h-16 items-center sm:justify-between space-x-4">
           <div>
@@ -42,13 +42,15 @@ export default function NavBar() {
             <Languages />
           </div>
           <div>
+            <Favorite />
+          </div>
+          <div>
             <Cart />
           </div>
         </div>
         {/* Second Nav ----------------------------------- */}
 
         <div className="relative flex h-16 items-center justify-between">
-          
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile menu button*/}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">

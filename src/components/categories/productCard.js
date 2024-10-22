@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { TbShoppingBagPlus, TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
 import { useToast } from "@/hooks/use-toast";
@@ -10,13 +10,17 @@ import { ToastAction } from "@/components/ui/toast";
 import { useRouter } from "next/navigation";
 
 function ProductCard({ id, title, description, image, price, color }) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const favorite = useItemStore((state) => state.favorite);
   const addItems = useItemStore((state) => state.addItem);
   const addFavorite = useItemStore((state) => state.addFavorite);
   const removeFavorite = useItemStore((state) => state.removeFavorite);
-  const favorite = useItemStore((state) => state.favorite);
+  console.log("favvvvvvvvvvvvvvvv",favorite);
 
-  // console.log("favvvvvvvvvvvvvvvv",favorite);
-  
+  useEffect(() => {
+    setIsFavorite(favorite.some((item) => item.id === id));
+  }, [favorite, id]);
+
   const { toast } = useToast();
   const router = useRouter();
 
@@ -109,22 +113,22 @@ function ProductCard({ id, title, description, image, price, color }) {
             className="mt-2 text-lg font-sans tracking-wide text-gray-400 hover:text-gray-800"
           />
 
-          {/* {favorite.id !== id && (
+          {!isFavorite && (
             <TbHeart
               title="Add to favorite"
               size={30}
               onClick={addToFavorite}
-              className="mt-2 text-lg font-sans tracking-wide text-gray-400 hover:text-gray-800"
+              className="mt-2 text-lg font-sans tracking-wide text-gray-400 hover:text-red-500"
             />
           )}
-          {favorite.id === id && (
+          {isFavorite && (
             <TbHeartFilled
               title="Remove from favorite"
               size={30}
               onClick={() => removeFavorite(id)}
-              className="mt-2 text-lg font-sans tracking-wide text-gray-400 hover:text-gray-800"
+              className="mt-2 text-lg font-sans tracking-wide text-red-500 hover:text-red-400"
             />
-          )} */}
+          )}
         </div>
       </div>
     </div>

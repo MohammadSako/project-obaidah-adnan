@@ -27,6 +27,7 @@ export type Actions = {
   addFavorite: (item: Item) => void;
   removeFavorite: (id: string) => void;
   totalAllItems: (item: Item) => void;
+  totalAllFavoriteItems: (item: Item) => void;
 };
 
 export const useItemStore = create<State & Actions>()(
@@ -105,21 +106,6 @@ export const useItemStore = create<State & Actions>()(
           }
         }),
 
-      totalAllItems: () =>
-        set((state) => {
-          let amount = 0;
-          let total = 0;
-
-          state.items.forEach((item) => {
-            amount += item.quantity;
-            total += item.quantity * item.price;
-          });
-          return {
-            totalQuantity: amount,
-            totalAllPrice: total,
-          };
-        }),
-
       addFavorite: (item: Item) =>
         set((state) => {
           const itemExists = state.favorite.some(
@@ -185,6 +171,42 @@ export const useItemStore = create<State & Actions>()(
             };
           }
         }),
+
+
+
+
+      totalAllItems: () =>
+        set((state) => {
+          let amount = 0;
+          let total = 0;
+
+          state.items.forEach((item) => {
+            amount += item.quantity;
+            total += item.quantity * item.price;
+          });
+          return {
+            totalQuantity: amount,
+            totalAllPrice: total,
+          };
+        }),
+
+
+      totalAllFavoriteItems: () =>
+        set((state) => {
+          let amount = 0;
+          let total = 0;
+
+          state.favorite.forEach((item) => {
+            amount += item.quantity;
+            total += item.quantity * item.price;
+          });
+          return {
+            totalFavQuantity: amount,
+            totalFavAllPrice: total,
+          };
+        }),
+
+
     }),
     {
       name: "item-store",
@@ -194,6 +216,8 @@ export const useItemStore = create<State & Actions>()(
         favorite: state.favorite,
         totalQuantity: state.totalQuantity,
         totalAllPrice: state.totalAllPrice,
+        totalFavQuantity: state.totalFavQuantity,
+        totalFavAllPrice: state.totalFavAllPrice,
       }),
       // skipHydration: true,
     }

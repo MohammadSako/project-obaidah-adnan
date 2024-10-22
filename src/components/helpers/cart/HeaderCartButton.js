@@ -15,7 +15,7 @@ const HeaderCartButton = (props) => {
       setCartEmpty(false);
     }
     totalAllItems()
-  }, [quantity]);
+  }, [totalAllItems, quantity]);
 
   //cart Bump when clicked
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
