@@ -3,10 +3,10 @@ import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "../components/layouts/navbar";
 import Footer from "../components/layouts/footer";
-import PageLine from "../components/UI/pageLine";
+import PageLine from "../components/ui/pageLine";
 import { Suspense } from "react";
 import Loading from "./loading";
-import { Toaster } from "@/components/UI/toaster";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
