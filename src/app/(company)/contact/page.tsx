@@ -15,7 +15,7 @@ function Contact() {
       transition={{ duration: 0.8, delay: 0.3 }}
       className="flex flex-col items-center my-8 gap-4 w-full overflow-hidden origin-center"
     >
-      <main className="flex min-h-screen flex-col items-center p-10 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <main className="flex min-h-screen flex-col items-center mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="px-6 py-14 sm:py-24 lg:px-8">
           {/* <div
             aria-hidden="true"

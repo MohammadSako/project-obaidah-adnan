@@ -1,7 +1,7 @@
 "use client";
 import { Landing } from "../components/homescreen/landing";
 import { Categories } from "../components/homescreen/categories";
-import YourFavoriteItems from '../components/homescreen/yourFavoriteItems';
+import { YourFavoriteItems } from "../components/homescreen/yourFavoriteItems";
 
 export default function Home() {
   return (
@@ -9,6 +9,12 @@ export default function Home() {
       <Landing />
       <Categories />
       <YourFavoriteItems />
+      {/* <BestSellers />
+      <OurBrands />
+      <NewArrivals />
+      <Advertisement />
+      <MediaHub />
+      <Testimonials /> */}
     </main>
   );
 }

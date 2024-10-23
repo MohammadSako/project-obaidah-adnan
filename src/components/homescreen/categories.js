@@ -38,7 +38,7 @@ export function Categories() {
       <div className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
-            <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+            <div className="lg:col-span-2 lg:pr-8">
               <h1 className="text-2xl font-medium tracking-tighter text-gray-900 sm:text-3xl">
                 Explore Popular Categories
               </h1>

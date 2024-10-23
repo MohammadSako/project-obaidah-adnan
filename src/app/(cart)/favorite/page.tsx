@@ -4,6 +4,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import FavoriteList from "../../../components/favorite/favoriteList";
 import { useItemStore } from "@/lib/store";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 function Favorite() {
   const totalFavQuantity = useItemStore((state) => state.totalFavQuantity);
@@ -16,12 +19,20 @@ function Favorite() {
       transition={{ duration: 0.8, delay: 0.3 }}
       className="flex flex-col items-center my-8 gap-4 w-full overflow-hidden origin-center"
     >
-      <main className="flex min-h-screen flex-col items-center p-10 mx-auto max-w-7xl px-6 sm:px-6 lg:px-14">
-        <div className="sm:mt-28 mt-10 font-sans">
+      <main className="flex min-h-screen flex-col items-center mx-auto max-w-7xl px-6 sm:px-6 lg:px-14">
+        <div className="font-sans">
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-4">
-            Your favorite
+            Your favorites
           </h2>
-          <p className="font-bold">Favorite</p>
+
+          <Link href="/">
+            <Button variant="outline" className="my-4 rounded-full">
+              <IoArrowBackOutline className="mr-2" />
+              Back to Items
+            </Button>
+          </Link>
+
+          <p className="font-bold">Favorites</p>
           <p>{totalFavQuantity} items</p>
           <FavoriteList />
         </div>
