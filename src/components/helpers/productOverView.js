@@ -1,11 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Radio, RadioGroup } from "@headlessui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { TbShoppingBagPlus } from "react-icons/tb";
+import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/UI/toast";
+import { useRouter } from "next/navigation";
+import { useItemStore } from "../../lib/store";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -66,10 +70,46 @@ function classNames(...classes) {
 }
 
 export default function ProductOverView({ data }) {
+  const { addItem } = useItemStore();
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+  const { toast } = useToast();
+  const router = useRouter();
 
-  //   console.log("mmmmmmmmmmmmmmmmmmmmmmmmmm", data.products);
+  const item = data.products;
+
+  const addToCartHandler = useCallback(
+    () => {
+      addItem({
+        id: item.id,
+        title: item.title,
+        description: item.description,
+        image: item.image,
+        price: item.price,
+        color: item.color,
+      });
+      toast({
+        title: `${item.title}`,
+        description: " has been Added to your bag",
+        action: (
+          <ToastAction altText="Go to bag" onClick={() => router.push("/cart")}>
+            Go to bag
+          </ToastAction>
+        ),
+      });
+    },
+    [
+      addItem,
+      item.id,
+      item.title,
+      item.price,
+      item.description,
+      item.image,
+      item.color,
+      toast,
+      router,
+    ]
+  );
 
   return (
     <motion.section
@@ -205,7 +245,8 @@ export default function ProductOverView({ data }) {
                 </div>
               </div>
 
-              <form className="mt-10">
+              {/* <form className="mt-10"> */}
+              <div className="mt-10">
                 {/* Colors */}
                 <div>
                   <h3 className="text-sm font-medium text-gray-900">Color</h3>
@@ -302,18 +343,17 @@ export default function ProductOverView({ data }) {
                   </fieldset>
                 </div>
 
-                <button
-                  type="submit"
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
+                <button className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                   <TbShoppingBagPlus
                     title="Add to bag"
                     size={30}
                     className="mr-4"
+                    onClick={addToCartHandler}
                   />
                   Add to bag
                 </button>
-              </form>
+                {/* </form> */}
+              </div>
             </div>
 
             <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">

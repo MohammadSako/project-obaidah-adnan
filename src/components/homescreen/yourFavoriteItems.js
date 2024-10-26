@@ -2,14 +2,11 @@
 
 import { motion } from "framer-motion";
 import * as React from "react";
-import { useItemStore } from "../../lib/store";
 import { Carousel, CarouselContent, CarouselItem } from "../UI/carousel";
 import Image from "next/image";
 import Link from "next/link";
 
-export function YourFavoriteItems() {
-  const favorite = useItemStore((state) => state.favorite);
-
+export function YourFavoriteItems({ data }) {
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -28,7 +25,7 @@ export function YourFavoriteItems() {
         opts={{ align: "center", dragFree: true }}
       >
         <CarouselContent>
-          {favorite.map((product) => (
+          {data.map((product) => (
             <CarouselItem className="basis-1/3" key={product.id}>
               <Link key={product.id} href="/favorite">
                 <div className="group relative">

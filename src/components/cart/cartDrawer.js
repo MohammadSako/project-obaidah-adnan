@@ -8,11 +8,11 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import CartList from "./cartList";
+import CartDrawerList from "./cartDrawerList";
 import { useItemStore } from "@/lib/store";
 
 export default function CartDrawer({ open, onClose, closeButton }) {
-  const cartItems = useItemStore((state) => state.items);
+  const { items } = useItemStore();
 
   function closeDrawer() {
     closeButton();
@@ -45,7 +45,7 @@ export default function CartDrawer({ open, onClose, closeButton }) {
                   </button>
                 </div>
               </TransitionChild>
-              {cartItems.length > 0 && (
+              {items.length > 0 && (
                 <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                   <div className="px-4 sm:px-6">
                     <DialogTitle className="text-base font-semibold leading-6 text-gray-900">
@@ -53,11 +53,11 @@ export default function CartDrawer({ open, onClose, closeButton }) {
                     </DialogTitle>
                   </div>
                   <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                    <CartList data={cartItems} />
+                    <CartDrawerList onClick={closeDrawer} />
                   </div>
                 </div>
               )}
-              {cartItems.length === 0 && (
+              {items.length === 0 && (
                 <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                   <div className="px-4 sm:px-6">
                     <DialogTitle className="text-xl font-semibold leading-6 text-gray-900">

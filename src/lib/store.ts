@@ -19,6 +19,7 @@ export type State = {
   totalAllPrice: number;
   totalFavQuantity: number;
   totalFavAllPrice: number;
+  // isCartOpen: boolean;
 };
 
 export type Actions = {
@@ -28,6 +29,7 @@ export type Actions = {
   removeFavorite: (id: string) => void;
   totalAllItems: (item: Item) => void;
   totalAllFavoriteItems: (item: Item) => void;
+  // setIsCartOpen: (open: boolean) => void;
 };
 
 export const useItemStore = create<State & Actions>()(
@@ -39,6 +41,9 @@ export const useItemStore = create<State & Actions>()(
       totalAllPrice: 0,
       totalFavQuantity: 0,
       totalFavAllPrice: 0,
+      // isCartOpen: false,
+
+      // setIsCartOpen: (open) => set({ isCartOpen: open }),
 
       addItem: (item: Item) =>
         set((state) => {
@@ -172,9 +177,6 @@ export const useItemStore = create<State & Actions>()(
           }
         }),
 
-
-
-
       totalAllItems: () =>
         set((state) => {
           let amount = 0;
@@ -190,7 +192,6 @@ export const useItemStore = create<State & Actions>()(
           };
         }),
 
-
       totalAllFavoriteItems: () =>
         set((state) => {
           let amount = 0;
@@ -205,8 +206,6 @@ export const useItemStore = create<State & Actions>()(
             totalFavAllPrice: total,
           };
         }),
-
-
     }),
     {
       name: "item-store",

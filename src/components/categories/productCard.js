@@ -11,11 +11,7 @@ import { useRouter } from "next/navigation";
 
 function ProductCard({ id, title, description, image, price, color }) {
   const [isFavorite, setIsFavorite] = useState(false);
-  const favorite = useItemStore((state) => state.favorite);
-  const addItems = useItemStore((state) => state.addItem);
-  const addFavorite = useItemStore((state) => state.addFavorite);
-  const removeFavorite = useItemStore((state) => state.removeFavorite);
-  console.log("favvvvvvvvvvvvvvvv",favorite);
+  const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
 
   useEffect(() => {
     setIsFavorite(favorite.some((item) => item.id === id));
@@ -48,7 +44,7 @@ function ProductCard({ id, title, description, image, price, color }) {
   }, [addFavorite, id, title, price, description, image, color, toast, router]);
 
   const addToCartHandler = useCallback(() => {
-    addItems({
+    addItem({
       id: id,
       title: title,
       description: description,
@@ -65,7 +61,7 @@ function ProductCard({ id, title, description, image, price, color }) {
         </ToastAction>
       ),
     });
-  }, [addItems, id, title, price, description, image, color, toast, router]);
+  }, [addItem, id, title, price, description, image, color, toast, router]);
 
   return (
     <div>
