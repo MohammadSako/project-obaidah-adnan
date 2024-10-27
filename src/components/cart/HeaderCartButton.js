@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import classes from "../helpers/HeaderButtonAnimation.module.css";
 import { TbShoppingBag } from "react-icons/tb";

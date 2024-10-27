@@ -8,3 +8,4 @@ module.exports = {
 // export const images = {
 //   domains: ["tailwindui.com"],
 // };
+

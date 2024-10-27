@@ -2,9 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import FavoriteList from "../../../components/favorite/favoriteList";
+import FavoriteList from "../../components/favorite/favoriteList";
 import { useItemStore } from "@/lib/store";
-import { Button } from "../../../components/UI/button";
+import { Button } from "../../components/UI/button";
 import Link from "next/link";
 import { IoArrowBackOutline } from "react-icons/io5";
 

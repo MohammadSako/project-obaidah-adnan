@@ -30,6 +30,8 @@ export type Actions = {
   totalAllItems: (item: Item) => void;
   totalAllFavoriteItems: (item: Item) => void;
   // setIsCartOpen: (open: boolean) => void;
+  increaseItem: (id: string) => void;
+  decreaseItem: (id: string) => void;
 };
 
 export const useItemStore = create<State & Actions>()(
@@ -175,6 +177,60 @@ export const useItemStore = create<State & Actions>()(
               totalFavQuantity: state.totalFavQuantity - 1,
             };
           }
+        }),
+
+      increaseItem: (id: string) =>
+        set((state) => {
+          const itemExists = state.items.some(
+            (existingItem) => existingItem.id === id
+          );
+
+          if (itemExists) {
+            return {
+              items: state.items.map((existingItem) =>
+                existingItem.id === id
+                  ? {
+                      ...existingItem,
+                      quantity: existingItem.quantity + 1,
+                      totalPrice: existingItem.totalPrice + existingItem.price,
+                    }
+                  : existingItem
+              ),
+              totalQuantity: state.totalQuantity + 1,
+              totalAllPrice:
+                state.totalAllPrice +
+                state.items.find((item) => item.id === id)!.price,
+            };
+          }
+          return state; // No update if item doesn't exist
+        }),
+      decreaseItem: (id: string) =>
+        set((state) => {
+          const itemExists = state.items.some(
+            (existingItem) => existingItem.id === id
+          );
+
+          if (!itemExists) return state; // No action if item doesn't exist
+
+          const updatedItems = state.items
+            .map((existingItem) =>
+              existingItem.id === id
+                ? {
+                    ...existingItem,
+                    quantity: existingItem.quantity - 1,
+                    totalPrice: existingItem.totalPrice - existingItem.price,
+                  }
+                : existingItem
+            )
+            .filter((existingItem) => existingItem.quantity > 0);
+
+          return {
+            items: updatedItems,
+            totalQuantity: state.totalQuantity - 1,
+            totalAllPrice:
+              state.totalAllPrice -
+              state.items.find((item) => item.id === id)!.price,
+          };
         }),
 
       totalAllItems: () =>
