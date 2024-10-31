@@ -11,31 +11,12 @@ import { ToastAction } from "@/components/UI/toast";
 import { useRouter } from "next/navigation";
 import { useItemStore } from "../../lib/store";
 
+
+//missing data in my supabase, should be added later.
 const product = {
-  name: "Basic Tee 6-Pack",
-  price: "$192",
-  href: "#",
   breadcrumbs: [
     { id: 1, name: "Men", href: "#" },
     { id: 2, name: "Clothing", href: "#" },
-  ],
-  images: [
-    {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-secondary-product-shot.jpg",
-      alt: "Two each of gray, white, and black shirts laying flat.",
-    },
-    {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
-      alt: "Model wearing plain black basic tee.",
-    },
-    {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
-      alt: "Model wearing plain gray basic tee.",
-    },
-    {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-featured-product-shot.jpg",
-      alt: "Model wearing plain white basic tee.",
-    },
   ],
   colors: [
     { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -52,8 +33,6 @@ const product = {
     { name: "2XL", inStock: true },
     { name: "3XL", inStock: true },
   ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
   highlights: [
     "Hand cut and sewn locally",
     "Dyed with our proprietary colors",
@@ -65,10 +44,10 @@ const product = {
 };
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
 export default function ProductOverView({ data }) {
   const { addItem } = useItemStore();
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
@@ -78,38 +57,35 @@ export default function ProductOverView({ data }) {
 
   const item = data.products;
 
-  const addToCartHandler = useCallback(
-    () => {
-      addItem({
-        id: item.id,
-        title: item.title,
-        description: item.description,
-        image: item.image,
-        price: item.price,
-        color: item.color,
-      });
-      toast({
-        title: `${item.title}`,
-        description: " has been Added to your bag",
-        action: (
-          <ToastAction altText="Go to bag" onClick={() => router.push("/cart")}>
-            Go to bag
-          </ToastAction>
-        ),
-      });
-    },
-    [
-      addItem,
-      item.id,
-      item.title,
-      item.price,
-      item.description,
-      item.image,
-      item.color,
-      toast,
-      router,
-    ]
-  );
+  const addToCartHandler = useCallback(() => {
+    addItem({
+      id: item.id,
+      title: item.title,
+      description: item.description,
+      image: item.image,
+      price: item.price,
+      color: item.color,
+    });
+    toast({
+      title: `${item.title}`,
+      description: " has been Added to your bag",
+      action: (
+        <ToastAction altText="Go to bag" onClick={() => router.push("/cart")}>
+          Go to bag
+        </ToastAction>
+      ),
+    });
+  }, [
+    addItem,
+    item.id,
+    item.title,
+    item.price,
+    item.description,
+    item.image,
+    item.color,
+    toast,
+    router,
+  ]);
 
   return (
     <motion.section

@@ -29,7 +29,6 @@ export type Actions = {
   removeFavorite: (id: string) => void;
   totalAllItems: (item: Item) => void;
   totalAllFavoriteItems: (item: Item) => void;
-  // setIsCartOpen: (open: boolean) => void;
   increaseItem: (id: string) => void;
   decreaseItem: (id: string) => void;
 };

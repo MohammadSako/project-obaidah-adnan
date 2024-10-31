@@ -46,7 +46,7 @@ const HeaderFavoriteButton = (props) => {
     >
       <TbHeart
         size={30}
-        className="text-lg font-sans tracking-wide text-gray-400 hover:[text-gray-800]"
+        className="text-lg font-sans tracking-wide text-gray-400 hover:text-red-500"
       />
       {cartEmpty && (
         <div className="-mt-8 ml-4 bg-red-500 w-5 h-5 rounded-full font-bold text-sm text-white absolute flex justify-center">

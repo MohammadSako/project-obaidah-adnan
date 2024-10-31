@@ -1,95 +1,92 @@
-// import Image from "next/image";
-// import { useItemStore } from "../../lib/store";
-// import Link from "next/link";
-
-// /*
-//   This example requires some changes to your config:
-  
-//   ```
-//   // tailwind.config.js
-//   module.exports = {
-//     // ...
-//     plugins: [
-//       // ...
-//       require('@tailwindcss/aspect-ratio'),
-//     ],
-//   }
-//   ```
-// */
-
-// export default function FavoriteList() {
-//   const favorite = useItemStore((state) => state.favorite);
-
-//   return (
-//     <div className="bg-white">
-//       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-//         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-//           {favorite.map((product) => (
-//             <Link key={product.id} href="/favorite">
-//               <div className="group relative">
-//                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-//                   <Image
-//                     src={product.image}
-//                     style={{
-//                       width: "100%",
-//                       height: "auto",
-//                     }}
-//                     width={200}
-//                     height={200}
-//                     alt={product.image}
-//                   />
-//                 </div>
-//               </div>
-//             </Link>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
 "use client";
 
 import Image from "next/image";
 import { useItemStore } from "../../lib/store";
-import Link from "next/link";
+import { MdOutlineDelete } from "react-icons/md";
+import { TbShoppingBagPlus } from "react-icons/tb";
+import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/UI/toast";
+import { useCallback } from "react";
 
 export default function FavoriteList() {
-  const favorite = useItemStore((state) => state.favorite);
+  const { favorite, addItem, removeFavorite } = useItemStore();
+  const { toast } = useToast();
+
+  const addToCartHandler = useCallback((item) => {
+    addItem({
+      id: item.id,
+      title: item.title,
+      description: item.description,
+      image: item.image,
+      price: item.price,
+      color: item.color,
+    });
+    toast({
+      title: `${item.title}`,
+      description: " has been Added to your bag",
+      action: (
+        <ToastAction altText="Go to bag" onClick={() => router.push("/cart")}>
+          Go to bag
+        </ToastAction>
+      ),
+    });
+  }, [addItem, toast]);
 
   return (
-    <div className="space-y-4 font-sans">
-      <p className="text-lg font-semibold my-2">Order summary</p>
-      <div className="flex flex-row justify-between">
-        <p className="">Products ({totalQuantity})</p>
-        <p className="">JD{totalAllPrice}</p>
-      </div>
-      <div className="border-t-2 border-black py-6 space-y-4">
-        <div className="flex justify-between text-base font-medium text-gray-900">
-          <p className="font-bold">Subtotal incl. VAT</p>
-          <p className="text-2xl font-bold">
-            <span className="text-sm">JD</span>
-            {totalAllPrice}
-          </p>
-        </div>
-        <p className="mt-0.5 text-sm text-gray-500">
-          By clicking &quot;check out&quot; you&apos;re agreeing to our{" "}
-          <Link href="#">Privacy Policy</Link>
-        </p>
-
-        <div>
-          <Link
-            href="#"
-            className="flex items-center justify-center rounded-full border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+    <>
+      <div className="mt-4 space-y-4 ">
+        <div className="flow-root">
+          <ul
+            role="list"
+            className="-my-6 mt-2 divide-y divide-gray-200 border-t border-gray-200 "
           >
-            Go to checkout
-          </Link>
-        </div>
-        <div className="flex flex-row space-x-2 items-center">
-          <RiSecurePaymentLine size={20} />
-          <p className="underline">Secure shopping with SSL encryption</p>
+            {favorite.map((product) => (
+              <li key={product.id} className="flex py-6">
+                <div className="h-25 w-25 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                  <Image
+                    width={100}
+                    height={100}
+                    alt={product.image}
+                    src={product.image}
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+
+                <div className="ml-4 flex flex-1 flex-col gap-6">
+                  <div>
+                    <div className="flex justify-between text-base font-medium text-gray-900">
+                      <h3>
+                        <a href={product.href}>{product.title}</a>
+                      </h3>
+                      <p className="ml-4">{product.price} JD</p>
+                    </div>
+                    <p className="mt-1 text-sm text-gray-500">
+                      {product.color}
+                    </p>
+                    <p className="mt-1 text-sm text-gray-500">
+                      {product.description}
+                    </p>
+                  </div>
+                  <div className="flex flex-1 items-end justify-between text-sm">
+                    <TbShoppingBagPlus
+                      size={30}
+                      style={{ cursor: "pointer" }}
+                      onClick={() => addToCartHandler(product)}
+                      className="text-gray-400 hover:text-gray-800"
+                    />
+                    <MdOutlineDelete
+                      size={30}
+                      style={{ cursor: "pointer" }}
+                      onClick={() => removeFavorite(product.id)}
+                      className="text-gray-400 hover:text-red-600"
+                    />
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-    </div>
+    </>
   );
 }
