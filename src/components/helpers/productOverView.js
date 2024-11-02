@@ -5,12 +5,11 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { Radio, RadioGroup } from "@headlessui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { TbShoppingBagPlus } from "react-icons/tb";
+import { TbShoppingBagPlus, TbHeartPlus } from "react-icons/tb";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/UI/toast";
 import { useRouter } from "next/navigation";
 import { useItemStore } from "../../lib/store";
-
 
 //missing data in my supabase, should be added later.
 const product = {
@@ -43,7 +42,6 @@ const product = {
     'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 };
 const reviews = { href: "#", average: 4, totalCount: 117 };
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -327,6 +325,15 @@ export default function ProductOverView({ data }) {
                     onClick={addToCartHandler}
                   />
                   Add to bag
+                </button>
+                <button className="mt-5 flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                  <TbHeartPlus 
+                    title="Add to bag"
+                    size={30}
+                    className="mr-4"
+                    onClick={addToCartHandler}
+                  />
+                  Add to favorite
                 </button>
                 {/* </form> */}
               </div>

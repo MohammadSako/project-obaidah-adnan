@@ -3,14 +3,58 @@
 import Image from "next/image";
 import { useItemStore } from "../../lib/store";
 import CartButton from "../UI/cartButton";
+import { TbHeart, TbHeartFilled } from "react-icons/tb";
+import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/UI/toast";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function CartList() {
-  const { totalQuantity, items, removeItem } = useItemStore();
+  const {
+    totalQuantity,
+    items,
+    removeItem,
+    addFavorite,
+    removeFavorite,
+    favorite,
+  } = useItemStore();
+
+  const [isFavorite, setIsFavorite] = useState(false);
+  const { toast } = useToast();
+  const router = useRouter();
+  useEffect(() => {
+    setIsFavorite(favorite.some((item) => item.id === items.id));
+  }, [favorite, items.id]);
+
+  const addToFavorite = useCallback(() => {
+    addFavorite({
+      id: id,
+      title: title,
+      description: description,
+      image: image,
+      price: price,
+      color: color,
+    });
+    toast({
+      title: `${title}`,
+      description: "has been Added to your Favorite's",
+      action: (
+        <ToastAction
+          altText="Added To Favorite"
+          onClick={() => router.push("/favorite")}
+        >
+          View
+        </ToastAction>
+      ),
+    });
+  }, [addFavorite, toast, router]);
 
   return (
     <>
       <div className="mt-4 space-y-4 ">
-        {totalQuantity > 0 && <p className="">{totalQuantity} products in total</p>}
+        {totalQuantity > 0 && (
+          <p className="">{totalQuantity} products in total</p>
+        )}
         <div className="flow-root">
           <ul
             role="list"
@@ -45,6 +89,24 @@ export default function CartList() {
                   </div>
                   <div className="flex flex-1 items-end justify-between text-sm">
                     <CartButton quantity={product.quantity} id={product.id} />
+                    <div>
+                      {!isFavorite && (
+                        <TbHeart
+                          title="Add to favorite"
+                          size={30}
+                          onClick={() => addToFavorite(product)}
+                          className="mt-2 text-lg font-sans tracking-wide text-gray-400 hover:text-red-500"
+                        />
+                      )}
+                      {isFavorite && (
+                        <TbHeartFilled
+                          title="Remove from favorite"
+                          size={30}
+                          onClick={() => removeFavorite(id)}
+                          className="mt-2 text-lg font-sans tracking-wide text-red-500 hover:text-red-400"
+                        />
+                      )}
+                    </div>
                     <div className="flex">
                       <button
                         onClick={() => removeItem(product.id)}
