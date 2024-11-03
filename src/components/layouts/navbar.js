@@ -12,7 +12,7 @@ import { FaRegCopyright } from "react-icons/fa6";
 import Search from "../helpers/navbar helpers/search";
 import BrandName from "../helpers/navbar helpers/brand-name";
 import Languages from "../helpers/navbar helpers/languages";
-import Cart from "../cart/cart";
+import Cart from "../cart/cartDrawer/cart";
 import Favorite from "../favorite/favorite";
 
 const navigation = [

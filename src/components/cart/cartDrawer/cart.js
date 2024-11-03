@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 // import { IoCartOutline } from "react-icons/io5";
 // import { TbShoppingBag } from "react-icons/tb";
-import HeaderCartButton from "./HeaderCartButton";
+import HeaderCartButton from "../HeaderCartButton";
+import CartDrawer from "../cartDrawer/cartDrawer";
 
-import CartDrawer from "./cartDrawer";
 export default function Cart() {
   const [isOpen, setIsOpen] = useState(false);
 

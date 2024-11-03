@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,12 +22,38 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@public/*": ["./public/*"],
-      "@components/*": ["./src/components/*"]
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "@public/*": [
+        "./public/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ]
+    },
+    "target": "ES2017"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/categories/[id]/page.js", "src/app/categories/women/page.js", "src/app/categories/mixed/page.js", "src/app/categories/men/page.js", "src/app/api/products.js", "src/lib/supabase.js", "src/app/page.tsx", "src/lib/db/products.js", "middleware.js", "src/lib/store.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/categories/[id]/page.js",
+    "src/app/categories/women/page.js",
+    "src/app/categories/mixed/page.js",
+    "src/app/categories/men/page.js",
+    "src/app/api/products.js",
+    "src/lib/supabase.js",
+    "src/app/page.tsx",
+    "src/lib/db/products.js",
+    "middleware.js",
+    "src/lib/store.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

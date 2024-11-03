@@ -19,7 +19,6 @@ export type State = {
   totalAllPrice: number;
   totalFavQuantity: number;
   totalFavAllPrice: number;
-  // isCartOpen: boolean;
 };
 
 export type Actions = {
@@ -42,9 +41,6 @@ export const useItemStore = create<State & Actions>()(
       totalAllPrice: 0,
       totalFavQuantity: 0,
       totalFavAllPrice: 0,
-      // isCartOpen: false,
-
-      // setIsCartOpen: (open) => set({ isCartOpen: open }),
 
       addItem: (item: Item) =>
         set((state) => {
