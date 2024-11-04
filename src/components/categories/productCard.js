@@ -101,7 +101,7 @@ function ProductCard({ id, title, description, image, price, color }) {
             </div>
           </div>
         </Link>
-        <div className="flex flex-row space-x-6 mt-2">
+        <div className="flex flex-row space-x-6">
           <TbShoppingBagPlus
             title="Add to bag"
             size={30}

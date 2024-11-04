@@ -52,7 +52,7 @@
     "src/lib/db/products.js",
     "middleware.js",
     "src/lib/store.ts"
-  ],
+, "src/components/checkout/order-summary.tsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -4,7 +4,12 @@ import { useItemStore } from "@/lib/store";
 import Link from "next/link";
 import { RiSecurePaymentLine } from "react-icons/ri";
 
-export default function Checkout({ allPrice, totalQuantity, pagePath }) {
+export default function Checkout({
+  allPrice,
+  totalQuantity,
+  pagePath,
+  onClick,
+}) {
   const { addItem, favorite } = useItemStore();
 
   return (
@@ -22,10 +27,15 @@ export default function Checkout({ allPrice, totalQuantity, pagePath }) {
             {allPrice}
           </p>
         </div>
-        <p className="mt-0.5 text-sm text-gray-500">
-          By clicking &quot;check out&quot; you&apos;re agreeing to our{" "}
-          <Link href="#">Privacy Policy</Link>
-        </p>
+        <div>
+          <p className="mt-0.5 text-sm text-gray-500">
+            Shipping and taxes calculated at checkout.
+          </p>
+          <p className="mt-0.5 text-sm text-gray-500">
+            By clicking &quot;check out&quot; you&apos;re agreeing to our{" "}
+            <Link href="#">Privacy Policy</Link>
+          </p>
+        </div>
 
         {pagePath === "/favorite" && (
           <div
@@ -36,11 +46,25 @@ export default function Checkout({ allPrice, totalQuantity, pagePath }) {
             Add all Items to bag
           </div>
         )}
-        {pagePath === "/cart" && (
+
+        {pagePath === "/drawer" && (
+          <div>
+            <Link
+              onClick={onClick}
+              href="/cart"
+              className="flex items-center justify-center rounded-full border border-[#014F93] px-6 py-3 text-base font-medium text-[#014F93] hover:text-white shadow-sm hover:bg-[#014780]"
+            >
+              Your bag
+            </Link>
+          </div>
+        )}
+
+        {(pagePath === "/drawer" || pagePath === "/cart") && (
           <div className="space-y-6">
             <div>
               <Link
-                href="#"
+                onClick={onClick}
+                href="/checkout"
                 className="flex items-center justify-center rounded-full border border-transparent bg-[#014F93] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#014780]"
               >
                 Go to checkout

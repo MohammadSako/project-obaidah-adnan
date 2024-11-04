@@ -5,21 +5,23 @@ import { useItemStore } from "../../../lib/store";
 import CartButton from "@/components/UI/cartButton";
 import Checkout from "../../UI/checkout";
 
-export default function CartDrawerList() {
+export default function CartDrawerList({onClick}) {
   const { items, totalQuantity, totalAllPrice } = useItemStore();
-  const pagePath = "/cart";
   return (
     <>
       <Checkout
         allPrice={totalAllPrice}
         totalQuantity={totalQuantity}
-        pagePath={pagePath}
+        pagePath="/drawer"
+        onClick={onClick}
       />
       <div className="flex-1 overflow-y-auto px-4 py-6">
         <div className="mt-4">
           <div className="flow-root">
             <ul role="list" className="-my-6 divide-y divide-gray-200">
-              <p className="my-2 text-sm text-gray-600">{totalQuantity} products in total</p>
+              <p className="my-2 text-sm text-gray-600">
+                {totalQuantity} products in total
+              </p>
               {items.map((product) => (
                 <li key={product.id} className="flex py-6">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
