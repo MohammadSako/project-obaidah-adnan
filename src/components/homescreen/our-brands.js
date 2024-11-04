@@ -58,7 +58,7 @@ function NewArrivals() {
                 opts={{ align: "center", dragFree: true }}
                 plugins={[
                   Autoplay({
-                    delay: 1000,
+                    delay: 2000,
                   }),
                 ]}
               >
