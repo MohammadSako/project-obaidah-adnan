@@ -5,15 +5,14 @@ import Link from "next/link";
 import { RiSecurePaymentLine } from "react-icons/ri";
 
 export default function Checkout({ allPrice, totalQuantity, pagePath }) {
-
   const { addItem, favorite } = useItemStore();
 
   return (
     <div className="space-y-4 font-sans">
       <p className="text-lg font-semibold my-2">Order summary</p>
       <div className="flex flex-row justify-between">
-        <p className="">Products ({totalQuantity})</p>
-        <p className="">JD{allPrice}</p>
+        <p>Products ({totalQuantity})</p>
+        <p>JD{allPrice}</p>
       </div>
       <div className="border-t-2 border-black py-6 space-y-4">
         <div className="flex justify-between text-base font-medium text-gray-900">
