@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { useItemStore } from "../../../lib/store";
-import Link from "next/link";
-import { MdOutlineDelete } from "react-icons/md";
 import CartButton from "@/components/UI/cartButton";
 import Checkout from "../../UI/checkout";
 

@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { useItemStore } from "../../lib/store";
 import CartButton from "./cartButton";
 import { MdOutlineDelete } from "react-icons/md";
 import Checkout from "./checkout";
-import { TbShoppingBagPlus, TbHeart, TbHeartFilled } from "react-icons/tb";
+import { TbShoppingBagPlus} from "react-icons/tb";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/UI/toast";
 import { useCallback } from "react";
@@ -19,7 +19,7 @@ export default function ItemsList({
 }) {
   // const [isFavorite, setIsFavorite] = useState(false);
   const { toast } = useToast();
-  const { favorite, addItem, removeFavorite, removeItem } = useItemStore();
+  const { addItem, removeFavorite } = useItemStore();
 
   // useEffect(() => {
   //   setIsFavorite(favorite.some((item) => item.id === pageData.id));
