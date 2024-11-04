@@ -52,7 +52,7 @@
     "src/lib/db/products.js",
     "middleware.js",
     "src/lib/store.ts"
-, "src/components/checkout/order-summary.tsx"  ],
+, "src/components/checkout/order-summary.tsx", "src/components/homescreen/best-sellers.js", "src/components/helpers/product.js", "src/components/helpers/favorite.js", "src/components/homescreen/new-arrivals.tsx", "src/components/UI/carouselFade.js"  ],
   "exclude": [
     "node_modules"
   ]

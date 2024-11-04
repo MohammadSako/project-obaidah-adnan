@@ -1,16 +1,13 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
-import * as React from "react";
 import { Carousel, CarouselContent, CarouselItem } from "../UI/carousel";
-import Image from "next/image";
+import ProductCard from "../categories/productCard";
 import Link from "next/link";
-import { useItemStore } from "@/lib/store";
 import Autoplay from "embla-carousel-autoplay";
 
-export function YourFavoriteItems() {
-  const { favorite } = useItemStore();
-
+function NewArrivals({ data }) {
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -21,11 +18,11 @@ export function YourFavoriteItems() {
     >
       <div className="bg-white">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl py-4 sm:py-24 lg:max-w-none lg:py-10">
+          <div className="mx-auto max-w-2xl py-4 sm:py-20 lg:max-w-none lg:py-10">
             <div className="lg:col-span-2 lg:pr-8 text-center">
               <Link href="/favorite">
                 <h1 className="text-4xl font-medium tracking-tighter text-gray-900 sm:text-3xl">
-                  Your favourites
+                New Arrivals
                 </h1>
               </Link>
               <Carousel
@@ -33,29 +30,22 @@ export function YourFavoriteItems() {
                 opts={{ align: "center", dragFree: true }}
                 plugins={[
                   Autoplay({
-                    delay: 2000,
+                    delay: 2500,
                   }),
                 ]}
               >
                 <CarouselContent>
-                  {favorite.map((product) => (
+                  {data.map((product) => (
                     <CarouselItem className="max-w-fit" key={product.id}>
-                      <Link key={product.id} href="/favorite">
-                        <div className="group relative">
-                          <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                            <Image
-                              src={product.image}
-                              style={{
-                                width: "100%",
-                                height: "auto",
-                              }}
-                              width={200}
-                              height={200}
-                              alt={product.image}
-                            />
-                          </div>
-                        </div>
-                      </Link>
+                      <ProductCard
+                        key={product.id}
+                        id={product.id}
+                        title={product.title}
+                        description={product.description}
+                        image={product.image}
+                        price={product.price}
+                        color={product.color}
+                      />
                     </CarouselItem>
                   ))}
                 </CarouselContent>
@@ -67,3 +57,5 @@ export function YourFavoriteItems() {
     </motion.section>
   );
 }
+
+export default NewArrivals;

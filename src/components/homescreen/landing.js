@@ -1,47 +1,48 @@
 "use client";
 
 import * as React from "react";
-import Autoplay from "embla-carousel-autoplay";
+// import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
 
-import { Card, CardContent } from "../UI/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../UI/carousel";
-import Image from "next/image";
+// import { Card, CardContent } from "../UI/card";
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+//   CarouselNext,
+//   CarouselPrevious,
+// } from "../UI/carousel";
+// import Image from "next/image";
+import CarouselFade from "../UI/carouselFade";
 
 export function Landing() {
-  const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  );
+  // const plugin = React.useRef(
+  //   Autoplay({ delay: 2000, stopOnInteraction: true })
+  // );
 
   const Images = [
     {
-      src: "/p1.jpg",
+      image: "/p1.jpg",
       alt: "product 1",
     },
     {
-      src: "/p2.jpg",
+      image: "/p2.jpg",
       alt: "product 2",
     },
     {
-      src: "/p3.jpg",
+      image: "/p3.jpg",
       alt: "product 3",
     },
     {
-      src: "/p1.jpg",
+      image: "/p1.jpg",
       alt: "product 1",
     },
     {
-      src: "/p2.jpg",
+      image: "/p2.jpg",
       alt: "product 2",
     },
     {
-      src: "/p3.jpg",
+      image: "/p3.jpg",
       alt: "product 3",
     },
   ];
@@ -54,7 +55,7 @@ export function Landing() {
       transition={{ duration: 0.8, delay: 0.3 }}
       className="flex flex-col items-center my-8 gap-4 w-full overflow-hidden origin-center"
     >
-      <Carousel
+      {/* <Carousel
         plugins={[plugin.current]}
         // className="w-full mt-2 max-w-fit relative"
         className="w-[1000px] max-w-fit relative"
@@ -68,7 +69,7 @@ export function Landing() {
                 <Card>
                   <CardContent className="flex h-[400px] items-center justify-center p-2">
                     <Image
-                      src={product.src}
+                      src={product.image}
                       style={{
                         width: '100%',
                         height: 'auto',
@@ -85,7 +86,8 @@ export function Landing() {
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
-      </Carousel>
+      </Carousel> */}
+      <CarouselFade data={Images} />
     </motion.section>
   );
 }

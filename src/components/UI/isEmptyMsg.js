@@ -5,8 +5,6 @@ import { Button } from "./button";
 import { IoArrowBackOutline } from "react-icons/io5";
 
 export default function IsEmptyMsg({ page }) {
-    console.log("aaaaaaaaaaaaaaa",page);
-    
   return (
     <>
       {page === "/cart" && (
