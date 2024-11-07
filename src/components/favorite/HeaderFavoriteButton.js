@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import classes from "../helpers/HeaderButtonAnimation.module.css";
 import { TbHeart } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
+import { NavLinkIcon } from "../helpers/navbar helpers/nav-link";
 
 const HeaderFavoriteButton = (props) => {
   const [cartEmpty, setCartEmpty] = useState(false);
@@ -44,15 +45,29 @@ const HeaderFavoriteButton = (props) => {
       style={{ cursor: "pointer" }}
       onClick={props.onClick}
     >
-      <TbHeart
-        size={30}
-        className="text-lg font-sans tracking-wide text-gray-400 hover:text-red-500"
-      />
-      {cartEmpty && (
-        <div className="-mt-8 ml-4 bg-red-500 w-5 h-5 rounded-full font-bold text-sm text-white absolute flex justify-center">
-          {totalFavQuantity}
-        </div>
-      )}
+      <NavLinkIcon
+        icon={
+          <div>
+            {!cartEmpty && (
+              <TbHeart
+                size={30}
+                className="text-lg mt-2 font-sans tracking-wide text-red-500 hover:text-red-300"
+              />
+            )}
+            {cartEmpty && (
+              <div>
+                <TbHeart
+                  size={30}
+                  className="text-lg font-sans tracking-wide text-red-500 "
+                />
+                <div className="-mt-8 ml-4 bg-red-500 w-5 h-5 rounded-full font-bold text-sm text-white flex justify-center">
+                  {totalFavQuantity}
+                </div>{" "}
+              </div>
+            )}
+          </div>
+        }
+      ></NavLinkIcon>
     </div>
   );
 };

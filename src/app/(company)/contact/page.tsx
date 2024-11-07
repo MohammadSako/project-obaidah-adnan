@@ -13,7 +13,7 @@ function Contact() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.3 }}
-      className="flex flex-col items-center my-8 gap-4 w-full overflow-hidden origin-center"
+      className="flex flex-col mt-24 items-center my-8 gap-4 w-full overflow-hidden origin-center"
     >
       <main className="flex min-h-screen flex-col items-center mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="px-6 py-14 sm:py-24 lg:px-8">
@@ -35,7 +35,7 @@ function Contact() {
             </h2>
             <p className="mt-2 text-xl leading-8 text-gray-600">
               For any inquiries, work or collaboration proposals please don’t
-              hesitate to get in touch.
+              hesitate to get in touc`h.
             </p>
           </div>
           <form

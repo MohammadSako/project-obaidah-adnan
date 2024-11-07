@@ -8,7 +8,7 @@ const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
   const url = usePathname();
 
   return (
-    <section className="py-24">
+    <section className="py-24 mt-24">
       <div className="p-4 flex flex-col">
         <div className="py-6">
           <nav className="flex flex-row">

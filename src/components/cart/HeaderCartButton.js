@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import classes from "../helpers/HeaderButtonAnimation.module.css";
 import { TbShoppingBag } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
+import { NavLinkIcon } from "../helpers/navbar helpers/nav-link";
 
 const HeaderCartButton = (props) => {
   const [cartEmpty, setCartEmpty] = useState(false);
@@ -16,7 +17,7 @@ const HeaderCartButton = (props) => {
     } else {
       setCartEmpty(false);
     }
-    totalAllItems()
+    totalAllItems();
   }, [totalAllItems, quantity]);
 
   //cart Bump when clicked
@@ -44,15 +45,28 @@ const HeaderCartButton = (props) => {
       style={{ cursor: "pointer" }}
       onClick={props.onClick}
     >
-      <TbShoppingBag
-        size={30}
-        className="text-gray-400 hover:text-gray-800"
-        />
-      {cartEmpty && (
-        <div className="-mt-8 ml-4 bg-red-500 w-5 h-5 rounded-full font-bold text-sm text-white absolute flex justify-center">
-          {quantity}
-        </div>
-      )}
+      <NavLinkIcon
+        icon={
+          <div>
+            {!cartEmpty && (
+              <TbShoppingBag
+                size={30}
+                className="text-black hover:text-gray-400 mt-2"
+              />
+            )}
+
+            {cartEmpty && (
+              <div>
+                <TbShoppingBag size={30} className="text-red-500" />
+
+                <div className="-mt-8 ml-4 bg-red-500 w-5 h-5 rounded-full font-bold text-sm text-white flex justify-center">
+                  {quantity}
+                </div>
+              </div>
+            )}
+          </div>
+        }
+      ></NavLinkIcon>
     </div>
   );
 };

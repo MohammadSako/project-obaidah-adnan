@@ -7,6 +7,7 @@ import PageLine from "../components/UI/pageLine";
 import { Suspense } from "react";
 import Loading from "./loading";
 import { Toaster } from "@/components/UI/toaster";
+import { montserrat, angelo, playfair } from "./fonts/fonts";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,7 +31,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${montserrat.variable} ${angelo.variable} ${playfair.variable}`}
+    >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

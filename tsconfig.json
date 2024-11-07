@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,18 +18,10 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@lib/*": [
-        "./src/lib/*"
-      ],
-      "@public/*": [
-        "./public/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ]
+      "@/*": ["./src/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@public/*": ["./public/*"],
+      "@components/*": ["./src/components/*"]
     },
     "target": "ES2017"
   },
@@ -51,9 +39,15 @@
     "src/app/page.tsx",
     "src/lib/db/products.js",
     "middleware.js",
-    "src/lib/store.ts"
-, "src/components/checkout/order-summary.tsx", "src/components/homescreen/best-sellers.js", "src/components/helpers/product.js", "src/components/helpers/favorite.js", "src/components/homescreen/new-arrivals.tsx", "src/components/UI/carouselFade.js"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "src/lib/store.ts",
+    "src/components/checkout/order-summary.tsx",
+    "src/components/homescreen/best-sellers.js",
+    "src/components/helpers/product.js",
+    "src/components/helpers/favorite.js",
+    "src/components/homescreen/new-arrivals.tsx",
+    "src/components/UI/carouselFade.js",
+    "src/components/helpers/navbar helpers/navigation-menu.js",
+    "src/components/helpers/navbar helpers/nav-link.js"
+  ],
+  "exclude": ["node_modules"]
 }
