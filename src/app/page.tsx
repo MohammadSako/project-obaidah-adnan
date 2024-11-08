@@ -12,11 +12,11 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center font-display">
       <Landing />
-      <Categories />
       {products.length > 0 && <BestSellers data={products} />}
       {products.length > 0 && <NewArrivals data={products} />}
       <YourFavoriteItems />
       <OurBrands />
+      <Categories />
       {/* <Advertisement />
       <MediaHub />
       <Testimonials /> */}

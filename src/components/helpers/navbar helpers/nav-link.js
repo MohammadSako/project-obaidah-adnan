@@ -2,19 +2,12 @@
 
 import { motion } from "framer-motion";
 
-const NavLink = ({ text }) => {
+const NavLink = ({ text, className }) => {
   return (
-    <div
-      style={{ cursor: "pointer" }}
-      className="hidden lg:block h-[35px] overflow-hidden font-medium"
-    >
-      <motion.div whileHover={{ y: -35 }}>
-        <div className="flex items-center h-[33px] text-gray-700 gap-1">
-          {text}
-        </div>
-        <div className="flex items-center h-[33px] text-gray-400 gap-1">
-          {text}
-        </div>
+    <div className="hidden lg:block h-[30px] overflow-hidden font-medium">
+      <motion.div whileHover={{ y: -31 }}>
+        <div className={className}>{text}</div>
+        <div className={className}>{text}</div>
       </motion.div>
     </div>
   );

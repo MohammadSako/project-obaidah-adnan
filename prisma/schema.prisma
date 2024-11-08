@@ -14,16 +14,15 @@ datasource db {
 }
 
 model items {
-  id    Int    @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   title     String   @db.VarChar(255)
-  color String
-  price Int
-  image String
-  alt   String
+  color     String
+  price     Int
+  image     String
+  alt       String
 }
-
 
 // Example:
 // model Post {
@@ -54,8 +53,5 @@ model items {
 
 // to create a database in supabase
 // npx prisma migrate dev --name init
-
-
-
 
 // https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/using-prisma-migrate-node-postgresql

@@ -1,16 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+// import Link from "next/link";
+// import { motion } from "framer-motion";
+// import { usePathname } from "next/navigation";
 
 const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
-  const url = usePathname();
+  // const url = usePathname();
 
   return (
     <section className="py-24 mt-24">
       <div className="p-4 flex flex-col">
-        <div className="py-6">
+        {/* <div className="py-6">
           <nav className="flex flex-row">
             <ul
               role="list"
@@ -66,7 +66,7 @@ const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
               </motion.li>
             </ul>
           </nav>
-        </div>
+        </div> */}
 
         <main>{children}</main>
       </div>

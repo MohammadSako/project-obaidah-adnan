@@ -38,7 +38,7 @@ export function Landing() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.3 }}
-      className="flex flex-col items-center my-8 gap-4 w-full overflow-hidden origin-center"
+      className="flex-col items-center my-8 gap-4 w-full overflow-hidden origin-center sm:block hidden"
     >
       <CarouselFade data={Images} />
     </motion.section>

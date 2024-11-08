@@ -20,25 +20,25 @@ export function NavMenu() {
     {
       cate: "Men's Clothing",
       id: "cate1",
-      url: "/categories/men",
+      url: "/categories/men/clothing",
       clotheType: [
         {
           type: "Top Clothing",
           types: [
-            { title: "T-Shirts" },
-            { title: "Shirts" },
-            { title: "Wool blouse" },
-            { title: "Hats" },
-            { title: "Watches" },
+            { title: "T-Shirts", url: "tshirt" },
+            { title: "Shirts", url: "shirt" },
+            { title: "Wool blouse", url: "woolblouse" },
+            { title: "Hats", url: "hats" },
+            { title: "Watches", url: "watches" },
           ],
         },
         {
           type: "Lower Clothing",
           types: [
-            { title: "Jeans" },
-            { title: "Pants" },
-            { title: "Socks" },
-            { title: "Belts" },
+            { title: "Jeans", url: "jeans" },
+            { title: "Pants", url: "pants" },
+            { title: "Socks", url: "socks" },
+            { title: "Belts", url: "belts" },
           ],
         },
       ],
@@ -46,18 +46,18 @@ export function NavMenu() {
     {
       cate: "Men's Shoes",
       id: "cate2",
-      url: "/categories/men",
+      url: "/categories/men/shoes",
       clotheType: [
         {
-          type: "Shoes",
+          type: "Men's Shoes",
           types: [
-            { title: "Work & Safty Shoes" },
-            { title: "Loafers & Slip-Ons" },
-            { title: "Snow Boots" },
-            { title: "Casual Shoes" },
-            { title: "Boots" },
-            { title: "Sandals" },
-            { title: "Others" },
+            { title: "Work & Safty Shoes", url: "work" },
+            { title: "Loafers & Slip-Ons", url: "loafers" },
+            { title: "Snow Boots", url: "snow" },
+            { title: "Casual Shoes", url: "casual" },
+            { title: "Boots", url: "boots" },
+            { title: "Sandals", url: "sandals" },
+            { title: "Others", url: "others" },
           ],
         },
       ],
@@ -65,26 +65,26 @@ export function NavMenu() {
     {
       cate: "Women's Clothing",
       id: "cate3",
-      url: "/categories/women",
+      url: "/categories/women/clothing",
       clotheType: [
         {
           type: "Top Clothing",
           types: [
-            { title: "T-Shirts" },
-            { title: "Shirts" },
-            { title: "Wool blouse" },
-            { title: "Hats" },
-            { title: "Watches" },
-            { title: "Bags" },
+            { title: "T-Shirts", url: "tshirt" },
+            { title: "Shirts", url: "shirt" },
+            { title: "Wool blouse", url: "woolblouse" },
+            { title: "Hats", url: "hats" },
+            { title: "Watches", url: "watches" },
+            { title: "Bags", url: "bags" },
           ],
         },
         {
           type: "Lower Clothing",
           types: [
-            { title: "Jeans" },
-            { title: "Pants" },
-            { title: "Socks" },
-            { title: "Belts" },
+            { title: "Jeans", url: "jeans" },
+            { title: "Pants", url: "pants" },
+            { title: "Socks", url: "socks" },
+            { title: "Belts", url: "belts" },
           ],
         },
       ],
@@ -92,15 +92,15 @@ export function NavMenu() {
     {
       cate: "Women's Shoes",
       id: "cate4",
-      url: "/categories/women",
+      url: "/categories/women/shoes",
       clotheType: [
         {
-          type: "Shoes",
+          type: "Women's Shoes",
           types: [
-            { title: "Flats" },
-            { title: "Slippers" },
-            { title: "Loafers & Slip-Ons" },
-            { title: "Sneakers" },
+            { title: "Flats", url: "flats" },
+            { title: "Slippers", url: "slippers" },
+            { title: "Loafers & Slip-Ons", url: "loafers" },
+            { title: "Sneakers", url: "sneakers" },
           ],
         },
       ],
@@ -111,19 +111,21 @@ export function NavMenu() {
     <Menubar className="border-none">
       {categories.map((items) => (
         <MenubarMenu key={items.id}>
-          <MenubarTrigger
-            className={
-              pathname === `${items.url}`
-                ? "text-gray-800 text-xl font-medium hover:text-gray-800"
-                : "text-gray-400 text-xl font-medium hover:text-gray-800"
-            }
-            style={{ cursor: "pointer" }}
-          >
-            <NavLink text={items.cate}>{items.cate}</NavLink>
+          <MenubarTrigger>
+            <NavLink
+              text={items.cate}
+              className={
+                pathname === `${items.url}`
+                  ? "text-gray-800 text-2xl font-medium hover:text-gray-800 cursor-pointer"
+                  : "text-gray-400 text-2xl font-medium hover:text-gray-800 cursor-pointer"
+              }
+            >
+              {items.cate}
+            </NavLink>
           </MenubarTrigger>
           <MenubarContent>
             <Link href={items.url}>
-              <MenubarItem style={{ cursor: "pointer" }}>
+              <MenubarItem className="cursor-pointer">
                 Go to
                 <Spacer />
                 <span className="font-bold">{items.cate}</span>
@@ -132,14 +134,14 @@ export function NavMenu() {
             {items.clotheType.map((item) => (
               <MenubarSub key={item.type}>
                 <Link href={items.url + `/` + item.type}>
-                  <MenubarSubTrigger style={{ cursor: "pointer" }}>
+                  <MenubarSubTrigger className=" cursor-pointer">
                     {item.type}
                   </MenubarSubTrigger>
                 </Link>
                 <MenubarSubContent>
                   {item.types.map((list, index) => (
-                    <Link key={index} href={items.url + `/` + list.title}>
-                      <MenubarItem style={{ cursor: "pointer" }}>
+                    <Link key={index} href={items.url + `/` + list.url}>
+                      <MenubarItem className=" cursor-pointer">
                         {list.title}
                       </MenubarItem>
                     </Link>
@@ -148,7 +150,7 @@ export function NavMenu() {
               </MenubarSub>
             ))}
           </MenubarContent>
-          <div className="hidden lg:block w-px h-4 bg-slate-800" />
+          <div className="hidden lg:block w-px h-5 bg-slate-800" />
         </MenubarMenu>
       ))}
     </Menubar>

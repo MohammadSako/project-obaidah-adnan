@@ -16,8 +16,10 @@ import Favorite from "../favorite/favorite";
 import { NavMenu } from "../helpers/navbar helpers/navigation-menu";
 
 const navigation = [
-  { name: "Men", href: "/about", current: false },
-  { name: "Women", href: "/contact", current: false },
+  { name: "Men's Clothing", href: "/about", current: false },
+  { name: "Men's Shoes", href: "/about", current: false },
+  { name: "Women's Clothing", href: "/contact", current: false },
+  { name: "Women's Shoes", href: "/contact", current: false },
 ];
 
 function classNames(...classes) {
