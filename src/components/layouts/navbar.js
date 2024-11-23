@@ -80,6 +80,11 @@ const SecondNav = () => {
       </div>
 
       <div className="flex sm:flex-none flex-1 items-center justify-center sm:items-stretch">
+        <div className="hidden sm:ml-6 sm:block">
+          <div className="flex md:space-x-4 gap-4 items-center justify-between self-center">
+            <NavMenu />
+          </div>
+        </div>
         <div className="flex flex-shrink-0 items-center">
           <Link href="/">
             <h1 className="sm:text-xl text-3xl font-sans tracking-wide sm:invisible visible">
@@ -88,12 +93,6 @@ const SecondNav = () => {
           </Link>
           <div className="-mt-2 sm:invisible visible">
             <FaRegCopyright size={10} />
-          </div>
-        </div>
-
-        <div className="hidden sm:ml-6 sm:block">
-          <div className="flex md:space-x-4 gap-4 items-center justify-between self-center">
-            <NavMenu />
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ function NewArrivals({ data }) {
       className="flex flex-col items-center my-2 gap-4 w-full overflow-hidden origin-center"
     >
       <div className="bg-white">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-4 sm:py-20 lg:max-w-none lg:py-10">
             <div className="lg:col-span-2 lg:pr-8 text-center">
               <Link href="/favorite">
