@@ -1,5 +1,6 @@
 "use client";
 
+import { BreadCrumb } from "@/components/helpers/catgories/breadcrumb";
 import Image from "next/image";
 
 const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
@@ -10,7 +11,7 @@ const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
     //   </div>
     // </section>
     <>
-      <div className="relative flex flex-col w-full h-[40vh] ">
+      <div className="relative flex flex-col w-full h-[40vh]">
         <Image
           src="/store.png"
           fill
@@ -19,6 +20,10 @@ const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
           style={{ objectFit: "fill" }}
         />
       </div>
+      {/* <div className="m-4">
+        <BreadCrumb />
+      </div> */}
+
       <div className="flex flex-col w-full">{children}</div>
     </>
   );

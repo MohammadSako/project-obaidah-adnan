@@ -3,7 +3,6 @@
 import CategoriesCard from "@/components/helpers/catgories/categoriesCard";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BreadCrumb } from "./breadcrumb";
 
 export default function CategoriesPage() {
   const [products, setProducts] = useState([]);
@@ -94,7 +93,7 @@ export default function CategoriesPage() {
       const product = [
         {
           title: "Shirts",
-          url: "/categories/men/clothing/top/shirts",
+          url: "/categories/men/clothing/top/shirts/Shirts",
           id: "mct1",
           description: "White t-shirt, cotton, fit",
           image: "/c2.jpg",
@@ -102,8 +101,8 @@ export default function CategoriesPage() {
           color: "White",
         },
         {
-          title: "Shirts",
-          url: "/categories/men/clothing/top/shirts",
+          title: "Shirts2",
+          url: "/categories/men/clothing/top/shirts/Shirts2",
           id: "mct2",
           description: "White t-shirt, cotton, fit",
           image: "/c2.jpg",
@@ -111,63 +110,9 @@ export default function CategoriesPage() {
           color: "White",
         },
         {
-          title: "Shirts",
-          url: "/categories/men/clothing/top/shirts",
+          title: "Shirts3",
+          url: "/categories/men/clothing/top/shirts/Shirts3",
           id: "mct3",
-          description: "White t-shirt, cotton, fit",
-          image: "/c2.jpg",
-          price: "25",
-          color: "White",
-        },
-        {
-          title: "Shirts",
-          url: "/categories/men/clothing/top/shirts",
-          id: "mct4",
-          description: "White t-shirt, cotton, fit",
-          image: "/c2.jpg",
-          price: "25",
-          color: "White",
-        },
-        {
-          title: "Shirts",
-          url: "/categories/men/clothing/top/shirts",
-          id: "mct5",
-          description: "White t-shirt, cotton, fit",
-          image: "/c2.jpg",
-          price: "25",
-          color: "White",
-        },
-        {
-          title: "Shirts",
-          url: "/categories/men/clothing/top/shirts",
-          id: "mct6",
-          description: "White t-shirt, cotton, fit",
-          image: "/c2.jpg",
-          price: "25",
-          color: "White",
-        },
-        {
-          title: "Shirts",
-          url: "/categories/men/clothing/top/shirts",
-          id: "mct7",
-          description: "White t-shirt, cotton, fit",
-          image: "/c2.jpg",
-          price: "25",
-          color: "White",
-        },
-        {
-          title: "Shirts",
-          url: "/categories/men/clothing/top/shirts",
-          id: "mct8",
-          description: "White t-shirt, cotton, fit",
-          image: "/c2.jpg",
-          price: "25",
-          color: "White",
-        },
-        {
-          title: "Shirts",
-          url: "/categories/men/clothing/top/shirts",
-          id: "mct9",
           description: "White t-shirt, cotton, fit",
           image: "/c2.jpg",
           price: "25",
@@ -182,7 +127,6 @@ export default function CategoriesPage() {
     <main className="flex min-h-screen flex-col items-center mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div className="bg-white">
         <div className="mx-auto px-4 py-16 sm:py-24 lg:max-w-7xl">
-          <BreadCrumb /> 
           {pathname === "/categories/men/clothing" ? (
             <div className="flex flex-col flex-wrap gap-x-4 gap-y-10 sm:flex-row xl:gap-x-8">
               {products.map((product) => (
@@ -198,6 +142,10 @@ export default function CategoriesPage() {
                   url={product.url}
                 />
               ))}
+            </div>
+          ) : pathname === `/categories/men/clothing/top/${""}/${""}` ? (
+            <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-5">
+              <p>Details Page</p>
             </div>
           ) : (
             <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-5">
