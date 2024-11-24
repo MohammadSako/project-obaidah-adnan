@@ -143,10 +143,6 @@ export default function CategoriesPage() {
                 />
               ))}
             </div>
-          ) : pathname === `/categories/men/clothing/top/${""}/${""}` ? (
-            <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-5">
-              <p>Details Page</p>
-            </div>
           ) : (
             <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-5">
               {products.map((product) => (

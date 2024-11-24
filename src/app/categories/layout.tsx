@@ -1,6 +1,6 @@
 "use client";
 
-import { BreadCrumb } from "@/components/helpers/catgories/breadcrumb";
+// import { BreadCrumb } from "@/components/helpers/catgories/breadcrumb";
 import Image from "next/image";
 
 const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {

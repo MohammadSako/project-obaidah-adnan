@@ -24,8 +24,9 @@ export function NavMenu() {
       clotheType: [
         {
           type: "Top Clothing",
+          url: "top",
           types: [
-            { title: "T-Shirts", url: "tshirt" },
+            { title: "T-Shirts", url: "tshirts" },
             { title: "Shirts", url: "shirt" },
             { title: "Wool blouse", url: "woolblouse" },
             { title: "Hats", url: "hats" },
@@ -34,6 +35,7 @@ export function NavMenu() {
         },
         {
           type: "Lower Clothing",
+          url: "lower",
           types: [
             { title: "Jeans", url: "jeans" },
             { title: "Pants", url: "pants" },
@@ -69,8 +71,9 @@ export function NavMenu() {
       clotheType: [
         {
           type: "Top Clothing",
+          url: "top",
           types: [
-            { title: "T-Shirts", url: "tshirt" },
+            { title: "T-Shirts", url: "tshirts" },
             { title: "Shirts", url: "shirt" },
             { title: "Wool blouse", url: "woolblouse" },
             { title: "Hats", url: "hats" },
@@ -80,6 +83,7 @@ export function NavMenu() {
         },
         {
           type: "Lower Clothing",
+          url: "lower",
           types: [
             { title: "Jeans", url: "jeans" },
             { title: "Pants", url: "pants" },
@@ -133,14 +137,23 @@ export function NavMenu() {
             </Link>
             {items.clotheType.map((item) => (
               <MenubarSub key={item.type}>
-                <Link href={items.url + `/` + item.type}>
+                <Link
+                  href={item.url ? `${items.url}/${item.url}` : `${items.url}`}
+                >
                   <MenubarSubTrigger className=" cursor-pointer">
                     {item.type}
                   </MenubarSubTrigger>
                 </Link>
                 <MenubarSubContent>
                   {item.types.map((list, index) => (
-                    <Link key={index} href={items.url + `/` + list.url}>
+                    <Link
+                      key={index}
+                      href={
+                        item.url
+                          ? `${items.url}/${item.url}/${list.url}`
+                          : `${items.url}/${list.url}`
+                      }
+                    >
                       <MenubarItem className=" cursor-pointer">
                         {list.title}
                       </MenubarItem>
