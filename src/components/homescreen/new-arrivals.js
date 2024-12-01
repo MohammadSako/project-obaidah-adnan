@@ -19,9 +19,9 @@ function NewArrivals({ data }) {
       <div className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-4 sm:py-20 lg:max-w-none lg:py-10">
-            <div className="lg:col-span-2 lg:pr-8 text-center">
+            <div className="lg:col-span-2 lg:pr-8">
               <Link href="/favorite">
-                <h1 className="text-4xl font-medium tracking-tighter text-gray-900 sm:text-3xl">
+                <h1 className="text-4xl font-medium tracking-tighter text-center text-gray-900 sm:text-3xl">
                 New Arrivals
                 </h1>
               </Link>
@@ -41,7 +41,6 @@ function NewArrivals({ data }) {
                         key={product.id}
                         id={product.id}
                         title={product.title}
-                        description={product.description}
                         image={product.image}
                         price={product.price}
                         color={product.color}

@@ -86,10 +86,6 @@ function ProductCard({ id, title, description, image, price, color }) {
                   <span aria-hidden="true" className="absolute inset-0" />
                   {title}
                 </p>
-                <p className="text-sm text-gray-700">
-                  <span aria-hidden="true" className="absolute inset-0" />
-                  {description}
-                </p>
                 <p className="mt-1 text-sm text-gray-500">{color}</p>
               </div>
               <div className="bg-yellow-400 p-2 shadow-lg">

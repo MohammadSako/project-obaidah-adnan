@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Menubar,
   MenubarContent,
@@ -13,8 +15,9 @@ import Link from "next/link";
 import NavLink from "./nav-link";
 import { usePathname } from "next/navigation";
 
-export function NavMenu() {
+export function NavMenu({men_categories}) {
   const pathname = usePathname();
+console.log("................", men_categories);
 
   const categories = [
     {

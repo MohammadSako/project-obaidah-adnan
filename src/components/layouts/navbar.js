@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Disclosure,
   DisclosureButton,
@@ -14,6 +12,7 @@ import Languages from "../helpers/navbar helpers/languages";
 import Cart from "../cart/cartDrawer/cart";
 import Favorite from "../favorite/favorite";
 import { NavMenu } from "../helpers/navbar helpers/navigation-menu";
+import { getCategories, getMenCategories } from "@/lib/db/products";
 
 const navigation = [
   { name: "Men's Clothing", href: "/about", current: false },
@@ -25,8 +24,11 @@ const navigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+export default async function NavBar() {
+  // const { categories = [] } = await getCategories();
+  const { men_categories = [] } = await getMenCategories("men");
 
-export default function NavBar() {
+  
   return (
     <Disclosure as="nav" className="bg-white">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

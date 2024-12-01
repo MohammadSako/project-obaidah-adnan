@@ -11,19 +11,19 @@ export function Categories() {
       src: "/c3.jpg",
       alt: "product 1",
       description: "Men",
-      url: "/categories/men",
+      url: "/categories/men/clothing",
     },
     {
       src: "/c2.jpg",
       alt: "product 2",
       description: "Women",
-      url: "/categories/women",
+      url: "/categories/women/clothing",
     },
     {
       src: "/c1.jpg",
       alt: "product 3",
-      description: "Mixed",
-      url: "/categories/mixed",
+      description: "Men Shoes",
+      url: "/categories/men/shoes",
     },
   ];
 

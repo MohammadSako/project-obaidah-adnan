@@ -14,14 +14,41 @@ datasource db {
 }
 
 model items {
-  id        Int      @id @default(autoincrement())
+  id          String   @id @default(uuid()) @db.Uuid
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String   @db.VarChar(255)
+  color       String
+  size        String
+  price       String
+  image       String
+  alt         String
+  gender      String
+  type        String
+  description String
+  details     String
+  category    String
+}
+
+model inventory {
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now())
+  name      String   @db.VarChar(255)
+  category  String
+  note      String
+}
+
+model inventory_items {
+  id        String   @id @default(uuid()) @db.Uuid
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   title     String   @db.VarChar(255)
   color     String
-  price     Int
+  price     Float
   image     String
   alt       String
+  gender    String
+  type      String
 }
 
 // Example:
@@ -54,4 +81,13 @@ model items {
 // to create a database in supabase
 // npx prisma migrate dev --name init
 
+// to seed...
+// npx prisma db seed
+
+// prisma data sheet map
+// https://www.prisma.io/docs/orm/prisma-schema/data-model/models
+
 // https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/using-prisma-migrate-node-postgresql
+
+// schema docu
+// https://www.prisma.io/docs/orm/reference/prisma-schema-reference

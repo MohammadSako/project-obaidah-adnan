@@ -17,7 +17,7 @@ const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
           fill
           sizes="100vw"
           alt="Store Image"
-          style={{ objectFit: "fill" }}
+          style={{ objectFit: "cover" }}
         />
       </div>
       {/* <div className="m-4">
