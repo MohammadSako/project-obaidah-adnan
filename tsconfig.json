@@ -48,6 +48,6 @@
     "src/components/UI/carouselFade.js",
     "src/components/helpers/navbar helpers/navigation-menu.js",
     "src/components/helpers/navbar helpers/nav-link.js"
-  ],
+, "src/lib/db/cloudinary.ts"  ],
   "exclude": ["node_modules"]
 }
