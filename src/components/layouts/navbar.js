@@ -12,7 +12,7 @@ import Languages from "../helpers/navbar helpers/languages";
 import Cart from "../cart/cartDrawer/cart";
 import Favorite from "../favorite/favorite";
 import { NavMenu } from "../helpers/navbar helpers/navigation-menu";
-import { getCategories, getMenCategories } from "@/lib/db/products";
+// import { getCategories, getMenCategories } from "@/lib/db/products";
 
 const navigation = [
   { name: "Men's Clothing", href: "/about", current: false },
@@ -26,7 +26,7 @@ function classNames(...classes) {
 }
 export default async function NavBar() {
   // const { categories = [] } = await getCategories();
-  const { men_categories = [] } = await getMenCategories("men");
+  // const { men_categories = [] } = await getMenCategories("men");
 
   
   return (

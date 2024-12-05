@@ -38,6 +38,7 @@ export async function addProduct(data) {
         description: data.description,
         details: data.details,
         category: data.category,
+        dashboardType: data.dashboardtype,
       },
     });
     console.log("Product created:", product);

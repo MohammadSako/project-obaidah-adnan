@@ -24,8 +24,12 @@ import { Input } from "@/components/UI/input";
 import { useToast } from "@/hooks/use-toast";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import { CloudinaryDelete } from "@/lib/db/cloudinary";
+import { Textarea } from "@/components/UI/textarea";
 
 const formSchema = z.object({
+  dashboardtype: z.string().min(1, {
+    message: "Username must be at least 2 characters.",
+  }),
   title: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
@@ -48,9 +52,14 @@ const formSchema = z.object({
   description: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
-  details: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  details: z
+    .string()
+    .min(10, {
+      message: "Details must be at least 10 characters.",
+    })
+    .max(160, {
+      message: "Details must not be longer than 30 characters.",
+    }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -61,6 +70,7 @@ interface AddFormProps {
 export function DashForm({ onAddProduct }: AddFormProps) {
   const [productType, setProductType] = useState("");
   const [genderType, setGenderType] = useState("");
+  const [productCategory, setProductCategory] = useState("");
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [uploadedImageAlt, setUploadedImageAlt] = useState("");
   const [uploadedImagePublicId, setUploadedImagePublicId] = useState("");
@@ -79,16 +89,19 @@ export function DashForm({ onAddProduct }: AddFormProps) {
       category: "",
       description: "",
       details: "",
+      dashboardtype: "",
     },
   });
 
   const watchedProduct = form.watch("type");
   const watchedGender = form.watch("gender");
+  const watchedCategory = form.watch("category");
 
   useEffect(() => {
     setProductType(watchedProduct);
     setGenderType(watchedGender);
-  }, [watchedProduct, watchedGender]);
+    setProductCategory(watchedCategory);
+  }, [watchedProduct, watchedGender, watchedCategory]);
 
   useEffect(() => {
     if (uploadedImageUrl) {
@@ -107,6 +120,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
       size: values.size,
       title: values.title,
       type: values.type,
+      dashboardtype: values.dashboardtype,
       image: uploadedImageUrl,
       alt: uploadedImageAlt,
     };
@@ -136,6 +150,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         category: "",
         description: "",
         details: "",
+        dashboardtype: "",
       });
       setUploadedImageUrl("");
       setUploadedImageAlt("");
@@ -143,7 +158,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   }
 
   const imageDeleteHandler = () => {
-    CloudinaryDelete({uploadedImagePublicId});//need to hide env's
+    CloudinaryDelete({ uploadedImagePublicId }); //need to hide env's
     setUploadedImageUrl("");
     setUploadedImageAlt("");
   };
@@ -153,79 +168,32 @@ export function DashForm({ onAddProduct }: AddFormProps) {
       <div className="basis-3/4">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
+            <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
               <div className="sm:col-span-6 md:col-span-3">
                 <FormField
                   control={form.control}
-                  name="title"
+                  name="dashboardtype"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Product name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="sm:col-span-6 md:col-span-3">
-                <FormField
-                  control={form.control}
-                  name="color"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Color</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Product color" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="sm:col-span-6 md:col-span-3">
-                <FormField
-                  control={form.control}
-                  name="price"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Price</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Product price"
-                          type="number"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="sm:col-span-6 md:col-span-3">
-                <FormField
-                  control={form.control}
-                  name="size"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Product Size</FormLabel>
+                      <FormLabel>Item Type</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select the product size" />
+                            <SelectValue placeholder="Select the Item Type" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="3xl">3XL</SelectItem>
-                          <SelectItem value="2XL">2XL</SelectItem>
-                          <SelectItem value="XL">XL</SelectItem>
-                          <SelectItem value="L">L</SelectItem>
-                          <SelectItem value="M">M</SelectItem>
-                          <SelectItem value="S">S</SelectItem>
+                          <SelectItem value="product">Product</SelectItem>
+                          <SelectItem value="discounted">Discounted</SelectItem>
+                          <SelectItem value="bestsellers">
+                            Bestseller
+                          </SelectItem>
+                          <SelectItem value="newarrival">
+                            New Arrival
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -285,7 +253,6 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                   )}
                 />
               </div>
-
               {productType === "top" && genderType === "women" && (
                 <div className="sm:col-span-6 md:col-span-3">
                   <FormField
@@ -350,6 +317,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                         <FormMessage />
                       </FormItem>
                     )}
+                    s
                   />
                 </div>
               )}
@@ -383,6 +351,126 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                   />
                 </div>
               )}
+              {productCategory === "watchs" ? (
+                <div className="sm:col-span-6 md:col-span-3">
+                  <FormField
+                    control={form.control}
+                    name="size"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Hand watch size</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select hand watch size" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="22mm">22 mm</SelectItem>
+                            <SelectItem value="24mm">24 mm</SelectItem>
+                            <SelectItem value="26mm">26 mm</SelectItem>
+                            <SelectItem value="28mm">28 mm</SelectItem>
+                            <SelectItem value="30mm">30 mm</SelectItem>
+                            <SelectItem value="32mm">32 mm</SelectItem>
+                            <SelectItem value="34mm">34 mm</SelectItem>
+                            <SelectItem value="36mm">36 mm</SelectItem>
+                            <SelectItem value="38mm">38 mm</SelectItem>
+                            <SelectItem value="40mm">40 mm</SelectItem>
+                            <SelectItem value="42mm">42 mm</SelectItem>
+                            <SelectItem value="45mm">46 mm</SelectItem>
+                            <SelectItem value="50mm">50 mm</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              ) : (
+                <div className="sm:col-span-6 md:col-span-3">
+                  <FormField
+                    control={form.control}
+                    name="size"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Product Size</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select the product size" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="3xl">3XL</SelectItem>
+                            <SelectItem value="2XL">2XL</SelectItem>
+                            <SelectItem value="XL">XL</SelectItem>
+                            <SelectItem value="L">L</SelectItem>
+                            <SelectItem value="M">M</SelectItem>
+                            <SelectItem value="S">S</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              )}
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Product name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="color"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Color</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Product color" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Price</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Product price"
+                          type="number"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
               <div className="sm:col-span-6 md:col-span-3">
                 <FormField
                   control={form.control}
@@ -406,7 +494,11 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                     <FormItem>
                       <FormLabel>Details</FormLabel>
                       <FormControl>
-                        <Input placeholder="Product details" {...field} />
+                        <Textarea
+                          placeholder="Product details"
+                          className="resize-none"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -424,7 +516,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         </Form>
       </div>
 
-      <div className="basis-2/4 mt-16">
+      <div className="basis-2/4 mt-8">
         <div className="sm:col-span-2 mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
           <div className="text-center">
             <PhotoIcon
