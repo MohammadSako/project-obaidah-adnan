@@ -317,7 +317,6 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                         <FormMessage />
                       </FormItem>
                     )}
-                    s
                   />
                 </div>
               )}
