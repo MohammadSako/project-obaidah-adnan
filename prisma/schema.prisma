@@ -31,26 +31,86 @@ model items {
   dashboardType String
 }
 
-model inventory {
-  id        String   @id @default(uuid()) @db.Uuid
-  createdAt DateTime @default(now())
-  name      String   @db.VarChar(255)
-  category  String
-  note      String
+// model inventory {
+//   id        String   @id @default(uuid()) @db.Uuid
+//   createdAt DateTime @default(now())
+//   name      String   @db.VarChar(255)
+//   category  String
+//   note      String
+// }
+
+// model inventory_items {
+//   id        String   @id @default(uuid()) @db.Uuid
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   title     String   @db.VarChar(255)
+//   color     String
+//   price     Float
+//   image     String
+//   alt       String
+//   gender    String
+//   type      String
+// }
+model Category {
+  id    Int     @id @default(autoincrement())
+  name  String
+  image String?
+  url   String
+  types Type[] // One-to-many relationship with Type
 }
 
-model inventory_items {
-  id        String   @id @default(uuid()) @db.Uuid
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  color     String
-  price     Float
-  image     String
-  alt       String
-  gender    String
-  type      String
+model Type {
+  id         Int      @id @default(autoincrement())
+  name       String
+  image      String?
+  categoryId Int
+  url        String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  items      Item[] // One-to-many relationship with Item
 }
+
+model Item {
+  id      Int          @id @default(autoincrement())
+  name    String
+  image   String?
+  typeId  Int
+  url     String
+  type    Type         @relation(fields: [typeId], references: [id], onDelete: Cascade)
+  details ItemDetail[] // One-to-many relationship with ItemDetail
+}
+
+model ItemDetail {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String   @db.VarChar(255)
+  color       String
+  size        String
+  price       String
+  image       String
+  alt         String
+  description String
+  details     String
+  itemId      Int
+  url         String
+  item        Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+}
+
+// Query Example: Use Prisma Client in your application:
+// const categories = await prisma.category.findMany({
+//   include: {
+//     types: {
+//       include: {
+//         items: {
+//           include: {
+//             details: true
+//           }
+//         }
+//       }
+//     }
+//   }
+// });
+// console.log(categories);
 
 // Example:
 // model Post {

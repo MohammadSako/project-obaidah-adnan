@@ -89,7 +89,7 @@ export default function CategoriesPage() {
       ];
       setProducts(product);
     }
-    if (pathname === "/categories/men/clothing/top/tshirts") {
+    if (pathname === "/categories/men/clothing/top/tshirt") {
       const product = [
         {
           title: "Shirts",

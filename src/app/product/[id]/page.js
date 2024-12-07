@@ -4,7 +4,7 @@ import React from "react";
 
 async function ProductDetails() {
   // const id = parseInt(params.id);
-  const { products = [] } = await getProductsById(3);
+  const { products = [] } = await getProductsById("756ad141-43f1-4e4f-9721-9512a8e79007");
 
   return (
     <div className="bg-white mx-10">

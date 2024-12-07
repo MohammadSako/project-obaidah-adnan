@@ -8,7 +8,6 @@ import OurBrands from "@/components/homescreen/our-brands";
 
 export default async function Home() {
   const { products = [] } = await getProducts();
-
   return (
     <main className="flex min-h-screen flex-col items-center font-display">
       <Landing />
@@ -23,3 +22,4 @@ export default async function Home() {
     </main>
   );
 }
+``

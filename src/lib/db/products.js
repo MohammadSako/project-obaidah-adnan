@@ -13,6 +13,47 @@ export const getProducts = cache(async function () {
   }
 });
 
+// To get the menu categories
+export const getAllCategory = cache(async function () {
+  try {
+    // Fetch all categories with their types and items
+    const categories = await prisma.category.findMany({
+      include: {
+        types: {
+          include: {
+            items: true, // Include all items for each type
+          },
+        },
+      },
+    });
+    return { categories }; // Return the categories object
+  } catch (error) {
+    return { error: error.message || error }; // Handle errors
+  }
+});
+
+export const getProduct = cache(async function () {
+  try {
+    // const product = await prisma.category.findMany();
+    const menCategory = await prisma.category.findUnique({
+      where: {
+        id: 1, // Replace with the category ID you're interested in
+      },
+      include: {
+        types: {
+          include: {
+            items: true, // This will include all items in each type
+          },
+        },
+      },
+    });
+    return { menCategory };
+  } catch (error) {
+    return { error };
+  }
+});
+
+
 // to find a specific type..
 // export const getProducts = cache(async function () {
 //   try {
@@ -58,24 +99,28 @@ export async function getProductsById(id) {
   }
 }
 
-export const getCategories = cache(async function () {
-  try {
-    const categories = await prisma.inventory.findMany();
-    return { categories };
-  } catch (error) {
-    return { error };
-  }
-});
-export const getMenCategories = cache(async function (category) {
-  try {
-    const men_categories = await prisma.inventory.findMany({
-      where: { category },
-    });
-    return { men_categories };
-  } catch (error) {
-    return { error };
-  }
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // export async function getTodosByUserId(userId: string) {
 //   try {

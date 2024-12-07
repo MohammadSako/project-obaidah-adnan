@@ -5,7 +5,6 @@ import { DashForm } from "../components/dash-form";
 
 export default function Dashboard() {
   async function addProductHandle(data) {
-    console.log("##################", data);
     try {
       await addProduct(data);
     } catch (error) {
