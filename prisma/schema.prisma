@@ -80,20 +80,23 @@ model Item {
 }
 
 model ItemDetail {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  title       String   @db.VarChar(255)
-  color       String
-  size        String
-  price       String
-  image       String
-  alt         String
-  description String
-  details     String
-  itemId      Int
-  url         String
-  item        Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  title         String   @db.VarChar(255)
+  color         String
+  size          String
+  price         String
+  image         String
+  alt           String
+  gender        String
+  type          String
+  description   String
+  details       String
+  category      Int
+  dashboardType String
+  url           String
+  item          Item     @relation(fields: [category], references: [id], onDelete: Cascade)
 }
 
 // Query Example: Use Prisma Client in your application:

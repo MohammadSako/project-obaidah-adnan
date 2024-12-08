@@ -5,11 +5,13 @@ import { DashForm } from "../components/dash-form";
 
 export default function Dashboard() {
   async function addProductHandle(data) {
-    try {
-      await addProduct(data);
-    } catch (error) {
-      console.error("Error adding product:", error);
-    }
+console.log(data);
+
+    // try {
+    //   await addProduct(data);
+    // } catch (error) {
+    //   console.error("Error adding product:", error);
+    // }
   }
 
   return (

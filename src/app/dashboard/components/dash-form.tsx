@@ -54,7 +54,7 @@ const formSchema = z.object({
   }),
   details: z
     .string()
-    .min(10, {
+    .min(2, {
       message: "Details must be at least 10 characters.",
     })
     .max(160, {
@@ -277,7 +277,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             <SelectItem value="6">Wool Blouse</SelectItem>
                             <SelectItem value="8">Hat</SelectItem>
                             <SelectItem value="10">Watch</SelectItem>
-                            <SelectItem value="32">Bag</SelectItem>
+                            <SelectItem value="12">Bag</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -309,7 +309,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             <SelectItem value="5">Wool Blouse</SelectItem>
                             <SelectItem value="7">Hat</SelectItem>
                             <SelectItem value="9">Watch</SelectItem>
-                            <SelectItem value="31">Bag</SelectItem>
+                            <SelectItem value="11">Bag</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -336,10 +336,10 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="13">Pants</SelectItem>
-                            <SelectItem value="11">Jeans</SelectItem>
-                            <SelectItem value="17">Belt</SelectItem>
-                            <SelectItem value="15">Socks</SelectItem>
+                            <SelectItem value="13">Jeans</SelectItem>
+                            <SelectItem value="15">Pants</SelectItem>
+                            <SelectItem value="17">Socks</SelectItem>
+                            <SelectItem value="19">Belt</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -366,10 +366,10 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="14">Pants</SelectItem>
-                            <SelectItem value="12">Jeans</SelectItem>
-                            <SelectItem value="18">Belt</SelectItem>
-                            <SelectItem value="16">Socks</SelectItem>
+                            <SelectItem value="14">Jeans</SelectItem>
+                            <SelectItem value="16">Pants</SelectItem>
+                            <SelectItem value="18">Socks</SelectItem>
+                            <SelectItem value="20">Belt</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -396,17 +396,17 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="19">
+                            <SelectItem value="21">
                               Work & Safty Shoes
                             </SelectItem>
-                            <SelectItem value="20">
+                            <SelectItem value="22">
                               Loafers & Slip-Ons
                             </SelectItem>
-                            <SelectItem value="22">Snow Boots</SelectItem>
-                            <SelectItem value="24">Casual Shoes</SelectItem>
-                            <SelectItem value="25">Boots</SelectItem>
-                            <SelectItem value="26">Sandals</SelectItem>
-                            <SelectItem value="27">Others</SelectItem>
+                            <SelectItem value="25">Snow Boots</SelectItem>
+                            <SelectItem value="26">Casual Shoes</SelectItem>
+                            <SelectItem value="27">Boots</SelectItem>
+                            <SelectItem value="28">Sandals</SelectItem>
+                            <SelectItem value="29">Others</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -436,10 +436,10 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             <SelectItem value="21">
                               Loafers & Slip-Ons
                             </SelectItem>
-                            <SelectItem value="23">Snow Boots</SelectItem>
-                            <SelectItem value="28">Flats</SelectItem>
-                            <SelectItem value="29">Slippers</SelectItem>
-                            <SelectItem value="30">Sneakers</SelectItem>
+                            <SelectItem value="25">Snow Boots</SelectItem>
+                            <SelectItem value="30">Flats</SelectItem>
+                            <SelectItem value="31">Slippers</SelectItem>
+                            <SelectItem value="32">Sneakers</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -448,7 +448,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                   />
                 </div>
               )}
-              {productCategory === "watchs" ? (
+              {productCategory === "9" || productCategory === "10" ? (
                 <div className="sm:col-span-6 md:col-span-3">
                   <FormField
                     control={form.control}
