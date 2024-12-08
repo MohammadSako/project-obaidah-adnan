@@ -25,6 +25,7 @@ import { useToast } from "@/hooks/use-toast";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import { CloudinaryDelete } from "@/lib/db/cloudinary";
 import { Textarea } from "@/components/UI/textarea";
+import Image from "next/image";
 
 const formSchema = z.object({
   dashboardtype: z.string().min(1, {
@@ -76,6 +77,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   const [uploadedImagePublicId, setUploadedImagePublicId] = useState("");
   const [uploadedImageError, setUploadedImageError] = useState(false);
   const { toast } = useToast();
+console.log("adadasdsadad",uploadedImagePublicId);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -160,6 +162,48 @@ export function DashForm({ onAddProduct }: AddFormProps) {
     CloudinaryDelete({ uploadedImagePublicId }); //need to hide env's
     setUploadedImageUrl("");
     setUploadedImageAlt("");
+  };
+
+  const [image, setImage] = useState(null); // Store the image file
+  const [imagePreview, setImagePreview] = useState(null); // Store the preview of the image
+  const [isUploading, setIsUploading] = useState(false); // Track upload state
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+      const previewUrl = URL.createObjectURL(file);
+      setImagePreview(previewUrl);
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!image) return;
+    setIsUploading(true);
+    // Create a FormData object to send the image to your API
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "obaidahpreset"); // Use your Cloudinary upload preset
+    try {
+      // Upload to Cloudinary
+      const response = await fetch(
+        "https://api.cloudinary.com/v1_1/dilj6mttl/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      // Get the uploaded image URL
+      if (data.secure_url) {
+        setUploadedImageUrl(data.secure_url);
+        setUploadedImagePublicId(data.public_id);
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   return (
@@ -682,8 +726,8 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                 className="mx-auto size-12 text-gray-300"
               />
               <div className=" flex text-sm/6 text-gray-600">
-                <div className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                  <CldUploadWidget
+                {/* <div className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                  <CldUploadWidget 
                     uploadPreset="obaidahpreset"
                     // onSuccess={(results) =>
                     //   console.log(results)
@@ -693,6 +737,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                       setUploadedImageAlt(results?.info?.display_name);
                       setUploadedImagePublicId(results?.info?.public_id);
                     }}
+                    // onSuccess={handleUploadSuccess}
                   >
                     {({ open, isLoading }) => {
                       return (
@@ -708,6 +753,38 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                       );
                     }}
                   </CldUploadWidget>
+                </div> */}
+                <div>
+                  <h3>Upload an Image</h3>
+
+                  {/* File input */}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+
+                  {/* Image preview */}
+                  {imagePreview && !isUploading && (
+                    <div>
+                      <h3>Image Preview:</h3>
+                      <Image
+                        src={imagePreview}
+                        alt="Preview"
+                        width={30}
+                        height={80}
+                        style={{ width: "200px" }}
+                      />
+                    </div>
+                  )}
+
+                  {/* Upload button */}
+                  <button
+                    onClick={handleUpload}
+                    disabled={isUploading || !image}
+                  >
+                    {isUploading ? "Uploading..." : "Upload Image"}
+                  </button>
                 </div>
               </div>
             </div>
