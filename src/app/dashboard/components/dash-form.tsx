@@ -246,6 +246,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                         <SelectContent>
                           <SelectItem value="top">Top Clothes</SelectItem>
                           <SelectItem value="lower">Lower Clothes</SelectItem>
+                          <SelectItem value="shoes">Shoes</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -273,9 +274,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                           <SelectContent>
                             <SelectItem value="2">T Shirt</SelectItem>
                             <SelectItem value="4">Shirt</SelectItem>
-                            <SelectItem value="6">
-                              Wool Blouse
-                            </SelectItem>
+                            <SelectItem value="6">Wool Blouse</SelectItem>
                             <SelectItem value="8">Hat</SelectItem>
                             <SelectItem value="10">Watch</SelectItem>
                             <SelectItem value="32">Bag</SelectItem>
@@ -307,9 +306,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                           <SelectContent>
                             <SelectItem value="1">T Shirt</SelectItem>
                             <SelectItem value="3">Shirt</SelectItem>
-                            <SelectItem value="5">
-                              Wool Blouse
-                            </SelectItem>
+                            <SelectItem value="5">Wool Blouse</SelectItem>
                             <SelectItem value="7">Hat</SelectItem>
                             <SelectItem value="9">Watch</SelectItem>
                           </SelectContent>
@@ -380,6 +377,76 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                   />
                 </div>
               )}
+              {productType === "shoes" && genderType === "men" && (
+                <div className="sm:col-span-6 md:col-span-3">
+                  <FormField
+                    control={form.control}
+                    name="category"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Men Shoes</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select men shoes category" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="19">
+                              Work & Safty Shoes
+                            </SelectItem>
+                            <SelectItem value="20">
+                              Loafers & Slip-Ons
+                            </SelectItem>
+                            <SelectItem value="22">Snow Boots</SelectItem>
+                            <SelectItem value="24">Casual Shoes</SelectItem>
+                            <SelectItem value="25">Boots</SelectItem>
+                            <SelectItem value="26">Sandals</SelectItem>
+                            <SelectItem value="27">Others</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              )}
+              {productType === "shoes" && genderType === "women" && (
+                <div className="sm:col-span-6 md:col-span-3">
+                  <FormField
+                    control={form.control}
+                    name="category"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Women Shoes</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select women shoes category" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="21">
+                              Loafers & Slip-Ons
+                            </SelectItem>
+                            <SelectItem value="23">Snow Boots</SelectItem>
+                            <SelectItem value="28">Flats</SelectItem>
+                            <SelectItem value="29">Slippers</SelectItem>
+                            <SelectItem value="30">Sneakers</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              )}
               {productCategory === "watchs" ? (
                 <div className="sm:col-span-6 md:col-span-3">
                   <FormField
@@ -411,6 +478,67 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             <SelectItem value="42mm">42 mm</SelectItem>
                             <SelectItem value="45mm">46 mm</SelectItem>
                             <SelectItem value="50mm">50 mm</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              ) : productType === "shoes" ? (
+                <div className="sm:col-span-6 md:col-span-3">
+                  <FormField
+                    control={form.control}
+                    name="size"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Shoe size</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select hand watch size" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="34.5">34.5</SelectItem>
+                            <SelectItem value="35">35</SelectItem>
+                            <SelectItem value="35.5">35.5</SelectItem>
+                            <SelectItem value="36">36</SelectItem>
+                            <SelectItem value="36.5">36.5</SelectItem>
+                            <SelectItem value="37">37</SelectItem>
+                            <SelectItem value="37.5">37.5</SelectItem>
+                            <SelectItem value="38">38</SelectItem>
+                            <SelectItem value="38.5">38.5</SelectItem>
+                            <SelectItem value="39">39</SelectItem>
+                            <SelectItem value="39.5">39.5</SelectItem>
+                            <SelectItem value="40">40</SelectItem>
+                            <SelectItem value="40.5">40.5</SelectItem>
+                            <SelectItem value="41">41</SelectItem>
+                            <SelectItem value="41.5">41.5</SelectItem>
+                            <SelectItem value="42">42</SelectItem>
+                            <SelectItem value="42.5">42.5</SelectItem>
+                            <SelectItem value="43">43</SelectItem>
+                            <SelectItem value="43.5">43.5</SelectItem>
+                            <SelectItem value="44">44</SelectItem>
+                            <SelectItem value="44.5">44.5</SelectItem>
+                            <SelectItem value="45">45</SelectItem>
+                            <SelectItem value="45.5">45.5</SelectItem>
+                            <SelectItem value="46">46</SelectItem>
+                            <SelectItem value="46.5">46.5</SelectItem>
+                            <SelectItem value="47">47</SelectItem>
+                            <SelectItem value="47.5">47.5</SelectItem>
+                            <SelectItem value="48">48</SelectItem>
+                            <SelectItem value="48.5">48.5</SelectItem>
+                            <SelectItem value="49">49</SelectItem>
+                            <SelectItem value="49.5">49.5</SelectItem>
+                            <SelectItem value="50">50</SelectItem>
+                            <SelectItem value="50.5">50.5</SelectItem>
+                            <SelectItem value="51">51</SelectItem>
+                            <SelectItem value="51.5">51.5</SelectItem>
+                            <SelectItem value="52">52</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
