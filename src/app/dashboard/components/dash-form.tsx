@@ -309,6 +309,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             <SelectItem value="5">Wool Blouse</SelectItem>
                             <SelectItem value="7">Hat</SelectItem>
                             <SelectItem value="9">Watch</SelectItem>
+                            <SelectItem value="31">Bag</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
