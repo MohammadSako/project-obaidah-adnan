@@ -65,7 +65,7 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="uppercase">{row.getValue("title")}</div>,
+    cell: ({ row }) => <div className="capitalize">{row.getValue("title")}</div>,
   },
   {
     accessorKey: "dashboardType",
@@ -81,7 +81,7 @@ export const columns: ColumnDef<Product>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("dashboardType")}</div>
+      <div className="capitalize">{row.getValue("dashboardType")}</div>
     ),
   },
   {
@@ -98,7 +98,7 @@ export const columns: ColumnDef<Product>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("gender")}</div>
+      <div className="capitalize">{row.getValue("gender")}</div>
     ),
   },
 
@@ -115,7 +115,7 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("type")}</div>,
+    cell: ({ row }) => <div className="capitalize">{row.getValue("type")}</div>,
   },
   {
     accessorKey: "category",
@@ -131,7 +131,7 @@ export const columns: ColumnDef<Product>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("category")}</div>
+      <div className="capitalize">{row.getValue("category")}</div>
     ),
   },
   {
@@ -147,7 +147,7 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("size")}</div>,
+    cell: ({ row }) => <div className="capitalize">{row.getValue("size")}</div>,
   },
   {
     accessorKey: "color",
@@ -162,7 +162,7 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("color")}</div>,
+    cell: ({ row }) => <div className="capitalize">{row.getValue("color")}</div>,
   },
   {
     accessorKey: "price",

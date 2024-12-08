@@ -6,7 +6,8 @@ import { cache } from "react";
 
 export const getProducts = cache(async function () {
   try {
-    const products = await prisma.items.findMany();
+    const products = await prisma.itemDetail.findMany();
+    // const products = await prisma.items.findMany();
     return { products };
   } catch (error) {
     return { error };
@@ -64,22 +65,25 @@ export const getProduct = cache(async function () {
 //   }
 // });
 
-export async function addProduct(data) {
+
+export async function addProduct(productData) {
   try {
-    const product = await prisma.items.create({
+    const product = await prisma.itemDetail.create({
+    // const product = await prisma.items.create({
       data: {
-        title: data.title,
-        color: data.color,
-        size: data.size,
-        price: data.price,
-        image: data.image,
-        alt: data.alt,
-        gender: data.gender,
-        type: data.type,
-        description: data.description,
-        details: data.details,
-        category: data.category,
-        dashboardType: data.dashboardtype,
+        title: productData.title,
+        color: productData.color,
+        size: productData.size,
+        price: productData.price,
+        image: productData.image,
+        alt: productData.alt,
+        gender: productData.gender,
+        type: productData.type,
+        description: productData.description,
+        details: productData.details,
+        category: productData.category,
+        dashboardType: productData.dashboardtype,
+        url: productData.title
       },
     });
     console.log("Product created:", product);

@@ -124,7 +124,6 @@ export function DashForm({ onAddProduct }: AddFormProps) {
       image: uploadedImageUrl,
       alt: uploadedImageAlt,
     };
-    console.log(data);
     if (!uploadedImageUrl) {
       setUploadedImageError(true);
       return;
@@ -675,43 +674,45 @@ export function DashForm({ onAddProduct }: AddFormProps) {
       </div>
 
       <div className="basis-2/4 mt-8">
-        <div className="sm:col-span-2 mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-          <div className="text-center">
-            <PhotoIcon
-              aria-hidden="true"
-              className="mx-auto size-12 text-gray-300"
-            />
-            <div className=" flex text-sm/6 text-gray-600">
-              <div className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                <CldUploadWidget
-                  uploadPreset="obaidahpreset"
-                  // onSuccess={(results) =>
-                  //   console.log(results)
-                  // }
-                  onSuccess={(results) => {
-                    setUploadedImageUrl(results?.info?.url);
-                    setUploadedImageAlt(results?.info?.display_name);
-                    setUploadedImagePublicId(results?.info?.public_id);
-                  }}
-                >
-                  {({ open, isLoading }) => {
-                    return (
-                      <>
-                        {isLoading ? (
-                          <button>Wait...</button>
-                        ) : (
-                          <button onClick={() => open()}>
-                            Upload an Image
-                          </button>
-                        )}
-                      </>
-                    );
-                  }}
-                </CldUploadWidget>
+        {!uploadedImageUrl && (
+          <div className="sm:col-span-2 mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+            <div className="text-center">
+              <PhotoIcon
+                aria-hidden="true"
+                className="mx-auto size-12 text-gray-300"
+              />
+              <div className=" flex text-sm/6 text-gray-600">
+                <div className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                  <CldUploadWidget
+                    uploadPreset="obaidahpreset"
+                    // onSuccess={(results) =>
+                    //   console.log(results)
+                    // }
+                    onSuccess={(results) => {
+                      setUploadedImageUrl(results?.info?.url);
+                      setUploadedImageAlt(results?.info?.display_name);
+                      setUploadedImagePublicId(results?.info?.public_id);
+                    }}
+                  >
+                    {({ open, isLoading }) => {
+                      return (
+                        <>
+                          {isLoading ? (
+                            <button>Wait...</button>
+                          ) : (
+                            <button onClick={() => open()}>
+                              Upload an Image
+                            </button>
+                          )}
+                        </>
+                      );
+                    }}
+                  </CldUploadWidget>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
         {uploadedImageError && (
           <p className="bg-red-600 text-white text-lg mt-2 rounded shadow-lg px-2 text-center">
             Select the product image!!
