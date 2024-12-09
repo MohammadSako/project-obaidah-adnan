@@ -23,9 +23,7 @@ import {
 import { Input } from "@/components/UI/input";
 import { useToast } from "@/hooks/use-toast";
 import { PhotoIcon } from "@heroicons/react/24/outline";
-import { CloudinaryDelete } from "@/lib/db/cloudinary";
 import { Textarea } from "@/components/UI/textarea";
-import { Button } from "@/components/UI/button";
 
 const formSchema = z.object({
   dashboardtype: z.string().min(1, {
@@ -123,7 +121,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   };
 
   const removeImageHandler = () => {
-    setImage("");
+    setImage(null);
     setImagePreview("");
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -154,6 +152,12 @@ export function DashForm({ onAddProduct }: AddFormProps) {
       setIsUploading(false);
     }
   };
+
+  // to store image in supabase storage
+  // https://supabase.com/docs/guides/storage/uploads/standard-uploads
+  // https://www.youtube.com/watch?v=cN2RE6EpExE&t=5s
+  // https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs#create-an-upload-widget
+  // https://supabase.com/docs/guides/storage/serving/image-transformations
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
@@ -202,7 +206,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         });
         setUploadedImageUrl("");
         setImagePreview("");
-        removeImageHandler()
+        removeImageHandler();
       }
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -778,31 +782,6 @@ export function DashForm({ onAddProduct }: AddFormProps) {
             Select the product image!!
           </p>
         )}
-
-        {/* {uploadedImageUrl && (
-          <>
-            <div className="sm:col-span-2 mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-2 py-2">
-              <CldImage
-                src={uploadedImageUrl}
-                alt={uploadedImageAlt}
-                width="150"
-                height="150"
-                crop={{
-                  type: "auto",
-                  source: true,
-                }}
-              />
-            </div>
-            <div className="flex justify-center">
-              <button
-                onClick={imageDeleteHandler}
-                className="mt-2 text-lg text-white font-semibold bg-red-600 px-6 py-2 rounded-lg"
-              >
-                Delete Image
-              </button>
-            </div>
-          </>
-        )} */}
       </div>
     </div>
   );
