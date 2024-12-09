@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CldImage, CldUploadWidget } from "next-cloudinary";
+import { CldImage } from "next-cloudinary";
 import {
   Form,
   FormControl,
@@ -25,7 +25,7 @@ import { useToast } from "@/hooks/use-toast";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import { CloudinaryDelete } from "@/lib/db/cloudinary";
 import { Textarea } from "@/components/UI/textarea";
-import Image from "next/image";
+import { Button } from "@/components/UI/button";
 
 const formSchema = z.object({
   dashboardtype: z.string().min(1, {
@@ -73,11 +73,13 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   const [genderType, setGenderType] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
-  const [uploadedImageAlt, setUploadedImageAlt] = useState("");
-  const [uploadedImagePublicId, setUploadedImagePublicId] = useState("");
   const [uploadedImageError, setUploadedImageError] = useState(false);
+
+  const [image, setImage] = useState<File | null>(null); // Store the image file
+  const [imagePreview, setImagePreview] = useState(""); // Store the preview of the image
+  const [isUploading, setIsUploading] = useState(false); // Track upload state
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { toast } = useToast();
-console.log("adadasdsadad",uploadedImagePublicId);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -106,74 +108,25 @@ console.log("adadasdsadad",uploadedImagePublicId);
   }, [watchedProduct, watchedGender, watchedCategory]);
 
   useEffect(() => {
-    if (uploadedImageUrl) {
+    if (imagePreview) {
       setUploadedImageError(false);
     }
-  }, [uploadedImageUrl]);
+  }, [imagePreview]);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const data = {
-      category: values.category,
-      color: values.color,
-      description: values.description,
-      details: values.details,
-      gender: values.gender,
-      price: values.price,
-      size: values.size,
-      title: values.title,
-      type: values.type,
-      dashboardtype: values.dashboardtype,
-      image: uploadedImageUrl,
-      alt: uploadedImageAlt,
-    };
-    if (!uploadedImageUrl) {
-      setUploadedImageError(true);
-      return;
-    } else {
-      toast({
-        title: "You submitted the following values:",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">
-              {JSON.stringify(values, null, 2)}
-            </code>
-          </pre>
-        ),
-      });
-      onAddProduct(data);
-      form.reset({
-        title: "",
-        color: "",
-        price: "",
-        size: "",
-        gender: "",
-        type: "",
-        category: "",
-        description: "",
-        details: "",
-        dashboardtype: "",
-      });
-      setUploadedImageUrl("");
-      setUploadedImageAlt("");
-    }
-  }
-
-  const imageDeleteHandler = () => {
-    CloudinaryDelete({ uploadedImagePublicId }); //need to hide env's
-    setUploadedImageUrl("");
-    setUploadedImageAlt("");
-  };
-
-  const [image, setImage] = useState(null); // Store the image file
-  const [imagePreview, setImagePreview] = useState(null); // Store the preview of the image
-  const [isUploading, setIsUploading] = useState(false); // Track upload state
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
       setImage(file);
       const previewUrl = URL.createObjectURL(file);
       setImagePreview(previewUrl);
+    }
+  };
+
+  const removeImageHandler = () => {
+    setImage("");
+    setImagePreview("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
   };
 
@@ -193,12 +146,8 @@ console.log("adadasdsadad",uploadedImagePublicId);
           body: formData,
         }
       );
-      const data = await response.json();
-      // Get the uploaded image URL
-      if (data.secure_url) {
-        setUploadedImageUrl(data.secure_url);
-        setUploadedImagePublicId(data.public_id);
-      }
+      const imageUrl = await response.json();
+      return imageUrl.secure_url;
     } catch (error) {
       console.error("Error uploading image:", error);
     } finally {
@@ -206,6 +155,65 @@ console.log("adadasdsadad",uploadedImagePublicId);
     }
   };
 
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const imageUrl = await handleUpload();
+      const data = {
+        category: values.category,
+        color: values.color,
+        description: values.description,
+        details: values.details,
+        gender: values.gender,
+        price: values.price,
+        size: values.size,
+        title: values.title,
+        type: values.type,
+        dashboardtype: values.dashboardtype,
+        image: imageUrl,
+        alt: values.title,
+      };
+
+      if (!imagePreview && !uploadedImageUrl) {
+        setUploadedImageError(true);
+        return;
+      } else {
+        toast({
+          title: "You submitted the following values:",
+          description: (
+            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+              <code className="text-white">
+                {JSON.stringify(values, null, 2)}
+              </code>
+            </pre>
+          ),
+        });
+        onAddProduct(data);
+        form.reset({
+          title: "",
+          color: "",
+          price: "",
+          size: "",
+          gender: "",
+          type: "",
+          category: "",
+          description: "",
+          details: "",
+          dashboardtype: "",
+        });
+        setUploadedImageUrl("");
+        setImagePreview("");
+        removeImageHandler()
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  }
+
+  // const imageDeleteHandler = () => {
+  //   CloudinaryDelete({ uploadedImagePublicId }); //need to hide env's
+  //   setUploadedImageUrl("");
+  //   setUploadedImageAlt("");
+  // };
   return (
     <div className="flex sm:flex-row gap-8 flex-col-reverse">
       <div className="basis-3/4">
@@ -717,74 +725,49 @@ console.log("adadasdsadad",uploadedImagePublicId);
         </Form>
       </div>
 
-      <div className="basis-2/4 mt-8">
+      <div className="lg:basis-1/4 basis-2/4 mt-8">
         {!uploadedImageUrl && (
-          <div className="sm:col-span-2 mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+          <div className="sm:col-span-2 mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-4 py-4">
             <div className="text-center">
               <PhotoIcon
                 aria-hidden="true"
                 className="mx-auto size-12 text-gray-300"
               />
               <div className=" flex text-sm/6 text-gray-600">
-                {/* <div className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                  <CldUploadWidget 
-                    uploadPreset="obaidahpreset"
-                    // onSuccess={(results) =>
-                    //   console.log(results)
-                    // }
-                    onSuccess={(results) => {
-                      setUploadedImageUrl(results?.info?.url);
-                      setUploadedImageAlt(results?.info?.display_name);
-                      setUploadedImagePublicId(results?.info?.public_id);
-                    }}
-                    // onSuccess={handleUploadSuccess}
-                  >
-                    {({ open, isLoading }) => {
-                      return (
-                        <>
-                          {isLoading ? (
-                            <button>Wait...</button>
-                          ) : (
-                            <button onClick={() => open()}>
-                              Upload an Image
-                            </button>
-                          )}
-                        </>
-                      );
-                    }}
-                  </CldUploadWidget>
-                </div> */}
-                <div>
-                  <h3>Upload an Image</h3>
-
-                  {/* File input */}
-                  <input
+                <div className="relative flex flex-col justify-center">
+                  {isUploading && "Uploading..."}
+                  {!isUploading &&
+                    imagePreview &&
+                    "Click to choose another image"}
+                  {!isUploading && !imagePreview && "Upload an Image"}
+                  <Input
                     type="file"
                     accept="image/*"
+                    ref={fileInputRef}
                     onChange={handleFileChange}
+                    className="my-2"
                   />
-
-                  {/* Image preview */}
                   {imagePreview && !isUploading && (
-                    <div>
-                      <h3>Image Preview:</h3>
-                      <Image
+                    <>
+                      <p
+                        onClick={removeImageHandler}
+                        className="absolute top-[90px] z-50 cursor-pointer right-3 text-xl text-black bg-white rounded-full w-7 h-7"
+                      >
+                        X
+                      </p>
+                      <CldImage
                         src={imagePreview}
-                        alt="Preview"
-                        width={30}
-                        height={80}
-                        style={{ width: "200px" }}
+                        alt={imagePreview}
+                        width="230"
+                        height="300"
+                        style={{ margin: "auto" }}
+                        crop={{
+                          type: "auto",
+                          source: true,
+                        }}
                       />
-                    </div>
+                    </>
                   )}
-
-                  {/* Upload button */}
-                  <button
-                    onClick={handleUpload}
-                    disabled={isUploading || !image}
-                  >
-                    {isUploading ? "Uploading..." : "Upload Image"}
-                  </button>
                 </div>
               </div>
             </div>
@@ -796,7 +779,7 @@ console.log("adadasdsadad",uploadedImagePublicId);
           </p>
         )}
 
-        {uploadedImageUrl && (
+        {/* {uploadedImageUrl && (
           <>
             <div className="sm:col-span-2 mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-2 py-2">
               <CldImage
@@ -819,7 +802,7 @@ console.log("adadasdsadad",uploadedImagePublicId);
               </button>
             </div>
           </>
-        )}
+        )} */}
       </div>
     </div>
   );

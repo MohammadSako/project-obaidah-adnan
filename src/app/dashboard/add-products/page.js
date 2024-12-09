@@ -19,6 +19,9 @@ export default function Dashboard() {
       title: data.title,
       type: data.type,
     };
+
+    console.log("@!@!@!!!@!@!@!@!@!@!", productData);
+
     try {
       await addProduct(productData);
     } catch (error) {
