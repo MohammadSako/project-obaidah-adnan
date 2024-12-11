@@ -7,7 +7,7 @@ export default function Dashboard() {
   async function addProductHandle(data) {
     const productData = {
       alt: data.alt,
-      category: parseInt(data.category),
+      category: data.category,
       color: data.color,
       dashboardtype: data.dashboardtype,
       description: data.description,

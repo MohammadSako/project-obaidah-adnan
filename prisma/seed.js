@@ -96,6 +96,7 @@ async function main() {
       image: "",
       typeId: menTopClothingType.id,
       url: "tshirt",
+      category: "mtshirt",
     },
   });
   const wtshirt = await prisma.item.create({
@@ -104,6 +105,7 @@ async function main() {
       image: "",
       typeId: womenTopClothingType.id,
       url: "tshirt",
+      category: "wtshirt",
     },
   });
   const mShirts = await prisma.item.create({
@@ -112,6 +114,7 @@ async function main() {
       image: "",
       typeId: menTopClothingType.id,
       url: "shirt",
+      category: "mshirt",
     },
   });
   const wShirts = await prisma.item.create({
@@ -120,6 +123,7 @@ async function main() {
       image: "",
       typeId: womenTopClothingType.id,
       url: "shirt",
+      category: "wshirt",
     },
   });
   const mblouse = await prisma.item.create({
@@ -128,6 +132,7 @@ async function main() {
       image: "",
       typeId: menTopClothingType.id,
       url: "blouse",
+      category: "mblouse",
     },
   });
   const wblouse = await prisma.item.create({
@@ -136,6 +141,7 @@ async function main() {
       image: "",
       typeId: womenTopClothingType.id,
       url: "blouse",
+      category: "wblouse",
     },
   });
   const mHats = await prisma.item.create({
@@ -144,6 +150,7 @@ async function main() {
       image: "",
       typeId: menTopClothingType.id,
       url: "hats",
+      category: "mhats",
     },
   });
   const wHats = await prisma.item.create({
@@ -152,6 +159,7 @@ async function main() {
       image: "",
       typeId: womenTopClothingType.id,
       url: "hats",
+      category: "whats",
     },
   });
   const mWatches = await prisma.item.create({
@@ -160,6 +168,7 @@ async function main() {
       image: "",
       typeId: menTopClothingType.id,
       url: "watches",
+      category: "mwatches",
     },
   });
   const wWatches = await prisma.item.create({
@@ -168,6 +177,7 @@ async function main() {
       image: "",
       typeId: womenTopClothingType.id,
       url: "watches",
+      category: "wwatches",
     },
   });
   const mBag = await prisma.item.create({
@@ -176,6 +186,7 @@ async function main() {
       image: "",
       typeId: menTopClothingType.id,
       url: "bag",
+      category: "mbag",
     },
   });
   const wBag = await prisma.item.create({
@@ -184,6 +195,7 @@ async function main() {
       image: "",
       typeId: womenTopClothingType.id,
       url: "bag",
+      category: "wbag",
     },
   });
   const mJeans = await prisma.item.create({
@@ -192,6 +204,7 @@ async function main() {
       image: "",
       typeId: menLowerClothingType.id,
       url: "jeans",
+      category: "mjeans",
     },
   });
   const wJeans = await prisma.item.create({
@@ -200,6 +213,7 @@ async function main() {
       image: "",
       typeId: womenLowerClothingType.id,
       url: "jeans",
+      category: "wjeans",
     },
   });
   const mPants = await prisma.item.create({
@@ -208,6 +222,7 @@ async function main() {
       image: "",
       typeId: menLowerClothingType.id,
       url: "pants",
+      category: "mpants",
     },
   });
   const wPants = await prisma.item.create({
@@ -216,6 +231,7 @@ async function main() {
       image: "",
       typeId: womenLowerClothingType.id,
       url: "pants",
+      category: "wpants",
     },
   });
   const mSocks = await prisma.item.create({
@@ -224,6 +240,7 @@ async function main() {
       image: "",
       typeId: menLowerClothingType.id,
       url: "socks",
+      category: "msocks",
     },
   });
   const wSocks = await prisma.item.create({
@@ -232,6 +249,7 @@ async function main() {
       image: "",
       typeId: womenLowerClothingType.id,
       url: "socks",
+      category: "wsocks",
     },
   });
   const mBelts = await prisma.item.create({
@@ -240,6 +258,7 @@ async function main() {
       image: "",
       typeId: menLowerClothingType.id,
       url: "belts",
+      category: "mbelts",
     },
   });
   const wBelts = await prisma.item.create({
@@ -248,6 +267,7 @@ async function main() {
       image: "",
       typeId: womenLowerClothingType.id,
       url: "belts",
+      category: "wbelts",
     },
   });
   const mWork = await prisma.item.create({
@@ -256,6 +276,7 @@ async function main() {
       image: "",
       typeId: menShoesType.id,
       url: "work",
+      category: "mwork",
     },
   });
   const mLoafers = await prisma.item.create({
@@ -264,6 +285,7 @@ async function main() {
       image: "",
       typeId: menShoesType.id,
       url: "loafers",
+      category: "mloafers",
     },
   });
   const wLoafers = await prisma.item.create({
@@ -272,6 +294,7 @@ async function main() {
       image: "",
       typeId: womenShoesType.id,
       url: "loafers",
+      category: "wloafers",
     },
   });
   const mSnow = await prisma.item.create({
@@ -280,6 +303,7 @@ async function main() {
       image: "",
       typeId: menShoesType.id,
       url: "snow",
+      category: "msnow",
     },
   });
   const wSnow = await prisma.item.create({
@@ -288,6 +312,7 @@ async function main() {
       image: "",
       typeId: womenShoesType.id,
       url: "snow",
+      category: "wsnow",
     },
   });
   const mCasual = await prisma.item.create({
@@ -296,6 +321,7 @@ async function main() {
       image: "",
       typeId: menShoesType.id,
       url: "casual",
+      category: "mcasual",
     },
   });
   const mBoots = await prisma.item.create({
@@ -304,6 +330,7 @@ async function main() {
       image: "",
       typeId: menShoesType.id,
       url: "boots",
+      category: "mboots",
     },
   });
   const mSandals = await prisma.item.create({
@@ -312,6 +339,7 @@ async function main() {
       image: "",
       typeId: menShoesType.id,
       url: "sandals",
+      category: "msandals",
     },
   });
   const mOthers = await prisma.item.create({
@@ -320,6 +348,16 @@ async function main() {
       image: "",
       typeId: menShoesType.id,
       url: "others",
+      category: "mothers",
+    },
+  });
+  const wOthers = await prisma.item.create({
+    data: {
+      name: "Others",
+      image: "",
+      typeId: womenShoesType.id,
+      url: "others",
+      category: "wothers",
     },
   });
   const wFlats = await prisma.item.create({
@@ -328,6 +366,7 @@ async function main() {
       image: "",
       typeId: womenShoesType.id,
       url: "flats",
+      category: "wflats",
     },
   });
   const wSlippers = await prisma.item.create({
@@ -336,6 +375,7 @@ async function main() {
       image: "",
       typeId: womenShoesType.id,
       url: "slippers",
+      category: "wslippers",
     },
   });
   const wSneakers = await prisma.item.create({
@@ -344,6 +384,7 @@ async function main() {
       image: "",
       typeId: womenShoesType.id,
       url: "sneakers",
+      category: "wsneakers",
     },
   });
 

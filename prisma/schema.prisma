@@ -70,13 +70,14 @@ model Type {
 }
 
 model Item {
-  id      Int          @id @default(autoincrement())
-  name    String
-  image   String?
-  typeId  Int
-  url     String
-  type    Type         @relation(fields: [typeId], references: [id], onDelete: Cascade)
-  details ItemDetail[] // One-to-many relationship with ItemDetail
+  id       Int          @id @default(autoincrement())
+  name     String
+  image    String?
+  typeId   Int
+  url      String
+  category String       @unique
+  type     Type         @relation(fields: [typeId], references: [id], onDelete: Cascade)
+  details  ItemDetail[] // One-to-many relationship with ItemDetail
 }
 
 model ItemDetail {
@@ -93,10 +94,10 @@ model ItemDetail {
   type          String
   description   String
   details       String
-  category      Int
+  category      String
   dashboardType String
   url           String
-  item          Item     @relation(fields: [category], references: [id], onDelete: Cascade)
+  item          Item     @relation(fields: [category], references: [category], onDelete: Cascade)
 }
 
 // Query Example: Use Prisma Client in your application:

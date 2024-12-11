@@ -327,12 +327,12 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="2">T Shirt</SelectItem>
-                            <SelectItem value="4">Shirt</SelectItem>
-                            <SelectItem value="6">Wool Blouse</SelectItem>
-                            <SelectItem value="8">Hat</SelectItem>
-                            <SelectItem value="10">Watch</SelectItem>
-                            <SelectItem value="12">Bag</SelectItem>
+                            <SelectItem value="wtshirt">T Shirt</SelectItem>
+                            <SelectItem value="wshirt">Shirt</SelectItem>
+                            <SelectItem value="wblouse">Wool Blouse</SelectItem>
+                            <SelectItem value="whats">Hat</SelectItem>
+                            <SelectItem value="wwatches">Watch</SelectItem>
+                            <SelectItem value="wbag">Bag</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -359,12 +359,12 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="1">T Shirt</SelectItem>
-                            <SelectItem value="3">Shirt</SelectItem>
-                            <SelectItem value="5">Wool Blouse</SelectItem>
-                            <SelectItem value="7">Hat</SelectItem>
-                            <SelectItem value="9">Watch</SelectItem>
-                            <SelectItem value="11">Bag</SelectItem>
+                            <SelectItem value="mtshirt">T Shirt</SelectItem>
+                            <SelectItem value="mshirt">Shirt</SelectItem>
+                            <SelectItem value="mblouse">Wool Blouse</SelectItem>
+                            <SelectItem value="mhats">Hat</SelectItem>
+                            <SelectItem value="mwatches">Watch</SelectItem>
+                            <SelectItem value="mbag">Bag</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -391,10 +391,10 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="13">Jeans</SelectItem>
-                            <SelectItem value="15">Pants</SelectItem>
-                            <SelectItem value="17">Socks</SelectItem>
-                            <SelectItem value="19">Belt</SelectItem>
+                            <SelectItem value="mjeans">Jeans</SelectItem>
+                            <SelectItem value="mpants">Pants</SelectItem>
+                            <SelectItem value="msocks">Socks</SelectItem>
+                            <SelectItem value="mbelts">Belt</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -421,10 +421,10 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="14">Jeans</SelectItem>
-                            <SelectItem value="16">Pants</SelectItem>
-                            <SelectItem value="18">Socks</SelectItem>
-                            <SelectItem value="20">Belt</SelectItem>
+                            <SelectItem value="wjeans">Jeans</SelectItem>
+                            <SelectItem value="wpants">Pants</SelectItem>
+                            <SelectItem value="wsocks">Socks</SelectItem>
+                            <SelectItem value="mbelts">Belt</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -457,11 +457,11 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             <SelectItem value="22">
                               Loafers & Slip-Ons
                             </SelectItem>
-                            <SelectItem value="25">Snow Boots</SelectItem>
-                            <SelectItem value="26">Casual Shoes</SelectItem>
-                            <SelectItem value="27">Boots</SelectItem>
-                            <SelectItem value="28">Sandals</SelectItem>
-                            <SelectItem value="29">Others</SelectItem>
+                            <SelectItem value="msnow">Snow Boots</SelectItem>
+                            <SelectItem value="mcasual">Casual Shoes</SelectItem>
+                            <SelectItem value="mboots">Boots</SelectItem>
+                            <SelectItem value="msandals">Sandals</SelectItem>
+                            <SelectItem value="mothers">Others</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -491,10 +491,10 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                             <SelectItem value="21">
                               Loafers & Slip-Ons
                             </SelectItem>
-                            <SelectItem value="25">Snow Boots</SelectItem>
-                            <SelectItem value="30">Flats</SelectItem>
-                            <SelectItem value="31">Slippers</SelectItem>
-                            <SelectItem value="32">Sneakers</SelectItem>
+                            <SelectItem value="wsnow">Snow Boots</SelectItem>
+                            <SelectItem value="wflats">Flats</SelectItem>
+                            <SelectItem value="wslippers">Slippers</SelectItem>
+                            <SelectItem value="wsneakers">Sneakers</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
