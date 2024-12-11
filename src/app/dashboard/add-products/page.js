@@ -5,25 +5,8 @@ import { DashForm } from "../components/dash-form";
 
 export default function Dashboard() {
   async function addProductHandle(data) {
-    const productData = {
-      alt: data.alt,
-      category: data.category,
-      color: data.color,
-      dashboardtype: data.dashboardtype,
-      description: data.description,
-      details: data.details,
-      gender: data.gender,
-      image: data.image,
-      price: data.price,
-      size: data.size,
-      title: data.title,
-      type: data.type,
-    };
-
-    console.log("@!@!@!!!@!@!@!@!@!@!", productData);
-
     try {
-      await addProduct(productData);
+      await addProduct(data);
     } catch (error) {
       console.error("Error adding product:", error);
     }

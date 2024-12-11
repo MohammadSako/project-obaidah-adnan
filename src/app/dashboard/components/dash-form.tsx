@@ -175,6 +175,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         dashboardtype: values.dashboardtype,
         image: imageUrl,
         alt: values.title,
+        url: values.title,
       };
 
       if (!imagePreview && !uploadedImageUrl) {
@@ -458,7 +459,9 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                               Loafers & Slip-Ons
                             </SelectItem>
                             <SelectItem value="msnow">Snow Boots</SelectItem>
-                            <SelectItem value="mcasual">Casual Shoes</SelectItem>
+                            <SelectItem value="mcasual">
+                              Casual Shoes
+                            </SelectItem>
                             <SelectItem value="mboots">Boots</SelectItem>
                             <SelectItem value="msandals">Sandals</SelectItem>
                             <SelectItem value="mothers">Others</SelectItem>
