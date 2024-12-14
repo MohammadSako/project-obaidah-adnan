@@ -33,27 +33,40 @@ export const getAllCategory = cache(async function () {
   }
 });
 
-export const getProduct = cache(async function () {
+export async function getProductByCategory(data) {
   try {
-    // const product = await prisma.category.findMany();
-    const menCategory = await prisma.category.findUnique({
+    const productByCategory = await prisma.item.findMany({
       where: {
-        id: 1, // Replace with the category ID you're interested in
+        category: data,
       },
       include: {
-        types: {
-          include: {
-            items: true, // This will include all items in each type
-          },
-        },
+        details: true,
       },
     });
-    return { menCategory };
+    return { productByCategory }; 
   } catch (error) {
-    return { error };
+    return { error: error.message || error }; // Handle errors
   }
-});
+};
+// export const getProductByCategory = cache(async function () {
+//   console.log("server........",data);
 
+//   try {
+//     // Fetch all categories with their types and items
+//     const data = await prisma.item.findMany({
+//       where: {
+//         category: mshirt, // Filter by the category
+//       },
+//       include: {
+//         itemDetail: true, // Include the related ItemDetail entries (sub-items)
+//       },
+//     });
+    
+//     return { data }; // Return the categories object
+//   } catch (error) {
+//     return { error: error.message || error }; // Handle errors
+//   }
+// });
 
 // to find a specific type..
 // export const getProducts = cache(async function () {
@@ -65,11 +78,10 @@ export const getProduct = cache(async function () {
 //   }
 // });
 
-
 export async function addProduct(productData) {
   try {
     const product = await prisma.itemDetail.create({
-    // const product = await prisma.items.create({
+      // const product = await prisma.items.create({
       data: {
         title: productData.title,
         color: productData.color,
@@ -83,7 +95,7 @@ export async function addProduct(productData) {
         details: productData.details,
         category: productData.category,
         dashboardType: productData.dashboardtype,
-        url: productData.title
+        url: productData.title,
       },
     });
     console.log("Product created:", product);
@@ -102,29 +114,6 @@ export async function getProductsById(id) {
     return { error };
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // export async function getTodosByUserId(userId: string) {
 //   try {

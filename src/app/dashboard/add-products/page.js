@@ -3,7 +3,7 @@
 import { addProduct } from "@/lib/db/products";
 import { DashForm } from "../components/dash-form";
 
-export default function Dashboard() {
+export default function addProducts() {
   async function addProductHandle(data) {
     try {
       await addProduct(data);

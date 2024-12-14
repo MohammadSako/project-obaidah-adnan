@@ -100,6 +100,24 @@ model ItemDetail {
   item          Item     @relation(fields: [category], references: [category], onDelete: Cascade)
 }
 
+model Orders {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  title         String   @db.VarChar(255)
+  color         String
+  size          String
+  price         String
+  image         String
+  alt           String
+  gender        String
+  type          String
+  description   String
+  note          String
+  category      String
+  dashboardType String
+}
+
 // Query Example: Use Prisma Client in your application:
 // const categories = await prisma.category.findMany({
 //   include: {

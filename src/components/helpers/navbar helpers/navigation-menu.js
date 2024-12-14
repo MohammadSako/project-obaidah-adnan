@@ -248,8 +248,8 @@ console.log("!!!!!!!!!!", allCategory);
                       key={list.id}
                       href={
                         item.url
-                          ? `${items.url}/${item.url}/${list.url}`
-                          : `${items.url}/${list.url}`
+                          ? `${items.url}/${item.url}/${list.category}`
+                          : `${items.url}/${list.category}`
                       }
                     >
                       <MenubarItem className=" cursor-pointer">

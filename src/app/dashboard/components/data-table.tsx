@@ -65,7 +65,7 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="capitalize">{row.getValue("title")}</div>,
+    cell: ({ row }) => <div className="capitalize font-bold text-red-500">{row.getValue("title")}</div>,
   },
   {
     accessorKey: "dashboardType",

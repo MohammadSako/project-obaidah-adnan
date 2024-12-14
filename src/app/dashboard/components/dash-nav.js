@@ -13,6 +13,7 @@ const navigation = [
     href: "/dashboard",
   },
   { name: "Add Products", href: "/dashboard/add-products" },
+  { name: "Customer Orders", href: "/dashboard/customer-orders" },
 ];
 
 function classNames(...classes) {
