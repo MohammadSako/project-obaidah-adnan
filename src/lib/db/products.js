@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 // import { delay } from './utils'
 import prisma from "./prisma";
 import { cache } from "react";
@@ -44,11 +43,11 @@ export async function getProductByCategory(data) {
         details: true,
       },
     });
-    return { productByCategory };
+    return { productByCategory }; 
   } catch (error) {
     return { error: error.message || error }; // Handle errors
   }
-}
+};
 // export const getProductByCategory = cache(async function () {
 //   console.log("server........",data);
 
@@ -62,7 +61,7 @@ export async function getProductByCategory(data) {
 //         itemDetail: true, // Include the related ItemDetail entries (sub-items)
 //       },
 //     });
-
+    
 //     return { data }; // Return the categories object
 //   } catch (error) {
 //     return { error: error.message || error }; // Handle errors
@@ -82,6 +81,7 @@ export async function getProductByCategory(data) {
 export async function addProduct(productData) {
   try {
     const product = await prisma.itemDetail.create({
+      // const product = await prisma.items.create({
       data: {
         title: productData.title,
         color: productData.color,
@@ -98,12 +98,11 @@ export async function addProduct(productData) {
         url: productData.title,
       },
     });
+    console.log("Product created:", product);
     return { product };
   } catch (error) {
     console.error("Error creating product:", error);
     return { error: error.message || "An unexpected error occurred" };
-  } finally {
-    revalidatePath("/");
   }
 }
 
