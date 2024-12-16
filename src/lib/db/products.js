@@ -82,7 +82,6 @@ export async function getProductByCategory(data) {
 export async function addProduct(productData) {
   try {
     const product = await prisma.itemDetail.create({
-      // const product = await prisma.items.create({
       data: {
         title: productData.title,
         color: productData.color,
@@ -99,12 +98,12 @@ export async function addProduct(productData) {
         url: productData.title,
       },
     });
-    revalidatePath("/");
-    console.log("Product created:", product);
     return { product };
   } catch (error) {
     console.error("Error creating product:", error);
     return { error: error.message || "An unexpected error occurred" };
+  } finally {
+    revalidatePath("/");
   }
 }
 
