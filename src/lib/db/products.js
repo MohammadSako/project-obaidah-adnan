@@ -104,6 +104,7 @@ export async function addProduct(productData) {
     return { error: error.message || "An unexpected error occurred" };
   } finally {
     revalidatePath("/");
+    revalidatePath("/src/app/dashboard/page.js");
   }
 }
 
