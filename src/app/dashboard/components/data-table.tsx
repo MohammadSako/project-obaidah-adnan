@@ -65,7 +65,11 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="capitalize font-bold text-red-500">{row.getValue("title")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize font-bold text-red-500">
+        {row.getValue("title")}
+      </div>
+    ),
   },
   {
     accessorKey: "dashboardType",
@@ -162,7 +166,9 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="capitalize">{row.getValue("color")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("color")}</div>
+    ),
   },
   {
     accessorKey: "price",
@@ -361,9 +367,11 @@ export function DataTable({ data }: DataTableProps) {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+        <div className="flex-1 text-lg text-muted-foreground">
+          Total Items:{" "}
+          <span className="font-bold">
+            {table.getFilteredRowModel().rows.length}
+          </span>
         </div>
         <div className="space-x-2">
           <Button

@@ -103,7 +103,7 @@ export async function addProduct(productData) {
     console.error("Error creating product:", error);
     return { error: error.message || "An unexpected error occurred" };
   } finally {
-    revalidatePath("/", "layout");
+    revalidatePath("/");
   }
 }
 
