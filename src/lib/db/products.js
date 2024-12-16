@@ -95,7 +95,7 @@ export async function addProduct(productData) {
         details: productData.details,
         category: productData.category,
         dashboardType: productData.dashboardtype,
-        url: productData.title,
+        url: productData.title.replace(/\s+/g, "-").toLowerCase(), // Sanitize URL
       },
     });
     return { product };
@@ -104,7 +104,7 @@ export async function addProduct(productData) {
     return { error: error.message || "An unexpected error occurred" };
   } finally {
     revalidatePath("/");
-    revalidatePath("/src/app/dashboard/page.js");
+    revalidatePath("/dashboard/page.js");
   }
 }
 
