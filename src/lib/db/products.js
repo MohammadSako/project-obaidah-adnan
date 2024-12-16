@@ -98,7 +98,8 @@ export async function addProduct(productData) {
         url: productData.title,
       },
     });
-    revalidatePath("/", "/dashboard");
+    revalidatePath("/");
+    revalidatePath("/dashboard");
     return { product };
   } catch (error) {
     console.error("Error creating product:", error);
