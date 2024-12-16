@@ -2,7 +2,6 @@
 
 import { addProduct } from "@/lib/db/products";
 import { DashForm } from "../components/dash-form";
-import { revalidatePath } from "next/cache";
 
 export default function addProducts() {
   async function addProductHandle(data) {
@@ -11,7 +10,6 @@ export default function addProducts() {
     } catch (error) {
       console.error("Error adding product:", error);
     }
-    revalidatePath('/')
   }
 
   return (
