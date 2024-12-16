@@ -140,9 +140,26 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   const handleUpload = async () => {
     if (!image) return;
     setIsUploading(true);
+    // Create a FormData object to send the image to your API
     const formData = new FormData();
     formData.append("file", image);
-    formData.append("upload_preset", "obaidahpreset");
+    formData.append("upload_preset", "obaidahpreset"); // Use your Cloudinary upload preset
+    try {
+      // Upload to Cloudinary
+      const response = await fetch(
+        "https://api.cloudinary.com/v1_1/dilj6mttl/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const imageUrl = await response.json();
+      return imageUrl.secure_url;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   // to store image in supabase storage
@@ -205,11 +222,17 @@ export function DashForm({ onAddProduct }: AddFormProps) {
       console.error("Error uploading image:", error);
     }
   }
- 
+
   // formAction method:
   // https://www.youtube.com/watch?v=g2ut2KXZCo0
   // https://github.com/HamedBahram/next-forms/blob/main/components/new-todo-form.tsx
 
+
+  // const imageDeleteHandler = () => {
+  //   CloudinaryDelete({ uploadedImagePublicId }); //need to hide env's
+  //   setUploadedImageUrl("");
+  //   setUploadedImageAlt("");
+  // };
   return (
     <div className="flex sm:flex-row gap-8 flex-col-reverse">
       <div className="basis-3/4">
