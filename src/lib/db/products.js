@@ -4,10 +4,6 @@
 import prisma from "./prisma";
 import { cache } from "react";
 
-export async function getAction(title) {
-  console.log("Action................", title);
-}
-
 export const getProducts = cache(async function () {
   try {
     const products = await prisma.itemDetail.findMany();
@@ -47,11 +43,11 @@ export async function getProductByCategory(data) {
         details: true,
       },
     });
-    return { productByCategory };
+    return { productByCategory }; 
   } catch (error) {
     return { error: error.message || error }; // Handle errors
   }
-}
+};
 // export const getProductByCategory = cache(async function () {
 //   console.log("server........",data);
 
@@ -65,7 +61,7 @@ export async function getProductByCategory(data) {
 //         itemDetail: true, // Include the related ItemDetail entries (sub-items)
 //       },
 //     });
-
+    
 //     return { data }; // Return the categories object
 //   } catch (error) {
 //     return { error: error.message || error }; // Handle errors
