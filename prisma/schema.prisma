@@ -100,6 +100,21 @@ model ItemDetail {
   item          Item     @relation(fields: [category], references: [category], onDelete: Cascade)
 }
 
+// model Filter {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   name      String
+
+//   FilterValues FilterValues[]
+// }
+
+// model FilterValues {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   name      String
+//   filter    Filter  @relation(fields: [id], references: [id], onDelete: Cascade)
+// }
+
 model Orders {
   id            Int      @id @default(autoincrement())
   createdAt     DateTime @default(now())
