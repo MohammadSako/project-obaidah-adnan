@@ -1,24 +1,19 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 // import { delay } from './utils'
 import prisma from "./prisma";
 import { cache } from "react";
 
-export const getProducts = cache(
-  async function () {
-    try {
-      const products = await prisma.itemDetail.findMany();
-      // const products = await prisma.items.findMany();
-      return { products };
-    } catch (error) {
-      return { error };
-    }
-  },
-  {
-    tags: ["products"],
+export const getProducts = cache(async function () {
+  try {
+    const products = await prisma.itemDetail.findMany();
+    // const products = await prisma.items.findMany();
+    return { products };
+  } catch (error) {
+    return { error };
   }
-);
+});
 
 // To get the menu categories
 export const getAllCategory = cache(async function () {
@@ -103,12 +98,8 @@ export async function addProduct(productData) {
         url: productData.title,
       },
     });
-    revalidateTag("products");
-
-    //this working good...
-    // revalidatePath("/");
-    // revalidatePath("/dashboard");
-
+    revalidatePath("/");
+    revalidatePath("/dashboard");
     return { product };
   } catch (error) {
     console.error("Error creating product:", error);
