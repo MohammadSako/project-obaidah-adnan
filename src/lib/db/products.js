@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 // import { delay } from './utils'
 import prisma from "./prisma";
 import { cache } from "react";
@@ -104,8 +104,11 @@ export async function addProduct(productData) {
       },
     });
     revalidateTag("products");
+
+    //this working good...
     // revalidatePath("/");
     // revalidatePath("/dashboard");
+
     return { product };
   } catch (error) {
     console.error("Error creating product:", error);
