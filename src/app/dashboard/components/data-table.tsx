@@ -34,6 +34,7 @@ import {
   TableRow,
 } from "@/components/UI/table";
 import Image from "next/image";
+import { deleteProductById } from "@/lib/db/products";
 
 export type Product = {
   id: string;
@@ -220,7 +221,55 @@ export const columns: ColumnDef<Product>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
+      const productID = row.original;
+
+      // async function deleteImageFromCloudinary(publicId) {
+      //   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+      //   const apiKey = process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY;
+      //   const apiSecret = process.env.CLOUDINARY_API_SECRET;
+
+      //   try {
+      //     // Create an authenticated request
+      //     const timestamp = Math.floor(new Date().getTime() / 1000);
+      //     const stringToSign = `public_id=${publicId}&timestamp=${timestamp}${apiSecret}`;
+      //     const signature = cryp.SHA1(stringToSign).toString(); // Use a library like CryptoJS
+
+      //     // Make a DELETE request
+      //     const response = await fetch(
+      //       `https://api.cloudinary.com/v1_1/${cloudName}/image/destroy`,
+      //       {
+      //         method: "POST",
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //         },
+      //         body: JSON.stringify({
+      //           public_id: publicId,
+      //           api_key: apiKey,
+      //           signature: signature,
+      //           timestamp: timestamp,
+      //         }),
+      //       }
+      //     );
+
+      //     const result = await response.json();
+      //     if (result.result === "ok") {
+      //       console.log("Image deleted successfully");
+      //     } else {
+      //       console.error("Failed to delete image:", result);
+      //     }
+      //   } catch (error) {
+      //     console.error("Error deleting image:", error);
+      //   }
+      // }
+
+      async function onDeleteHandle(id: string) {
+        try {
+          // await deleteImageFromCloudinary(publicId)
+          await deleteProductById(id);
+        } catch (error) {
+          console.error("Error adding product:", error);
+        }
+      }
 
       return (
         <DropdownMenu>
@@ -233,7 +282,8 @@ export const columns: ColumnDef<Product>[] = [
           <DropdownMenuContent align="end">
             {/* <DropdownMenuLabel>Actions</DropdownMenuLabel> */}
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              // onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => onDeleteHandle(productID.id)}
             >
               Delete Product
             </DropdownMenuItem>

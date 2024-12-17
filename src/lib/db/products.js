@@ -107,6 +107,17 @@ export async function addProduct(productData) {
   }
 }
 
+export async function deleteProductById(id) {
+  try {
+    const products = await prisma.itemDetail.delete({ where: { id } });
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    return { products };
+  } catch (error) {
+    return { error };
+  }
+}
+
 export async function getProductsById(id) {
   try {
     const products = await prisma.items.findUnique({ where: { id } });

@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CldImage } from "next-cloudinary";
 import {
   Form,
   FormControl,
@@ -33,7 +32,9 @@ import {
   WomenShoes,
   WomenTopClothes,
 } from "./products-size";
-
+import { supabase } from "@/lib/supabase";
+import { v4 as uuidv4 } from "uuid";
+import Image from "next/image";
 const formSchema = z.object({
   dashboardtype: z.string().min(1, {
     message: "Username must be at least 2 characters.",
@@ -139,22 +140,20 @@ export function DashForm({ onAddProduct }: AddFormProps) {
 
   const handleUpload = async () => {
     if (!image) return;
+    const uuid = uuidv4();
+    const imageUUID = `${uuid}_${image?.name}`;
+    const imageUrl = imageUUID.split(" ").join("");
+    setUploadedImageUrl(imageUrl);
     setIsUploading(true);
-    // Create a FormData object to send the image to your API
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", "obaidahpreset"); // Use your Cloudinary upload preset
     try {
-      // Upload to Cloudinary
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dilj6mttl/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      const imageUrl = await response.json();
-      return imageUrl.secure_url;
+      const { data } = await supabase.storage
+        .from("shopimages")
+        .upload(imageUrl, image, {
+          cacheControl: "3600",
+          upsert: false,
+        });
+      const imageUrls = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${data?.fullPath}`;
+      return imageUrls;
     } catch (error) {
       console.error("Error uploading image:", error);
     } finally {
@@ -162,15 +161,9 @@ export function DashForm({ onAddProduct }: AddFormProps) {
     }
   };
 
-  // to store image in supabase storage
-  // https://supabase.com/docs/guides/storage/uploads/standard-uploads
-  // https://www.youtube.com/watch?v=cN2RE6EpExE&t=5s
-  // https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs#create-an-upload-widget
-  // https://supabase.com/docs/guides/storage/serving/image-transformations
-
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const imageUrl = await handleUpload();
+      const imageUrls = await handleUpload();
       const data = {
         category: values.category,
         color: values.color,
@@ -182,7 +175,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         title: values.title,
         type: values.type,
         dashboardtype: values.dashboardtype,
-        image: imageUrl,
+        image: imageUrls,
         alt: values.title,
         url: values.title,
       };
@@ -223,16 +216,6 @@ export function DashForm({ onAddProduct }: AddFormProps) {
     }
   }
 
-  // formAction method:
-  // https://www.youtube.com/watch?v=g2ut2KXZCo0
-  // https://github.com/HamedBahram/next-forms/blob/main/components/new-todo-form.tsx
-
-
-  // const imageDeleteHandler = () => {
-  //   CloudinaryDelete({ uploadedImagePublicId }); //need to hide env's
-  //   setUploadedImageUrl("");
-  //   setUploadedImageAlt("");
-  // };
   return (
     <div className="flex sm:flex-row gap-8 flex-col-reverse">
       <div className="basis-3/4">
@@ -545,16 +528,12 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                       >
                         X
                       </p>
-                      <CldImage
+                      <Image
                         src={imagePreview}
                         alt={imagePreview}
                         width="230"
                         height="300"
                         style={{ margin: "auto" }}
-                        crop={{
-                          type: "auto",
-                          source: true,
-                        }}
                       />
                     </>
                   )}
@@ -572,6 +551,15 @@ export function DashForm({ onAddProduct }: AddFormProps) {
     </div>
   );
 }
+
+// to store image in supabase storage
+// https://supabase.com/docs/guides/storage/uploads/standard-uploads
+// https://www.youtube.com/watch?v=cN2RE6EpExE&t=5s
+// https://supabase.com/docs/guides/getting-started/tutorials/with-nextjs#create-an-upload-widget
+// https://supabase.com/docs/guides/storage/serving/image-transformations
+// formAction method:
+// https://www.youtube.com/watch?v=g2ut2KXZCo0
+// https://github.com/HamedBahram/next-forms/blob/main/components/new-todo-form.tsx
 
 // "use client";
 // import { useEffect, useState } from "react";
