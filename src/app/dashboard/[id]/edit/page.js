@@ -25,32 +25,23 @@ function UpdateProduct() {
     edit();
   }, [id]);
 
-  async function UpdateProductHandle(updateData) {
-      console.log("AAAAAAAAAAAAAAAAAA", updateData);
-    // try {
-    //   if (!updateData || typeof updateData !== "object") {
-    //     throw new Error("Invalid update data provided.");
-    //   }
-    //   await updateProductById(id, updateData);
-    //   console.log(`Product with ID ${id} updated successfully.`);
-    // } catch (error) {
-    //   console.error("Error updating product:", error.message);
-    // }
-  }
+  async function UpdateProductHandle(productData) {
+    setData(true);
 
-  // async function UpdateProductHandle(updateData) {
-  //   // console.log("AAAAAAAAAAAAAAAAAA", updateData);
-  //   // setData(true);
-  //   try {
-  //     await updateProductById({id, updateData});
-  //     // router.push("/dashboard");
-  //   } catch (error) {
-  //     console.error("Error updating product:", error);
-  //   }
-  //   // finally {
-  //   //   setData(false);
-  //   // }
-  // }
+    try {
+      const response = await updateProductById(id, productData);
+      router.push("/dashboard");
+      if (response?.error) {
+        console.error("Failed to update product:", response.error);
+      } else {
+        console.log("Product updated successfully.");
+      }
+    } catch (error) {
+      console.error("Unexpected error updating product:", error.message);
+    } finally {
+      setData(false);
+    }
+  }
 
   if (!data) {
     return <p>Loading...</p>;

@@ -12,7 +12,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/UI/form";
-
 import { Input } from "@/components/UI/input";
 import { useToast } from "@/hooks/use-toast";
 import { PhotoIcon } from "@heroicons/react/24/outline";
@@ -73,10 +72,6 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
-// interface AddFormProps {
-//   editData: (data: FormValues) => void;
-// }
-
 interface EditData {
   title: string;
   color: string;
@@ -107,9 +102,6 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { toast } = useToast();
-  console.log("111111 imagePreview", imagePreview);
-  console.log("222222 image", image);
-  console.log("33333 uploadedImageUrl", uploadedImageUrl);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -250,73 +242,9 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
       setImagePreview("");
       removeImageHandler();
     } catch (error) {
-      console.error("Error on submitting:", error.message || error);
+      console.error("Error on submitting:", error);
     }
   }
-
-  // async function onSubmit(values: z.infer<typeof formSchema>) {
-  //   try {
-  //     const uploadResult = await handleUpload();
-
-  //     if (!uploadResult) {
-  //       throw new Error(
-  //         "missing data from the upload response, check the handleUpload function!"
-  //       );
-  //     }
-
-  //     const { image, url } = uploadResult;
-  //     const data = {
-  //       category: values.category,
-  //       color: values.color,
-  //       description: values.description,
-  //       details: values.details,
-  //       gender: values.gender,
-  //       price: values.price,
-  //       size: values.size,
-  //       title: values.title,
-  //       type: values.type,
-  //       dashboardtype: values.dashboardtype,
-  //       image: image,
-  //       alt: values.title,
-  //       url: url,
-  //     };
-  //     console.log("123", data);
-
-  //     if (!uploadedImageUrl) {
-  //       setUploadedImageError(true);
-  //       return;
-  //     } else {
-  //       toast({
-  //         title: "You submitted the following values:",
-  //         description: (
-  //           <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-  //             <code className="text-white">
-  //               {JSON.stringify(values, null, 2)}
-  //             </code>
-  //           </pre>
-  //         ),
-  //       });
-  //       onUpdateProduct(data);
-  //       form.reset({
-  //         title: "",
-  //         color: "",
-  //         price: "",
-  //         size: "",
-  //         gender: "",
-  //         type: "",
-  //         category: "",
-  //         description: "",
-  //         details: "",
-  //         dashboardtype: "",
-  //       });
-  //       setUploadedImageUrl("");
-  //       setImagePreview("");
-  //       removeImageHandler();
-  //     }
-  //   } catch (error) {
-  //     console.error("Error uploading image:", error);
-  //   }
-  // }
 
   return (
     <div className="flex sm:flex-row gap-8 flex-col-reverse">

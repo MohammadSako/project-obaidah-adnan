@@ -119,32 +119,35 @@ export async function deleteProductById(id) {
   }
 }
 
-export async function updateProductById(id, updateData) {
-  console.log("from DB page id ........", id);
-  console.log("from DB page updateData ........", updateData);
-
-  // try {
-
-  //   if (!id || typeof id !== "number") {
-  //     throw new Error("Invalid ID provided.");
-  //   }
-  //   if (!updateData || typeof updateData !== "object") {
-  //     throw new Error("Invalid update data provided.");
-  //   }
-
-  //   const result = await prisma.itemDetail.update({
-  //     where: { id },
-  //     data: updateData,
-  //   });
-  //   revalidatePath("/");
-  //   revalidatePath("/dashboard");
-  //   console.log("Product updated successfully:", result);
-  // } catch (error) {
-  //   console.error("Error updating product:", error);
-  //   return {
-  //     error: error.message || "An error occurred while updating the product",
-  //   };
-  // }
+export async function updateProductById(id, productData) {
+  try {
+    const result = await prisma.itemDetail.update({
+      where: { id },
+      data: {
+        title: productData.title,
+        color: productData.color,
+        size: productData.size,
+        price: productData.price,
+        image: productData.image,
+        alt: productData.alt,
+        gender: productData.gender,
+        type: productData.type,
+        description: productData.description,
+        details: productData.details,
+        category: productData.category,
+        dashboardType: productData.dashboardtype,
+        url: productData.url,
+      },
+    });
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    console.log("Product updated successfully:", result);
+  } catch (error) {
+    console.error("Error updating product:", error);
+    return {
+      error: error.message || "An error occurred while updating the product",
+    };
+  }
 }
 
 export async function deleteImageByUrl(imageURL) {
