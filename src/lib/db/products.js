@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 // import { delay } from './utils'
 import prisma from "./prisma";
 import { cache } from "react";
+import { supabase } from "../supabase";
 
 export const getProducts = cache(async function () {
   try {
@@ -95,7 +96,7 @@ export async function addProduct(productData) {
         details: productData.details,
         category: productData.category,
         dashboardType: productData.dashboardtype,
-        url: productData.title,
+        url: productData.url,
       },
     });
     revalidatePath("/");
@@ -118,9 +119,62 @@ export async function deleteProductById(id) {
   }
 }
 
+export async function updateProductById(id, updateData) {
+  console.log("from DB page id ........", id);
+  console.log("from DB page updateData ........", updateData);
+
+  // try {
+
+  //   if (!id || typeof id !== "number") {
+  //     throw new Error("Invalid ID provided.");
+  //   }
+  //   if (!updateData || typeof updateData !== "object") {
+  //     throw new Error("Invalid update data provided.");
+  //   }
+
+  //   const result = await prisma.itemDetail.update({
+  //     where: { id },
+  //     data: updateData,
+  //   });
+  //   revalidatePath("/");
+  //   revalidatePath("/dashboard");
+  //   console.log("Product updated successfully:", result);
+  // } catch (error) {
+  //   console.error("Error updating product:", error);
+  //   return {
+  //     error: error.message || "An error occurred while updating the product",
+  //   };
+  // }
+}
+
+export async function deleteImageByUrl(imageURL) {
+  try {
+    const { data } = await supabase.storage
+      .from("shopimages")
+      .remove([imageURL]);
+    console.log("successfully deleted", data);
+  } catch (error) {
+    console.error("Error deleting image:", error);
+  }
+}
+
+export async function updateImageByUrl(imageURL, file) {
+  try {
+    const { data } = await supabase.storage
+      .from("shopimages")
+      .update([imageURL], file, {
+        cacheControl: "3600",
+        upsert: true,
+      });
+    console.log("successfully updated", data);
+  } catch (error) {
+    console.error("Error updating image:", error);
+  }
+}
+
 export async function getProductsById(id) {
   try {
-    const products = await prisma.items.findUnique({ where: { id } });
+    const products = await prisma.itemDetail.findUnique({ where: { id } });
     return { products };
   } catch (error) {
     return { error };

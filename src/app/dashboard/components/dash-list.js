@@ -1,6 +1,6 @@
 import React from "react";
 import { getProducts } from "@/lib/db/products";
-import { DataTable } from "./data-table";
+import { DataTable } from "@/components/dashboard/data-table";
 
 async function DashList() {
   const { products = [] } = await getProducts();

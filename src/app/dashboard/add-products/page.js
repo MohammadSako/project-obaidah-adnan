@@ -1,9 +1,9 @@
 "use client";
 
 import { addProduct } from "@/lib/db/products";
-import { DashForm } from "../components/dash-form";
+import { DashForm } from "../../../components/dashboard/dash-form";
 
-export default function addProducts() {
+export default function AddProducts() {
   async function addProductHandle(data) {
     try {
       await addProduct(data);

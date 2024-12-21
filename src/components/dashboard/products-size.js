@@ -14,6 +14,8 @@ import {
   SelectValue,
 } from "@/components/UI/select";
 
+
+// the shortcut code, not compelete
 // export function FormCategories({
 //   formLabel,
 //   onValueChange,

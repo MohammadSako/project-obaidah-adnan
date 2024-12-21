@@ -141,19 +141,18 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   const handleUpload = async () => {
     if (!image) return;
     const uuid = uuidv4();
-    const imageUUID = `${uuid}_${image?.name}`;
-    const imageUrl = imageUUID.split(" ").join("");
-    setUploadedImageUrl(imageUrl);
+    const imageUuid = `${uuid}_${image.name.replace(/\s+/g, "")}`;
+    setUploadedImageUrl(imageUuid);
     setIsUploading(true);
     try {
       const { data } = await supabase.storage
         .from("shopimages")
-        .upload(imageUrl, image, {
+        .upload(imageUuid, image, {
           cacheControl: "3600",
           upsert: false,
         });
       const imageUrls = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${data?.fullPath}`;
-      return imageUrls;
+      return { image: imageUrls, url: data?.path };
     } catch (error) {
       console.error("Error uploading image:", error);
     } finally {
@@ -163,7 +162,13 @@ export function DashForm({ onAddProduct }: AddFormProps) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const imageUrls = await handleUpload();
+      const uploadResult = await handleUpload();
+
+      if (!uploadResult || !uploadResult.url) {
+        throw new Error("URL is missing from the upload response");
+      }
+      
+      const { image, url } = uploadResult;      
       const data = {
         category: values.category,
         color: values.color,
@@ -175,10 +180,11 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         title: values.title,
         type: values.type,
         dashboardtype: values.dashboardtype,
-        image: imageUrls,
+        image: image,
         alt: values.title,
-        url: values.title,
+        url: url, //we usa this to delete the image
       };
+      console.log("123", data);
 
       if (!imagePreview && !uploadedImageUrl) {
         setUploadedImageError(true);
