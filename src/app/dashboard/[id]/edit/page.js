@@ -4,6 +4,7 @@ import { UpdateForm } from "@/components/dashboard/dash-update";
 import { getProductsById, updateProductById } from "@/lib/db/products";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Spinner from "@/components/UI/spinner";
 
 function UpdateProduct() {
   const param = useParams();
@@ -44,7 +45,7 @@ function UpdateProduct() {
   }
 
   if (!data) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   return (

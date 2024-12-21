@@ -1,3 +1,6 @@
+// https://www.prisma.io/docs/orm/prisma-client/queries/crud#create
+// https://supabase.com/docs/reference/javascript/update
+
 "use server";
 
 import { revalidatePath } from "next/cache";
