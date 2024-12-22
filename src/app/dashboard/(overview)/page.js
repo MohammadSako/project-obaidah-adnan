@@ -2,16 +2,16 @@ import { Suspense } from "react";
 import DashList from "../components/dash-list";
 import { TableSkeleton } from "@/components/UI/skeletons";
 
-export default function CustomersOrders() {
+export default function Dashboard() {
   return (
     <>
-      <header>
+      <main>
         <div className="mx-auto py-6">
           <h1 className="text-3xl font-bold tracking-tight text-slate-800">
-            Customers Orders
+            Products List
           </h1>
         </div>
-      </header>
+      </main>
       <Suspense fallback={<TableSkeleton />}>
         <DashList />
       </Suspense>

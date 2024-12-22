@@ -2,6 +2,8 @@
 
 import { addProduct } from "@/lib/db/products";
 import { DashForm } from "../../../components/dashboard/dash-form";
+import { Suspense } from "react";
+import { FormSkeleton } from "@/components/UI/skeletons";
 
 export default function AddProducts() {
   async function addProductHandle(data) {
@@ -21,7 +23,9 @@ export default function AddProducts() {
           </h1>
         </div>
       </header>
-      <DashForm onAddProduct={addProductHandle} />
+      <Suspense fallback={<FormSkeleton />}>
+        <DashForm onAddProduct={addProductHandle} />
+      </Suspense>
     </>
   );
 }

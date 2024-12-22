@@ -3,8 +3,8 @@
 import { UpdateForm } from "@/components/dashboard/dash-update";
 import { getProductsById, updateProductById } from "@/lib/db/products";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import Spinner from "@/components/UI/spinner";
+import { Suspense, useEffect, useState } from "react";
+import { FormSkeleton } from "@/components/UI/skeletons";
 
 function UpdateProduct() {
   const param = useParams();
@@ -45,7 +45,7 @@ function UpdateProduct() {
   }
 
   if (!data) {
-    return <Spinner />;
+    return <FormSkeleton />;
   }
 
   return (
@@ -53,14 +53,16 @@ function UpdateProduct() {
       <header>
         <div className="mx-auto py-6">
           <h1 className="text-3xl font-bold tracking-tight text-slate-800">
-            Update Product:{" "}
-            <span className="font-light text-gray-600 border-2 p-1 border-blue-400 rounded-lg">
+            Update Product:
+            <span className="font-light text-gray-600 border-2 py-1 px-2 border-blue-400 rounded-lg">
               {newData.title}
             </span>
           </h1>
         </div>
       </header>
-      <UpdateForm editData={newData} onUpdateProduct={UpdateProductHandle} />
+      <Suspense fallback={<FormSkeleton />}>
+        <UpdateForm editData={newData} onUpdateProduct={UpdateProductHandle} />
+      </Suspense>
     </>
   );
 }

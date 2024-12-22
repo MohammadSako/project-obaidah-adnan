@@ -1,5 +1,5 @@
-import Spinner from "@/components/UI/spinner";
+import { FormSkeleton } from "@/components/UI/skeletons";
 
 export default function Loading() {
-  return <Spinner />;
+  return <FormSkeleton />;
 }
