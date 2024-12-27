@@ -98,6 +98,7 @@ export async function getProductByUrl(url) {
 
 export async function addProduct(productData) {
   console.log("DB productData", productData);
+  const itemid = parseInt(productData.category);
 
   try {
     const product = await prisma.itemDetail.create({
@@ -110,7 +111,7 @@ export async function addProduct(productData) {
         alt: productData.alt,
         gender: productData.gender,
         type: productData.type,
-        category: productData.category,
+        category: itemid,
         description: productData.description,
         details: productData.details,
         dashboardType: productData.dashboardtype,
