@@ -14,7 +14,6 @@ import {
   SelectValue,
 } from "@/components/UI/select";
 
-
 // the shortcut code, not compelete
 // export function FormCategories({
 //   formLabel,
@@ -45,7 +44,6 @@ import {
 //   );
 // }
 
-// Categories /////////////////////////////////
 
 export function ItemType({ onValueChange, defaultValue }) {
   return (
@@ -107,10 +105,13 @@ export function ProductType({ onValueChange, defaultValue }) {
     </FormItem>
   );
 }
+
+// Categories /////////////////////////////////
+
 export function MenTopClothes({ onValueChange, defaultValue }) {
   return (
     <FormItem>
-      <FormLabel>Men Top Clothes</FormLabel>
+      <FormLabel>Men Top</FormLabel>
       <Select onValueChange={onValueChange} defaultValue={defaultValue}>
         <FormControl>
           <SelectTrigger>
@@ -118,12 +119,12 @@ export function MenTopClothes({ onValueChange, defaultValue }) {
           </SelectTrigger>
         </FormControl>
         <SelectContent>
-          <SelectItem value="mtshirt">T Shirt</SelectItem>
-          <SelectItem value="mshirt">Shirt</SelectItem>
-          <SelectItem value="mblouse">Wool Blouse</SelectItem>
-          <SelectItem value="mhats">Hat</SelectItem>
-          <SelectItem value="mwatches">Watch</SelectItem>
-          <SelectItem value="mbag">Bag</SelectItem>
+          <SelectItem value="1">T Shirt</SelectItem>
+          <SelectItem value="3">Shirt</SelectItem>
+          <SelectItem value="5">Wool Blouse</SelectItem>
+          <SelectItem value="7">Hat</SelectItem>
+          <SelectItem value="9">Watch</SelectItem>
+          <SelectItem value="11">Bag</SelectItem>
         </SelectContent>
       </Select>
       <FormMessage />
@@ -133,7 +134,7 @@ export function MenTopClothes({ onValueChange, defaultValue }) {
 export function WomenTopClothes({ onValueChange, defaultValue }) {
   return (
     <FormItem>
-      <FormLabel>Women Top Clothes</FormLabel>
+      <FormLabel>Women Top</FormLabel>
       <Select onValueChange={onValueChange} defaultValue={defaultValue}>
         <FormControl>
           <SelectTrigger>
@@ -141,12 +142,12 @@ export function WomenTopClothes({ onValueChange, defaultValue }) {
           </SelectTrigger>
         </FormControl>
         <SelectContent>
-          <SelectItem value="wtshirt">T Shirt</SelectItem>
-          <SelectItem value="wshirt">Shirt</SelectItem>
-          <SelectItem value="wblouse">Wool Blouse</SelectItem>
-          <SelectItem value="whats">Hat</SelectItem>
-          <SelectItem value="wwatches">Watch</SelectItem>
-          <SelectItem value="wbag">Bag</SelectItem>
+          <SelectItem value="2">T Shirt</SelectItem>
+          <SelectItem value="4">Shirt</SelectItem>
+          <SelectItem value="6">Wool Blouse</SelectItem>
+          <SelectItem value="8">Hat</SelectItem>
+          <SelectItem value="10">Watch</SelectItem>
+          <SelectItem value="12">Bag</SelectItem>
         </SelectContent>
       </Select>
       <FormMessage />
@@ -156,7 +157,7 @@ export function WomenTopClothes({ onValueChange, defaultValue }) {
 export function MenLowerClothes({ onValueChange, defaultValue }) {
   return (
     <FormItem>
-      <FormLabel>Lower Clothes</FormLabel>
+      <FormLabel>Men Lower</FormLabel>
       <Select onValueChange={onValueChange} defaultValue={defaultValue}>
         <FormControl>
           <SelectTrigger>
@@ -164,10 +165,10 @@ export function MenLowerClothes({ onValueChange, defaultValue }) {
           </SelectTrigger>
         </FormControl>
         <SelectContent>
-          <SelectItem value="mjeans">Jeans</SelectItem>
-          <SelectItem value="mpants">Pants</SelectItem>
-          <SelectItem value="msocks">Socks</SelectItem>
-          <SelectItem value="mbelts">Belt</SelectItem>
+          <SelectItem value="13">Jeans</SelectItem>
+          <SelectItem value="15">Pants</SelectItem>
+          <SelectItem value="17">Socks</SelectItem>
+          <SelectItem value="19">Belt</SelectItem>
         </SelectContent>
       </Select>
       <FormMessage />
@@ -177,18 +178,18 @@ export function MenLowerClothes({ onValueChange, defaultValue }) {
 export function WomenLowerClothes({ onValueChange, defaultValue }) {
   return (
     <FormItem>
-      <FormLabel>Lower Clothes</FormLabel>
+      <FormLabel>Women Lower</FormLabel>
       <Select onValueChange={onValueChange} defaultValue={defaultValue}>
         <FormControl>
           <SelectTrigger>
-            <SelectValue placeholder="Select men product category" />
+            <SelectValue placeholder="Select women product category" />
           </SelectTrigger>
         </FormControl>
         <SelectContent>
-          <SelectItem value="wjeans">Jeans</SelectItem>
-          <SelectItem value="wpants">Pants</SelectItem>
-          <SelectItem value="wsocks">Socks</SelectItem>
-          <SelectItem value="mbelts">Belt</SelectItem>
+          <SelectItem value="14">Jeans</SelectItem>
+          <SelectItem value="16">Pants</SelectItem>
+          <SelectItem value="18">Socks</SelectItem>
+          <SelectItem value="20">Belt</SelectItem>
         </SelectContent>
       </Select>
       <FormMessage />
@@ -208,11 +209,11 @@ export function MenShoes({ onValueChange, defaultValue }) {
         <SelectContent>
           <SelectItem value="21">Work & Safty Shoes</SelectItem>
           <SelectItem value="22">Loafers & Slip-Ons</SelectItem>
-          <SelectItem value="msnow">Snow Boots</SelectItem>
-          <SelectItem value="mcasual">Casual Shoes</SelectItem>
-          <SelectItem value="mboots">Boots</SelectItem>
-          <SelectItem value="msandals">Sandals</SelectItem>
-          <SelectItem value="mothers">Others</SelectItem>
+          <SelectItem value="24">Snow Boots</SelectItem>
+          <SelectItem value="26">Casual Shoes</SelectItem>
+          <SelectItem value="27">Boots</SelectItem>
+          <SelectItem value="28">Sandals</SelectItem>
+          <SelectItem value="29">Others</SelectItem>
         </SelectContent>
       </Select>
       <FormMessage />
@@ -230,11 +231,12 @@ export function WomenShoes({ onValueChange, defaultValue }) {
           </SelectTrigger>
         </FormControl>
         <SelectContent>
-          <SelectItem value="21">Loafers & Slip-Ons</SelectItem>
-          <SelectItem value="wsnow">Snow Boots</SelectItem>
-          <SelectItem value="wflats">Flats</SelectItem>
-          <SelectItem value="wslippers">Slippers</SelectItem>
-          <SelectItem value="wsneakers">Sneakers</SelectItem>
+          <SelectItem value="23">Loafers & Slip-Ons</SelectItem>
+          <SelectItem value="25">Snow Boots</SelectItem>
+          <SelectItem value="31">Flats</SelectItem>
+          <SelectItem value="32">Slippers</SelectItem>
+          <SelectItem value="33">Sneakers</SelectItem>
+          <SelectItem value="30">Others</SelectItem>
         </SelectContent>
       </Select>
       <FormMessage />
@@ -369,6 +371,35 @@ export function PantsSize({ onValueChange, defaultValue }) {
           <SelectItem value="34">34</SelectItem>
           <SelectItem value="36">36</SelectItem>
           <SelectItem value="38">38</SelectItem>
+        </SelectContent>
+      </Select>
+      <FormMessage />
+    </FormItem>
+  );
+}
+export function BagTypes({ onValueChange, defaultValue }) {
+  return (
+    <FormItem>
+      <FormLabel>Bag Type</FormLabel>
+      <Select onValueChange={onValueChange} defaultValue={defaultValue}>
+        <FormControl>
+          <SelectTrigger>
+            <SelectValue placeholder="Select bag type" />
+          </SelectTrigger>
+        </FormControl>
+        <SelectContent>
+          <SelectItem value="luggage">Luggage</SelectItem>
+          <SelectItem value="handbag">handbags</SelectItem>
+          <SelectItem value="tote">Tote bags</SelectItem>
+          <SelectItem value="shoulder">Shoulder bags</SelectItem>
+          <SelectItem value="crossbody">Crossbody bags</SelectItem>
+          <SelectItem value="wallet">Wallets</SelectItem>
+          <SelectItem value="backpack">Backpacks</SelectItem>
+          <SelectItem value="bookbag">Bookbags</SelectItem>
+          <SelectItem value="chest">Chest bags</SelectItem>
+          <SelectItem value="clutche">Clutches</SelectItem>
+          <SelectItem value="umbrella">Umbrellas</SelectItem>
+          <SelectItem value="storage">Storage Bag</SelectItem>
         </SelectContent>
       </Select>
       <FormMessage />

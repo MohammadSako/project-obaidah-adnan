@@ -13,125 +13,179 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model items {
-  id            String   @id @default(uuid()) @db.Uuid
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  title         String   @db.VarChar(255)
-  color         String
-  size          String
-  price         String
-  image         String
-  alt           String
-  gender        String
-  type          String
-  description   String
-  details       String
-  category      String
-  dashboardType String
-}
-
-// model inventory {
-//   id        String   @id @default(uuid()) @db.Uuid
-//   createdAt DateTime @default(now())
-//   name      String   @db.VarChar(255)
-//   category  String
-//   note      String
+// OLD Method:
+// model Category {
+//   id    Int     @id @default(autoincrement())
+//   name  String
+//   image String?
+//   url   String
+//   types Type[] // One-to-many relationship with Type
 // }
 
-// model inventory_items {
-//   id        String   @id @default(uuid()) @db.Uuid
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   title     String   @db.VarChar(255)
-//   color     String
-//   price     Float
-//   image     String
-//   alt       String
-//   gender    String
-//   type      String
+// model Type {
+//   id         Int      @id @default(autoincrement())
+//   name       String
+//   image      String?
+//   categoryId Int
+//   url        String
+//   category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+//   items      Item[] // One-to-many relationship with Item
 // }
+
+// model Item {
+//   id       Int          @id @default(autoincrement())
+//   name     String
+//   image    String?
+//   typeId   Int
+//   url      String
+//   category String       @unique
+//   type     Type         @relation(fields: [typeId], references: [id], onDelete: Cascade)
+//   details  ItemDetail[] // One-to-many relationship with ItemDetail
+// }
+
+// model ItemDetail {
+//   id            Int      @id @default(autoincrement())
+//   createdAt     DateTime @default(now())
+//   updatedAt     DateTime @updatedAt
+//   title         String   @db.VarChar(255)
+//   color         String
+//   size          String
+//   price         String
+//   image         String
+//   alt           String
+//   gender        String
+//   type          String
+//   description   String
+//   details       String
+//   category      String
+//   dashboardType String
+//   url           String
+//   item          Item     @relation(fields: [category], references: [category], onDelete: Cascade)
+// }
+
+// model items {
+//   id            String   @id @default(uuid()) @db.Uuid
+//   createdAt     DateTime @default(now())
+//   updatedAt     DateTime @updatedAt
+//   title         String   @db.VarChar(255)
+//   color         String
+//   size          String
+//   price         String
+//   image         String
+//   alt           String
+//   gender        String
+//   type          String
+//   description   String
+//   details       String
+//   category      String
+//   dashboardType String
+// }
+
 model Category {
-  id    Int     @id @default(autoincrement())
-  name  String
-  image String?
-  url   String
-  types Type[] // One-to-many relationship with Type
+  category_id Int           @id @default(autoincrement())
+  name        String        @db.Text
+  image       String?       @db.Text
+  url         String        @db.Text
+  SubCategory SubCategory[] // One-to-many relation with SubCategory
 }
 
-model Type {
-  id         Int      @id @default(autoincrement())
-  name       String
-  image      String?
-  categoryId Int
-  url        String
-  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  items      Item[] // One-to-many relationship with Item
+model SubCategory {
+  sub_category_id Int      @id @default(autoincrement())
+  name            String   @db.Text
+  image           String?  @db.Text
+  url             String   @db.Text
+  category_id     Int      @default(autoincrement())
+  category        Category @relation(fields: [category_id], references: [category_id], onDelete: Cascade)
+  items           Item[] // One-to-many relation with Item
 }
 
 model Item {
-  id       Int          @id @default(autoincrement())
-  name     String
-  image    String?
-  typeId   Int
-  url      String
-  category String       @unique
-  type     Type         @relation(fields: [typeId], references: [id], onDelete: Cascade)
-  details  ItemDetail[] // One-to-many relationship with ItemDetail
+  item_id         Int          @id @default(autoincrement())
+  name            String       @db.Text
+  image           String?      @db.Text
+  url             String       @db.Text
+  sub_category_id Int          @default(autoincrement())
+  sub_category    SubCategory  @relation(fields: [sub_category_id], references: [sub_category_id], onDelete: Cascade)
+  item_detail     ItemDetail[] // One-to-many relation with ItemDetail
 }
 
 model ItemDetail {
   id            Int      @id @default(autoincrement())
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  title         String   @db.VarChar(255)
-  color         String
-  size          String
-  price         String
-  image         String
-  alt           String
-  gender        String
-  type          String
-  description   String
-  details       String
-  category      String
-  dashboardType String
-  url           String
-  item          Item     @relation(fields: [category], references: [category], onDelete: Cascade)
+  title         String   @db.Text
+  color         String   @db.Text
+  size          String   @db.Text
+  price         String   @db.Text
+  image         String   @db.Text
+  alt           String   @db.Text
+  gender        String   @db.Text
+  type          String   @db.Text
+  description   String   @db.Text
+  details       String   @db.Text
+  dashboardType String   @db.Text
+  url           String   @db.Text
+  imageid       String   @db.Text
+  category      Int
+  item          Item     @relation(fields: [category], references: [item_id], onDelete: Cascade)
 }
 
-// model Filter {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   name      String
-
-//   FilterValues FilterValues[]
+// Faisal //
+// model ItemDetail {
+//   id          Int       @id @default(autoincrement())
+//   createdAt   DateTime  @default(now())
+//   updatedAt   DateTime  @updatedAt
+//   title       String    @db.VarChar(255)
+//   // color         String
+//   // size          String
+//   // price         String
+//   image       String
+//   alt         String
+//   imageId     String
+//   // gender        String  => men / women
+//   // type          String  => Top/Lower/Shoes
+//   description String
+//   details     String
+//   category    String
+//   // dashboardType String => discounted/ bestSeller/ new arrival
+//   filters     Filters[]
+//   item        Item      @relation(fields: [category], references: [category], onDelete: Cascade)
 // }
 
-// model FilterValues {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   name      String
-//   filter    Filter  @relation(fields: [id], references: [id], onDelete: Cascade)
+// model Filters {
+//   id           Int           @id @default(autoincrement())
+//   itemDetailId Int?
+//   createdAt    DateTime      @default(now())
+//   name         String
+//   filterValues FilterValue[] // One-to-many relationship with FilterValue
+//   ItemDetail   ItemDetail   @relation(fields: [itemDetailId], references: [id])
 // }
 
-model Orders {
-  id            Int      @id @default(autoincrement())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  title         String   @db.VarChar(255)
-  color         String
-  size          String
-  price         String
-  image         String
-  alt           String
-  gender        String
-  type          String
-  description   String
-  note          String
-  category      String
-  dashboardType String
-}
+// model FilterValue {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   value      String
+//   filterId  Int // Added foreign key for Filter
+//   filter    Filters  @relation(fields: [filterId], references: [id], onDelete: Cascade)
+// }
+
+// model Orders {
+//   id            Int      @id @default(autoincrement())
+//   createdAt     DateTime @default(now())
+//   updatedAt     DateTime @updatedAt
+//   title         String   @db.VarChar(255)
+//   color         String
+//   size          String
+//   price         String
+//   image         String
+//   alt           String
+//   gender        String
+//   type          String
+//   description   String
+//   note          String
+//   category      String
+//   dashboardType String
+// }
 
 // Query Example: Use Prisma Client in your application:
 // const categories = await prisma.category.findMany({

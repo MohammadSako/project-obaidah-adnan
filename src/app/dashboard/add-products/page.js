@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { addProduct } from "@/lib/db/products";
 import { DashForm } from "../../../components/dashboard/dash-form";
@@ -7,6 +7,8 @@ import { FormSkeleton } from "@/components/UI/skeletons";
 
 export default function AddProducts() {
   async function addProductHandle(data) {
+    console.log("addProductHandle", data);
+    
     try {
       await addProduct(data);
     } catch (error) {

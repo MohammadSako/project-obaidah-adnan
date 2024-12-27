@@ -212,7 +212,7 @@ console.log("!!!!!!!!!!", allCategory);
   return (
     <Menubar className="border-none">
       {allCategory.map((items) => (
-        <MenubarMenu key={items.id}>
+        <MenubarMenu key={items.category_id}>
           <MenubarTrigger>
             <NavLink
               text={items.name}
@@ -226,15 +226,15 @@ console.log("!!!!!!!!!!", allCategory);
             </NavLink>
           </MenubarTrigger>
           <MenubarContent>
-            <Link href="/categories/men/clothing">
+            <Link href={items.url}>
               <MenubarItem className="cursor-pointer">
                 Go to
                 <Spacer />
                 <span className="font-bold">{items.name}</span>
               </MenubarItem>
             </Link>
-            {items.types.map((item) => (
-              <MenubarSub key={item.id}>
+            {items.SubCategory.map((item) => (
+              <MenubarSub key={item.sub_category_id}>
                 <Link
                   href={item.url ? `${items.url}/${item.url}` : `${items.url}`}
                 >
@@ -245,11 +245,11 @@ console.log("!!!!!!!!!!", allCategory);
                 <MenubarSubContent>
                   {item.items.map((list) => (
                     <Link
-                      key={list.id}
+                      key={list.item_id}
                       href={
                         item.url
-                          ? `${items.url}/${item.url}/${list.category}`
-                          : `${items.url}/${list.category}`
+                          ? `${items.url}/${item.url}/${list.url}`
+                          : `${items.url}/${list.url}`
                       }
                     >
                       <MenubarItem className=" cursor-pointer">

@@ -1,7 +1,7 @@
 "use client";
 
 import CategoriesCard from "@/components/helpers/catgories/categoriesCard";
-import { getProductByCategory } from "@/lib/db/products";
+import { getProductByCategory, getProductByUrl } from "@/lib/db/products";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -15,10 +15,14 @@ export default function CategoriesPage() {
   useEffect(() => {
     const pathParts = pathname.split("/");
     const category = pathParts[pathParts.length - 1];
+    // console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&", pathname);
+
     async function getProducts() {
-      const { productByCategory } = await getProductByCategory(category);
-      setProducts(productByCategory[0].details);
-      setCategoryTitle(productByCategory);
+      const { productByUrl } = await getProductByUrl(pathname);
+      // const { productByCategory } = await getProductByCategory(category);
+      setProducts(productByUrl);
+      // setCategoryTitle(productByCategory);
+      console.log("$$$$$$$$$$$$$$$$$", productByUrl);
     }
     getProducts();
   }, [pathname]);
@@ -156,15 +160,15 @@ export default function CategoriesPage() {
   return (
     <>
       <main className="flex min-h-screen flex-col items-center mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <p className="text-4xl mt-8 text-gray-600 font-sans font-bold">
+        {/* <p className="text-4xl mt-8 text-gray-600 font-sans font-bold">
           {categoryTitle[0].name}
-        </p>
+        </p> */}
         <div className="bg-white">
           <div className="mx-auto px-4 py-16 sm:py-24 lg:max-w-7xl">
             <div className="flex flex-col flex-wrap gap-x-4 gap-y-10 sm:flex-row xl:gap-x-8">
               {products.map((product) => (
                 <CategoriesCard
-                  key={product.id}
+                  key={product.category_id}
                   id={product.id}
                   category={product.category}
                   title={product.title}

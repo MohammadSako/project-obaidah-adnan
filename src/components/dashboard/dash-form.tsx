@@ -31,6 +31,7 @@ import {
   WomenLowerClothes,
   WomenShoes,
   WomenTopClothes,
+  BagTypes,
 } from "./products-size";
 import { supabase } from "@/lib/supabase";
 import { v4 as uuidv4 } from "uuid";
@@ -152,7 +153,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
           upsert: false,
         });
       const imageUrls = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${data?.fullPath}`;
-      return { image: imageUrls, url: data?.path };
+      return { image: imageUrls, image_id: data?.path };
     } catch (error) {
       console.error("Error uploading image:", error);
     } finally {
@@ -164,13 +165,11 @@ export function DashForm({ onAddProduct }: AddFormProps) {
     try {
       const uploadResult = await handleUpload();
 
-      if (!uploadResult || !uploadResult.url) {
+      if (!uploadResult || !uploadResult.image_id) {
         throw new Error("URL is missing from the upload response");
       }
-      
-      const { image, url } = uploadResult;      
+      const { image, image_id } = uploadResult;
       const data = {
-        category: values.category,
         color: values.color,
         description: values.description,
         details: values.details,
@@ -181,8 +180,10 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         type: values.type,
         dashboardtype: values.dashboardtype,
         image: image,
+        imageid: image_id, //we usa this to delete the image
+        category: values.category, //we usa this to refrence to item table
         alt: values.title,
-        url: url, //we usa this to delete the image
+        url: `product/${values.category}`, //we usa this for product detail url
       };
       console.log("123", data);
 
@@ -352,8 +353,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
               )}
 
               {/* size */}
-              {productCategory === "mwatches" ||
-              productCategory === "wwatches" ? (
+              {productCategory === "9" || productCategory === "10" ? (
                 <div className="sm:col-span-6 md:col-span-3">
                   <FormField
                     control={form.control}
@@ -379,10 +379,23 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                     )}
                   />
                 </div>
-              ) : productCategory === "mjeans" ||
-                productCategory === "wjeans" ||
-                productCategory === "mpants" ||
-                productCategory === "wjeans" ? (
+              ) : productCategory === "11" || productCategory === "12" ? (
+                <div className="sm:col-span-6 md:col-span-3">
+                  <FormField
+                    control={form.control}
+                    name="size"
+                    render={({ field }) => (
+                      <BagTypes
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      />
+                    )}
+                  />
+                </div>
+              ) : productCategory === "13" ||
+                productCategory === "14" ||
+                productCategory === "15" ||
+                productCategory === "16" ? (
                 <div className="sm:col-span-6 md:col-span-3">
                   <FormField
                     control={form.control}

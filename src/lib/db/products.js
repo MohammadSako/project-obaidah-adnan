@@ -25,7 +25,7 @@ export const getAllCategory = cache(async function () {
     // Fetch all categories with their types and items
     const categories = await prisma.category.findMany({
       include: {
-        types: {
+        SubCategory: {
           include: {
             items: true, // Include all items for each type
           },
@@ -53,6 +53,19 @@ export async function getProductByCategory(data) {
     return { error: error.message || error }; // Handle errors
   }
 }
+export async function getProductByUrl(url) {
+  try {
+    const productByUrl = await prisma.category.findMany({
+      where: {
+        url: url,
+      },
+    });
+    return { productByUrl };
+  } catch (error) {
+    return { error: error.message || error }; // Handle errors
+  }
+}
+
 // export const getProductByCategory = cache(async function () {
 //   console.log("server........",data);
 
@@ -84,6 +97,8 @@ export async function getProductByCategory(data) {
 // });
 
 export async function addProduct(productData) {
+  console.log("DB productData", productData);
+
   try {
     const product = await prisma.itemDetail.create({
       data: {
@@ -95,10 +110,11 @@ export async function addProduct(productData) {
         alt: productData.alt,
         gender: productData.gender,
         type: productData.type,
+        category: productData.category,
         description: productData.description,
         details: productData.details,
-        category: productData.category,
         dashboardType: productData.dashboardtype,
+        imageid: productData.imageid,
         url: productData.url,
       },
     });
