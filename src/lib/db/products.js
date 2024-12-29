@@ -59,6 +59,13 @@ export async function getProductByUrl(url) {
       where: {
         url: url,
       },
+      include: {
+        SubCategory: {
+          include: {
+            items: true,
+          },
+        },
+      },
     });
     return { productByUrl };
   } catch (error) {
@@ -97,9 +104,7 @@ export async function getProductByUrl(url) {
 // });
 
 export async function addProduct(productData) {
-  console.log("DB productData", productData);
   const itemid = parseInt(productData.category);
-
   try {
     const product = await prisma.itemDetail.create({
       data: {

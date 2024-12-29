@@ -82,7 +82,7 @@ datasource db {
 // }
 
 model Category {
-  category_id Int           @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   name        String        @db.Text
   image       String?       @db.Text
   url         String        @db.Text
@@ -90,22 +90,22 @@ model Category {
 }
 
 model SubCategory {
-  sub_category_id Int      @id @default(autoincrement())
-  name            String   @db.Text
-  image           String?  @db.Text
-  url             String   @db.Text
-  category_id     Int      @default(autoincrement())
-  category        Category @relation(fields: [category_id], references: [category_id], onDelete: Cascade)
-  items           Item[] // One-to-many relation with Item
+  id          Int      @id @default(autoincrement())
+  name        String   @db.Text
+  image       String?  @db.Text
+  url         String   @db.Text
+  category_id Int      @default(autoincrement())
+  category    Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  items       Item[] // One-to-many relation with Item
 }
 
 model Item {
-  item_id         Int          @id @default(autoincrement())
+  id              Int          @id @default(autoincrement())
   name            String       @db.Text
   image           String?      @db.Text
   url             String       @db.Text
   sub_category_id Int          @default(autoincrement())
-  sub_category    SubCategory  @relation(fields: [sub_category_id], references: [sub_category_id], onDelete: Cascade)
+  sub_category    SubCategory  @relation(fields: [sub_category_id], references: [id], onDelete: Cascade)
   item_detail     ItemDetail[] // One-to-many relation with ItemDetail
 }
 
@@ -127,7 +127,7 @@ model ItemDetail {
   url           String   @db.Text
   imageid       String   @db.Text
   category      Int
-  item          Item     @relation(fields: [category], references: [item_id], onDelete: Cascade)
+  item          Item     @relation(fields: [category], references: [id], onDelete: Cascade)
 }
 
 // Faisal //

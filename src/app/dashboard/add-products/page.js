@@ -1,16 +1,18 @@
-"use client"
+"use client";
 
 import { addProduct } from "@/lib/db/products";
 import { DashForm } from "../../../components/dashboard/dash-form";
 import { Suspense } from "react";
 import { FormSkeleton } from "@/components/UI/skeletons";
+import { useRouter } from "next/navigation";
 
 export default function AddProducts() {
+  const router = useRouter();
+
   async function addProductHandle(data) {
-    console.log("addProductHandle", data);
-    
     try {
       await addProduct(data);
+      router.push("/dashboard");
     } catch (error) {
       console.error("Error adding product:", error);
     }

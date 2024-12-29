@@ -194,7 +194,7 @@ import { useEffect, useState } from "react";
 export function NavMenu() {
   const pathname = usePathname();
   const [allCategory, setAllCategory] = useState([]);
-console.log("!!!!!!!!!!", allCategory);
+  console.log("!!!!!!!!!!", allCategory);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -212,7 +212,7 @@ console.log("!!!!!!!!!!", allCategory);
   return (
     <Menubar className="border-none">
       {allCategory.map((items) => (
-        <MenubarMenu key={items.category_id}>
+        <MenubarMenu key={items.id}>
           <MenubarTrigger>
             <NavLink
               text={items.name}
@@ -234,24 +234,15 @@ console.log("!!!!!!!!!!", allCategory);
               </MenubarItem>
             </Link>
             {items.SubCategory.map((item) => (
-              <MenubarSub key={item.sub_category_id}>
-                <Link
-                  href={item.url ? `${items.url}/${item.url}` : `${items.url}`}
-                >
+              <MenubarSub key={item.id}>
+                <Link href={item.url}>
                   <MenubarSubTrigger className=" cursor-pointer">
                     {item.name}
                   </MenubarSubTrigger>
                 </Link>
                 <MenubarSubContent>
                   {item.items.map((list) => (
-                    <Link
-                      key={list.item_id}
-                      href={
-                        item.url
-                          ? `${items.url}/${item.url}/${list.url}`
-                          : `${items.url}/${list.url}`
-                      }
-                    >
+                    <Link key={list.id} href={`${item.url}/${list.url}`}>
                       <MenubarItem className=" cursor-pointer">
                         {list.name}
                       </MenubarItem>

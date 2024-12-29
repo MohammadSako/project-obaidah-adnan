@@ -12,7 +12,8 @@ function CategoriesCard({
   image,
   price,
   color,
-  url,name
+  url,
+  name,
 }) {
   return (
     <div>

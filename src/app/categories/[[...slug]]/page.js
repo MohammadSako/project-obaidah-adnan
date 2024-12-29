@@ -1,14 +1,12 @@
-// import { getProductByCategory } from "@/lib/db/products";
+import { getAllCategory } from "@/lib/db/products";
 import CategoriesPage from "../../../components/helpers/catgories/categories-page";
 
 export default async function Page() {
-  // const { productByCategory } = await getProductByCategory("msnow");
-
-  // console.log("getProductByCategory.................", productByCategory);
+  const { categories } = await getAllCategory();
 
   return (
     <>
-      <CategoriesPage />
+      <CategoriesPage data={categories} />
     </>
   );
 }
