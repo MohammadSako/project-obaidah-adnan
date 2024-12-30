@@ -242,7 +242,7 @@ export function NavMenu() {
                 </Link>
                 <MenubarSubContent>
                   {item.items.map((list) => (
-                    <Link key={list.id} href={`${item.url}/${list.url}`}>
+                    <Link key={list.id} href={`${list.url}`}>
                       <MenubarItem className=" cursor-pointer">
                         {list.name}
                       </MenubarItem>

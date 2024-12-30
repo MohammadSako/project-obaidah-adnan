@@ -39,7 +39,6 @@ export default function CategoriesPage({ data }) {
         setProducts(data[3].SubCategory[0].items);
         break;
       default:
-        // console.warn("Unknown path:", pathname);
         break;
     }
 
@@ -49,7 +48,6 @@ export default function CategoriesPage({ data }) {
       async function getProducts() {
         const { productByItemId } = await getProductByItemId(segments[4]);
         setProducts(productByItemId[0].item_detail);
-        console.log("data from server =>", productByItemId[0].item_detail);
       }
       getProducts();
     }

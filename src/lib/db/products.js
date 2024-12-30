@@ -1,6 +1,5 @@
 // https://www.prisma.io/docs/orm/prisma-client/queries/crud#create
 // https://supabase.com/docs/reference/javascript/update
-
 "use server";
 
 import { revalidatePath } from "next/cache";
@@ -217,10 +216,14 @@ export async function updateImageByUrl(imageURL, file) {
   }
 }
 
-export async function getProductsById(id) {
+export async function getProductsById(pathname) {
   try {
-    const products = await prisma.itemDetail.findUnique({ where: { id } });
-    return { products };
+    const product = await prisma.itemDetail.findMany({
+      where: {
+        url: pathname,
+      },
+    });
+    return { product };
   } catch (error) {
     return { error };
   }

@@ -162,6 +162,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    const uuid = uuidv4();
     try {
       const uploadResult = await handleUpload();
 
@@ -183,7 +184,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         imageid: image_id, //we usa this to delete the image
         category: values.category, //we usa this to refrence to item table
         alt: values.title,
-        url: `product/${values.category}`, //we usa this for product detail url
+        url: `product/${uuid}`, //we usa this for product detail url
       };
       console.log("123", data);
 

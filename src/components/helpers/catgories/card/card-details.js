@@ -64,7 +64,7 @@ export function CardDetails({ id, title, description, image, price, color, url }
 
   return (
     <>
-      <Link href={url}>
+      <Link href={`/${url}`}>
         <div className="aspect-h-1 aspect-w-1 md:w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 shadow-lg">
           <Image
             src={image}
@@ -82,7 +82,7 @@ export function CardDetails({ id, title, description, image, price, color, url }
       <div className="mt-4 flex md:flex-row flex-col justify-between">
         <div>
           <p className="text-md text-gray-700 font-semibold">{title}</p>
-          {/* <p className="text-sm text-gray-700 w-2">{description}</p> */}
+          <p className="text-sm text-gray-700 w-2">{description}</p>
           <p className="mt-1 text-sm text-gray-500">{color}</p>
         </div>
         <div className="bg-yellow-400 p-2 w-16 text-center my-4 shadow-lg">
