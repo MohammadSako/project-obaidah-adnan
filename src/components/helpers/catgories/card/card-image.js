@@ -7,7 +7,7 @@ export function CardImage({ image }) {
         src={image}
         style={{
           width: "auto",
-          height: 300,
+          height: "auto",
           objectFit: "cover",
         }}
         width={200}

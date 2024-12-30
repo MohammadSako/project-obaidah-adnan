@@ -53,6 +53,7 @@ export async function getProductByCategory(data) {
     return { error: error.message || error }; // Handle errors
   }
 }
+
 export async function getProductByUrl(url) {
   try {
     const productByUrl = await prisma.category.findMany({
@@ -68,6 +69,22 @@ export async function getProductByUrl(url) {
       },
     });
     return { productByUrl };
+  } catch (error) {
+    return { error: error.message || error }; // Handle errors
+  }
+}
+
+export async function getProductByItemId(itemId) {
+  try {
+    const productByItemId = await prisma.item.findMany({
+      where: {
+        itemid: itemId,
+      },
+      include: {
+        item_detail: true,
+      },
+    });
+    return { productByItemId };
   } catch (error) {
     return { error: error.message || error }; // Handle errors
   }

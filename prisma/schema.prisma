@@ -104,6 +104,7 @@ model Item {
   name            String       @db.Text
   image           String?      @db.Text
   url             String       @db.Text
+  itemid          String       @db.Text
   sub_category_id Int          @default(autoincrement())
   sub_category    SubCategory  @relation(fields: [sub_category_id], references: [id], onDelete: Cascade)
   item_detail     ItemDetail[] // One-to-many relation with ItemDetail

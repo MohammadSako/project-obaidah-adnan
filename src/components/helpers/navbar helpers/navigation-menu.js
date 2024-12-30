@@ -194,7 +194,7 @@ import { useEffect, useState } from "react";
 export function NavMenu() {
   const pathname = usePathname();
   const [allCategory, setAllCategory] = useState([]);
-  console.log("!!!!!!!!!!", allCategory);
+  // console.log("!!!!!!!!!!", allCategory);
 
   useEffect(() => {
     const fetchCategories = async () => {

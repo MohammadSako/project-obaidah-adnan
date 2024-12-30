@@ -7,7 +7,6 @@ import { CardDetails } from "./card/card-details";
 function CategoriesCard({
   id,
   category,
-  title,
   description,
   image,
   price,
@@ -31,7 +30,7 @@ function CategoriesCard({
             <CardDetails
               color={color}
               description={description}
-              title={title}
+              title={name}
               image={image}
               id={id}
               category={category}

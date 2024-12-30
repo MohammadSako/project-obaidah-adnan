@@ -107,7 +107,8 @@ async function main() {
       name: "T-Shirts",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/c3.avif",
       sub_category_id: menTopClothingType.id,
-      url: "tshirt",
+      url: "/categories/men/clothing/top/mtshirt",
+      itemid: "mtshirt",
     },
   });
   const wtshirt = await prisma.item.create({
@@ -115,7 +116,8 @@ async function main() {
       name: "T-Shirts",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/c2.avif",
       sub_category_id: womenTopClothingType.id,
-      url: "tshirt",
+      url: "/categories/women/clothing/top/wtshirt",
+      itemid: "wtshirt",
     },
   });
   const mShirts = await prisma.item.create({
@@ -123,7 +125,8 @@ async function main() {
       name: "Shirts",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/shirt.avif",
       sub_category_id: menTopClothingType.id,
-      url: "shirt",
+      url: "/categories/men/clothing/top/mshirt",
+      itemid: "mshirt",
     },
   });
   const wShirts = await prisma.item.create({
@@ -131,7 +134,8 @@ async function main() {
       name: "Shirts",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/wshirt.avif",
       sub_category_id: womenTopClothingType.id,
-      url: "shirt",
+      url: "/categories/women/clothing/top/wshirt",
+      itemid: "wshirt",
     },
   });
   const mblouse = await prisma.item.create({
@@ -139,7 +143,8 @@ async function main() {
       name: "Wool blouses",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/mwool.avif",
       sub_category_id: menTopClothingType.id,
-      url: "blouse",
+      url: "/categories/women/clothing/top/mblouse",
+      itemid: "mblouse",
     },
   });
   const wblouse = await prisma.item.create({
@@ -147,7 +152,8 @@ async function main() {
       name: "Wool blouses",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/wool.avif",
       sub_category_id: womenTopClothingType.id,
-      url: "blouse",
+      url: "/categories/women/clothing/top/wblouse",
+      itemid: "wblouse",
     },
   });
   const mHats = await prisma.item.create({
@@ -155,7 +161,8 @@ async function main() {
       name: "Hats",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/hat%20m.avif",
       sub_category_id: menTopClothingType.id,
-      url: "hats",
+      url: "/categories/women/clothing/top/mhats",
+      itemid: "mhats",
     },
   });
   const wHats = await prisma.item.create({
@@ -163,7 +170,8 @@ async function main() {
       name: "Hats",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/hat%20w.avif",
       sub_category_id: womenTopClothingType.id,
-      url: "hats",
+      url: "/categories/women/clothing/top/whats",
+      itemid: "whats",
     },
   });
   const mWatches = await prisma.item.create({
@@ -171,7 +179,8 @@ async function main() {
       name: "Watches",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20watch.avif",
       sub_category_id: menTopClothingType.id,
-      url: "watches",
+      url: "/categories/women/clothing/top/mwatches",
+      itemid: "mwatches",
     },
   });
   const wWatches = await prisma.item.create({
@@ -179,7 +188,8 @@ async function main() {
       name: "Watches",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20watch.avif",
       sub_category_id: womenTopClothingType.id,
-      url: "watches",
+      url: "/categories/women/clothing/top/wwatches",
+      itemid: "wwatches",
     },
   });
   const mBag = await prisma.item.create({
@@ -187,7 +197,8 @@ async function main() {
       name: "Bags",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20bag.avif",
       sub_category_id: menTopClothingType.id,
-      url: "bag",
+      url: "/categories/women/clothing/top/mbag",
+      itemid: "mbag",
     },
   });
   const wBag = await prisma.item.create({
@@ -195,7 +206,8 @@ async function main() {
       name: "Bags",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20bag.avif",
       sub_category_id: womenTopClothingType.id,
-      url: "bag",
+      url: "/categories/women/clothing/top/wbag",
+      itemid: "wbag",
     },
   });
   const mJeans = await prisma.item.create({
@@ -203,7 +215,8 @@ async function main() {
       name: "Jeans",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/jeans.avif",
       sub_category_id: menLowerClothingType.id,
-      url: "jeans",
+      url: "/categories/men/clothing/lower/mjeans",
+      itemid: "mjeans",
     },
   });
   const wJeans = await prisma.item.create({
@@ -211,7 +224,8 @@ async function main() {
       name: "Jeans",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/women%20jeans.avif",
       sub_category_id: womenLowerClothingType.id,
-      url: "jeans",
+      url: "/categories/women/clothing/lower/wjeans",
+      itemid: "wjeans",
     },
   });
   const mPants = await prisma.item.create({
@@ -219,7 +233,8 @@ async function main() {
       name: "Pants",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20pants.avif",
       sub_category_id: menLowerClothingType.id,
-      url: "pants",
+      url: "/categories/men/clothing/lower/mpants",
+      itemid: "mpants",
     },
   });
   const wPants = await prisma.item.create({
@@ -227,7 +242,8 @@ async function main() {
       name: "Pants",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20pants.avif",
       sub_category_id: womenLowerClothingType.id,
-      url: "pants",
+      url: "/categories/women/clothing/lower/wpants",
+      itemid: "wpants",
     },
   });
   const mSocks = await prisma.item.create({
@@ -235,7 +251,8 @@ async function main() {
       name: "Socks",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20soks.avif",
       sub_category_id: menLowerClothingType.id,
-      url: "socks",
+      url: "/categories/men/clothing/lower/msocks",
+      itemid: "msocks",
     },
   });
   const wSocks = await prisma.item.create({
@@ -243,7 +260,8 @@ async function main() {
       name: "Socks",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20socks.avif",
       sub_category_id: womenLowerClothingType.id,
-      url: "socks",
+      url: "/categories/women/clothing/lower/wsocks",
+      itemid: "wsocks",
     },
   });
   const mBelts = await prisma.item.create({
@@ -251,7 +269,8 @@ async function main() {
       name: "Belts",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20belt.avif",
       sub_category_id: menLowerClothingType.id,
-      url: "belts",
+      url: "/categories/men/clothing/lower/mbelts",
+      itemid: "mbelts",
     },
   });
   const wBelts = await prisma.item.create({
@@ -259,7 +278,8 @@ async function main() {
       name: "Belts",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20belt.avif",
       sub_category_id: womenLowerClothingType.id,
-      url: "belts",
+      url: "/categories/women/clothing/lower/wbelts",
+      itemid: "wbelts",
     },
   });
   const mWork = await prisma.item.create({
@@ -267,7 +287,8 @@ async function main() {
       name: "Work & Safty Shoes",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/work%20safty.avif",
       sub_category_id: menShoesType.id,
-      url: "work",
+      url: "/categories/men/shoes/mwork",
+      itemid: "mwork",
     },
   });
   const mLoafers = await prisma.item.create({
@@ -275,7 +296,8 @@ async function main() {
       name: "Loafers & Slip-Ons",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Loafers%20&%20Slip-Ons%20m.avif",
       sub_category_id: menShoesType.id,
-      url: "loafers",
+      url: "/categories/men/shoes/mloafers",
+      itemid: "mloafers",
     },
   });
   const wLoafers = await prisma.item.create({
@@ -283,7 +305,8 @@ async function main() {
       name: "Loafers & Slip-Ons",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Loafers%20&%20Slip-Ons%20w.avif",
       sub_category_id: womenShoesType.id,
-      url: "loafers",
+      url: "/categories/women/shoes/wloafers",
+      itemid: "wloafers",
     },
   });
   const mSnow = await prisma.item.create({
@@ -291,7 +314,8 @@ async function main() {
       name: "Snow Boots",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Snow%20Boots%20m.avif",
       sub_category_id: menShoesType.id,
-      url: "snow",
+      url: "/categories/men/shoes/msnow",
+      itemid: "msnow",
     },
   });
   const wSnow = await prisma.item.create({
@@ -299,7 +323,8 @@ async function main() {
       name: "Snow Boots",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Snow%20Boots%20w.avif",
       sub_category_id: womenShoesType.id,
-      url: "snow",
+      url: "/categories/women/shoes/wsnow",
+      itemid: "wsnow",
     },
   });
   const mCasual = await prisma.item.create({
@@ -307,7 +332,8 @@ async function main() {
       name: "Casual Shoes",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Casual%20Shoes.avif",
       sub_category_id: menShoesType.id,
-      url: "casual",
+      url: "/categories/men/shoes/mcasual",
+      itemid: "mcasual",
     },
   });
   const mBoots = await prisma.item.create({
@@ -315,7 +341,8 @@ async function main() {
       name: "Boots",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Boots%20m.avif",
       sub_category_id: menShoesType.id,
-      url: "boots",
+      url: "/categories/men/shoes/mboots",
+      itemid: "mboots",
     },
   });
   const mSandals = await prisma.item.create({
@@ -323,7 +350,8 @@ async function main() {
       name: "Sandals",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Sandals%20m.avif",
       sub_category_id: menShoesType.id,
-      url: "sandals",
+      url: "/categories/men/shoes/msandals",
+      itemid: "msandals",
     },
   });
   const mOthers = await prisma.item.create({
@@ -331,7 +359,8 @@ async function main() {
       name: "Others",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20belt.avif",
       sub_category_id: menShoesType.id,
-      url: "others",
+      url: "/categories/men/shoes/mothers",
+      itemid: "mothers",
     },
   });
   const wOthers = await prisma.item.create({
@@ -339,7 +368,8 @@ async function main() {
       name: "Others",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20belt.avif",
       sub_category_id: womenShoesType.id,
-      url: "others",
+      url: "/categories/women/shoes/wothers",
+      itemid: "wothers",
     },
   });
   const wFlats = await prisma.item.create({
@@ -347,7 +377,8 @@ async function main() {
       name: "Flats",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Flats%20w.avif",
       sub_category_id: womenShoesType.id,
-      url: "flats",
+      url: "/categories/women/shoes/wflats",
+      itemid: "wflats",
     },
   });
   const wSlippers = await prisma.item.create({
@@ -355,7 +386,8 @@ async function main() {
       name: "Slippers",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Slippers%20w.avif",
       sub_category_id: womenShoesType.id,
-      url: "slippers",
+      url: "/categories/women/shoes/wslippers",
+      itemid: "wslippers",
     },
   });
   const wSneakers = await prisma.item.create({
@@ -363,7 +395,8 @@ async function main() {
       name: "Sneakers",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/sneakers%20w.avif",
       sub_category_id: womenShoesType.id,
-      url: "sneakers",
+      url: "/categories/women/shoes/wsneakers",
+      itemid: "wsneakers",
     },
   });
 
