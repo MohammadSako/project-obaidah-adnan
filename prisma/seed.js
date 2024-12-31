@@ -143,7 +143,7 @@ async function main() {
       name: "Wool blouses",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/mwool.avif",
       sub_category_id: menTopClothingType.id,
-      url: "/categories/women/clothing/top/mblouse",
+      url: "/categories/men/clothing/top/mblouse",
       itemid: "mblouse",
     },
   });
@@ -161,7 +161,7 @@ async function main() {
       name: "Hats",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/hat%20m.avif",
       sub_category_id: menTopClothingType.id,
-      url: "/categories/women/clothing/top/mhats",
+      url: "/categories/men/clothing/top/mhats",
       itemid: "mhats",
     },
   });
@@ -179,7 +179,7 @@ async function main() {
       name: "Watches",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20watch.avif",
       sub_category_id: menTopClothingType.id,
-      url: "/categories/women/clothing/top/mwatches",
+      url: "/categories/men/clothing/top/mwatches",
       itemid: "mwatches",
     },
   });
@@ -197,7 +197,7 @@ async function main() {
       name: "Bags",
       image: "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20bag.avif",
       sub_category_id: menTopClothingType.id,
-      url: "/categories/women/clothing/top/mbag",
+      url: "/categories/men/clothing/top/mbag",
       itemid: "mbag",
     },
   });

@@ -125,7 +125,7 @@ model ItemDetail {
   description   String   @db.Text
   details       String   @db.Text
   dashboardType String   @db.Text
-  url           String   @db.Text
+  url           String   @unique
   imageid       String   @db.Text
   category      Int
   item          Item     @relation(fields: [category], references: [id], onDelete: Cascade)

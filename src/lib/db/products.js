@@ -216,11 +216,11 @@ export async function updateImageByUrl(imageURL, file) {
   }
 }
 
-export async function getProductsById(pathname) {
+export async function getProductByPathname(path) {
   try {
     const product = await prisma.itemDetail.findMany({
       where: {
-        url: pathname,
+        url: path,
       },
     });
     return { product };
