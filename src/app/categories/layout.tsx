@@ -13,7 +13,7 @@ const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
     <>
       <div className="relative flex flex-col w-full h-[40vh]">
         <Image
-          src="/store.png"
+          src="https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/store.avif"
           fill
           sizes="100vw"
           alt="Store Image"

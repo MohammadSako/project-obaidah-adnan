@@ -6,9 +6,8 @@ export function CardImage({ image }) {
       <Image
         src={image}
         style={{
-          width: "auto",
+          width: "100%",
           height: "auto",
-          objectFit: "cover",
         }}
         width={200}
         height={200}

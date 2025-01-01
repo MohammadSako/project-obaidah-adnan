@@ -3,11 +3,7 @@ const supabase = supabaseImage.slice(8);
 
 module.exports = {
   images: {
+    formats: ['image/avif', 'image/webp'],
     domains: ["tailwindui.com", "res.cloudinary.com", `${supabase}`],
   },
 };
-
-// es model
-// export const images = {
-//   domains: ["tailwindui.com"],
-// };
