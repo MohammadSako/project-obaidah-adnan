@@ -215,14 +215,14 @@ export function NavMenu() {
         <MenubarMenu key={items.id}>
           <MenubarTrigger>
             <NavLink
-              text={items.name}
+              text={items.title}
               className={
                 pathname === `${items.url}`
                   ? "text-gray-800 text-2xl font-medium hover:text-gray-800 cursor-pointer"
                   : "text-gray-400 text-2xl font-medium hover:text-gray-800 cursor-pointer"
               }
             >
-              {items.name}
+              {items.title}
             </NavLink>
           </MenubarTrigger>
           <MenubarContent>
@@ -230,21 +230,21 @@ export function NavMenu() {
               <MenubarItem className="cursor-pointer">
                 Go to
                 <Spacer />
-                <span className="font-bold">{items.name}</span>
+                <span className="font-bold">{items.title}</span>
               </MenubarItem>
             </Link>
             {items.SubCategory.map((item) => (
               <MenubarSub key={item.id}>
                 <Link href={item.url}>
                   <MenubarSubTrigger className=" cursor-pointer">
-                    {item.name}
+                    {item.title}
                   </MenubarSubTrigger>
                 </Link>
                 <MenubarSubContent>
                   {item.items.map((list) => (
                     <Link key={list.id} href={`${list.url}`}>
                       <MenubarItem className=" cursor-pointer">
-                        {list.name}
+                        {list.title}
                       </MenubarItem>
                     </Link>
                   ))}

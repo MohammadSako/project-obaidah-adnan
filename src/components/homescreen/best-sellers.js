@@ -44,6 +44,9 @@ function BestSellers({ data }) {
                         image={product.image}
                         price={product.price}
                         color={product.color}
+                        url={product.url}
+                        details={product.details}
+                        description={product.description}
                       />
                     </CarouselItem>
                   ))}

@@ -83,7 +83,7 @@ datasource db {
 
 model Category {
   id          Int           @id @default(autoincrement())
-  name        String        @db.Text
+  title        String        @db.Text
   image       String?       @db.Text
   url         String        @db.Text
   SubCategory SubCategory[] // One-to-many relation with SubCategory
@@ -91,7 +91,7 @@ model Category {
 
 model SubCategory {
   id          Int      @id @default(autoincrement())
-  name        String   @db.Text
+  title        String   @db.Text
   image       String?  @db.Text
   url         String   @db.Text
   category_id Int      @default(autoincrement())
@@ -101,7 +101,7 @@ model SubCategory {
 
 model Item {
   id              Int          @id @default(autoincrement())
-  name            String       @db.Text
+  title            String       @db.Text
   image           String?      @db.Text
   url             String       @db.Text
   itemid          String       @db.Text

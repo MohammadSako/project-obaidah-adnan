@@ -22,7 +22,7 @@ function NewArrivals({ data }) {
             <div className="lg:col-span-2 lg:pr-8">
               <Link href="/favorite">
                 <h1 className="text-4xl font-medium tracking-tighter text-center text-gray-900 sm:text-3xl">
-                New Arrivals
+                  New Arrivals
                 </h1>
               </Link>
               <Carousel
@@ -44,6 +44,9 @@ function NewArrivals({ data }) {
                         image={product.image}
                         price={product.price}
                         color={product.color}
+                        url={product.url}
+                        details={product.details}
+                        description={product.description}
                       />
                     </CarouselItem>
                   ))}

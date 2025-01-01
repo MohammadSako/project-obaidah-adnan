@@ -52,6 +52,7 @@ export default function CategoriesPage({ data }) {
       getProducts();
     }
   }, [pathname, data]);
+console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@", products);
 
   return (
     <>
@@ -67,11 +68,12 @@ export default function CategoriesPage({ data }) {
                     category={product.category}
                     title={product.title}
                     description={product.description}
+                    details={product.details}
                     image={product.image}
                     price={product.price}
                     color={product.color}
                     url={product.url}
-                    name={product.name}
+                    alt={product.alt}
                   />
                 ))}
               </div>
@@ -87,7 +89,7 @@ export default function CategoriesPage({ data }) {
                     image={product.image}
                     color={product.color}
                     url={product.url}
-                    name={product.name}
+                    alt={product.alt}
                   />
                 ))}
               </div>
