@@ -52,8 +52,6 @@ export default function CategoriesPage({ data }) {
       getProducts();
     }
   }, [pathname, data]);
-console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@", products);
-
   return (
     <>
       <main className="flex min-h-screen flex-col items-center mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
