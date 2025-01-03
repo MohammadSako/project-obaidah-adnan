@@ -1,29 +1,24 @@
 "use client";
-
-// import { BreadCrumb } from "@/components/helpers/catgories/breadcrumb";
+import { BreadCrumbs } from "@/components/categories/bread-crump";
+import { CategoryBackgroundImageSkeleton } from "@/components/UI/skeletons";
 import Image from "next/image";
+import { Suspense } from "react";
 
 const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    // <section className="py-24 mt-24">
-    //   <div className="p-4 flex flex-col">
-    //     <main>{children}</main>
-    //   </div>
-    // </section>
     <>
-      <div className="relative flex flex-col w-full h-[40vh]">
-        <Image
-          src="https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/store.avif"
-          fill
-          sizes="100vw"
-          alt="Store Image"
-          style={{ objectFit: "cover" }}
-        />
-      </div>
-      {/* <div className="m-4">
-        <BreadCrumb />
-      </div> */}
-
+      <Suspense fallback={<CategoryBackgroundImageSkeleton />}>
+        <div className="relative flex flex-col w-full h-[20vh]">
+          <Image
+            src="https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/store.avif"
+            fill
+            sizes="100vw"
+            alt="Store Image"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        <BreadCrumbs />
+      </Suspense>
       <div className="flex flex-col w-full">{children}</div>
     </>
   );

@@ -231,11 +231,26 @@ model ItemDetail {
 //   profile Profile?
 // }
 
+
+
+
+
 // to create a database in supabase
 // npx prisma migrate dev --name init
 
 // to seed...
 // npx prisma db seed
+
+
+
+
+//Node.js
+// to clear node cache, to update new data.
+// npm cache clean --force
+
+
+
+
 
 // prisma data sheet map
 // https://www.prisma.io/docs/orm/prisma-schema/data-model/models

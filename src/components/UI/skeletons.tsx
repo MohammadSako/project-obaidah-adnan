@@ -2,6 +2,53 @@
 const shimmer =
   "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent";
 
+export function CategoryBackgroundImageSkeleton() {
+  return (
+    <main className="animate-pulse flex flex-row mx-auto gap-4 mt-20">
+      <div className="flex flex-col items-center space-y-4">
+        <div className="h-[400px] w-screen rounded-lg bg-gray-200"></div>
+      </div>
+    </main>
+  );
+}
+export function CategoryImagesSkeleton() {
+  return (
+    <main className="animate-pulse flex flex-row mx-auto gap-4 mt-20">
+      <div className="flex flex-col items-center space-y-4">
+        <div className="h-[30px] w-[150px] rounded-lg bg-gray-50"></div>
+        <div className="h-[200px] w-[200px] rounded-lg bg-gray-100"></div>
+      </div>
+      <div className="flex flex-col items-center space-y-4">
+        <div className="h-[30px] w-[150px] rounded-lg bg-gray-50"></div>
+        <div className="h-[200px] w-[200px] rounded-lg bg-gray-100"></div>
+      </div>
+    </main>
+  );
+}
+
+export function CardImagesSkeleton() {
+  return (
+    <main className="animate-pulse flex flex-row mx-auto mt-20">
+      <div className="flex flex-col space-y-4">
+        <div className="flex flex-col items-center space-y-4">
+          <div className="h-[40px] w-[150px] rounded-lg bg-gray-50"></div>
+          <div className="h-[300px] w-[260px] rounded-lg bg-gray-100 shadow-lg"></div>
+        </div>
+        <div className="flex flex-row justify-between">
+          <div className="flex flex-col space-y-2">
+            <div className="h-[22px] w-[100px] rounded-lg bg-gray-100"></div>
+            <div className="h-[15px] w-[70px] rounded-lg bg-gray-100"></div>
+            <div className="h-[15px] w-[90px] rounded-lg bg-gray-100"></div>
+          </div>
+          <div className="flex flex-col">
+            <div className="h-[70px] w-[70px] rounded-lg bg-gray-100"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
 export function TableSkeleton() {
   return (
     <div className="animate-pulse mt-6 flow-root">
@@ -72,59 +119,58 @@ export default function DashboardSkeleton() {
 export function FormSkeleton() {
   return (
     <div className="flex sm:flex-row gap-8 flex-col-reverse">
-        <div
-          className={`${shimmer} animate-pulse relative flex w-full flex-col overflow-hidden md:col-span-4`}
-        >
-          <div className="mb-8 h-10 w-60 rounded-md bg-gray-100" />
-          <div className="bg-white">
-            <div className="flex flex-col justify-between gap-12">
-              <div className="flex  flex-row space-x-8">
-                <div className="grow">
-                  <div className="h-10  rounded-md bg-gray-200" />
-                </div>
-                <div className="grow">
-                  <div className="h-10  rounded-md bg-gray-200" />
-                </div>
+      <div
+        className={`${shimmer} animate-pulse relative flex w-full flex-col overflow-hidden md:col-span-4`}
+      >
+        <div className="mb-8 h-10 w-60 rounded-md bg-gray-100" />
+        <div className="bg-white">
+          <div className="flex flex-col justify-between gap-12">
+            <div className="flex  flex-row space-x-8">
+              <div className="grow">
+                <div className="h-10  rounded-md bg-gray-200" />
               </div>
-              <div className="flex  flex-row space-x-8">
-                <div className="grow">
-                  <div className="h-10  rounded-md bg-gray-200" />
-                </div>
-                <div className="grow">
-                  <div className="h-10  rounded-md bg-gray-200" />
-                </div>
+              <div className="grow">
+                <div className="h-10  rounded-md bg-gray-200" />
               </div>
-              <div className="flex  flex-row space-x-8">
-                <div className="grow">
-                  <div className="h-10  rounded-md bg-gray-200" />
-                </div>
-                <div className="grow">
-                  <div className="h-10  rounded-md bg-gray-200" />
-                </div>
+            </div>
+            <div className="flex  flex-row space-x-8">
+              <div className="grow">
+                <div className="h-10  rounded-md bg-gray-200" />
               </div>
-              <div className="flex  flex-row space-x-8">
-                <div className="grow">
-                  <div className="h-10  rounded-md bg-gray-200" />
-                </div>
-                <div className="grow">
-                  <div className="h-10  rounded-md bg-gray-200" />
-                </div>
+              <div className="grow">
+                <div className="h-10  rounded-md bg-gray-200" />
               </div>
-              <div className="flex  flex-row space-x-8">
-                <div className="grow">
-                  <div className="h-10  rounded-md bg-gray-200" />
-                </div>
-                <div className="grow">
-                  <div className="h-20  rounded-md bg-gray-200" />
-                </div>
+            </div>
+            <div className="flex  flex-row space-x-8">
+              <div className="grow">
+                <div className="h-10  rounded-md bg-gray-200" />
               </div>
-              
+              <div className="grow">
+                <div className="h-10  rounded-md bg-gray-200" />
+              </div>
+            </div>
+            <div className="flex  flex-row space-x-8">
+              <div className="grow">
+                <div className="h-10  rounded-md bg-gray-200" />
+              </div>
+              <div className="grow">
+                <div className="h-10  rounded-md bg-gray-200" />
+              </div>
+            </div>
+            <div className="flex  flex-row space-x-8">
+              <div className="grow">
+                <div className="h-10  rounded-md bg-gray-200" />
+              </div>
+              <div className="grow">
+                <div className="h-20  rounded-md bg-gray-200" />
+              </div>
             </div>
           </div>
-          <div className="pb-2 pt-6">
-            <div className="h-10 w-32 rounded-md bg-gray-200" />
-          </div>
         </div>
+        <div className="pb-2 pt-6">
+          <div className="h-10 w-32 rounded-md bg-gray-200" />
+        </div>
+      </div>
       <div className="mt-20 h-96 w-96 rounded-md bg-gray-100" />
     </div>
   );

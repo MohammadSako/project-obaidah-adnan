@@ -1,5 +1,6 @@
-import Spinner from "@/components/UI/spinner";
+import { CategoryImagesSkeleton } from "@/components/UI/skeletons";
 
 export default function Loading() {
-  return <Spinner />;
+  return <CategoryImagesSkeleton />;
 }
+

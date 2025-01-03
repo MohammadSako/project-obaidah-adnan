@@ -14,10 +14,10 @@ import Favorite from "../favorite/favorite";
 import { NavMenu } from "../helpers/navbar helpers/navigation-menu";
 
 const navigation = [
-  { name: "Men's Clothing", href: "/about", current: false },
-  { name: "Men's Shoes", href: "/about", current: false },
-  { name: "Women's Clothing", href: "/contact", current: false },
-  { name: "Women's Shoes", href: "/contact", current: false },
+  { name: "Men's Clothing", href: "/categories/men/clothing", current: false },
+  { name: "Men's Shoes", href: "/categories/men/shoes", current: false },
+  { name: "Women's Clothing", href: "/categories/women/clothing", current: false },
+  { name: "Women's Shoes", href: "/categories/women/shoes", current: false },
 ];
 
 function classNames(...classes) {

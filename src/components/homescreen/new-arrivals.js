@@ -42,6 +42,7 @@ function NewArrivals({ data }) {
                         id={product.id}
                         title={product.title}
                         image={product.image}
+                        alt={product.alt}
                         price={product.price}
                         color={product.color}
                         url={product.url}
