@@ -36,8 +36,6 @@ export function NavMenu() {
 
   //to highlight the NavLink when categories has changed
   const pathSegments = pathname.split("/").filter((segment) => segment);
-  console.log(pathSegments);
-  
   const selectedPath = "/" + pathSegments.slice(0, 3).join("/");
 
   return (

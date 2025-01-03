@@ -89,6 +89,26 @@ export async function getProductByItemId(itemId) {
   }
 }
 
+export async function searchInProducts(value) {
+  try {
+    const products = await prisma.itemDetail.findMany({
+      where: {
+        title: {
+          startsWith: value,
+          mode: "insensitive",
+        },
+      },
+      select: {
+        title: true,
+        id: true,
+      },
+    });
+    return { products };
+  } catch (error) {
+    return { error };
+  }
+}
+
 // export const getProductByCategory = cache(async function () {
 //   console.log("server........",data);
 

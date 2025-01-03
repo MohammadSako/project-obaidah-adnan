@@ -1,17 +1,17 @@
+import Link from "next/link";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { FaRegCopyright } from "react-icons/fa6";
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
 } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { FaRegCopyright } from "react-icons/fa6";
+import { NavMenu } from "../helpers/navbar helpers/navigation-menu";
 import Search from "../helpers/navbar helpers/search";
 import BrandName from "../helpers/navbar helpers/brand-name";
 import Languages from "../helpers/navbar helpers/languages";
 import Cart from "../cart/cartDrawer/cart";
 import Favorite from "../favorite/favorite";
-import { NavMenu } from "../helpers/navbar helpers/navigation-menu";
 
 const navigation = [
   { name: "Men's Clothing", href: "/categories/men/clothing", current: false },
