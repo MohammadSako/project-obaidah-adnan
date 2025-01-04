@@ -1,14 +1,16 @@
 "use client";
 
 import { searchInProducts } from "@/lib/db/products";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { useDebounce } from "use-debounce";
 
 export default function Search() {
+  const router = useRouter();
+  const [result, setResult] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedValue] = useDebounce(searchQuery, 1000);
-  const [result, setResult] = useState("");
 
   useEffect(() => {
     async function Search() {
@@ -21,11 +23,16 @@ export default function Search() {
         console.error("Error fetching results:", response.error);
         setResult([]);
       } else {
-        setResult(response.products || []);
+        setResult(response.combinedResults || []);
       }
     }
     Search();
   }, [debouncedValue]);
+
+  async function resultHandler(e) {
+    setSearchQuery("");
+    router.push(`/search/?q=${encodeURIComponent(e)}`);
+  }
 
   return (
     <>
@@ -41,26 +48,33 @@ export default function Search() {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              resultHandler(e.target.value);
+            }
+          }}
           placeholder="search in shop"
           className="block w-full rounded-md border-0 py-1.5 pl-9 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         />
       </div>
 
-      <div>
-        {result.length > 0 ? (
-          <ul className="p-2 rounded-md shadow-lg absolute z-100 w-[810px]">
-            {result.map((product) => (
-              <li key={product.id} className="py-1 px-2 hover:bg-gray-50">
-                {product.title}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          debouncedValue && (
-            <p className="text-gray-500 mt-2">No results found.</p>
-          )
-        )}
-      </div>
+      {result.length > 0 ? (
+        <div className="p-2 rounded-md shadow-lg absolute z-[200] w-[810px] bg-white">
+          {result.map((product) => (
+            <div
+              key={product.id}
+              className="py-1 px-2 hover:bg-gray-50 cursor-pointer"
+              onClick={() => resultHandler(product.title)}
+            >
+              {product.title}
+            </div>
+          ))}
+        </div>
+      ) : (
+        debouncedValue && (
+          <p className="text-gray-500 mt-2">No results found.</p>
+        )
+      )}
     </>
   );
 }

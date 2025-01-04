@@ -112,7 +112,7 @@ export default function CategoriesPage({ data }) {
               )}
             </div>
           </div>
-        </main>{" "}
+        </main>
       </Suspense>
     </>
   );

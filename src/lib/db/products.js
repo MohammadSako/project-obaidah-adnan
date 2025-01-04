@@ -1,9 +1,6 @@
-// https://www.prisma.io/docs/orm/prisma-client/queries/crud#create
-// https://supabase.com/docs/reference/javascript/update
 "use server";
 
 import { revalidatePath } from "next/cache";
-// import { delay } from './utils'
 import prisma from "./prisma";
 import { cache } from "react";
 import { supabase } from "../supabase";
@@ -11,7 +8,6 @@ import { supabase } from "../supabase";
 export const getProducts = cache(async function () {
   try {
     const products = await prisma.itemDetail.findMany();
-    // const products = await prisma.items.findMany();
     return { products };
   } catch (error) {
     return { error };
@@ -89,12 +85,13 @@ export async function getProductByItemId(itemId) {
   }
 }
 
+// Get Product name by Searching
 export async function searchInProducts(value) {
   try {
-    const products = await prisma.itemDetail.findMany({
+    const itemDetails = await prisma.itemDetail.findMany({
       where: {
         title: {
-          startsWith: value,
+          contains: value,
           mode: "insensitive",
         },
       },
@@ -103,42 +100,147 @@ export async function searchInProducts(value) {
         id: true,
       },
     });
-    return { products };
+    // const items = await prisma.item.findMany({
+    //   where: {
+    //     title: {
+    //       contains: value,
+    //       mode: "insensitive",
+    //     },
+    //   },
+    //   select: {
+    //     title: true,
+    //     id: true,
+    //   },
+    // });
+    // Combine the results and differentiate by source
+    const combinedResults = [
+      ...itemDetails.map((detail) => ({
+        ...detail,
+        source: "ItemDetail",
+      })),
+      // ...items.map((item) => ({
+      //   ...item,
+      //   source: "Item",
+      // })),
+    ];
+    return { combinedResults };
   } catch (error) {
+    console.error("Error while searching in products:", error);
     return { error };
   }
 }
 
-// export const getProductByCategory = cache(async function () {
-//   console.log("server........",data);
+//Get Product by "searchInProducts" Value
+export async function searchedProducts(values) {
+  if (!Array.isArray(values) || values.length === 0) {
+    throw new Error("Please provide an array of search terms.");
+  }
+  try {
+    const itemDetails = await prisma.itemDetail.findMany({
+      where: {
+        OR: values.map((value) => ({
+          title: {
+            contains: value,
+            mode: "insensitive",
+          },
+        })),
+      },
+    });
+    // const items = await prisma.item.findMany({
+    //   where: {
+    //     OR: values.map((value) => ({
+    //       title: {
+    //         contains: value,
+    //         mode: "insensitive",
+    //       },
+    //     })),
+    //   },
+    // });
+    // Combine the results and differentiate by source
+    const combinedResults = [
+      ...itemDetails.map((detail) => ({
+        ...detail,
+        source: "ItemDetail",
+      })),
+      // ...items.map((item) => ({
+      //   ...item,
+      //   source: "Item",
+      // })),
+    ];
+    return { combinedResults };
+  } catch (error) {
+    console.error("Error while searching in products:", error);
+    return { error };
+  }
+}
 
-//   try {
-//     // Fetch all categories with their types and items
-//     const data = await prisma.item.findMany({
-//       where: {
-//         category: mshirt, // Filter by the category
-//       },
-//       include: {
-//         itemDetail: true, // Include the related ItemDetail entries (sub-items)
-//       },
-//     });
+//Get By Url
+export async function getSearchedProductUrl(id) {
+  try {
+    const productUrl = await prisma.itemDetail.findMany({
+      where: {
+        id: id,
+      },
+      select: {
+        url: true,
+      },
+    });
+    return { productUrl };
+  } catch (error) {
+    return { error: error.message || error }; // Handle errors
+  }
+}
 
-//     return { data }; // Return the categories object
-//   } catch (error) {
-//     return { error: error.message || error }; // Handle errors
-//   }
-// });
+// fix best seller page by getting data from dashboardType.....
 
-// to find a specific type..
-// export const getProducts = cache(async function () {
-//   try {
-//     const products = await prisma.items.findMany({where: {title: {equals: "shirt"}}});
-//     return { products };
-//   } catch (error) {
-//     return { error };
-//   }
-// });
+//Get By dashboardType
+export async function getBestSellers() {
+  try {
+    const bestSellers = await prisma.itemDetail.findMany({
+      where: {
+        dashboardType: "bestsellers",
+      },
+      // select: {
+      //   url: true,
+      // },
+    });
+    return { bestSellers };
+  } catch (error) {
+    return { error: error.message || error }; // Handle errors
+  }
+}
+export async function getNewArrivals() {
+  try {
+    const newArrivals = await prisma.itemDetail.findMany({
+      where: {
+        dashboardType: "newarrival",
+      },
+      // select: {
+      //   url: true,
+      // },
+    });
+    return { newArrivals };
+  } catch (error) {
+    return { error: error.message || error }; // Handle errors
+  }
+}
+export async function getDiscounted() {
+  try {
+    const discounted = await prisma.itemDetail.findMany({
+      where: {
+        dashboardType: "discounted",
+      },
+      // select: {
+      //   url: true,
+      // },
+    });
+    return { discounted };
+  } catch (error) {
+    return { error: error.message || error }; // Handle errors
+  }
+}
 
+// Add
 export async function addProduct(productData) {
   const itemid = parseInt(productData.category);
   try {
@@ -169,6 +271,7 @@ export async function addProduct(productData) {
   }
 }
 
+//Delete
 export async function deleteProductById(id) {
   try {
     const products = await prisma.itemDetail.delete({ where: { id } });
@@ -180,6 +283,7 @@ export async function deleteProductById(id) {
   }
 }
 
+//Update
 export async function updateProductById(id, productData) {
   try {
     const result = await prisma.itemDetail.update({
@@ -211,6 +315,7 @@ export async function updateProductById(id, productData) {
   }
 }
 
+//Delete Image
 export async function deleteImageByUrl(imageURL) {
   try {
     const { data } = await supabase.storage
@@ -222,6 +327,7 @@ export async function deleteImageByUrl(imageURL) {
   }
 }
 
+//Update Image
 export async function updateImageByUrl(imageURL, file) {
   try {
     const { data } = await supabase.storage
@@ -236,6 +342,7 @@ export async function updateImageByUrl(imageURL, file) {
   }
 }
 
+//Get By Pathname
 export async function getProductByPathname(path) {
   try {
     const product = await prisma.itemDetail.findMany({
@@ -249,72 +356,5 @@ export async function getProductByPathname(path) {
   }
 }
 
-// export async function getTodosByUserId(userId: string) {
-//   try {
-//     await delay(1000)
-//     const todos = await prisma.todo.findMany({ where: { userId } })
-//     return { todos }
-//   } catch (error) {
-//     return { error }
-//   }
-// }
-
-// export const getTodosByUserId = cache(async function (userId: string) {
-//   try {
-//     await delay(1000)
-//     const todos = await prisma.todo.findMany({ where: { userId } })
-//     return { todos }
-//   } catch (error) {
-//     return { error }
-//   }
-// })
-
-// export async function getTodos() {
-//   try {
-//     console.log('getTodos')
-//     const todos = await prisma.todo.findMany()
-//     return { todos }
-//   } catch (error) {
-//     return { error }
-//   }
-// }
-
-// export const getTodos = cache(async function () {
-//   try {
-//     console.log('getTodos')
-//     const todos = await prisma.todo.findMany()
-//     return { todos }
-//   } catch (error) {
-//     return { error }
-//   }
-// })
-
-// export async function createTodo(title: string, userId: string) {
-//   try {
-//     const todo = await prisma.todo.create({ data: { title, userId } })
-//     return { todo }
-//   } catch (error) {
-//     return { error }
-//   }
-// }
-
-// export async function getTodoById(id: string) {
-//   try {
-//     const todo = await prisma.todo.findUnique({ where: { id } })
-//     return { todo }
-//   } catch (error) {
-//     return { error }
-//   }
-// }
-
-// export async function updateTodo(id: string, isCompleted: boolean) {
-//   try {
-//     const todo = await prisma.todo.update({
-//       where: { id },
-//       data: { isCompleted }
-//     })
-//     return { todo }
-//   } catch (error) {
-//     return { error }
-//   }
-// }
+// https://www.prisma.io/docs/orm/prisma-client/queries/crud#create
+// https://supabase.com/docs/reference/javascript/update

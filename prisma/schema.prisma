@@ -111,7 +111,8 @@ model Item {
 }
 
 model ItemDetail {
-  id            Int      @id @default(autoincrement())
+  id            String   @id @default(uuid())
+  // id            Int      @id @default(autoincrement())
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   title         String   @db.Text
@@ -231,26 +232,15 @@ model ItemDetail {
 //   profile Profile?
 // }
 
-
-
-
-
 // to create a database in supabase
 // npx prisma migrate dev --name init
 
 // to seed...
 // npx prisma db seed
 
-
-
-
 //Node.js
 // to clear node cache, to update new data.
 // npm cache clean --force
-
-
-
-
 
 // prisma data sheet map
 // https://www.prisma.io/docs/orm/prisma-schema/data-model/models
