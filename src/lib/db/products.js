@@ -283,6 +283,15 @@ export async function deleteProductById(id) {
   }
 }
 
+export async function getProductsById(id) {
+  try {
+    const products = await prisma.itemDetail.findUnique({ where: { id } });
+    return { products };
+  } catch (error) {
+    return { error };
+  }
+}
+
 //Update
 export async function updateProductById(id, productData) {
   try {

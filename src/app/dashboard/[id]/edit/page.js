@@ -12,6 +12,7 @@ function UpdateProduct() {
   const id = parseInt(param.id);
   const [newData, setNewData] = useState("");
   const [data, setData] = useState(false);
+console.log("@@@@@@@@@",newData);
 
   useEffect(() => {
     async function edit() {
