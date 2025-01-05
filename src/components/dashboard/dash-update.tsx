@@ -112,7 +112,7 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
       size: editData.size || "",
       gender: editData.gender || "",
       type: editData.type || "",
-      category: editData.category || "",
+      category: String(editData.category) || "",
       description: editData.description || "",
       details: editData.details || "",
       dashboardtype: editData.dashboardType || "",
@@ -197,7 +197,7 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
       const { image: uploadedImage, url: uploadedUrl } = uploadResult;
 
       const data = {
-        category: values.category,
+        category: parseInt(values.category),
         color: values.color,
         description: values.description,
         details: values.details,
@@ -211,12 +211,6 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
         alt: values.title,
         url: uploadedUrl,
       };
-
-      console.log(
-        image ? "Data for new image:" : "Data for existing image:",
-        data
-      );
-
       toast({
         title: "You submitted the following values:",
         description: (
@@ -406,10 +400,10 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
                     )}
                   />
                 </div>
-              ) : productCategory === "mjeans" ||
-                productCategory === "wjeans" ||
-                productCategory === "mpants" ||
-                productCategory === "wjeans" ? (
+              ) : productCategory === "13" ||
+                productCategory === "14" ||
+                productCategory === "15" ||
+                productCategory === "16" ? (
                 <div className="sm:col-span-6 md:col-span-3">
                   <FormField
                     control={form.control}

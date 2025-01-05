@@ -9,10 +9,9 @@ import { FormSkeleton } from "@/components/UI/skeletons";
 function UpdateProduct() {
   const param = useParams();
   const router = useRouter();
-  const id = parseInt(param.id);
+  const id = param.id;
   const [newData, setNewData] = useState("");
   const [data, setData] = useState(false);
-console.log("@@@@@@@@@",newData);
 
   useEffect(() => {
     async function edit() {
@@ -54,8 +53,8 @@ console.log("@@@@@@@@@",newData);
       <header>
         <div className="mx-auto py-6">
           <h1 className="text-3xl font-bold tracking-tight text-slate-800">
-            Update Product:
-            <span className="font-light text-gray-600 border-2 py-1 px-2 border-blue-400 rounded-lg">
+            Update Product:{" "}
+            <span className="font-light text-gray-600 border-2 py-2 px-4 border-blue-400 rounded-lg">
               {newData.title}
             </span>
           </h1>

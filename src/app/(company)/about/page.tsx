@@ -26,5 +26,4 @@ function About() {
     </motion.section>
   );
 }
-
 export default About;
