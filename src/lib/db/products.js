@@ -308,7 +308,7 @@ export async function updateProductById(id, productData) {
         type: productData.type,
         description: productData.description,
         details: productData.details,
-        category: productData.category,
+        category: parseInt(productData.category),
         dashboardType: productData.dashboardtype,
         url: productData.url,
       },

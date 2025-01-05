@@ -197,7 +197,7 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
       const { image: uploadedImage, url: uploadedUrl } = uploadResult;
 
       const data = {
-        category: parseInt(values.category),
+        category: values.category,
         color: values.color,
         description: values.description,
         details: values.details,
