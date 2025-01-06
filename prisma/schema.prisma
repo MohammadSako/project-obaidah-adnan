@@ -132,6 +132,31 @@ model ItemDetail {
   item          Item     @relation(fields: [category], references: [id], onDelete: Cascade)
 }
 
+model CarouselImages {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  title     String   @db.Text
+  imageUrl  String   @db.Text
+  alt       String   @db.Text
+}
+
+model BrandsImages {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  title     String   @db.Text
+  imageUrl  String   @db.Text
+  alt       String   @db.Text
+}
+
+model Advertisements {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  title       String   @db.Text
+  imageUrl    String   @db.Text
+  alt         String   @db.Text
+  description String   @db.Text
+}
+
 // Faisal //
 // model ItemDetail {
 //   id          Int       @id @default(autoincrement())

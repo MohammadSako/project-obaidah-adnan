@@ -16,7 +16,11 @@ import Favorite from "../favorite/favorite";
 const navigation = [
   { name: "Men's Clothing", href: "/categories/men/clothing", current: false },
   { name: "Men's Shoes", href: "/categories/men/shoes", current: false },
-  { name: "Women's Clothing", href: "/categories/women/clothing", current: false },
+  {
+    name: "Women's Clothing",
+    href: "/categories/women/clothing",
+    current: false,
+  },
   { name: "Women's Shoes", href: "/categories/women/shoes", current: false },
 ];
 
@@ -24,12 +28,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 export default function NavBar() {
-
   return (
     <Disclosure as="nav" className="bg-white">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <FirstNav />
         <SecondNav />
+        <div className="flex-grow border-t border-gray-200" />
       </div>
       <MobileNav />
     </Disclosure>

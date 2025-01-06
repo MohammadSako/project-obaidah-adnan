@@ -7,27 +7,27 @@ import CarouselFade from "../UI/carouselFade";
 export function Landing() {
   const Images = [
     {
-      image: "/p1.jpg",
+      image: "/p1.avif",
       alt: "product 1",
     },
     {
-      image: "/p2.jpg",
+      image: "/p2.avif",
       alt: "product 2",
     },
     {
-      image: "/p3.jpg",
+      image: "/p3.avif",
       alt: "product 3",
     },
     {
-      image: "/p1.jpg",
+      image: "/p1.avif",
       alt: "product 1",
     },
     {
-      image: "/p2.jpg",
+      image: "/p2.avif",
       alt: "product 2",
     },
     {
-      image: "/p3.jpg",
+      image: "/p3.avif",
       alt: "product 3",
     },
   ];

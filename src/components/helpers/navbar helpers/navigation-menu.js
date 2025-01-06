@@ -81,7 +81,7 @@ export function NavMenu() {
               </MenubarSub>
             ))}
           </MenubarContent>
-          <div className="hidden lg:block w-px h-5 bg-slate-800" />
+          <div className="hidden lg:block w-px h-6 bg-gray-400" />
         </MenubarMenu>
       ))}
     </Menubar>
