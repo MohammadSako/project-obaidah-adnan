@@ -47,8 +47,8 @@ export function NavMenu() {
               text={items.title}
               className={
                 selectedPath === `${items.url}`
-                  ? "text-gray-800 text-2xl font-medium hover:text-gray-800 cursor-pointer"
-                  : "text-gray-400 text-2xl font-medium hover:text-gray-800 cursor-pointer"
+                  ? "text-gray-800 text-xl font-medium hover:text-gray-800 cursor-pointer"
+                  : "text-gray-400 text-xl font-medium hover:text-gray-800 cursor-pointer"
               }
             >
               {items.title}
@@ -81,7 +81,7 @@ export function NavMenu() {
               </MenubarSub>
             ))}
           </MenubarContent>
-          <div className="hidden lg:block w-px h-6 bg-gray-400" />
+          <div className="hidden lg:block w-px h-6 bg-gray-200" />
         </MenubarMenu>
       ))}
     </Menubar>

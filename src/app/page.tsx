@@ -6,6 +6,7 @@ import {
 import { Landing } from "../components/homescreen/landing";
 import { Categories } from "../components/homescreen/categories";
 import { YourFavoriteItems } from "../components/homescreen/yourFavoriteItems";
+import { Advertisement } from "@/components/homescreen/advertisement";
 import BestSellers from "@/components/homescreen/best-sellers";
 import NewArrivals from "@/components/homescreen/new-arrivals";
 import Discounted from "@/components/homescreen/discounted";
@@ -32,11 +33,11 @@ export default async function Home() {
       {newArrivals.length > 0 && <NewArrivals data={newArrivals} />}
       {discounted.length > 0 && <Discounted data={discounted} />}
       <YourFavoriteItems />
+      <Advertisement />
       <OurBrands />
       <Categories />
-      {/* <Advertisement />
-      <MediaHub />
-      <Testimonials /> */}
+      {/* <MediaHub /> */}
+      {/* <Testimonials /> */}
     </main>
   );
 }

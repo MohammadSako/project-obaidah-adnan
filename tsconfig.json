@@ -48,6 +48,6 @@
     "src/components/UI/carouselFade.js",
     "src/components/helpers/navbar helpers/navigation-menu.js",
     "src/components/helpers/navbar helpers/nav-link.js"
-, "src/lib/db/cloudinary.ts", "src/app/dashboard/components/data-table.tsx", "src/components/productDetail/productDetailPage.js", "src/app/search/page.js"  ],
+, "src/lib/db/cloudinary.ts", "src/app/dashboard/components/data-table.tsx", "src/components/productDetail/productDetailPage.js", "src/app/search/page.js", "src/components/dashboard/images-list.js"  ],
   "exclude": ["node_modules"]
 }

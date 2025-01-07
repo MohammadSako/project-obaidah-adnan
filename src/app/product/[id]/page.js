@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import ProductDetailPage from "../../../components/product-details/productDetailPage";
 import { getProductByPathname } from "@/lib/db/products";
+import NotFound from "@/app/not-found";
 
 function ProductDetails() {
   const [products, setproducts] = useState([]);
   const pathname = usePathname();
-  const path = pathname.slice(1);  // Remove the first character
+  const path = pathname.slice(1); // Remove the first character
 
   useEffect(() => {
     async function getDetails() {
@@ -16,6 +17,10 @@ function ProductDetails() {
     }
     getDetails();
   }, [path]);
+
+  if (!products) {
+    return <NotFound />;
+  }
 
   return <ProductDetailPage products={products} />;
 }

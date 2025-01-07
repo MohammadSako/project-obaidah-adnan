@@ -4,8 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Carousel, CarouselContent, CarouselItem } from "../UI/carousel";
 import ProductCard from "../categories/productCard";
-import Link from "next/link";
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from "embla-carousel-autoplay";
 
 function BestSellers({ data }) {
   return (
@@ -20,11 +19,9 @@ function BestSellers({ data }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-4 sm:py-20 sm:max-w-none lg:py-10">
             <div className="lg:col-span-2 lg:pr-8">
-              <Link href="/favorite">
-                <h1 className="text-4xl font-medium tracking-tighter text-center text-gray-900 sm:text-3xl">
-                  Best Sellers
-                </h1>
-              </Link>
+              <h1 className="text-4xl font-medium tracking-tighter text-center text-gray-900 sm:text-3xl">
+                Best Sellers
+              </h1>
               <Carousel
                 className="w-full max-w-fit mt-4"
                 opts={{ align: "center", dragFree: true }}

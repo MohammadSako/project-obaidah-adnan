@@ -203,6 +203,50 @@ export function CardsSkeleton() {
   );
 }
 
+export function CarouselPageSkeleton() {
+  return (
+    <>
+      <div className="h-10 w-52 rounded-md bg-gray-100 my-4 mt-6" />
+      <div
+        className={`${shimmer} animate-pulse relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+      >
+        <div className="flex flex-col items-center justify-center truncate rounded-xl bg-white px-4 py-6 space-y-2">
+          <div className="h-10 w-10 rounded-md bg-gray-100" />
+          <div className="h-4 w-52 rounded-md bg-gray-100 text-sm font-medium" />
+          <div className="h-4 w-64 rounded-md bg-gray-100" />
+          <div className="h-10 w-80 rounded-md bg-gray-100" />
+        </div>
+      </div>
+      <div className="h-4 w-28 rounded-md bg-gray-100 mt-4" />
+      <div className="h-10 w-80 rounded-md bg-gray-100 mt-4" />
+      <div className="h-10 w-36 rounded-md bg-gray-100 mt-4" />
+    </>
+  );
+}
+export function CarouselListSkeleton() {
+  return (
+    <>
+      <div className="h-8 w-44 rounded-md bg-gray-100 my-4 mt-14" />
+      <div
+        className={`${shimmer} animate-pulse relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+      >
+        <div className="flex flex-row justify-between items-center truncate bg-white px-4 py-4 space-y-2">
+          <div className="h-32 w-96 rounded-md bg-gray-200" />
+          <div className="h-14 w-10 rounded-md bg-gray-200" />
+        </div>
+        <div className="flex flex-row justify-between items-center truncate bg-white px-4 py-4 space-y-2">
+          <div className="h-32 w-96 rounded-md bg-gray-200" />
+          <div className="h-14 w-10 rounded-md bg-gray-200" />
+        </div>
+        <div className="flex flex-row justify-between items-center truncate bg-white px-4 py-4 space-y-2">
+          <div className="h-32 w-96 rounded-md bg-gray-200" />
+          <div className="h-14 w-10 rounded-md bg-gray-200" />
+        </div>
+      </div>
+    </>
+  );
+}
+
 export function RevenueChartSkeleton() {
   return (
     <div

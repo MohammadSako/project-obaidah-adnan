@@ -136,24 +136,28 @@ model CarouselImages {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   title     String   @db.Text
-  imageUrl  String   @db.Text
+  image     String   @db.Text
   alt       String   @db.Text
+  imageid   String   @db.Text
 }
 
 model BrandsImages {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  title     String   @db.Text
-  imageUrl  String   @db.Text
-  alt       String   @db.Text
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  title       String   @db.Text
+  image       String   @db.Text
+  alt         String   @db.Text
+  imageid     String   @db.Text
+  description String   @db.Text
 }
 
 model Advertisements {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   title       String   @db.Text
-  imageUrl    String   @db.Text
+  image       String   @db.Text
   alt         String   @db.Text
+  imageid     String   @db.Text
   description String   @db.Text
 }
 

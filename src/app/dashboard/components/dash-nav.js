@@ -12,8 +12,12 @@ const navigation = [
     name: "All Products",
     href: "/dashboard",
   },
-  { name: "Add Products", href: "/dashboard/add-products" },
   { name: "Customer Orders", href: "/dashboard/customer-orders" },
+  { name: "|", href: "#" },
+  { name: "Add Products", href: "/dashboard/add-products" },
+  { name: "Carousel", href: "/dashboard/add-carousel" },
+  { name: "Brands", href: "/dashboard/add-brands" },
+  { name: "Advertisments", href: "/dashboard/add-advertisment" },
 ];
 
 function classNames(...classes) {
@@ -30,7 +34,7 @@ export function DashNav() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
-                <p className="text-white text-3xl font-semibold">Dashboard</p>
+                <p className="text-white text-2xl font-semibold">Dashboard</p>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {navigation.map((item) => {

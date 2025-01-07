@@ -44,6 +44,7 @@ export type Product = {
   size: string;
   price: string;
   image: string;
+  imageid: string;
   alt: string;
   gender: string;
   type: string;
@@ -242,12 +243,12 @@ export function DataTable({ data }: DataTableProps) {
       enableHiding: false,
       cell: ({ row }) => {
         const product = row.original;
-        const imageURL = product.url;
+        const imageid = product.imageid;
 
         // Delete Product //////////
         async function onDeleteHandle(id: string) {
           try {
-            await deleteImageByUrl(imageURL);
+            await deleteImageByUrl(imageid);
             await deleteProductById(id);
           } catch (error) {
             console.error("Error adding product:", error);

@@ -403,7 +403,7 @@ async function main() {
   // ////////////////////////////// Create item details for the items
   // const tshirtDetail = await prisma.itemDetail.create({
   //   data: {
-  //     title: "T-Shirt Detail",
+  //     title: "T-Shirt",
   //     image: "",
   //     alt: "Black T-Shirt",
   //     details: "Made from cotton.",
@@ -418,7 +418,7 @@ async function main() {
 
   // const jeansDetail = await prisma.itemDetail.create({
   //   data: {
-  //     title: "Jeans Detail",
+  //     title: "Jeans",
   //     itemId: mJeans.id,
   //     color: "Blue",
   //     size: "32",
@@ -433,7 +433,7 @@ async function main() {
 
   // const sneakersDetail = await prisma.itemDetail.create({
   //   data: {
-  //     title: "Sneakers Detail",
+  //     title: "Sneakers",
   //     itemId: wSneakers.id,
   //     color: "White",
   //     size: "10",

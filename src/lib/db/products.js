@@ -240,7 +240,7 @@ export async function getDiscounted() {
   }
 }
 
-// Add
+// Add Products
 export async function addProduct(productData) {
   const itemid = parseInt(productData.category);
   try {
@@ -362,6 +362,110 @@ export async function getProductByPathname(path) {
     return { product };
   } catch (error) {
     return { error };
+  }
+}
+
+// Carousel
+
+export async function addCarousel(carousel) {
+  try {
+    const product = await prisma.carouselImages.create({
+      data: {
+        title: carousel.title,
+        image: carousel.image,
+        alt: carousel.alt,
+        imageid: carousel.imageid,
+      },
+    });
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    return { product };
+  } catch (error) {
+    console.error("Error creating product:", error);
+    return { error: error.message || "An unexpected error occurred" };
+  }
+}
+
+export const getCarousel = cache(async function () {
+  try {
+    const carouselData = await prisma.carouselImages.findMany();
+    return { carouselData };
+  } catch (error) {
+    return { error };
+  }
+});
+
+export async function deleteCarouselById(id) {
+  try {
+    const carouselData = await prisma.carouselImages.delete({ where: { id } });
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    return { carouselData };
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function deleteCarouselImage(imageid) {
+  try {
+    const { data } = await supabase.storage
+      .from("shopimages")
+      .remove([`carousel_images/${imageid}`]);
+    console.log("successfully deleted", data);
+  } catch (error) {
+    console.error("Error deleting image:", error);
+  }
+}
+
+// Brand
+export async function addBrand(brand) {
+  try {
+    const product = await prisma.brandsImages.create({
+      data: {
+        title: brand.title,
+        image: brand.image,
+        alt: brand.alt,
+        imageid: brand.imageid,
+        description: brand.description,
+      },
+    });
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    return { product };
+  } catch (error) {
+    console.error("Error creating product:", error);
+    return { error: error.message || "An unexpected error occurred" };
+  }
+}
+
+export const getBrand = cache(async function () {
+  try {
+    const brandData = await prisma.brandsImages.findMany();
+    return { brandData };
+  } catch (error) {
+    return { error };
+  }
+});
+
+export async function deleteBrandById(id) {
+  try {
+    const carouselData = await prisma.brandsImages.delete({ where: { id } });
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    return { carouselData };
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function deleteBrandImage(imageid) {
+  try {
+    const { data } = await supabase.storage
+      .from("shopimages")
+      .remove([`brand_images/${imageid}`]);
+    console.log("successfully deleted", data);
+  } catch (error) {
+    console.error("Error deleting image:", error);
   }
 }
 
