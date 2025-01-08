@@ -1,5 +1,13 @@
-import { FormSkeleton } from "@/components/UI/skeletons";
+import {
+  CarouselPageSkeleton,
+  CarouselListSkeleton,
+} from "@/components/UI/skeletons";
 
 export default function Loading() {
-  return <FormSkeleton />;
+  return (
+    <>
+      <CarouselPageSkeleton />
+      <CarouselListSkeleton />
+    </>
+  );
 }

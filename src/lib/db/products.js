@@ -469,5 +469,56 @@ export async function deleteBrandImage(imageid) {
   }
 }
 
+// Advertisment
+export async function addAdvertisment(advertisement) {
+  try {
+    const product = await prisma.advertisements.create({
+      data: {
+        title: advertisement.title,
+        image: advertisement.image,
+        alt: advertisement.alt,
+        imageid: advertisement.imageid,
+        description: advertisement.description,
+      },
+    });
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    return { product };
+  } catch (error) {
+    console.error("Error creating product:", error);
+    return { error: error.message || "An unexpected error occurred" };
+  }
+}
+
+export const getAdvertisment = cache(async function () {
+  try {
+    const advertismentData = await prisma.advertisements.findMany();
+    return { advertismentData };
+  } catch (error) {
+    return { error };
+  }
+});
+
+export async function deleteAdvertismentById(id) {
+  try {
+    const advertismentData = await prisma.advertisements.delete({ where: { id } });
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    return { advertismentData };
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function deleteAdvertismentImage(imageid) {
+  try {
+    const { data } = await supabase.storage
+      .from("shopimages")
+      .remove([`advertisement_images/${imageid}`]);
+    console.log("successfully deleted", data);
+  } catch (error) {
+    console.error("Error deleting image:", error);
+  }
+}
 // https://www.prisma.io/docs/orm/prisma-client/queries/crud#create
 // https://supabase.com/docs/reference/javascript/update
