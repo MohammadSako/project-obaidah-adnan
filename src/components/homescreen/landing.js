@@ -1,36 +1,14 @@
 "use client";
 
-import * as React from "react";
 import { motion } from "framer-motion";
-import CarouselFade from "../UI/carouselFade";
+import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
+import Fade from "embla-carousel-fade";
+import Autoplay from "embla-carousel-autoplay";
 
-export function Landing() {
-  const Images = [
-    {
-      image: "/p1.avif",
-      alt: "product 1",
-    },
-    {
-      image: "/p2.avif",
-      alt: "product 2",
-    },
-    {
-      image: "/p3.avif",
-      alt: "product 3",
-    },
-    {
-      image: "/p1.avif",
-      alt: "product 1",
-    },
-    {
-      image: "/p2.avif",
-      alt: "product 2",
-    },
-    {
-      image: "/p3.avif",
-      alt: "product 3",
-    },
-  ];
+export function Landing({ data }) {
+  const options = { loop: false, duration: 30 };
+  const [emblaRef] = useEmblaCarousel(options, [Fade(), Autoplay()]);
 
   return (
     <motion.section
@@ -38,9 +16,27 @@ export function Landing() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.3 }}
-      className="flex-col items-center my-8 gap-4 w-full overflow-hidden origin-center sm:block hidden"
+      className="flex-col items-center gap-4 w-full overflow-hidden origin-center sm:block hidden"
     >
-      <CarouselFade data={Images} />
+      <div className="flex items-center justify-center">
+        <div className="overflow-hidden w-full max-w-7xl" ref={emblaRef}>
+          <div className="flex">
+            {data.map((product, index) => (
+              <div
+                key={product.id || index}
+                className="flex-none basis-full min-w-0"
+              >
+                <Image
+                  src={product.image}
+                  width={1500}
+                  height={1000}
+                  alt="Picture of the author"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </motion.section>
   );
 }

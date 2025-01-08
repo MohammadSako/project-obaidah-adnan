@@ -501,7 +501,9 @@ export const getAdvertisment = cache(async function () {
 
 export async function deleteAdvertismentById(id) {
   try {
-    const advertismentData = await prisma.advertisements.delete({ where: { id } });
+    const advertismentData = await prisma.advertisements.delete({
+      where: { id },
+    });
     revalidatePath("/");
     revalidatePath("/dashboard");
     return { advertismentData };

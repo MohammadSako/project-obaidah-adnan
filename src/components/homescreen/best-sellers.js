@@ -13,7 +13,7 @@ function BestSellers({ data }) {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.3 }}
-      className="flex flex-col items-center my-2 gap-4 w-full overflow-hidden origin-center"
+      className="flex flex-col items-center gap-4 w-full overflow-hidden origin-center"
     >
       <div className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -45,7 +45,7 @@ console.log(favorite);
                         <CarouselItem className="max-w-fit" key={product.id}>
                           <Link key={product.id} href="/favorite">
                             <div className="group relative">
-                              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
                                 <Image
                                   src={product.image}
                                   style={{

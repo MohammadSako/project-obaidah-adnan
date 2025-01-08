@@ -2,6 +2,9 @@ import {
   getBestSellers,
   getNewArrivals,
   getDiscounted,
+  getCarousel,
+  getAdvertisment,
+  getBrand,
 } from "@/lib/db/products";
 import { Landing } from "../components/homescreen/landing";
 import { Categories } from "../components/homescreen/categories";
@@ -20,24 +23,28 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
+  const { carouselData = [] } = await getCarousel();
   const { bestSellers = [] } = await getBestSellers();
   const { newArrivals = [] } = await getNewArrivals();
   const { discounted = [] } = await getDiscounted();
+  const { advertismentData = [] } = await getAdvertisment();
+  const { brandData = [] } = await getBrand();
 
   return (
     <main className="flex min-h-screen flex-col items-center font-display">
       <Suspense fallback={<CardSkeleton />}>
-        <Landing />
+        {carouselData.length > 0 && <Landing data={carouselData} />}
       </Suspense>
-      {bestSellers.length > 0 && <BestSellers data={bestSellers} />}
-      {newArrivals.length > 0 && <NewArrivals data={newArrivals} />}
-      {discounted.length > 0 && <Discounted data={discounted} />}
       <YourFavoriteItems />
-      <Advertisement />
-      <OurBrands />
-      <Categories />
+      {bestSellers.length > 0 && <BestSellers data={bestSellers} />}
+      {discounted.length > 0 && <Discounted data={discounted} />}
+      {brandData.length > 0 && <OurBrands data={brandData} />}
+      {newArrivals.length > 0 && <NewArrivals data={newArrivals} />}
+      {advertismentData.length > 0 && <Advertisement data={advertismentData} />}
+      {/* <Categories /> */}
       {/* <MediaHub /> */}
       {/* <Testimonials /> */}
+      {/* <Logos /> */}
     </main>
   );
 }

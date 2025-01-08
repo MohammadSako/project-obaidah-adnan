@@ -13,11 +13,11 @@ function Discounted({ data }) {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.3 }}
-      className="flex flex-col items-center my-2 gap-4 w-full overflow-hidden origin-center"
+      className="flex flex-col items-center h-auto gap-4 w-full overflow-hidden origin-center"
     >
       <div className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl py-4 sm:py-20 lg:max-w-none lg:py-10">
+          <div className="mx-auto max-w-2xl py-4 sm:py-20 lg:max-w-none lg:py-10 mt-6">
             <div className="lg:col-span-2 lg:pr-8">
               <h1 className="text-4xl font-medium tracking-tighter text-center text-gray-900 sm:text-3xl">
                 Discounted Products
