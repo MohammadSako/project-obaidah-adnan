@@ -107,13 +107,13 @@ export function CardDetails({
       </Link>
 
       <div className="mt-4 flex md:flex-row flex-col justify-between">
-        <div>
-          <p className="text-md text-gray-700 font-semibold">{title}</p>
-          <p className="text-sm text-gray-700 w-2">{description}</p>
+        <div className="basis-2/3">
+          <p className="text-lg text-gray-700 font-semibold">{title}</p>
+          <p className="text-md text-gray-700 w-auto">{description}</p>
           <p className="mt-1 text-sm text-gray-500">{color}</p>
         </div>
 
-        <div className="bg-yellow-400 p-2 w-16 text-center my-4 shadow-lg">
+        <div className="basis-1/3 bg-yellow-400 p-2 w-16 h-[45px] text-center my-4 shadow-lg">
           <p className="text-lg font-medium text-gray-900">
             <span className="font-semibold text-red-700">{price}</span>{" "}
             <span className="text-xs -mt-2">JD</span>

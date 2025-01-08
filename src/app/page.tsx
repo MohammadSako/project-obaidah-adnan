@@ -41,7 +41,7 @@ export default async function Home() {
       {brandData.length > 0 && <OurBrands data={brandData} />}
       {newArrivals.length > 0 && <NewArrivals data={newArrivals} />}
       {advertismentData.length > 0 && <Advertisement data={advertismentData} />}
-      {/* <Categories /> */}
+      <Categories />
       {/* <MediaHub /> */}
       {/* <Testimonials /> */}
       {/* <Logos /> */}

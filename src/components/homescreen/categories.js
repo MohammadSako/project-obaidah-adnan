@@ -8,22 +8,28 @@ import * as React from "react";
 export function Categories() {
   const Images = [
     {
-      src: "/c3.jpg",
+      src: "/3.avif",
       alt: "product 1",
       description: "Men",
       url: "/categories/men/clothing",
     },
     {
-      src: "/c2.jpg",
+      src: "/4.avif",
       alt: "product 2",
       description: "Women",
       url: "/categories/women/clothing",
     },
     {
-      src: "/c1.jpg",
+      src: "/1.avif",
       alt: "product 3",
       description: "Men Shoes",
       url: "/categories/men/shoes",
+    },
+    {
+      src: "/2.avif",
+      alt: "product 3",
+      description: "Women Shoes",
+      url: "/categories/women/shoes",
     },
   ];
 
@@ -43,19 +49,19 @@ export function Categories() {
                 Explore Popular Categories
               </h1>
             </div>
-            <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+            <div className="mt-6 space-y-12 lg:grid lg:grid-cols-4 lg:gap-x-6 lg:space-y-0">
               {Images.map((categ, index) => (
                 <Link key={index} href={categ.url}>
                   <div key={index} className="group relative mt-6">
-                    <div className="relative h-80 w-full overflow-hidden shadow-lg rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
+                    <div className="relative w-full overflow-hidden shadow-lg rounded-full bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75">
                       <Image
                         src={categ.src}
                         style={{
                           width: "100%",
                           height: "auto",
                         }}
-                        width={200}
-                        height={200}
+                        width={100}
+                        height={100}
                         alt={categ.alt}
                       />
                     </div>

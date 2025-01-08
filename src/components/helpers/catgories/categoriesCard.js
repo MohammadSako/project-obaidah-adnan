@@ -19,10 +19,10 @@ function CategoriesCard({
   return (
     <div>
       <div key={id} className="group relative">
-        <h2 className="text-3xl text-gray-700 font-sans font-light my-6 text-center">
+        <h2 className="mt-10 text-4xl sm:text-3xl sm:w-[200px] h-[80px] text-gray-700 font-sans font-light text-center">
           {title}
         </h2>
-        <div className="md:block flex flex-row gap-8">
+        <div className="md:block flex flex-col gap-8 sm:w-[200px]">
           {!price && (
             <Link href={url}>
               <CardImage image={image} />
