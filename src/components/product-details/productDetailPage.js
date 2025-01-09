@@ -6,6 +6,7 @@ import { ToastAction } from "@/components/UI/toast";
 import { useRouter } from "next/navigation";
 import { useItemStore } from "@/lib/store";
 import Image from "next/image";
+import { TbHeart, TbHeartFilled } from "react-icons/tb";
 
 function ProductDetailPage({ products }) {
   const { toast } = useToast();
@@ -13,7 +14,8 @@ function ProductDetailPage({ products }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
 
-  const { id, title, description, image, price, color, size, alt } = products;
+  const { id, title, description, image, price, color, size, alt, details } =
+    products;
 
   useEffect(() => {
     setIsFavorite(favorite.some((item) => item.id === id));
@@ -31,17 +33,28 @@ function ProductDetailPage({ products }) {
   );
 
   const addToCartHandler = useCallback(() => {
-    addItem({ id, title, description, image, price, color });
+    addItem({ id, title, description, image, price, details, color });
     showToast(
       "has been Added to your bag",
       <ToastAction altText="Go to bag" onClick={() => router.push("/cart")}>
         Go to bag
       </ToastAction>
     );
-  }, [addItem, id, title, description, image, price, color, showToast, router]);
+  }, [
+    addItem,
+    id,
+    title,
+    description,
+    image,
+    price,
+    details,
+    color,
+    showToast,
+    router,
+  ]);
 
   const addToFavoriteHandler = useCallback(() => {
-    addFavorite({ id, title, description, image, price, color });
+    addFavorite({ id, title, description, image, price, details, color });
     showToast(
       "has been Added to your Favorite's",
       <ToastAction
@@ -59,6 +72,7 @@ function ProductDetailPage({ products }) {
     image,
     price,
     color,
+    details,
     showToast,
     router,
   ]);
@@ -69,75 +83,98 @@ function ProductDetailPage({ products }) {
   }, [removeFavorite, id, showToast]);
 
   return (
-    <div className="bg-white mx-10 min-h-screen">
-      <div className="pt-6">
-        <div className="px-4 pb-16 pt-10 sm:px-6 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-          <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-            {image ? (
-              <Image
-                src={image}
-                alt={alt || "Product Image"}
-                width={300}
-                height={200}
-                className="rounded-lg"
-                style={{ width: "auto", height: "auto", objectFit: "cover" }}
-              />
-            ) : (
-              <p className="text-gray-500">No image available.</p>
-            )}
-          </div>
-
-          <div className="mt-6">
-            <div className="flex justify-between">
-              <h1 className="text-2xl text-gray-900">{title || "No Title"}</h1>
-              <p className="text-3xl font-bold text-gray-900">
-                <span className="text-lg">JD</span> {price || "N/A"}
-              </p>
+    <main className="sm:flex flex-col sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8  mb-20 p-10">
+      <div className="bg-white mx-10 shadow-md p-4">
+        <div className="pt-6">
+          <div className="px-4 flex md:flex-row flex-col gap-4 ">
+            <div className="basis-1/2 lg:col-span-2 lg:pr-8">
+              {image ? (
+                <>
+                  <div className="relative bg-white">
+                    <div className="absolute z-50 cursor-pointer right-3 text-xl text-black bg-white rounded-full w-7 h-7">
+                      <div className="flex flex-row space-x-6">
+                        {isFavorite ? (
+                          <TbHeartFilled
+                            title="Remove from favorite"
+                            size={30}
+                            onClick={removeFromFavoriteHandler}
+                            className="mt-2 text-lg font-sans tracking-wide text-red-500 hover:text-red-400"
+                          />
+                        ) : (
+                          <TbHeart
+                            title="Add to favorite"
+                            size={30}
+                            onClick={addToFavoriteHandler}
+                            className="mt-2 text-lg font-sans tracking-wide text-red-500 hover:text-red-500"
+                          />
+                        )}
+                      </div>
+                    </div>
+                    <Image
+                      src={image}
+                      alt={alt || "Product Image"}
+                      width={400}
+                      height={400}
+                      style={{
+                        objectFit: "cover",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  </div>
+                </>
+              ) : (
+                <p className="text-gray-500">No image available.</p>
+              )}
             </div>
 
-            <h4 className="text-lg text-gray-500 mt-2">{description}</h4>
-
-            <div className="mt-2">
+            <div className="basis-1/2 space-y-4">
               <div className="flex justify-between">
-                <h3 className="text-xl font-bold text-gray-600">Color</h3>
-                <h4 className="text-xl font-medium text-gray-800">
-                  {color || "N/A"}
-                </h4>
+                <h1 className="sm:text-4xl text-4xl font-bold text-gray-900 capitalize">
+                  {title || "No Title"}
+                </h1>
               </div>
-            </div>
 
-            <div className="mt-2">
-              <div className="flex justify-between">
-                <h3 className="text-xl font-bold text-gray-600">Size</h3>
-                <h4 className="text-xl font-medium text-gray-800">
-                  {size || "N/A"}
-                </h4>
+              <h4 className="text-2xl text-gray-500 mt-2">{details}</h4>
+              <h4 className="text-lg text-gray-500 mt-2">{description}</h4>
+
+              <div className="">
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-xl text-gray-800">Color</h3>
+                  <h4 className="w-fit text-xl font-medium text-gray-800  border rounded-md px-2 capitalize">
+                    {color || "N/A"}
+                  </h4>
+                </div>
               </div>
+              <div className="">
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-xl text-gray-800">Size</h3>
+                  <h4 className="w-fit text-xl text-gray-500 border rounded-md px-4">
+                    {size || "N/A"}
+                  </h4>
+                </div>
+              </div>
+              <div className="">
+                <div className="flex flex-col gap-1">
+                  <p className="text-3xl font-bold text-red-600">
+                    <span className="text-lg text-red-600">JD</span>
+                    {price || "N/A"}
+                  </p>
+                </div>
+              </div>
+              <div className="border-t border-gray-400" />
+
+              <button
+                onClick={addToCartHandler}
+                className="mt-6 w-full h-10 px-8 text-lg font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
+              >
+                Add to bag
+              </button>
             </div>
-
-            <button
-              onClick={addToCartHandler}
-              className="mt-10 w-full py-3 px-8 text-lg font-bold text-white bg-blue-600 rounded-full hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
-            >
-              Add to bag
-            </button>
-
-            <button
-              onClick={
-                isFavorite ? removeFromFavoriteHandler : addToFavoriteHandler
-              }
-              className={`mt-4 w-full py-3 px-8 text-lg font-bold text-white rounded-full focus:ring-2 ${
-                isFavorite
-                  ? "bg-red-500 hover:bg-red-700 focus:ring-red-500"
-                  : "bg-red-600 hover:bg-red-700 focus:ring-red-500"
-              }`}
-            >
-              {isFavorite ? "Remove from favorite" : "Add to favorite"}
-            </button>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 

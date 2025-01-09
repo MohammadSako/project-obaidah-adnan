@@ -62,7 +62,7 @@ export default function CategoriesPage({ data }) {
   return (
     <>
       <Suspense fallback={<CardImagesSkeleton />}>
-        <main className="flex min-h-screen flex-col items-center mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <main className="sm:flex min-h-screen flex-col items-center sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="bg-white">
             <div className="mx-auto px-4 sm:py-4 lg:max-w-7xl">
               {products[0]?.price ? (

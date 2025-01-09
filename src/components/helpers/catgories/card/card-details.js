@@ -95,11 +95,11 @@ export function CardDetails({
   return (
     <>
       <Link href={`/${url}`}>
-        <div className="aspect-h-1 aspect-w-1 md:w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 shadow-lg">
+        <div className="aspect-h-1 aspect-w-1 md:w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 sm:shadow-lg">
           <Image
             src={image}
             alt={alt}
-            style={{ width: "auto", height: "auto", objectFit: "cover" }}
+            style={{ width: 400, height: "auto", objectFit: "fill" }}
             width={200}
             height={200}
           />
@@ -108,15 +108,15 @@ export function CardDetails({
 
       <div className="mt-4 flex md:flex-row flex-col justify-between">
         <div className="basis-2/3">
-          <p className="text-lg text-gray-700 font-semibold">{title}</p>
-          <p className="text-md text-gray-700 w-auto">{description}</p>
-          <p className="mt-1 text-sm text-gray-500">{color}</p>
+          <p className="sm:text-lg text-5xl text-gray-700 font-semibold">{title}</p>
+          <p className="sm:text-lg text-3xl text-gray-700 w-auto">{description}</p>
+          <p className="mt-1 sm:text-lg text-2xl text-gray-500">{color}</p>
         </div>
 
-        <div className="basis-1/3 bg-yellow-400 p-2 w-16 h-[45px] text-center my-4 shadow-lg">
-          <p className="text-lg font-medium text-gray-900">
+        <div className="basis-1/3 bg-yellow-400 p-2 sm:w-16 w-40 h-[45px] text-center my-4 shadow-lg">
+          <p className="sm:text-lg text-3xl  font-medium text-gray-900">
             <span className="font-semibold text-red-700">{price}</span>{" "}
-            <span className="text-xs -mt-2">JD</span>
+            <span className="sm:text-lg text-3xl -mt-2">JD</span>
           </p>
         </div>
       </div>
@@ -124,7 +124,7 @@ export function CardDetails({
       <div className="flex flex-row space-x-6">
         <TbShoppingBagPlus
           title="Add to bag"
-          size={30}
+          size={40}
           onClick={addToCartHandler}
           className={`${iconStyles} ${
             isFavorite
@@ -135,7 +135,7 @@ export function CardDetails({
         {isFavorite ? (
           <TbHeartFilled
             title="Remove from favorite"
-            size={30}
+            size={40}
             onClick={() => removeFavorite(id)}
             className={`${iconStyles} ${
               isFavorite
@@ -146,7 +146,7 @@ export function CardDetails({
         ) : (
           <TbHeart
             title="Add to favorite"
-            size={30}
+            size={40}
             onClick={addToFavorite}
             className={`${iconStyles} ${
               isFavorite
