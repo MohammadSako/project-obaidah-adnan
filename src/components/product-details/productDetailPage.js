@@ -91,21 +91,21 @@ function ProductDetailPage({ products }) {
               {image ? (
                 <>
                   <div className="relative bg-white">
-                    <div className="absolute z-50 cursor-pointer right-3 text-xl text-black bg-white rounded-full w-7 h-7">
+                    <div className="absolute z-50 cursor-pointer right-2 top-2 text-xl text-black bg-white rounded-full w-8 h-8">
                       <div className="flex flex-row space-x-6">
                         {isFavorite ? (
                           <TbHeartFilled
                             title="Remove from favorite"
-                            size={30}
+                            size={26}
                             onClick={removeFromFavoriteHandler}
-                            className="mt-2 text-lg font-sans tracking-wide text-red-500 hover:text-red-400"
+                            className="mx-auto mt-1 text-lg font-sans tracking-wide text-red-500 hover:text-red-400"
                           />
                         ) : (
                           <TbHeart
                             title="Add to favorite"
-                            size={30}
+                            size={26}
                             onClick={addToFavoriteHandler}
-                            className="mt-2 text-lg font-sans tracking-wide text-red-500 hover:text-red-500"
+                            className="mx-auto mt-1 text-lg font-sans tracking-wide text-red-500 hover:text-red-500"
                           />
                         )}
                       </div>

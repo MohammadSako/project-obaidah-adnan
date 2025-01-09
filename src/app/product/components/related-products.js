@@ -1,10 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Carousel, CarouselContent, CarouselItem } from "../UI/carousel";
-import ProductCard from "../categories/productCard";
+import { Carousel, CarouselContent, CarouselItem } from "../../../components/UI/carousel";
+import RelatedCard from "./related-card";
 import Autoplay from "embla-carousel-autoplay";
 
 function RelatedProducts({ data }) {
+ 
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -32,7 +33,7 @@ function RelatedProducts({ data }) {
                 <CarouselContent>
                   {data.map((product) => (
                     <CarouselItem className="max-w-fit" key={product.id}>
-                      <ProductCard
+                      <RelatedCard
                         key={product.id}
                         id={product.id}
                         title={product.title}
