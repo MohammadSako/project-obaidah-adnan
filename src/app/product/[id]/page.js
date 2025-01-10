@@ -14,7 +14,7 @@ function ProductDetails() {
   useEffect(() => {
     async function getDetails() {
       const { product } = await getProductByPathname(path);
-      const value = product[0].gender;
+      const value = product[0].type;
       const response = await searchedProducts([value]);
       setproducts(product[0]);
       setRelated(response.combinedResults);

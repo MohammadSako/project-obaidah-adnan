@@ -139,7 +139,7 @@ export async function searchedProducts(values) {
     const itemDetails = await prisma.itemDetail.findMany({
       where: {
         OR: values.map((value) => ({
-          title: {
+          type: {
             contains: value,
             mode: "insensitive",
           },

@@ -14,8 +14,19 @@ function ProductDetailPage({ products }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
 
-  const { id, title, description, image, price, color, size, alt, details } =
-    products;
+  const {
+    id,
+    title,
+    description,
+    image,
+    price,
+    color,
+    size,
+    alt,
+    details,
+    gender,
+    type,
+  } = products;
 
   useEffect(() => {
     setIsFavorite(favorite.some((item) => item.id === id));
@@ -33,7 +44,17 @@ function ProductDetailPage({ products }) {
   );
 
   const addToCartHandler = useCallback(() => {
-    addItem({ id, title, description, image, price, details, color });
+    addItem({
+      id,
+      title,
+      description,
+      image,
+      price,
+      details,
+      color,
+      gender,
+      type,
+    });
     showToast(
       "has been Added to your bag",
       <ToastAction altText="Go to bag" onClick={() => router.push("/cart")}>
@@ -51,10 +72,22 @@ function ProductDetailPage({ products }) {
     color,
     showToast,
     router,
+    gender,
+    type,
   ]);
 
   const addToFavoriteHandler = useCallback(() => {
-    addFavorite({ id, title, description, image, price, details, color });
+    addFavorite({
+      id,
+      title,
+      description,
+      image,
+      price,
+      details,
+      color,
+      gender,
+      type,
+    });
     showToast(
       "has been Added to your Favorite's",
       <ToastAction
@@ -75,6 +108,8 @@ function ProductDetailPage({ products }) {
     details,
     showToast,
     router,
+    gender,
+    type,
   ]);
 
   const removeFromFavoriteHandler = useCallback(() => {
@@ -137,11 +172,14 @@ function ProductDetailPage({ products }) {
 
               <h4 className="text-2xl text-gray-500 mt-2">{details}</h4>
               <h4 className="text-lg text-gray-500 mt-2">{description}</h4>
+              <h4 className="text-lg text-gray-500 mt-2">
+                <span className="capitalize">{type}</span> for {gender}
+              </h4>
 
               <div className="">
                 <div className="flex flex-col gap-1">
                   <h3 className="text-xl text-gray-800">Color</h3>
-                  <h4 className="w-fit text-xl font-medium text-gray-800  border rounded-md px-2 capitalize">
+                  <h4 className="w-fit text-xl font-medium text-gray-600 border-gray-800 border rounded-md px-4 py-1 capitalize">
                     {color || "N/A"}
                   </h4>
                 </div>
@@ -149,15 +187,15 @@ function ProductDetailPage({ products }) {
               <div className="">
                 <div className="flex flex-col gap-1">
                   <h3 className="text-xl text-gray-800">Size</h3>
-                  <h4 className="w-fit text-xl text-gray-500 border rounded-md px-4">
+                  <h4 className="w-fit text-xl text-gray-600 border-gray-800 border rounded-md px-4 py-1 ">
                     {size || "N/A"}
                   </h4>
                 </div>
               </div>
               <div className="">
-                <div className="flex flex-col gap-1">
-                  <p className="text-3xl font-bold text-red-600">
-                    <span className="text-lg text-red-600">JD</span>
+                <div className="flex flex-col gap-1 text-end">
+                  <p className="text-4xl font-bold text-red-600">
+                    <span className="text-2xl text-red-600">JD </span>
                     {price || "N/A"}
                   </p>
                 </div>

@@ -9,6 +9,7 @@ import { Suspense, useEffect, useState } from "react";
 
 export default function CategoriesPage({ data }) {
   const [products, setProducts] = useState([]);
+  const [title, setTitle] = useState("");
   const pathname = usePathname();
 
   useEffect(() => {
@@ -41,17 +42,22 @@ export default function CategoriesPage({ data }) {
         setProducts(data[3].SubCategory[0].items);
         break;
       default:
+        getProducts();
         break;
     }
 
-    const segments = pathname.split("/").filter(Boolean);
+    function getProducts() {
+      const parts = pathname.split("/");
+      const lastPart = parts[parts.length - 1];
 
-    if (segments[4]) {
-      async function getProducts() {
-        const { productByItemId } = await getProductByItemId(segments[4]);
-        setProducts(productByItemId[0].item_detail);
+      if (lastPart) {
+        async function getProducts() {
+          const { productByItemId } = await getProductByItemId(lastPart);
+          setProducts(productByItemId[0].item_detail);
+          setTitle(productByItemId[0].title);
+        }
+        getProducts();
       }
-      getProducts();
     }
   }, [pathname, data]);
 
@@ -65,6 +71,7 @@ export default function CategoriesPage({ data }) {
         <main className="sm:flex min-h-screen flex-col items-center sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="bg-white">
             <div className="mx-auto px-4 sm:py-4 lg:max-w-7xl">
+            <p className="text-3xl text-center my-4 text-gray-600">{title}</p>
               {products[0]?.price ? (
                 <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-5">
                   {products.map((product) => (
