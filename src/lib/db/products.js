@@ -139,7 +139,7 @@ export async function searchedProducts(values) {
     const itemDetails = await prisma.itemDetail.findMany({
       where: {
         OR: values.map((value) => ({
-          type: {
+          title: {
             contains: value,
             mode: "insensitive",
           },
@@ -166,6 +166,35 @@ export async function searchedProducts(values) {
       //   ...item,
       //   source: "Item",
       // })),
+    ];
+    return { combinedResults };
+  } catch (error) {
+    console.error("Error while searching in products:", error);
+    return { error };
+  }
+}
+
+//Get Product by "searchedRelatedProducts" Value
+export async function searchedRelatedProducts(values) {
+  if (!Array.isArray(values) || values.length === 0) {
+    throw new Error("Please provide an array of search terms.");
+  }
+  try {
+    const itemDetails = await prisma.itemDetail.findMany({
+      where: {
+        OR: values.map((value) => ({
+          type: {
+            contains: value,
+            mode: "insensitive",
+          },
+        })),
+      },
+    });
+    const combinedResults = [
+      ...itemDetails.map((detail) => ({
+        ...detail,
+        source: "ItemDetail",
+      })),
     ];
     return { combinedResults };
   } catch (error) {

@@ -12,6 +12,7 @@ export default function SearchResult() {
   const [products, setProducts] = useState([]);
   const query = searchParams.get("q");
   const output = query?.replace("&", "").trim();
+  console.log("TTTTTTTTTT", products);
 
   useEffect(() => {
     async function Search() {
@@ -40,7 +41,7 @@ export default function SearchResult() {
                   <div className="flex flex-row items-center text-sm text-gray-700 space-x-1 cursor-pointer border-gray-700 w-fit border px-3 py-1 rounded-2xl">
                     {products.length} products
                   </div>
-                  
+
                   {/* gray line */}
                   <div className="flex-grow border-t border-gray-200 mt-10" />
 

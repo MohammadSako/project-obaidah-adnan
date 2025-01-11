@@ -93,9 +93,9 @@ export function CardDetails({
   ]);
 
   return (
-    <>
+    <div className="sm:shadow-none sm:p-0 rounded-lg shadow-lg p-4">
       <Link href={`/${url}`}>
-        <div className="aspect-h-1 aspect-w-1 md:w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 sm:shadow-lg">
+        <div className="p-4 aspect-h-1 aspect-w-1 md:w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75">
           <Image
             src={image}
             alt={alt}
@@ -108,7 +108,7 @@ export function CardDetails({
 
       <div className="mt-4 flex md:flex-row flex-col justify-between">
         <div className="basis-2/3">
-          <p className="sm:text-lg text-5xl text-gray-700 font-semibold">{title}</p>
+          {/* <p className="sm:text-lg text-5xl text-gray-700 font-semibold">{title}</p> */}
           <p className="sm:text-lg text-3xl text-gray-700 w-auto">{description}</p>
           <p className="mt-1 sm:text-lg text-2xl text-gray-500">{color}</p>
         </div>
@@ -124,7 +124,7 @@ export function CardDetails({
       <div className="flex flex-row space-x-6">
         <TbShoppingBagPlus
           title="Add to bag"
-          size={40}
+          size={35}
           onClick={addToCartHandler}
           className={`${iconStyles} ${
             isFavorite
@@ -135,7 +135,7 @@ export function CardDetails({
         {isFavorite ? (
           <TbHeartFilled
             title="Remove from favorite"
-            size={40}
+            size={35}
             onClick={() => removeFavorite(id)}
             className={`${iconStyles} ${
               isFavorite
@@ -146,7 +146,7 @@ export function CardDetails({
         ) : (
           <TbHeart
             title="Add to favorite"
-            size={40}
+            size={35}
             onClick={addToFavorite}
             className={`${iconStyles} ${
               isFavorite
@@ -156,6 +156,6 @@ export function CardDetails({
           />
         )}
       </div>
-    </>
+    </div>
   );
 }

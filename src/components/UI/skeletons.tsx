@@ -48,6 +48,26 @@ export function CardImagesSkeleton() {
     </main>
   );
 }
+export function ProductDetailsSkeleton() {
+  return (
+    <main className="animate-pulse container flex mx-auto mt-8">
+      <div className=" flex flex-row h-[500px] sm:w-[1100px] w-80 mx-auto rounded-md bg-gray-100 shadow-lg">
+        <div className="basis-1/2 p-6">
+          <div className="h-[450px] w-[500px] bg-gray-200"></div>
+        </div>
+        <div className="basis-1/2 flex flex-col p-6 gap-10">
+          <div className="h-[40px] w-[200px] rounded-lg bg-gray-200" />
+          <div className="h-[20px] w-[70px] rounded-lg bg-gray-200" />
+          <div className="h-[20px] w-[150px] rounded-lg bg-gray-200" />
+          <div className="h-[20px] w-[200px] rounded-lg bg-gray-200" />
+          <div className="h-[40px] w-[100px] rounded-lg bg-gray-200" />
+          <div className="h-[40px] w-[100px] rounded-lg bg-gray-200" />
+          <div className="h-[40px] w-[400px] rounded-full bg-gray-200" />
+        </div>
+      </div>
+    </main>
+  );
+}
 
 export function TableSkeleton() {
   return (

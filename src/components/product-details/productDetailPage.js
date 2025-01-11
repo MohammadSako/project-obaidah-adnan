@@ -118,8 +118,8 @@ function ProductDetailPage({ products }) {
   }, [removeFavorite, id, showToast]);
 
   return (
-    <main className="sm:flex flex-col sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8  mb-20 p-10">
-      <div className="bg-white mx-10 shadow-md p-4">
+    <main className="sm:flex flex-col shadow-md sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mb-20 p-10">
+      <div className="bg-white">
         <div className="pt-6">
           <div className="px-4 flex md:flex-row flex-col gap-4 ">
             <div className="basis-1/2 lg:col-span-2 lg:pr-8">

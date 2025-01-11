@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import ProductDetailPage from "../../../components/product-details/productDetailPage";
-import { getProductByPathname, searchedProducts } from "@/lib/db/products";
+import { getProductByPathname, searchedRelatedProducts } from "@/lib/db/products";
 import NotFound from "@/app/not-found";
 import RelatedProducts from "../components/related-products";
+import { ProductDetailsSkeleton } from "@/components/UI/skeletons";
 
 function ProductDetails() {
   const [products, setproducts] = useState([]);
@@ -15,7 +16,7 @@ function ProductDetails() {
     async function getDetails() {
       const { product } = await getProductByPathname(path);
       const value = product[0].type;
-      const response = await searchedProducts([value]);
+      const response = await searchedRelatedProducts([value]);
       setproducts(product[0]);
       setRelated(response.combinedResults);
     }
@@ -28,7 +29,9 @@ function ProductDetails() {
 
   return (
     <>
-      <ProductDetailPage products={products} />
+      <Suspense fallback={<ProductDetailsSkeleton />}>
+        <ProductDetailPage products={products} />
+      </Suspense>
       {related.length > 0 && <RelatedProducts data={related} />}
     </>
   );
