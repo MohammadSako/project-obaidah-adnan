@@ -19,7 +19,7 @@ export function Landing({ data }) {
       className="flex-col items-center gap-4 w-full overflow-hidden origin-center sm:block hidden"
     >
       <div className="flex items-center justify-center">
-        <div className="overflow-hidden w-full max-w-7xl" ref={emblaRef}>
+        <div className="w-full max-w-7xl" ref={emblaRef}>
           <div className="flex">
             {data.map((product, index) => (
               <div
@@ -28,8 +28,8 @@ export function Landing({ data }) {
               >
                 <Image
                   src={product.image}
-                  width={1500}
-                  height={1000}
+                  width={1200}
+                  height={500}
                   alt="Picture of the author"
                 />
               </div>
