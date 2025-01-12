@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FaRegCopyright } from "react-icons/fa6";
@@ -12,6 +14,7 @@ import BrandName from "../helpers/navbar helpers/brand-name";
 import Languages from "../helpers/navbar helpers/languages";
 import Cart from "../cart/cartDrawer/cart";
 import Favorite from "../favorite/favorite";
+import { usePathname } from "next/navigation";
 
 const navigation = [
   { name: "Men's Clothing", href: "/categories/men/clothing", current: false },
@@ -46,7 +49,7 @@ const FirstNav = () => {
       <div>
         <BrandName />
       </div>
-      <div className="hidden sm:block grow mx-4">
+      <div className="sm:block grow mx-4">
         <Search />
       </div>
       <div>
@@ -102,28 +105,58 @@ const SecondNav = () => {
   );
 };
 
+// const MobileNav = () => {
+//   return (
+//     <DisclosurePanel className="sm:hidden">
+//       <div className="space-y-1 px-2">
+//         <NavMenu />
+//         {navigation.map((item) => (
+//           <Link key={item.name} href={item.href}>
+//             <DisclosureButton
+//               as="a"
+//               aria-current={item.current ? "page" : undefined}
+//               className={classNames(
+//                 item.current
+//                   ? "bg-gray-900 text-white"
+//                   : "text-gray-500 hover:bg-gray-700 hover:text-white",
+//                 "block rounded-md px-3 py-2 text-xl font-medium"
+//               )}
+//             >
+//               {item.name}
+//             </DisclosureButton>
+//           </Link>
+//         ))}
+//       </div>
+//     </DisclosurePanel>
+//   );
+// };
 const MobileNav = () => {
+  const pathname = usePathname();  // Get the current pathname
+  const pathSegments = pathname.split("/").filter((segment) => segment);
+  const selectedPath = "/" + pathSegments.slice(0, 3).join("/");  // Get the first 3 segments of the path
+  
   return (
     <DisclosurePanel className="sm:hidden">
-      <div className="space-y-1 px-2 pb-3 pt-2">
-        <Search />
-        <NavMenu />
-        {navigation.map((item) => (
-          <Link key={item.name} href={item.href}>
-            <DisclosureButton
-              as="a"
-              aria-current={item.current ? "page" : undefined}
-              className={classNames(
-                item.current
-                  ? "bg-gray-900 text-white"
-                  : "text-gray-500 hover:bg-gray-700 hover:text-white",
-                "block rounded-md px-3 py-2 text-xl font-medium"
-              )}
-            >
-              {item.name}
-            </DisclosureButton>
-          </Link>
-        ))}
+      <div className="space-y-1 px-2">
+        {navigation.map((item) => {
+          const isActive = selectedPath === item.href;  // Check if the item's href matches the current path
+          return (
+            <Link key={item.name} href={item.href}>
+              <DisclosureButton
+                as="a"
+                aria-current={isActive ? "page" : undefined}
+                className={classNames(
+                  isActive
+                    ? "bg-gray-100 text-gray-900"  // Active item styles
+                    : "text-gray-500 hover:bg-gray-700 hover:text-white",  // Inactive item styles
+                  "block rounded-md px-3 py-2 text-xl font-medium"
+                )}
+              >
+                {item.name}
+              </DisclosureButton>
+            </Link>
+          );
+        })}
       </div>
     </DisclosurePanel>
   );

@@ -93,7 +93,7 @@ export function CardDetails({
   ]);
 
   return (
-    <div className="sm:shadow-none sm:p-0 rounded-lg shadow-lg p-4">
+    <div className="sm:shadow-none sm:p-0 rounded-lg shadow-lg p-4 space-y-2">
       <Link href={`/${url}`}>
         <div className="p-4 aspect-h-1 aspect-w-1 md:w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75">
           <Image
@@ -106,17 +106,17 @@ export function CardDetails({
         </div>
       </Link>
 
-      <div className="mt-4 flex md:flex-row flex-col justify-between">
+      <div className="mt-4 flex md:flex-row flex-col sm:justify-between space-y-7">
         <div className="basis-2/3">
           {/* <p className="sm:text-lg text-5xl text-gray-700 font-semibold">{title}</p> */}
           <p className="sm:text-lg text-3xl text-gray-700 w-auto">{description}</p>
           <p className="mt-1 sm:text-lg text-2xl text-gray-500">{color}</p>
         </div>
 
-        <div className="basis-1/3 bg-yellow-400 p-2 sm:w-16 w-40 h-[45px] text-center my-4 shadow-lg">
-          <p className="sm:text-lg text-3xl  font-medium text-gray-900">
+        <div className="basis-1/3 bg-yellow-400 sm:w-16 w-24 sm:h-[32px] text-center shadow-lg">
+          <p className="sm:text-2xl text-3xl font-medium text-gray-900">
+            <span className="sm:text-lg text-xl">JD</span>
             <span className="font-semibold text-red-700">{price}</span>{" "}
-            <span className="sm:text-lg text-3xl -mt-2">JD</span>
           </p>
         </div>
       </div>

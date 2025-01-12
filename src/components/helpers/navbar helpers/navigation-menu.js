@@ -20,7 +20,9 @@ import { useEffect, useState } from "react";
 export function NavMenu() {
   const pathname = usePathname();
   const [allCategory, setAllCategory] = useState([]);
-
+  const pathSegments = pathname.split("/").filter((segment) => segment);
+  const selectedPath = "/" + pathSegments.slice(0, 3).join("/");
+  
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -34,9 +36,6 @@ export function NavMenu() {
     fetchCategories();
   }, []);
 
-  //to highlight the NavLink when categories has changed
-  const pathSegments = pathname.split("/").filter((segment) => segment);
-  const selectedPath = "/" + pathSegments.slice(0, 3).join("/");
 
   return (
     <Menubar className="border-none">

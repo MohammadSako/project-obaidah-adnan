@@ -161,9 +161,7 @@ export function DataTable({ data }: DataTableProps) {
       // from ChatGpt
       cell: ({ row }) => {
         const category = row.getValue("category");
-
         let categoryLabel: string;
-
         switch (category) {
           case 1:
             categoryLabel = "men T-Shirts";

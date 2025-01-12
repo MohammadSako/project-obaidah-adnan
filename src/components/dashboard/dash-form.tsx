@@ -83,8 +83,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   const [genderType, setGenderType] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
-  const [uploadedImageError, setUploadedImageError] = useState(false);
-
+  const [uploadedImageError, setUploadedImageError] = useState(true);
   const [image, setImage] = useState<File | null>(null); // Store the image file
   const [imagePreview, setImagePreview] = useState(""); // Store the preview of the image
   const [isUploading, setIsUploading] = useState(false); // Track upload state
@@ -135,6 +134,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   const removeImageHandler = () => {
     setImage(null);
     setImagePreview("");
+    setUploadedImageError(true);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -508,8 +508,13 @@ export function DashForm({ onAddProduct }: AddFormProps) {
               </div>
             </div>
             <button
+              disabled={uploadedImageError}
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className={`font-bold py-2 px-4 rounded ${
+                uploadedImageError
+                  ? "bg-blue-300 text-white cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-600 text-white shadow-md"
+              }`}
             >
               Add Product
             </button>
