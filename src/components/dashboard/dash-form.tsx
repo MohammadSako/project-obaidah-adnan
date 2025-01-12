@@ -36,9 +36,10 @@ import {
 import { supabase } from "@/lib/supabase";
 import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
+
 const formSchema = z.object({
   dashboardtype: z.string().min(1, {
-    message: "Username must be at least 2 characters.",
+    message: "Please select the product dashboard type.",
   }),
   title: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -51,13 +52,13 @@ const formSchema = z.object({
   }),
   size: z.string().min(1, { message: "Please select the product size." }),
   gender: z.string().min(1, {
-    message: "Username must be at least 2 characters.",
+    message: "Please select the product gender.",
   }),
   type: z.string().min(1, {
-    message: "Username must be at least 2 characters.",
+    message: "Please select the product type.",
   }),
   category: z.string().min(1, {
-    message: "Username must be at least 2 characters.",
+    message: "Please select the product category.",
   }),
   description: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -181,10 +182,10 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         type: values.type,
         dashboardtype: values.dashboardtype,
         image: image,
-        imageid: image_id, //we usa this to delete the image
-        category: values.category, //we usa this to refrence to item table
+        imageid: image_id,
+        category: values.category,
         alt: values.title,
-        url: `product/${uuid}`, //we usa this for product detail url
+        url: `product/${uuid}`,
       };
       if (!imagePreview && !uploadedImageUrl) {
         setUploadedImageError(true);

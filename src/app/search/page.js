@@ -12,7 +12,6 @@ export default function SearchResult() {
   const [products, setProducts] = useState([]);
   const query = searchParams.get("q");
   const output = query?.replace("&", "").trim();
-  console.log("TTTTTTTTTT", products);
 
   useEffect(() => {
     async function Search() {

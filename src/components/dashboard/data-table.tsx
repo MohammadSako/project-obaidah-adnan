@@ -154,9 +154,122 @@ export function DataTable({ data }: DataTableProps) {
           </Button>
         );
       },
-      cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("category")}</div>
-      ),
+      // cell: ({ row }) => (
+      //   <div className="capitalize">{row.getValue("category")}</div>
+      // ),
+
+      // from ChatGpt
+      cell: ({ row }) => {
+        const category = row.getValue("category");
+
+        let categoryLabel: string;
+
+        switch (category) {
+          case 1:
+            categoryLabel = "men T-Shirts";
+            break;
+          case 2:
+            categoryLabel = "Women T-Shirts";
+            break;
+          case 3:
+            categoryLabel = "Men Shirts";
+            break;
+          case 4:
+            categoryLabel = "Women Shirts";
+            break;
+          case 5:
+            categoryLabel = "Men Wool blouses";
+            break;
+          case 6:
+            categoryLabel = "Women Wool blouses";
+            break;
+          case 7:
+            categoryLabel = "Men Hats";
+            break;
+          case 8:
+            categoryLabel = "Women Hats";
+            break;
+          case 9:
+            categoryLabel = "Men Watches";
+            break;
+          case 10:
+            categoryLabel = "Women Watches";
+            break;
+          case 11:
+            categoryLabel = "Men Bags";
+            break;
+          case 12:
+            categoryLabel = "Women Bags";
+            break;
+          case 13:
+            categoryLabel = "Men Jeans";
+            break;
+          case 14:
+            categoryLabel = "Women Jeans";
+            break;
+          case 15:
+            categoryLabel = "Men Pants";
+            break;
+          case 16:
+            categoryLabel = "Women Pants";
+            break;
+          case 17:
+            categoryLabel = "Men Socks";
+            break;
+          case 18:
+            categoryLabel = "Women Socks";
+            break;
+          case 19:
+            categoryLabel = "Men Belts";
+            break;
+          case 20:
+            categoryLabel = "Women Belts";
+            break;
+          case 21:
+            categoryLabel = "Men Work & Safty Shoes";
+            break;
+          case 22:
+            categoryLabel = "Men Loafers & Slip-Ons";
+            break;
+          case 23:
+            categoryLabel = "Women Loafers & Slip-Ons";
+            break;
+          case 24:
+            categoryLabel = "Men Snow Boots";
+            break;
+          case 25:
+            categoryLabel = "Women Snow Boots";
+            break;
+          case 26:
+            categoryLabel = "Men Casual Shoes";
+            break;
+          case 27:
+            categoryLabel = "Men Boots";
+            break;
+          case 28:
+            categoryLabel = "Men Sandals";
+            break;
+          case 29:
+            categoryLabel = "Men Others";
+            break;
+          case 30:
+            categoryLabel = "Women Others";
+            break;
+          case 31:
+            categoryLabel = "Women Flats";
+            break;
+          case 32:
+            categoryLabel = "Women Slippers";
+            break;
+          case 33:
+            categoryLabel = "Women Sneakers";
+            break;
+          default:
+            categoryLabel = String(category); // Fallback if the category doesn't match
+            break;
+        }
+        return <div className="capitalize">{categoryLabel}</div>;
+      },
     },
     {
       accessorKey: "size",
@@ -209,9 +322,9 @@ export function DataTable({ data }: DataTableProps) {
         const amount = parseFloat(row.getValue("price"));
 
         // Format the amount as a dollar amount
-        const formatted = new Intl.NumberFormat("en-US", {
+        const formatted = new Intl.NumberFormat("en-JO", {
           style: "currency",
-          currency: "USD",
+          currency: "JOD",
         }).format(amount);
 
         return <div className="text-right font-medium">{formatted}</div>;
@@ -299,7 +412,6 @@ export function DataTable({ data }: DataTableProps) {
       rowSelection,
     },
   });
-
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
