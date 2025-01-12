@@ -196,6 +196,13 @@ const DrawerNav = ({ open, setOpen }) => {
                       ))}
                     </ul>
                   </div>
+                  <div className="relative mt-6 flex-1 px-4 sm:px-6 flex justify-end">
+                    <Link href="#">
+                      <p className="text-gray-700 hover:text-[#06b6d4] text-2xl py-1 font-bold">
+                        عربي
+                      </p>
+                    </Link>{" "}
+                  </div>
                 </div>
               </div>
             </DialogPanel>
