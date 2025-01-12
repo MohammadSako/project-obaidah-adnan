@@ -1,13 +1,9 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FaRegCopyright } from "react-icons/fa6";
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { NavMenu } from "../helpers/navbar helpers/navigation-menu";
 import Search from "../helpers/navbar helpers/search";
 import BrandName from "../helpers/navbar helpers/brand-name";
@@ -15,6 +11,14 @@ import Languages from "../helpers/navbar helpers/languages";
 import Cart from "../cart/cartDrawer/cart";
 import Favorite from "../favorite/favorite";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+  TransitionChild,
+} from "@headlessui/react";
 
 const navigation = [
   { name: "Men's Clothing", href: "/categories/men/clothing", current: false },
@@ -27,18 +31,27 @@ const navigation = [
   { name: "Women's Shoes", href: "/categories/women/shoes", current: false },
 ];
 
+const information = [
+  { title: "About us", href: "/about" },
+  { title: "Contact us", href: "/contact" },
+];
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
 export default function NavBar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <Disclosure as="nav" className="bg-white">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <FirstNav />
-        <SecondNav />
+        <SecondNav setOpen={setOpen} />
         <div className="flex-grow border-t border-gray-200" />
       </div>
-      <MobileNav />
+      {/* <MobileNav /> */}
+      <DrawerNav open={open} setOpen={setOpen} />
     </Disclosure>
   );
 }
@@ -65,23 +78,17 @@ const FirstNav = () => {
   );
 };
 
-const SecondNav = () => {
+const SecondNav = ({ setOpen }) => {
   return (
     <div className="relative flex h-16 items-center justify-between">
-      <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        {/* Mobile menu button*/}
-        <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-slate-900 hover:bg-slate-50 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-slate-900">
-          <span className="absolute -inset-0.5" />
-          <span className="sr-only">Open main menu</span>
-          <Bars3Icon
-            aria-hidden="true"
-            className="block h-6 w-6 group-data-[open]:hidden"
-          />
-          <XMarkIcon
-            aria-hidden="true"
-            className="hidden h-6 w-6 group-data-[open]:block"
-          />
-        </DisclosureButton>
+      <div className=" p-2 absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="p-2 sm:hidden text-slate-900 hover:bg-slate-50 hover:text-slate-900 focus:outline-none"
+        >
+          <Bars3Icon className="h-6 w-6" />
+        </button>
       </div>
 
       <div className="flex sm:flex-none flex-1 items-center justify-center sm:items-stretch">
@@ -105,59 +112,96 @@ const SecondNav = () => {
   );
 };
 
-// const MobileNav = () => {
-//   return (
-//     <DisclosurePanel className="sm:hidden">
-//       <div className="space-y-1 px-2">
-//         <NavMenu />
-//         {navigation.map((item) => (
-//           <Link key={item.name} href={item.href}>
-//             <DisclosureButton
-//               as="a"
-//               aria-current={item.current ? "page" : undefined}
-//               className={classNames(
-//                 item.current
-//                   ? "bg-gray-900 text-white"
-//                   : "text-gray-500 hover:bg-gray-700 hover:text-white",
-//                 "block rounded-md px-3 py-2 text-xl font-medium"
-//               )}
-//             >
-//               {item.name}
-//             </DisclosureButton>
-//           </Link>
-//         ))}
-//       </div>
-//     </DisclosurePanel>
-//   );
-// };
-const MobileNav = () => {
-  const pathname = usePathname();  // Get the current pathname
+const DrawerNav = ({ open, setOpen }) => {
+  const pathname = usePathname();
   const pathSegments = pathname.split("/").filter((segment) => segment);
-  const selectedPath = "/" + pathSegments.slice(0, 3).join("/");  // Get the first 3 segments of the path
-  
+  const selectedPath = "/" + pathSegments.slice(0, 3).join("/");
+
   return (
-    <DisclosurePanel className="sm:hidden">
-      <div className="space-y-1 px-2">
-        {navigation.map((item) => {
-          const isActive = selectedPath === item.href;  // Check if the item's href matches the current path
-          return (
-            <Link key={item.name} href={item.href}>
-              <DisclosureButton
-                as="a"
-                aria-current={isActive ? "page" : undefined}
-                className={classNames(
-                  isActive
-                    ? "bg-gray-100 text-gray-900"  // Active item styles
-                    : "text-gray-500 hover:bg-gray-700 hover:text-white",  // Inactive item styles
-                  "block rounded-md px-3 py-2 text-xl font-medium"
-                )}
-              >
-                {item.name}
-              </DisclosureButton>
-            </Link>
-          );
-        })}
+    <Dialog open={open} onClose={setOpen} className="relative z-10 sm:hidden">
+      <DialogBackdrop
+        transition
+        className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
+      />
+
+      <div className="fixed inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <DialogPanel
+              transition
+              className="pointer-events-auto relative w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
+            >
+              <TransitionChild>
+                <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 duration-500 ease-in-out data-[closed]:opacity-0 sm:-ml-10 sm:pr-4">
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                  >
+                    <span className="absolute -inset-2.5" />
+                    <span className="sr-only">Close panel</span>
+                    <XMarkIcon aria-hidden="true" className="size-6" />
+                  </button>
+                </div>
+              </TransitionChild>
+              <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                <div className="px-4 sm:px-6">
+                  <DialogTitle className="text-base font-semibold text-gray-900">
+                    <div className="flex flex-row gap-1">
+                      <Link href="/">
+                        <h1 className="text-3xl font-sans tracking-tight">
+                          OBAIDAH{" "}
+                          <span className="font-bold text-[#06b6d4]">Shop</span>
+                        </h1>
+                      </Link>
+                      <div className="mt-2">
+                        <FaRegCopyright size={10} />
+                      </div>
+                    </div>
+                  </DialogTitle>
+                </div>
+
+                <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                  {navigation.map((item) => {
+                    const isActive = selectedPath === item.href;
+                    return (
+                      <Link key={item.name} href={item.href}>
+                        <li
+                          onClick={() => setOpen(false)}
+                          as="a"
+                          aria-current={isActive ? "page" : undefined}
+                          className={classNames(
+                            isActive
+                              ? "bg-gray-100 text-gray-900" // Active item styles
+                              : "text-gray-900 hover:bg-[#06b6d4] hover:text-white", // Inactive item styles
+                            "block rounded-md px-3 py-3 text-2xl font-bold"
+                          )}
+                        >
+                          {item.name}
+                        </li>
+                      </Link>
+                    );
+                  })}
+                  <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                    <ul>
+                      {information.map((info) => (
+                        <Link key={info.title} href={info.href}>
+                          <li
+                            onClick={() => setOpen(false)}
+                            className="text-gray-700 hover:text-[#06b6d4] text-2xl py-1"
+                          >
+                            {info.title}
+                          </li>
+                        </Link>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </DialogPanel>
+          </div>
+        </div>
       </div>
-    </DisclosurePanel>
+    </Dialog>
   );
 };
