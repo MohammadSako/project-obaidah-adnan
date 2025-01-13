@@ -1,13 +1,44 @@
-"use client";
-
-import { AtSymbolIcon, KeyIcon } from "@heroicons/react/24/outline";
-import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { Button } from "./button";
-import { useFormStatus } from "react-dom";
+import {
+  AtSymbolIcon,
+  // ExclamationCircleIcon,
+  KeyIcon,
+} from "@heroicons/react/24/outline";
+// import { ArrowRightIcon } from "@heroicons/react/20/solid";
+// import { Button } from "./button";
+// import { useFormStatus } from "react-dom";
+// import Image from "next/image";
+import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+import { createClient } from "@supabase/supabase-js";
 
 export default function LoginForm() {
+  const signIn = async () => {
+    "use server";
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    ); 
+    // const origin = headers().get('origin');
+    const origin = (await headers()).get("origin");
+    const { error, data } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${origin}`,
+      },
+    });
+
+    if (error) {
+      console.log(error);
+    } else {
+      return redirect(data.url);
+    }
+  };
+
   return (
-    <form className="space-y-3 sm:shadow-md sm:shadow-[#06b6d4] sm:rounded-lg">
+    <form
+      action={signIn}
+      className="space-y-3 sm:shadow-md sm:shadow-[#06b6d4] sm:rounded-lg"
+    >
       <div className="flex-1 rounded-lg px-6 pb-4 sm:pt-8">
         <div className="w-full">
           <div>
@@ -50,7 +81,8 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <LoginButton />
+        <button>Sign in with Google</button>
+        {/* <LoginButton /> */}
         {/* <div
           className="flex h-8 items-end space-x-1"
           aria-live="polite"
@@ -68,15 +100,15 @@ export default function LoginForm() {
   );
 }
 
-function LoginButton() {
-  const { pending } = useFormStatus();
+// function LoginButton() {
+//   const { pending } = useFormStatus();
 
-  return (
-    <Button
-      className="mt-4 w-full bg-[#06b6d4] hover:bg-[#45d0e9]"
-      aria-disabled={pending}
-    >
-      Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-white" />
-    </Button>
-  );
-}
+//   return (
+//     <Button
+//       className="mt-4 w-full bg-[#06b6d4] hover:bg-[#45d0e9]"
+//       aria-disabled={pending}
+//     >
+//       Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-white" />
+//     </Button>
+//   );
+// }
