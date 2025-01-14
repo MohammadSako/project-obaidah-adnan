@@ -9,7 +9,6 @@ export default function LoginGoogle() {
       process.env.NEXT_PUBLIC_SUPABASE_URL,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     );
-    // const origin = headers().get('origin');
     const origin = (await headers()).get("origin");
     const { error, data } = await supabase.auth.signInWithOAuth({
       provider: "google",

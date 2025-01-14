@@ -3,6 +3,9 @@ const supabase = supabaseImage.slice(8);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    ppr: "incremental",
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     domains: ["tailwindui.com", "res.cloudinary.com", `${supabase}`],

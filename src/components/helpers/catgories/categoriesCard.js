@@ -19,7 +19,7 @@ function CategoriesCard({
   return (
     <div>
       <div key={id} className="group relative">
-        <h2 className="mt-20 text-4xl sm:text-2xl sm:w-[200px] my-6 text-gray-700 font-sans capitalize text-center">
+        <h2 className="mt-20 h-20 text-4xl sm:text-2xl sm:w-[200px] my-6 text-gray-700 font-sans capitalize text-center">
           {title}
         </h2>
         <div className="md:block flex flex-col gap-8 sm:w-[200px]">

@@ -1,3 +1,4 @@
+import OneTapComponent from "@/components/UI/google";
 import LoginForm from "@/components/UI/login-form";
 // import LoginGoogle from "@/components/UI/login-google";
 import { FaRegCopyright } from "react-icons/fa6";
@@ -19,6 +20,7 @@ export default function LoginPage() {
           </div>
         </div>
         <LoginForm />
+        <OneTapComponent />
         {/* <LoginGoogle /> */}
       </div>
     </main>

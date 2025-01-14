@@ -17,9 +17,14 @@ import OurBrands from "@/components/homescreen/our-brands";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import { CardSkeleton } from "@/components/UI/skeletons";
+export const experimental_ppr = true;
 
 export const metadata: Metadata = {
   title: "Obaidah Shop",
+  description:
+    "Browse & discover many of products. we ship to you. Shop top brands in clothing and more.",
+  category: "e-commerce",
+  metadataBase: new URL("https://project-obaidah-adnan.vercel.app/"),
 };
 
 export default async function Home() {

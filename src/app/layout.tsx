@@ -21,9 +21,13 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Obaidah Online Shop",
-  description: "Obaidah Adnan Online Shop",
+  title: "Obaidah Shop",
+  description:
+    "Browse & discover many of products. we ship to you. Shop top brands in clothing and more.",
+  category: "e-commerce",
+  metadataBase: new URL("https://project-obaidah-adnan.vercel.app/"),
 };
+
 
 export default function RootLayout({
   children,
