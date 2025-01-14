@@ -1,4 +1,5 @@
 import LoginForm from "@/components/UI/login-form";
+// import LoginGoogle from "@/components/UI/login-google";
 import { FaRegCopyright } from "react-icons/fa6";
 
 export default function LoginPage() {
@@ -18,6 +19,7 @@ export default function LoginPage() {
           </div>
         </div>
         <LoginForm />
+        {/* <LoginGoogle /> */}
       </div>
     </main>
   );
