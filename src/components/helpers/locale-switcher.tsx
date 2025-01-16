@@ -1,10 +1,9 @@
 "use client";
 
-// import { useChangeLocale, useCurrentLocale, useI18n } from "@/locales/client";
 import { NavLink } from "../layouts/nav-link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { useChangeLocale, useCurrentLocale, useI18n } from "@/locales/client";
+import { useChangeLocale, useCurrentLocale} from "@/locales/client";
 
 interface Props {
   className?: string;
@@ -14,7 +13,7 @@ export const LocaleSwitcher = (props: Props) => {
   const { className } = props;
   const changeLocale = useChangeLocale();
   const locale = useCurrentLocale();
-  const t = useI18n();
+  // const t = useI18n();
 
   return (
     <NavLink
