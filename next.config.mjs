@@ -3,6 +3,15 @@ const supabase = supabaseImage.slice(8);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // redirects() {
+  //   return [
+  //     {
+  //       source: "/login",
+  //       destination: "/dashboard",
+  //       permanent: false,
+  //     },
+  //   ];
+  // },
   experimental: {
     ppr: "incremental",
   },
