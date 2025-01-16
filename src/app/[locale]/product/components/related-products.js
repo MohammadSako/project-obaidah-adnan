@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Carousel, CarouselContent, CarouselItem } from "../../../components/UI/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "../../../../components/UI/carousel";
 import RelatedCard from "./related-card";
 import Autoplay from "embla-carousel-autoplay";
 

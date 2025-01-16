@@ -36,7 +36,7 @@
     "src/app/categories/men/page.js",
     "src/app/api/products.js",
     "src/lib/supabase.js",
-    "src/app/page.tsx",
+    "src/app/[locale]/page.tsx",
     "src/lib/db/products.js",
     "src/middleware.js",
     "src/lib/store.ts",
@@ -48,6 +48,6 @@
     "src/components/UI/carouselFade.js",
     "src/components/helpers/navbar helpers/navigation-menu.js",
     "src/components/helpers/navbar helpers/nav-link.js"
-, "src/lib/db/cloudinary.ts", "src/app/dashboard/components/data-table.tsx", "src/components/productDetail/productDetailPage.js", "src/app/search/page.js", "src/components/dashboard/images-list.js", "src/components/product-details/components/similar-items.js", "src/components/UI/login-form.tsx", "src/components/UI/google.ts", "src/app/f/[name]/layout.js", "src/lib/supabaseServer.js"  ],
+, "src/lib/db/cloudinary.ts", "src/app/dashboard/components/data-table.tsx", "src/components/productDetail/productDetailPage.js", "src/app/[locale]/search/page.js", "src/components/dashboard/images-list.js", "src/components/product-details/components/similar-items.js", "src/components/UI/login-form.tsx", "src/components/UI/google.ts", "src/app/f/[name]/layout.js", "src/lib/supabaseServer.js"  ],
   "exclude": ["node_modules"]
 }

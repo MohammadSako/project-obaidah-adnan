@@ -1,4 +1,4 @@
-import { OrderForm, OrderSummary } from "../../components/checkout";
+import { OrderForm, OrderSummary } from "../../../components/checkout";
 
 export default function Checkout() {
   return (

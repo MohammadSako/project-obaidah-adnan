@@ -1,7 +1,7 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import ProductDetailPage from "../../../components/product-details/productDetailPage";
+import ProductDetailPage from "../../../../components/product-details/productDetailPage";
 import { getProductByPathname, searchedRelatedProducts } from "@/lib/db/products";
 import NotFound from "@/app/not-found";
 import RelatedProducts from "../components/related-products";

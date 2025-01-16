@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { searchedProducts } from "@/lib/db/products";
 import { CardImagesSkeleton } from "@/components/UI/skeletons";
 import CategoriesCard from "@/components/helpers/catgories/categoriesCard";
-import NotFound from "../not-found";
+import NotFound from "../../not-found";
 
 export default function SearchResult() {
   const searchParams = useSearchParams();

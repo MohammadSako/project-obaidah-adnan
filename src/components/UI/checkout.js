@@ -67,7 +67,7 @@ export default function Checkout({
                 href="/checkout"
                 className="flex items-center justify-center rounded-full border border-transparent bg-[#014F93] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#014780]"
               >
-                Go to checkout
+                Proceed to Checkout
               </Link>
             </div>
             <div className="flex flex-row space-x-2 items-center">
