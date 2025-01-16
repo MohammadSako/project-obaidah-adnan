@@ -23,8 +23,7 @@ export const metadata: Metadata = {
   title: "Obaidah Shop",
   description:
     "Browse & discover many of products. we ship to you. Shop top brands in clothing and more.",
-  category: "e-commerce",
-  metadataBase: new URL("https://project-obaidah-adnan.vercel.app/"),
+  keywords: ["products", "body", "shirt", "shoes", "jeans", "clothes"],
 };
 
 export default async function Home() {
@@ -36,20 +35,22 @@ export default async function Home() {
   const { brandData = [] } = await getBrand();
 
   return (
-    <main className="flex min-h-screen flex-col items-center font-display">
+    <div className="flex min-h-screen flex-col items-center font-display">
       <Suspense fallback={<CardSkeleton />}>
         {carouselData.length > 0 && <Landing data={carouselData} />}
+        <YourFavoriteItems />
+        {bestSellers.length > 0 && <BestSellers data={bestSellers} />}
+        {discounted.length > 0 && <Discounted data={discounted} />}
+        {brandData.length > 0 && <OurBrands data={brandData} />}
+        {newArrivals.length > 0 && <NewArrivals data={newArrivals} />}
+        {advertismentData.length > 0 && (
+          <Advertisement data={advertismentData} />
+        )}
+        <Categories />
+        {/* <MediaHub /> */}
+        {/* <Testimonials /> */}
+        {/* <Logos /> */}
       </Suspense>
-      <YourFavoriteItems />
-      {bestSellers.length > 0 && <BestSellers data={bestSellers} />}
-      {discounted.length > 0 && <Discounted data={discounted} />}
-      {brandData.length > 0 && <OurBrands data={brandData} />}
-      {newArrivals.length > 0 && <NewArrivals data={newArrivals} />}
-      {advertismentData.length > 0 && <Advertisement data={advertismentData} />}
-      <Categories />
-      {/* <MediaHub /> */}
-      {/* <Testimonials /> */}
-      {/* <Logos /> */}
-    </main>
+    </div>
   );
 }
