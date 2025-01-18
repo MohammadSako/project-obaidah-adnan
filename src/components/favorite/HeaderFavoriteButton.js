@@ -71,7 +71,7 @@ const HeaderFavoriteButton = (props) => {
             )}
           </div>
         }
-      tooltipTx={t("common.wishlist")}
+        tooltipTx={t("common.wishlist")}
       ></NavLinkIcon>
     </div>
   );

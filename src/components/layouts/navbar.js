@@ -19,22 +19,7 @@ import {
   DialogTitle,
   TransitionChild,
 } from "@headlessui/react";
-
-const navigation = [
-  { name: "Men's Clothing", href: "/categories/men/clothing", current: false },
-  { name: "Men's Shoes", href: "/categories/men/shoes", current: false },
-  {
-    name: "Women's Clothing",
-    href: "/categories/women/clothing",
-    current: false,
-  },
-  { name: "Women's Shoes", href: "/categories/women/shoes", current: false },
-];
-
-const information = [
-  { title: "About us", href: "/about" },
-  { title: "Contact us", href: "/contact" },
-];
+import { useChangeLocale, useCurrentLocale, useI18n } from "@/locales/client";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -42,7 +27,6 @@ function classNames(...classes) {
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
-
   return (
     <Disclosure as="nav" className="bg-white">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -58,11 +42,11 @@ export default function NavBar() {
 
 const FirstNav = () => {
   return (
-    <div className="relative flex h-16 items-center sm:justify-between space-x-4">
+    <div className="relative flex h-16 items-center sm:justify-between gap-4">
       <div>
         <BrandName />
       </div>
-      <div className="sm:block grow mx-4">
+      <div className="sm:block grow mx-2">
         <Search />
       </div>
       <Languages />
@@ -84,7 +68,6 @@ const SecondNav = ({ setOpen }) => {
           <Bars3Icon className="h-6 w-6" />
         </button>
       </div>
-
       <div className="flex sm:flex-none flex-1 items-center justify-center sm:items-stretch">
         <div className="hidden sm:ml-6 sm:block">
           <div className="flex md:space-x-4 gap-4 items-center justify-between self-center">
@@ -110,6 +93,37 @@ const DrawerNav = ({ open, setOpen }) => {
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter((segment) => segment);
   const selectedPath = "/" + pathSegments.slice(0, 3).join("/");
+  const t = useI18n();
+  const locale = useCurrentLocale();
+  const changeLocale = useChangeLocale();
+
+  const navigation = [
+    {
+      name: t("categories.menclothing"),
+      href: "/categories/men/clothing",
+      current: false,
+    },
+    {
+      name: t("categories.menshoes"),
+      href: "/categories/men/shoes",
+      current: false,
+    },
+    {
+      name: t("categories.womenclothing"),
+      href: "/categories/women/clothing",
+      current: false,
+    },
+    {
+      name: t("categories.womenshoes"),
+      href: "/categories/women/shoes",
+      current: false,
+    },
+  ];
+
+  const information = [
+    { title: t("common.aboutus"), href: "/about" },
+    { title: t("common.contactus"), href: "/contact" },
+  ];
 
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-10 sm:hidden">
@@ -191,11 +205,14 @@ const DrawerNav = ({ open, setOpen }) => {
                     </ul>
                   </div>
                   <div className="relative mt-6 flex-1 px-4 sm:px-6 flex justify-end">
-                    <Link href="#">
-                      <p className="text-gray-700 hover:text-[#06b6d4] text-2xl py-1 font-bold">
-                        عربي
-                      </p>
-                    </Link>{" "}
+                    <p
+                      onClick={() =>
+                        changeLocale(locale === "en" ? "ar" : "en")
+                      }
+                      className="text-gray-700 hover:text-[#06b6d4] text-2xl py-1 font-bold"
+                    >
+                      {locale === "en" ? "عربي" : "English"}
+                    </p>
                   </div>
                 </div>
               </div>

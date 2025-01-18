@@ -14,30 +14,14 @@ import { Spacer } from "@nextui-org/react";
 import Link from "next/link";
 import NavLink from "./nav-link";
 import { usePathname } from "next/navigation";
-import { useI18n } from "@/locales/client";
-// import { getAllCategory } from "@/lib/db/products";
-// import { useEffect, useState } from "react";
+import { useCurrentLocale, useI18n } from "@/locales/client";
 
 export function NavMenu() {
   const pathname = usePathname();
-  // const [allCategory, setAllCategory] = useState([]);
   const pathSegments = pathname.split("/").filter((segment) => segment);
   const selectedPath = "/" + pathSegments.slice(0, 3).join("/");
   const t = useI18n();
-  const isRtl = t("categories.lang") === "ar";
-
-  // useEffect(() => {
-  //   const fetchCategories = async () => {
-  //     try {
-  //       const { categories = [] } = await getAllCategory();
-  //       setAllCategory(categories);
-  //     } catch (error) {
-  //       console.error("Error fetching categories:", error);
-  //     }
-  //   };
-
-  //   fetchCategories();
-  // }, []);
+  const locale = useCurrentLocale();
 
   const All = [
     {
@@ -436,7 +420,7 @@ export function NavMenu() {
   ];
 
   return (
-    <Menubar className="border-none" dir={isRtl ? "rtl" : "ltr"}>
+    <Menubar className="border-none" dir={locale === "ar" ? "rtl" : "ltr"}>
       {All.map((items) => (
         <MenubarMenu key={items.id}>
           <MenubarTrigger>

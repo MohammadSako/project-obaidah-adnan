@@ -3,13 +3,9 @@
 import React from "react";
 import Image from "next/image";
 import { useItemStore } from "../../lib/store";
-import CartButton from "./cartButton";
 import { MdOutlineDelete } from "react-icons/md";
 import Checkout from "./checkout";
-import { TbShoppingBagPlus} from "react-icons/tb";
-import { useToast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/UI/toast";
-import { useCallback } from "react";
+import { TbShoppingBagPlus } from "react-icons/tb";
 
 export default function ItemsList({
   totalQuantity,
@@ -17,49 +13,13 @@ export default function ItemsList({
   pageData,
   pagePath,
 }) {
-  // const [isFavorite, setIsFavorite] = useState(false);
-  const { toast } = useToast();
-  const { addItem, removeFavorite } = useItemStore();
-
-  // useEffect(() => {
-  //   setIsFavorite(favorite.some((item) => item.id === pageData.id));
-  // }, [favorite, pageData.id]);
-
-  const addToCartHandler = useCallback(
-    (item) => {
-      addItem({
-        id: item.id,
-        title: item.title,
-        description: item.description,
-        image: item.image,
-        price: item.price,
-        color: item.color,
-      });
-      toast({
-        title: `${item.title}`,
-        description: " has been Added to your bag",
-        action: (
-          <ToastAction altText="Go to bag" onClick={() => router.push("/cart")}>
-            Go to bag
-          </ToastAction>
-        ),
-      });
-    },
-    [addItem, toast]
-  );
+  const { removeFavorite } = useItemStore();
 
   return (
     <div>
-      {pagePath === "/cart" && (
-        <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-4">
-          Your bag
-        </h2>
-      )}
-      {pagePath === "/favorite" && (
-        <h2 className="text-4xl font-bold tracking-tight text-gray-900 mb-4">
-          Your favorites
-        </h2>
-      )}
+      <h2 className="text-4xl font-bold tracking-tight text-gray-900 my-8">
+        Your favorites
+      </h2>
 
       <div className="flex md:flex-row flex-col-reverse font-sans justify-center gap-10 ">
         <div className="basis-3/5">
@@ -98,57 +58,23 @@ export default function ItemsList({
                       </div>
 
                       <div className="flex flex-1 items-end justify-between text-sm">
-                        {pagePath === "/cart" && (
-                          <>
-                            <CartButton
-                              quantity={product.quantity}
-                              id={product.id}
-                            />
-                            {/* <MdOutlineDelete
-                              size={30}
-                              style={{ cursor: "pointer" }}
-                              onClick={() => removeItem(product.id)}
-                              className="text-gray-400 hover:text-red-600"
-                            /> */}
-                          </>
-                        )}
-                        {pagePath === "/favorite" && (
-                          <>
-                            <TbShoppingBagPlus
-                              size={30}
-                              style={{ cursor: "pointer" }}
-                              onClick={() => addToCartHandler(product)}
-                              className="text-gray-400 hover:text-gray-800"
-                            />
-                            <MdOutlineDelete
-                              size={30}
-                              style={{ cursor: "pointer" }}
-                              onClick={() => removeFavorite(product.id)}
-                              className="text-gray-400 hover:text-red-600"
-                            />
-                          </>
-                        )}
-
-                        {/* {pagePath === "/cart" && (
-                            <div>
-                              {!isFavorite && (
-                                <TbHeart
-                                  title="Add to favorite"
-                                  size={30}
-                                  onClick={() => addToFavorite(product)}
-                                  className="mt-2 text-lg font-sans tracking-wide text-gray-400 hover:text-red-500"
-                                />
-                              )}
-                              {isFavorite && (
-                                <TbHeartFilled
-                                  title="Remove from favorite"
-                                  size={30}
-                                  onClick={() => removeFavorite(product.id)}
-                                  className="mt-2 text-lg font-sans tracking-wide text-red-500 hover:text-red-400"
-                                />
-                              )}
-                            </div>
-                          )} */}
+                        {pagePath === "/en/favorite" ||
+                          (pagePath === "/ar/favorite" && (
+                            <>
+                              <TbShoppingBagPlus
+                                size={30}
+                                style={{ cursor: "pointer" }}
+                                onClick={() => addToCartHandler(product)}
+                                className="text-gray-400 hover:text-gray-800"
+                              />
+                              <MdOutlineDelete
+                                size={30}
+                                style={{ cursor: "pointer" }}
+                                onClick={() => removeFavorite(product.id)}
+                                className="text-gray-400 hover:text-red-600"
+                              />
+                            </>
+                          ))}
                       </div>
                     </div>
                   </li>

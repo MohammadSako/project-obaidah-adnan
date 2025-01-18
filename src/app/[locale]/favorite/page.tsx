@@ -2,8 +2,8 @@
 
 import React from "react";
 import { useItemStore } from "@/lib/store";
-import IsEmptyMsg from "../../components/UI/isEmptyMsg";
-import ItemsList from "../../components/UI/itemsList";
+import IsEmptyMsg from "../../../components/UI/isEmptyMsg";
+import ItemsList from "../../../components/UI/itemsList";
 import { usePathname } from "next/navigation";
 
 export default function FavoritePage() {

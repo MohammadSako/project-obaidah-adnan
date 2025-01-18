@@ -217,8 +217,8 @@ export default {
   "comments.unauthorized":
     "Please Sign in or create an account to leave a reply",
 
-    "categories.lang": "en",
-    "categories.goto": "Go to",
+  "categories.lang": "en",
+  "categories.goto": "Go to",
   "categories.men": "men",
   "categories.women": "women",
   "categories.top": "Top clothing",
