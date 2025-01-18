@@ -8,6 +8,7 @@ import { useItemStore } from "../../lib/store";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/UI/toast";
 import { useRouter } from "next/navigation";
+import { useI18n } from "@/locales/client";
 
 function ProductCard({
   id,
@@ -19,10 +20,12 @@ function ProductCard({
   url,
   details,
   alt,
+  dashboardType,
 }) {
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const { toast } = useToast();
   const router = useRouter();
+  const t = useI18n();
 
   // Memoize isFavorite value to prevent unnecessary re-renders
   const isFavorite = useMemo(
@@ -104,15 +107,28 @@ function ProductCard({
           </div>
           <div className="mt-4 flex justify-between">
             <div>
-              <p className="text-sm text-gray-700">{title}</p>
-              <p className="mt-1 text-sm text-gray-500">{color}</p>
+              <p className="text-lg text-gray-700 font-sans">{title}</p>
+              <p className="mt-1 text-lg text-gray-500">{color}</p>
             </div>
-            <div className="bg-yellow-400 p-2 shadow-lg">
-              <p className="text-lg font-medium text-gray-900">
-                <span className="font-semibold text-red-700">{price}</span>{" "}
-                <span className="text-xs -mt-2">JD</span>
-              </p>
-            </div>
+            {dashboardType ? (
+              <div className="bg-yellow-400 max-h-8 p-2 shadow-lg flex items-center">
+                <p className="font-medium text-gray-900">
+                  <span className="text-2xl font-semibold text-red-600">
+                    {price}
+                  </span>{" "}
+                  <span className="text-xl -mt-2">{t("product.price")}</span>
+                </p>
+              </div>
+            ) : (
+              <div className="bg-white max-h-8 p-2 flex items-center">
+                <p className="font-medium text-gray-900">
+                  <span className="text-2xl font-semibold text-red-700">
+                    {price}
+                  </span>{" "}
+                  <span className="text-xl -mt-2">{t("product.price")}</span>
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </Link>

@@ -65,15 +65,9 @@ const FirstNav = () => {
       <div className="sm:block grow mx-4">
         <Search />
       </div>
-      <div>
-        <Languages />
-      </div>
-      <div>
-        <Favorite />
-      </div>
-      <div>
-        <Cart />
-      </div>
+      <Languages />
+      <Favorite />
+      <Cart />
     </div>
   );
 };

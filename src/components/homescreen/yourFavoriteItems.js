@@ -7,10 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useItemStore } from "@/lib/store";
 import Autoplay from "embla-carousel-autoplay";
+import { useI18n } from "@/locales/client";
 
 export function YourFavoriteItems() {
   const { favorite } = useItemStore();
-console.log(favorite);
+  const t = useI18n();
 
   return (
     <>
@@ -28,7 +29,7 @@ console.log(favorite);
                 <div className="lg:col-span-2 lg:pr-8 text-center">
                   <Link href="/favorite">
                     <h1 className="text-4xl font-medium tracking-tighter text-gray-900 sm:text-3xl">
-                      Your favourites
+                    {t("common.wishlist")} 
                     </h1>
                   </Link>
                   <Carousel

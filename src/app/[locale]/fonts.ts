@@ -1,4 +1,5 @@
 import { Playfair_Display, Montserrat, Tajawal } from "next/font/google";
+import localFont from "next/font/local";
 
 export const montserrat = Montserrat({
   subsets: ["latin"],
@@ -19,4 +20,8 @@ export const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
-
+export const angelo = localFont({
+  src: "./RionaldoAngelo.ttf",
+  display: "swap",
+  variable: "--font-angelo",
+});

@@ -11,6 +11,7 @@ export default function CategoriesPage({ data }) {
   const [products, setProducts] = useState([]);
   const [title, setTitle] = useState("");
   const pathname = usePathname();
+console.log();
 
   useEffect(() => {
     switch (pathname) {

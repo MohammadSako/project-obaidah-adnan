@@ -6,8 +6,11 @@ import { Carousel, CarouselContent, CarouselItem } from "../UI/carousel";
 import Link from "next/link";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
+import { useI18n } from "@/locales/client";
 
 function OurBrands({ data }) {
+    const t = useI18n();
+  
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -22,7 +25,8 @@ function OurBrands({ data }) {
             <div className="lg:col-span-2 text-center ">
               <Link href="/favorite">
                 <h1 className="text-4xl font-medium tracking-tighter text-gray-900 sm:text-3xl mt-32">
-                  Our Brands
+                {t("home.ourbrands")}
+
                 </h1>
               </Link>
               <Carousel

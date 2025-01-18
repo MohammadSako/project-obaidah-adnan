@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useItemStore } from "@/lib/store";
 import Image from "next/image";
 import Link from "next/link";
+import { useI18n } from "@/locales/client";
 
 // Reusable icon styles
 const iconStyles = "mt-2 text-lg font-sans tracking-wide cursor-pointer";
@@ -26,6 +27,7 @@ export function CardDetails({
   const { toast } = useToast();
   const router = useRouter();
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
+  const t = useI18n();
 
   // Effect to determine if the item is in the favorites
   const isFavorite = useMemo(
@@ -109,13 +111,15 @@ export function CardDetails({
       <div className="mt-4 flex md:flex-row flex-col sm:justify-between space-y-7">
         <div className="basis-2/3">
           {/* <p className="sm:text-lg text-5xl text-gray-700 font-semibold">{title}</p> */}
-          <p className="sm:text-lg text-3xl text-gray-700 w-auto">{description}</p>
+          <p className="sm:text-lg text-3xl text-gray-700 w-auto">
+            {description}
+          </p>
           <p className="mt-1 sm:text-lg text-2xl text-gray-500">{color}</p>
         </div>
 
         <div className="basis-1/3 bg-yellow-400 sm:w-16 w-24 sm:h-[32px] text-center shadow-lg">
           <p className="sm:text-2xl text-3xl font-medium text-gray-900">
-            <span className="sm:text-lg text-xl">JD</span>
+            <span className="sm:text-lg text-xl">{t("product.price")}</span>
             <span className="font-semibold text-red-700">{price}</span>{" "}
           </p>
         </div>

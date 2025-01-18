@@ -5,11 +5,13 @@ import classes from "../helpers/HeaderButtonAnimation.module.css";
 import { TbShoppingBag } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
 import { NavLinkIcon } from "../helpers/navbar helpers/nav-link";
+import { useI18n } from "@/locales/client";
 
 const HeaderCartButton = (props) => {
   const [cartEmpty, setCartEmpty] = useState(false);
   const quantity = useItemStore((state) => state.totalQuantity);
   const totalAllItems = useItemStore((state) => state.totalAllItems);
+  const t = useI18n();
 
   useEffect(() => {
     if (quantity > 0) {
@@ -66,6 +68,7 @@ const HeaderCartButton = (props) => {
             )}
           </div>
         }
+        tooltipTx={t("common.cart")}
       ></NavLinkIcon>
     </div>
   );

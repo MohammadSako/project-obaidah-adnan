@@ -1,6 +1,7 @@
 "use client";
 
 import { searchInProducts } from "@/lib/db/products";
+import { useI18n } from "@/locales/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
@@ -11,6 +12,7 @@ export default function Search() {
   const [result, setResult] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedValue] = useDebounce(searchQuery, 1000);
+  const t = useI18n();
 
   useEffect(() => {
     async function Search() {
@@ -53,8 +55,8 @@ export default function Search() {
               resultHandler(e.target.value);
             }
           }}
-          placeholder="search in shop"
-          className="block w-full rounded-md border-0 py-1.5 pl-9 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          placeholder={t("common.search.product")}
+          className="block w-full rounded-md border-0 py-1.5 pl-9 pr-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-lg sm:leading-6"
         />
       </div>
 

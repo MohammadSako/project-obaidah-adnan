@@ -5,6 +5,7 @@ import classes from "../helpers/HeaderButtonAnimation.module.css";
 import { TbHeart } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
 import { NavLinkIcon } from "../helpers/navbar helpers/nav-link";
+import { useI18n } from "@/locales/client";
 
 const HeaderFavoriteButton = (props) => {
   const [cartEmpty, setCartEmpty] = useState(false);
@@ -12,6 +13,7 @@ const HeaderFavoriteButton = (props) => {
   const totalAllFavoriteItems = useItemStore(
     (state) => state.totalAllFavoriteItems
   );
+  const t = useI18n();
 
   useEffect(() => {
     if (totalFavQuantity > 0) {
@@ -69,6 +71,7 @@ const HeaderFavoriteButton = (props) => {
             )}
           </div>
         }
+      tooltipTx={t("common.wishlist")}
       ></NavLinkIcon>
     </div>
   );
