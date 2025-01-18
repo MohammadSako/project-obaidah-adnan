@@ -12,9 +12,6 @@ const nextConfig = {
   //     },
   //   ];
   // },
-  experimental: {
-    ppr: "incremental",
-  },
   images: {
     formats: ["image/avif", "image/webp"],
     domains: ["tailwindui.com", "res.cloudinary.com", `${supabase}`],
