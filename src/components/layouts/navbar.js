@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { FaRegCopyright } from "react-icons/fa6";
+// import { FaRegCopyright } from "react-icons/fa6";
 import { Disclosure } from "@headlessui/react";
 import { NavMenu } from "../helpers/navbar helpers/navigation-menu";
 import Search from "../helpers/navbar helpers/search";
@@ -80,9 +80,9 @@ const SecondNav = ({ setOpen }) => {
               OBAIDAH <span className="font-bold text-[#db2777]">Shop</span>
             </h1>
           </Link>
-          <div className="-mt-2 sm:invisible visible">
+          {/* <div className="-mt-2 sm:invisible visible">
             <FaRegCopyright size={10} />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
@@ -162,9 +162,9 @@ const DrawerNav = ({ open, setOpen }) => {
                           <span className="font-bold text-[#06b6d4]">Shop</span>
                         </h1>
                       </Link>
-                      <div className="mt-2">
+                      {/* <div className="mt-2">
                         <FaRegCopyright size={10} />
-                      </div>
+                      </div> */}
                     </div>
                   </DialogTitle>
                 </div>

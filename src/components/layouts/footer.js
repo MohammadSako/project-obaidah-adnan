@@ -1,5 +1,5 @@
 "use client";
-import { useCurrentLocale, useI18n } from "@/locales/client";
+import { useI18n } from "@/locales/client";
 import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
@@ -7,7 +7,6 @@ import { FaRegCopyright, FaWhatsapp } from "react-icons/fa6";
 
 function Footer() {
   const t = useI18n();
-  const locale = useCurrentLocale();
 
   return (
     <>
