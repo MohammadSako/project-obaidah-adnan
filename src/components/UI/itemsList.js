@@ -2,10 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
-import { useItemStore } from "../../lib/store";
 import { MdOutlineDelete } from "react-icons/md";
-import Checkout from "./checkout";
 import { TbShoppingBagPlus } from "react-icons/tb";
+import { useItemStore } from "../../lib/store";
+import Checkout from "./checkout";
+import { useI18n } from "@/locales/client";
 
 export default function ItemsList({
   totalQuantity,
@@ -14,6 +15,7 @@ export default function ItemsList({
   pagePath,
 }) {
   const { removeFavorite } = useItemStore();
+  const t = useI18n();
 
   return (
     <div>
@@ -24,7 +26,7 @@ export default function ItemsList({
       <div className="flex md:flex-row flex-col-reverse font-sans justify-center gap-10 ">
         <div className="basis-3/5">
           <div className="mt-4 space-y-4 ">
-            <p className="">{totalQuantity} products in total</p>
+            <p className="">{totalQuantity} {t("product.total")}</p>
 
             <div className="flow-root">
               <ul
@@ -42,12 +44,13 @@ export default function ItemsList({
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
-
                     <div className="ml-4 flex flex-1 flex-col gap-6">
                       <div>
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <h3>{product.title}</h3>
-                          <p className="ml-4">{product.price} JD</p>
+                          <p className="ml-4">
+                            {product.price} {t("product.price")}
+                          </p>
                         </div>
                         <p className="mt-1 text-sm text-gray-500">
                           {product.color}

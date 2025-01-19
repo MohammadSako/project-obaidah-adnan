@@ -18,11 +18,13 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const { locale } = await Promise.resolve(params);
+
   return (
     <html
       lang={locale}
@@ -30,9 +32,7 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={` ${angelo.variable} ${playfair.variable} ${tajawal.variable} ${montserrat.variable}`}
     >
-      <body
-        className={`ltr:font-sans rtl:font-arabic`}
-      >
+      <body className={`ltr:font-sans rtl:font-arabic`}>
         <Suspense fallback={<Loading />}>
           <Providers locale={locale}>
             <PageLine />

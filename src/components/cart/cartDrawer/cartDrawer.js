@@ -10,9 +10,11 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import CartDrawerList from "./cartDrawerList";
 import { useItemStore } from "@/lib/store";
+import { useI18n } from "@/locales/client";
 
 export default function CartDrawer({ open, onClose, closeButton }) {
   const { items } = useItemStore();
+  const t = useI18n();
 
   function closeDrawer() {
     closeButton();
@@ -49,7 +51,7 @@ export default function CartDrawer({ open, onClose, closeButton }) {
                 <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                   <div className="px-4 sm:px-6">
                     <DialogTitle className="text-2xl font-semibold leading-6 text-gray-900">
-                      Your bag
+                      {t("checkout.orders")}
                     </DialogTitle>
                   </div>
                   <div className="relative mt-6 flex-1 px-4 sm:px-6">
@@ -61,12 +63,9 @@ export default function CartDrawer({ open, onClose, closeButton }) {
                 <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                   <div className="px-4 sm:px-6">
                     <DialogTitle className="text-xl font-semibold leading-6 text-gray-900">
-                      Your bag is empty
+                      {t("checkout.bagempty")}
                     </DialogTitle>
-                    <p className="mt-4">
-                      You can add products to your shopping bag, either by
-                      searching or by browsing products.
-                    </p>
+                    <p className="mt-4">{t("checkout.addorders")}</p>
                   </div>
                 </div>
               )}
