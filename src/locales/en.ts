@@ -75,6 +75,8 @@ export default {
   "footer.collaborate": "Collaborate With Us",
   "home.shopnow": "Shop Now",
   "home.bestsellers": "Best Sellers",
+  "home.newarrivals": "New Arrivals",
+  "home.popularcategories": "Explore Popular Categories",
   "home.ourbrands": "Our Brands",
   "home.justforyou": "Just For You To Get Amazing Skin",
   "home.testimonials": "Testimonials",

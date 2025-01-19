@@ -77,6 +77,8 @@ export default {
   "footer.collaborate": "التعاون معنا",
   "home.shopnow": "تسوق الآن",
   "home.bestsellers": "الأكثر مبيعاً",
+  "home.newarrivals": "وصل حديثاً",
+  "home.popularcategories": "اكتشف الأكثر شهرة",
   "home.ourbrands": "علاماتنا التجارية",
   "home.justforyou": "فقط من أجلك للحصول على بشرة مذهلة",
   "home.testimonials": "التوصيات",
