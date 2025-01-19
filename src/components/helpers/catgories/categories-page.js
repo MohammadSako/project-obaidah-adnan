@@ -11,35 +11,62 @@ export default function CategoriesPage({ data }) {
   const [products, setProducts] = useState([]);
   const [title, setTitle] = useState("");
   const pathname = usePathname();
-console.log();
+console.log("products",products);
 
   useEffect(() => {
     switch (pathname) {
-      case "/categories/men/clothing":
+      case "/en/categories/men/clothing":
         setProducts(data[0].SubCategory);
         break;
-      case "/categories/men/clothing/top":
+      case "/ar/categories/men/clothing":
+        setProducts(data[0].SubCategory);
+        break;
+      case "/en/categories/men/clothing/top":
         setProducts(data[0].SubCategory[0].items);
         break;
-      case "/categories/men/clothing/lower":
+      case "/ar/categories/men/clothing/top":
+        setProducts(data[0].SubCategory[0].items);
+        break;
+      case "/en/categories/men/clothing/lower":
         setProducts(data[0].SubCategory[1].items);
         break;
-      case "/categories/men/shoes":
+      case "/ar/categories/men/clothing/lower":
+        setProducts(data[0].SubCategory[1].items);
+        break;
+      case "/en/categories/men/shoes":
         setProducts(data[2].SubCategory[0].items);
         break;
-      case "/categories/women/clothing":
+      case "/ar/categories/men/shoes":
+        setProducts(data[2].SubCategory[0].items);
+        break;
+      case "/en/categories/women/clothing":
         setProducts(data[1].SubCategory);
         break;
-      case "/categories/women/clothing/top":
+      case "/ar/categories/women/clothing":
+        setProducts(data[1].SubCategory);
+        break;
+      case "/en/categories/women/clothing/top":
         setProducts(data[1].SubCategory[0].items);
         break;
-      case "/categories/women/clothing/lower":
+      case "/ar/categories/women/clothing/top":
+        setProducts(data[1].SubCategory[0].items);
+        break;
+      case "/en/categories/women/clothing/lower":
         setProducts(data[1].SubCategory[1].items);
         break;
-      case "/categories/women/shoes":
+      case "/ar/categories/women/clothing/lower":
+        setProducts(data[1].SubCategory[1].items);
+        break;
+      case "/en/categories/women/shoes":
         setProducts(data[3].SubCategory[0].items);
         break;
-      case "/categories/women/shoes":
+      case "/ar/categories/women/shoes":
+        setProducts(data[3].SubCategory[0].items);
+        break;
+      case "/en/categories/women/shoes":
+        setProducts(data[3].SubCategory[0].items);
+        break;
+      case "/ar/categories/women/shoes":
         setProducts(data[3].SubCategory[0].items);
         break;
       default:
@@ -62,9 +89,9 @@ console.log();
     }
   }, [pathname, data]);
 
-  if (products.length === 0) {
-    return <NotFound />;
-  }
+  // if (products.length === 0) {
+  //   return <NotFound />;
+  // }
 
   return (
     <>

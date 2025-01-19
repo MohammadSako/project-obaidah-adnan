@@ -7,7 +7,6 @@ import { FaRegCopyright, FaWhatsapp } from "react-icons/fa6";
 
 function Footer() {
   const t = useI18n();
-
   return (
     <>
       <div className="mx-auto max-w-7xl sm:p p-4">
@@ -29,17 +28,14 @@ function Footer() {
                   <FaRegCopyright size={7} color="#6b7280" />
                 </div>
               </div>
-
               <div className="text-gray-500">
                 <p>{t("common.form.phone")}</p>
               </div>
-
               <Link href={"/contact"}>
                 <h4 className="hover:text-blue-500 text-gray-500">
                   {t("common.contactus")}
                 </h4>
               </Link>
-
               <Link href={"/about"}>
                 <h4 className="hover:text-blue-500 text-gray-500">
                   {t("common.aboutus")}
@@ -47,7 +43,6 @@ function Footer() {
               </Link>
             </div>
           </div>
-
           <div className="flex flex-row gap-8 justify-end sm:basis-1/5">
             <FooterLink icon={<FaFacebookF size={25} />} href="#" />
             <FooterLink icon={<FaInstagram size={25} />} href="#" />
