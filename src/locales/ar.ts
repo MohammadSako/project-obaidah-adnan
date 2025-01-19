@@ -1,4 +1,5 @@
 export default {
+  "common.obaidahshop": "عبيدة شوب 2004",
   "common.language": "اللغة",
   "common.wishlist": "المفضلة",
   "common.cart": "سلة التسوق",
@@ -16,7 +17,7 @@ export default {
   "common.returnpolicy": "سياسة الإرجاع لدينا",
   "common.form.name": "الاسم",
   "common.form.email": "البريد الإلكتروني",
-  "common.form.phone": "الهاتف",
+  "common.form.phone": "الهاتف: 962777935735+",
   "common.form.password": "كلمة السر",
   "common.form.city": "المدينة / البلدة",
   "common.form.bod": "تاريخ الميلاد",

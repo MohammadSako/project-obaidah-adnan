@@ -1,4 +1,5 @@
 export default {
+  "common.obaidahshop": "Obaidah Shop 2024",
   "common.language": "Language",
   "common.wishlist": "Favorite",
   "common.cart": "Shopping Cart",
@@ -16,7 +17,7 @@ export default {
   "common.returnpolicy": "Our Return Policy",
   "common.form.name": "Name",
   "common.form.email": "Email",
-  "common.form.phone": "Phone",
+  "common.form.phone": "Phone: (+962) 777 935 735",
   "common.form.password": "Password",
   "common.form.city": "City / Town",
   "common.form.bod": "Birthday",

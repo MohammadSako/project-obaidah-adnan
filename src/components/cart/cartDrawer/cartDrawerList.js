@@ -19,7 +19,10 @@ export default function CartDrawerList({ onClick }) {
         pagePath="/drawer"
         onClick={onClick}
       />
-      <div className="flex-1 overflow-y-auto px-4 py-6" dir={locale === "ar" ? "rtl" : "ltr"}>
+      <div
+        className="flex-1 overflow-y-auto px-4 py-6"
+        dir={locale === "ar" ? "rtl" : "ltr"}
+      >
         <div className="mt-4">
           <div className="flow-root">
             <ul role="list" className="-my-6 divide-y divide-gray-200">
@@ -27,7 +30,7 @@ export default function CartDrawerList({ onClick }) {
                 {totalQuantity} {t("product.total")}
               </p>
               {items.map((product) => (
-                <li key={product.id} className="flex py-6">
+                <li key={product.id} className="flex py-4">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                     <Image
                       width={500}
@@ -38,7 +41,7 @@ export default function CartDrawerList({ onClick }) {
                     />
                   </div>
 
-                  <div className="ml-4 flex flex-1 flex-col gap-4">
+                  <div className="mx-4 flex flex-1 flex-col gap-2">
                     <div>
                       <div className="flex justify-between text-base font-semibold text-gray-800">
                         <h3>{product.title}</h3>
@@ -54,17 +57,16 @@ export default function CartDrawerList({ onClick }) {
                         {product.description}
                       </p>
                       <p className="mt-1 text-xs text-gray-500">
-                        {product.price}{" "}
-                        {t("product.perunit")}
+                        {product.price} {t("product.perunit")}
                       </p>
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
-                      {/* <p className="text-gray-500">
-                        Qty{" "}
+                      <p className="text-gray-500">
+                        {t("product.quantity")}{" "}
                         <span className="font-bold text-lg">
                           {product.quantity}
                         </span>
-                      </p> */}
+                      </p>
 
                       <div className="flex">
                         <CartButton

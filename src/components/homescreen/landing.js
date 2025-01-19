@@ -28,7 +28,7 @@ export function Landing({ data }) {
               >
                 <Image
                   src={product.image}
-                  width={1200}
+                  width={1400}
                   height={500}
                   alt="Picture of the author"
                 />

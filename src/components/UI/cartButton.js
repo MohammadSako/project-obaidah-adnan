@@ -7,7 +7,7 @@ function CartButton({ quantity, id }) {
 
   return (
     <>
-      <div className="flex flex-row items-center space-x-4 ring-1 ring-stone-600 rounded-full p-1">
+      <div className="flex flex-row items-center ring-1 ring-stone-600 rounded-full p-1">
         <button className="bg-white hover:bg-stone-300 rounded-full p-2">
           <FaPlus onClick={() => increaseItem(id)} />
         </button>
