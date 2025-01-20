@@ -155,7 +155,7 @@ const DrawerNav = ({ open, setOpen }) => {
               <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                 <div className="px-4 sm:px-6">
                   <DialogTitle className="text-base font-semibold text-gray-900">
-                    <div className="flex flex-row gap-1">
+                    <div className="flex flex-row justify-center   gap-1">
                       <Link href="/">
                         <h1 className="text-3xl font-sans tracking-tight">
                           OBAIDAH{" "}

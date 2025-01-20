@@ -53,13 +53,13 @@ const HeaderCartButton = (props) => {
             {!cartEmpty && (
               <TbShoppingBag
                 size={30}
-                className="text-black hover:text-gray-400 mt-2"
+                className="text-black hover:text-gray-400 mt-1"
               />
             )}
 
             {cartEmpty && (
               <div>
-                <TbShoppingBag size={30} className="text-red-500" />
+                <TbShoppingBag size={30} className="text-red-500 -mt-2" />
 
                 <div className="-mt-8 ml-4 bg-red-500 w-5 h-5 rounded-full font-bold text-sm text-white flex justify-center">
                   {quantity}

@@ -55,14 +55,14 @@ const HeaderFavoriteButton = (props) => {
             {!cartEmpty && (
               <TbHeart
                 size={30}
-                className="text-lg mt-2 font-sans tracking-wide text-red-500 hover:text-red-300"
+                className="text-lg mt-1 font-sans tracking-wide text-red-500 hover:text-red-300"
               />
             )}
             {cartEmpty && (
               <div>
                 <TbHeart
                   size={30}
-                  className="text-lg font-sans tracking-wide text-red-500 "
+                  className="text-lg font-sans tracking-wide text-red-500 -mt-2"
                 />
                 <div className="-mt-8 ml-4 bg-red-500 w-5 h-5 rounded-full font-bold text-sm text-white flex justify-center">
                   {totalFavQuantity}

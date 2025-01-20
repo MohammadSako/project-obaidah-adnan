@@ -17,7 +17,7 @@ export function Categories() {
       url: "/categories/men/clothing",
     },
     {
-      src: "/4.avif",
+      src: "/wshirt.avif",
       alt: "product 2",
       description: t("categories.women"),
       url: "/categories/women/clothing",

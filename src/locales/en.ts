@@ -90,6 +90,7 @@ export default {
   "testimonials.subtitle":
     "Read What They Say About Us Read What They Say About Us Read What They Say About Us",
   "product.addtocart": "Add to Cart",
+  "product.addalltocart": " Add all Items to Cart",
   "product.products": "Products",
   "product.notfound": "No products found",
   "product.instock": "In Stock",
@@ -110,6 +111,7 @@ export default {
   "product.price": "JD",
   "product.perunit": "JD per unit Price",
   "product.total": "products in total",
+  "product.totalfavorite": "products in total",
   "product.rating": "Rating",
   "product.lowstock": "Only {param} left in stock",
   "product.comments#zero": "No Comments",
@@ -181,9 +183,12 @@ export default {
   "checkout.payment.methods": "Payment Methods",
   "checkout.payments.cash": "Cash Only",
   "checkout.orders": "Your Orders",
-  "checkout.bagempty": "Your bag is empty",
+  "checkout.bagempty": "Your cart is empty",
   "checkout.addorders":
-    "You can add products to your shopping bag, either by searching or by browsing products.",
+    "You can add products to your shopping cart, either by searching or by browsing products.",
+  "checkout.favoriteEmpty": "Your favorite cart is empty",
+  "checkout.addFavoriteOrders":
+    "You can add your favorite products to your favorite list, either by searching or by browsing products.",
   "checkout.ordersummary": "Order summary",
   "checkout.orders.empty": "No Products Found",
   "checkout.orders.success": "Order placed successfully",

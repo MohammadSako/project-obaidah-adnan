@@ -14,7 +14,13 @@ const nextConfig = {
   // },
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: ["tailwindui.com", `${supabase}`],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname:  `${supabase}`,
+        pathname: '**',
+      },
+    ],
   },
 };
 
