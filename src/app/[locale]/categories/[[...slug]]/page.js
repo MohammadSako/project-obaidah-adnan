@@ -1,20 +1,21 @@
-// import { getAllCategory } from "@/lib/db/products";
+"use client";
+import { useI18n } from "@/locales/client";
 import CategoriesPage from "../../../../components/helpers/catgories/categories-page";
 
 export default async function Page() {
-  // const { categories } = await getAllCategory();
+  const t = useI18n();
 
   const categories = [
     {
       id: 1,
-      title: "Men's Clothing",
+      title: t("categories.menclothing"),
       image:
         "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/c3.avif",
       url: "/categories/men/clothing",
       SubCategory: [
         {
           id: 1,
-          title: "Top Clothing",
+          title: t("categories.top"),
           image:
             "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/c3.avif",
           url: "/categories/men/clothing/top",
@@ -22,7 +23,7 @@ export default async function Page() {
           items: [
             {
               id: 1,
-              title: "Men T-Shirts",
+              title: t("categories.tshirts"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/c3.avif",
               url: "/categories/men/clothing/top/mtshirt",
@@ -31,7 +32,7 @@ export default async function Page() {
             },
             {
               id: 3,
-              title: "Men Shirts",
+              title: t("categories.shirts"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/shirt.avif",
               url: "/categories/men/clothing/top/mshirt",
@@ -40,7 +41,7 @@ export default async function Page() {
             },
             {
               id: 5,
-              title: "Men Wool blouses",
+              title: t("categories.woolblouses"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/mwool.avif",
               url: "/categories/men/clothing/top/mblouse",
@@ -49,7 +50,7 @@ export default async function Page() {
             },
             {
               id: 7,
-              title: "Men Hats",
+              title: t("categories.hats"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/hat%20m.avif",
               url: "/categories/men/clothing/top/mhats",
@@ -58,7 +59,7 @@ export default async function Page() {
             },
             {
               id: 9,
-              title: "Men Watches",
+              title: t("categories.watches"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20watch.avif",
               url: "/categories/men/clothing/top/mwatches",
@@ -67,7 +68,7 @@ export default async function Page() {
             },
             {
               id: 11,
-              title: "Men Bags",
+              title: t("categories.hats"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20bag.avif",
               url: "/categories/men/clothing/top/mbag",
@@ -78,7 +79,7 @@ export default async function Page() {
         },
         {
           id: 2,
-          title: "Lower Clothing",
+          title: t("categories.lower"),
           image:
             "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/jeans.avif",
           url: "/categories/men/clothing/lower",
@@ -86,7 +87,7 @@ export default async function Page() {
           items: [
             {
               id: 13,
-              title: "Men Jeans",
+              title: t("categories.jeans"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/jeans.avif",
               url: "/categories/men/clothing/lower/mjeans",
@@ -95,7 +96,7 @@ export default async function Page() {
             },
             {
               id: 15,
-              title: "Men Pants",
+              title: t("categories.pants"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20pants.avif",
               url: "/categories/men/clothing/lower/mpants",
@@ -104,7 +105,7 @@ export default async function Page() {
             },
             {
               id: 17,
-              title: "Men Socks",
+              title: t("categories.socks"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20soks.avif",
               url: "/categories/men/clothing/lower/msocks",
@@ -113,7 +114,7 @@ export default async function Page() {
             },
             {
               id: 19,
-              title: "Men Belts",
+              title: t("categories.belts"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20belt.avif",
               url: "/categories/men/clothing/lower/mbelts",
@@ -126,14 +127,14 @@ export default async function Page() {
     },
     {
       id: 2,
-      title: "Women's Clothing",
+      title: t("categories.womenclothing"),
       image:
         "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/c2.avif",
       url: "/categories/women/clothing",
       SubCategory: [
         {
           id: 3,
-          title: "Top Clothing",
+          title: t("categories.top"),
           image:
             "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/c2.avif",
           url: "/categories/women/clothing/top",
@@ -141,7 +142,7 @@ export default async function Page() {
           items: [
             {
               id: 2,
-              title: "Women T-Shirts",
+              title: t("categories.tshirts"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/c2.avif",
               url: "/categories/women/clothing/top/wtshirt",
@@ -150,7 +151,7 @@ export default async function Page() {
             },
             {
               id: 4,
-              title: "Women Shirts",
+              title: t("categories.shirts"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/wshirt.avif",
               url: "/categories/women/clothing/top/wshirt",
@@ -159,7 +160,7 @@ export default async function Page() {
             },
             {
               id: 6,
-              title: "Women Wool blouses",
+              title: t("categories.woolblouses"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/wool.avif",
               url: "/categories/women/clothing/top/wblouse",
@@ -168,7 +169,7 @@ export default async function Page() {
             },
             {
               id: 8,
-              title: "Women Hats",
+              title: t("categories.hats"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/hat%20w.avif",
               url: "/categories/women/clothing/top/whats",
@@ -177,7 +178,7 @@ export default async function Page() {
             },
             {
               id: 10,
-              title: "Women Watches",
+              title: t("categories.watches"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20watch.avif",
               url: "/categories/women/clothing/top/wwatches",
@@ -186,7 +187,7 @@ export default async function Page() {
             },
             {
               id: 12,
-              title: "Women Bags",
+              title: t("categories.bags"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20bag.avif",
               url: "/categories/women/clothing/top/wbag",
@@ -197,7 +198,7 @@ export default async function Page() {
         },
         {
           id: 4,
-          title: "Lower Clothing",
+          title: t("categories.lower"),
           image:
             "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/women%20jeans.avif",
           url: "/categories/women/clothing/lower",
@@ -205,7 +206,7 @@ export default async function Page() {
           items: [
             {
               id: 14,
-              title: "Women Jeans",
+              title: t("categories.jeans"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/women%20jeans.avif",
               url: "/categories/women/clothing/lower/wjeans",
@@ -214,7 +215,7 @@ export default async function Page() {
             },
             {
               id: 16,
-              title: "Women Pants",
+              title: t("categories.pants"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20pants.avif",
               url: "/categories/women/clothing/lower/wpants",
@@ -223,7 +224,7 @@ export default async function Page() {
             },
             {
               id: 18,
-              title: "Women Socks",
+              title: t("categories.socks"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20socks.avif",
               url: "/categories/women/clothing/lower/wsocks",
@@ -232,7 +233,7 @@ export default async function Page() {
             },
             {
               id: 20,
-              title: "Women Belts",
+              title: t("categories.belts"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20belt.avif",
               url: "/categories/women/clothing/lower/wbelts",
@@ -245,14 +246,14 @@ export default async function Page() {
     },
     {
       id: 3,
-      title: "Men's Shoes",
+      title: t("categories.menshoes"),
       image:
         "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/men%20shoes.avif",
       url: "/categories/men/shoes",
       SubCategory: [
         {
           id: 5,
-          title: "Men's Shoes",
+          title: t("categories.shoes"),
           image:
             "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/men%20shoes.avif",
           url: "/categories/men/shoes",
@@ -260,7 +261,7 @@ export default async function Page() {
           items: [
             {
               id: 21,
-              title: "Men Work & Safty Shoes",
+              title: t("categories.safty"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/work%20safty.avif",
               url: "/categories/men/shoes/mwork",
@@ -269,7 +270,7 @@ export default async function Page() {
             },
             {
               id: 22,
-              title: "Men Loafers & Slip-Ons",
+              title: t("categories.loafers"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Loafers%20&%20Slip-Ons%20m.avif",
               url: "/categories/men/shoes/mloafers",
@@ -278,7 +279,7 @@ export default async function Page() {
             },
             {
               id: 24,
-              title: "Men Snow Boots",
+              title: t("categories.snow"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Snow%20Boots%20m.avif",
               url: "/categories/men/shoes/msnow",
@@ -287,7 +288,7 @@ export default async function Page() {
             },
             {
               id: 26,
-              title: "Men Casual Shoes",
+              title: t("categories.casual"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Casual%20Shoes.avif",
               url: "/categories/men/shoes/mcasual",
@@ -296,7 +297,7 @@ export default async function Page() {
             },
             {
               id: 27,
-              title: "Men Boots",
+              title: t("categories.boots"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Boots%20m.avif",
               url: "/categories/men/shoes/mboots",
@@ -305,7 +306,7 @@ export default async function Page() {
             },
             {
               id: 28,
-              title: "Men Sandals",
+              title: t("categories.sandals"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Sandals%20m.avif",
               url: "/categories/men/shoes/msandals",
@@ -314,7 +315,7 @@ export default async function Page() {
             },
             {
               id: 29,
-              title: "Men Others",
+              title: t("categories.others"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/m%20belt.avif",
               url: "/categories/men/shoes/mothers",
@@ -327,14 +328,14 @@ export default async function Page() {
     },
     {
       id: 4,
-      title: "Women's Shoes",
+      title: t("categories.womenshoes"),
       image:
         "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/women%20shoes.avif",
       url: "/categories/women/shoes",
       SubCategory: [
         {
           id: 6,
-          title: "Women's Shoes",
+          title: t("categories.shoes"),
           image:
             "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/category_images/women%20shoes.avif",
           url: "/categories/women/shoes",
@@ -342,7 +343,7 @@ export default async function Page() {
           items: [
             {
               id: 23,
-              title: "Women Loafers & Slip-Ons",
+              title: t("categories.loafers"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Loafers%20&%20Slip-Ons%20w.avif",
               url: "/categories/women/shoes/wloafers",
@@ -351,7 +352,7 @@ export default async function Page() {
             },
             {
               id: 25,
-              title: "Women Snow Boots",
+              title: t("categories.snow"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Snow%20Boots%20w.avif",
               url: "/categories/women/shoes/wsnow",
@@ -360,7 +361,7 @@ export default async function Page() {
             },
             {
               id: 30,
-              title: "Women Others",
+              title: t("categories.others"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/w%20belt.avif",
               url: "/categories/women/shoes/wothers",
@@ -369,7 +370,7 @@ export default async function Page() {
             },
             {
               id: 31,
-              title: "Women Flats",
+              title: t("categories.flats"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Flats%20w.avif",
               url: "/categories/women/shoes/wflats",
@@ -378,7 +379,7 @@ export default async function Page() {
             },
             {
               id: 32,
-              title: "Women Slippers",
+              title: t("categories.slippers"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/Slippers%20w.avif",
               url: "/categories/women/shoes/wslippers",
@@ -387,7 +388,7 @@ export default async function Page() {
             },
             {
               id: 33,
-              title: "Women Sneakers",
+              title: t("categories.sneakers"),
               image:
                 "https://zdyevmocczycunsqlkpo.supabase.co/storage/v1/object/public/shopimages/sub_category_images/sneakers%20w.avif",
               url: "/categories/women/shoes/wsneakers",
