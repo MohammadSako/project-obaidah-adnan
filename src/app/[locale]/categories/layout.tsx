@@ -1,8 +1,9 @@
-"use client";
-import { BreadCrumbs } from "@/components/categories/bread-crump";
-import { CategoryBackgroundImageSkeleton } from "@/components/UI/skeletons";
-import Image from "next/image";
+"use client"
+
 import { Suspense } from "react";
+import Image from "next/image";
+import { CategoryBackgroundImageSkeleton } from "@/components/UI/skeletons";
+// import { BreadCrumbs } from "@/components/categories/bread-crump";
 
 const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -17,7 +18,7 @@ const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <BreadCrumbs />
+        {/* <BreadCrumbs /> */}
       </Suspense>
       <div className="flex flex-col w-full">{children}</div>
     </>

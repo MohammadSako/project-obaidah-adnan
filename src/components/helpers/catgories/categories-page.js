@@ -1,6 +1,6 @@
 "use client";
 
-import NotFound from "@/app/not-found";
+import NotFound from "../../UI/product-not-found";
 import CategoriesCard from "@/components/helpers/catgories/categoriesCard";
 import { CardImagesSkeleton } from "@/components/UI/skeletons";
 import { getProductByItemId } from "@/lib/db/products";
@@ -11,6 +11,8 @@ export default function CategoriesPage({ data }) {
   const [products, setProducts] = useState([]);
   const [title, setTitle] = useState("");
   const pathname = usePathname();
+  console.log(">>>>>>>>>", products);
+  
   useEffect(() => {
     const pathMapping = {
       "/en/categories/men/clothing": () => data[0].SubCategory || [],
@@ -53,9 +55,9 @@ export default function CategoriesPage({ data }) {
     }
   }, [pathname, data]);
 
-  // if (products.length === 0) {
-  //   return <NotFound />;
-  // }
+  if (products.length === 0) {
+    return <NotFound />;
+  }
 
   return (
     <>
