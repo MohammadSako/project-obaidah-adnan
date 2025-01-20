@@ -11,80 +11,44 @@ export default function CategoriesPage({ data }) {
   const [products, setProducts] = useState([]);
   const [title, setTitle] = useState("");
   const pathname = usePathname();
-console.log("products",products);
-
   useEffect(() => {
-    switch (pathname) {
-      case "/en/categories/men/clothing":
-        setProducts(data[0].SubCategory);
-        break;
-      case "/ar/categories/men/clothing":
-        setProducts(data[0].SubCategory);
-        break;
-      case "/en/categories/men/clothing/top":
-        setProducts(data[0].SubCategory[0].items);
-        break;
-      case "/ar/categories/men/clothing/top":
-        setProducts(data[0].SubCategory[0].items);
-        break;
-      case "/en/categories/men/clothing/lower":
-        setProducts(data[0].SubCategory[1].items);
-        break;
-      case "/ar/categories/men/clothing/lower":
-        setProducts(data[0].SubCategory[1].items);
-        break;
-      case "/en/categories/men/shoes":
-        setProducts(data[2].SubCategory[0].items);
-        break;
-      case "/ar/categories/men/shoes":
-        setProducts(data[2].SubCategory[0].items);
-        break;
-      case "/en/categories/women/clothing":
-        setProducts(data[1].SubCategory);
-        break;
-      case "/ar/categories/women/clothing":
-        setProducts(data[1].SubCategory);
-        break;
-      case "/en/categories/women/clothing/top":
-        setProducts(data[1].SubCategory[0].items);
-        break;
-      case "/ar/categories/women/clothing/top":
-        setProducts(data[1].SubCategory[0].items);
-        break;
-      case "/en/categories/women/clothing/lower":
-        setProducts(data[1].SubCategory[1].items);
-        break;
-      case "/ar/categories/women/clothing/lower":
-        setProducts(data[1].SubCategory[1].items);
-        break;
-      case "/en/categories/women/shoes":
-        setProducts(data[3].SubCategory[0].items);
-        break;
-      case "/ar/categories/women/shoes":
-        setProducts(data[3].SubCategory[0].items);
-        break;
-      case "/en/categories/women/shoes":
-        setProducts(data[3].SubCategory[0].items);
-        break;
-      case "/ar/categories/women/shoes":
-        setProducts(data[3].SubCategory[0].items);
-        break;
-      default:
-        getProducts();
-        break;
+    const pathMapping = {
+      "/en/categories/men/clothing": () => data[0].SubCategory || [],
+      "/ar/categories/men/clothing": () => data[0].SubCategory || [],
+      "/en/categories/men/clothing/top": () => data[0]?.SubCategory[0]?.items || [],
+      "/ar/categories/men/clothing/top": () => data[0]?.SubCategory[0]?.items || [],
+      "/en/categories/men/clothing/lower": () => data[0]?.SubCategory[1]?.items || [],
+      "/ar/categories/men/clothing/lower": () => data[0]?.SubCategory[1]?.items || [],
+      "/en/categories/men/shoes": () => data[2]?.SubCategory[0]?.items || [],
+      "/ar/categories/men/shoes": () => data[2]?.SubCategory[0]?.items || [],
+      "/en/categories/women/clothing": () => data[1]?.SubCategory || [],
+      "/ar/categories/women/clothing": () => data[1]?.SubCategory || [],
+      "/en/categories/women/clothing/top": () => data[1]?.SubCategory[0]?.items || [],
+      "/ar/categories/women/clothing/top": () => data[1]?.SubCategory[0]?.items || [],
+      "/en/categories/women/clothing/lower": () => data[1]?.SubCategory[1]?.items || [],
+      "/ar/categories/women/clothing/lower": () => data[1]?.SubCategory[1]?.items || [],
+      "/en/categories/women/shoes": () => data[3]?.SubCategory[0]?.items || [],
+      "/ar/categories/women/shoes": () => data[3]?.SubCategory[0]?.items || [],
+    };
+    if (pathMapping[pathname]) {
+      setProducts(pathMapping[pathname]());
+      setTitle(""); // Reset title for static paths
+    } else {
+      fetchDynamicProducts();
     }
-
-    function getProducts() {
+    async function fetchDynamicProducts() {
       const parts = pathname.split("/");
       const lastPart = parts[parts.length - 1];
-
       if (lastPart) {
-        async function getProducts() {
+        try {
           const { productByItemId } = await getProductByItemId(lastPart);
-          setProducts(productByItemId[0].item_detail);
-          setTitle(productByItemId[0].title);
+          if (productByItemId?.length > 0) {
+            setProducts(productByItemId[0]?.item_detail || []);
+            setTitle(productByItemId[0]?.title || "");
+          }
+        } catch (error) {
+          console.error("Error fetching products:", error);
         }
-        getProducts();
       }
     }
   }, [pathname, data]);
