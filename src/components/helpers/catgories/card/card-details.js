@@ -119,13 +119,13 @@ export function CardDetails({
 
         <div className="basis-1/3 bg-yellow-400 sm:w-16 w-24 sm:h-[32px] text-center shadow-lg">
           <p className="sm:text-2xl text-3xl font-medium text-gray-900">
-            <span className="sm:text-lg text-xl">{t("product.price")}</span>
             <span className="font-semibold text-red-700">{price}</span>{" "}
+            <span className="sm:text-lg text-xl">{t("product.price")}</span>
           </p>
         </div>
       </div>
 
-      <div className="flex flex-row space-x-6">
+      <div className="flex flex-row gap-4">
         <TbShoppingBagPlus
           title="Add to bag"
           size={35}

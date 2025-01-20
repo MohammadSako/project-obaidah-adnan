@@ -1,10 +1,13 @@
+'use client'
 import React from "react";
 import { motion } from "framer-motion";
 import { Carousel, CarouselContent, CarouselItem } from "../../../../components/UI/carousel";
 import RelatedCard from "./related-card";
 import Autoplay from "embla-carousel-autoplay";
+import { useI18n } from "@/locales/client";
 
 function RelatedProducts({ data }) {
+   const t = useI18n();
  
   return (
     <motion.section
@@ -19,7 +22,8 @@ function RelatedProducts({ data }) {
           <div className="mx-auto max-w-2xl py-4 sm:py-20 sm:max-w-none lg:py-10">
             <div className="lg:col-span-2 lg:pr-8">
               <h1 className="text-4xl font-medium tracking-tighter text-center text-gray-900 sm:text-3xl">
-                You May Also Like
+              {t("product.mayalso")}
+
               </h1>
               <Carousel
                 className="w-full max-w-fit mt-4"

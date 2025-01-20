@@ -11,7 +11,7 @@ function ProductDetails() {
   const [products, setproducts] = useState([]);
   const [related, setRelated] = useState([]);
   const pathname = usePathname();
-  const path = pathname.slice(1); // Remove the first character
+  const path = pathname.slice(4); // Remove the first character
   useEffect(() => {
     async function getDetails() {
       const { product } = await getProductByPathname(path);

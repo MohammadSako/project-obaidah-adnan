@@ -15,7 +15,7 @@ export default function FavoriteDrawerList({ onClick }) {
   return (
     <>
       <div
-        className="flex-1 overflow-y-auto px-4 py-6 "
+        className="flex-1 overflow-y-auto px-4 py-6 z-300"
         dir={locale === "ar" ? "rtl" : "ltr"}
       >
         <div className="mt-4">

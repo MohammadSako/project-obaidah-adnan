@@ -7,12 +7,15 @@ import { useRouter } from "next/navigation";
 import { useItemStore } from "@/lib/store";
 import Image from "next/image";
 import { TbHeart, TbHeartFilled } from "react-icons/tb";
+import { useI18n } from "@/locales/client";
 
 function ProductDetailPage({ products }) {
   const { toast } = useToast();
   const router = useRouter();
   const [isFavorite, setIsFavorite] = useState(false);
+  const [clotheType, setClotheType] = useState("");
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
+  const t = useI18n();
 
   const {
     id,
@@ -117,16 +120,32 @@ function ProductDetailPage({ products }) {
     showToast("has been Removed from your Favorite's");
   }, [removeFavorite, id, showToast]);
 
+  useEffect(() => {
+    switch (type) {
+      case "top":
+        setClotheType(t("categories.top"));
+        break;
+      case "lower":
+        setClotheType(t("categories.lower"));
+        break;
+      case "shoes":
+        setClotheType(t("categories.shoes"));
+        break;
+      default:
+        setClotheType("n/a");
+    }
+  }, [type]);
+
   return (
-    <main className="sm:flex flex-col shadow-md sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mb-20 p-10">
+    <main className="sm:flex flex-col shadow-md rounded-md sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mb-20 p-10">
       <div className="bg-white">
         <div className="pt-6">
-          <div className="px-4 flex md:flex-row flex-col gap-4 ">
+          <div className="px-4 flex md:flex-row flex-col gap-10 ">
             <div className="basis-1/2 lg:col-span-2 lg:pr-8">
               {image ? (
                 <>
                   <div className="relative bg-white">
-                    <div className="absolute z-50 cursor-pointer right-2 top-2 text-xl text-black bg-white rounded-full w-8 h-8">
+                    <div className="absolute cursor-pointer right-2 top-2 text-xl text-black bg-white rounded-full w-8 h-8">
                       <div className="flex flex-row space-x-6">
                         {isFavorite ? (
                           <TbHeartFilled
@@ -159,7 +178,7 @@ function ProductDetailPage({ products }) {
                   </div>
                 </>
               ) : (
-                <p className="text-gray-500">No image available.</p>
+                <p className="text-gray-500">{t("product.noimage")}</p>
               )}
             </div>
 
@@ -170,33 +189,58 @@ function ProductDetailPage({ products }) {
                 </h1>
               </div>
 
-              <h4 className="text-2xl text-gray-500 mt-2">{details}</h4>
-              <h4 className="text-lg text-gray-500 mt-2">{description}</h4>
+              <div>
+                <div className="flex flex-row gap-1">
+                  <h3 className="text-xl text-gray-400">
+                    {t("product.details")}:
+                  </h3>
+                  <h4 className="w-fit text-xl font-medium text-gray-400 border-gray-800 capitalize">
+                    {details || "N/A"}
+                  </h4>
+                </div>
+              </div>
+              <div>
+                <div className="flex flex-row gap-1">
+                  <h3 className="text-xl text-gray-400">
+                    {t("product.description")}:
+                  </h3>
+                  <h4 className="w-fit text-xl font-medium text-gray-400 border-gray-800 capitalize">
+                    {description || "N/A"}
+                  </h4>
+                </div>
+              </div>
               <h4 className="text-lg text-gray-500 mt-2">
-                <span className="capitalize">{type}</span> for {gender}
+                <span className="capitalize">{clotheType}</span>{" "}
+                {gender === "men"
+                  ? t("categories.formen")
+                  : t("categories.forwomen")}
               </h4>
 
-              <div className="">
+              <div>
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-xl text-gray-800">Color</h3>
+                  <h3 className="text-xl text-gray-800">
+                    {t("product.color")}
+                  </h3>
                   <h4 className="w-fit text-xl font-medium text-gray-600 border-gray-800 border rounded-md px-4 py-1 capitalize">
                     {color || "N/A"}
                   </h4>
                 </div>
               </div>
-              <div className="">
+              <div>
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-xl text-gray-800">Size</h3>
+                  <h3 className="text-xl text-gray-800">{t("product.size")}</h3>
                   <h4 className="w-fit text-xl text-gray-600 border-gray-800 border rounded-md px-4 py-1 ">
                     {size || "N/A"}
                   </h4>
                 </div>
               </div>
-              <div className="">
+              <div>
                 <div className="flex flex-col gap-1 text-end">
                   <p className="text-4xl font-bold text-red-600">
-                    <span className="text-2xl text-red-600">JD </span>
                     {price || "N/A"}
+                    <span className="text-2xl text-gray-600 mx-2">
+                      {t("product.price")}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -206,7 +250,7 @@ function ProductDetailPage({ products }) {
                 onClick={addToCartHandler}
                 className="mt-6 w-full h-10 px-8 text-lg font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
               >
-                Add to bag
+                {t("product.addtocart")}
               </button>
             </div>
           </div>
