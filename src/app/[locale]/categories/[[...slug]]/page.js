@@ -2,7 +2,7 @@
 import { useI18n } from "@/locales/client";
 import CategoriesPage from "../../../../components/helpers/catgories/categories-page";
 
-export default async function Page() {
+export default function Page() {
   const t = useI18n();
 
   const categories = [

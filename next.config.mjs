@@ -14,7 +14,7 @@ const nextConfig = {
   // },
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: ["tailwindui.com", "res.cloudinary.com", `${supabase}`],
+    domains: ["tailwindui.com", `${supabase}`],
   },
 };
 
