@@ -41,7 +41,7 @@ export default function FavoriteDrawerList({ onClick }) {
                       <div className="flex justify-between text-base font-semibold text-gray-800">
                         <h3>{product.title}</h3>
                         <p className="ml-4 font-bold">
-                          {t("product.price")}
+                          {t("product.price")}{" "}
                           <span> {product.price}</span>
                         </p>
                       </div>

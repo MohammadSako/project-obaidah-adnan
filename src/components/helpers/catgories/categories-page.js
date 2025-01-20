@@ -65,7 +65,7 @@ export default function CategoriesPage({ data }) {
         <main className="sm:flex min-h-screen flex-col items-center sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="bg-white">
             <div className="mx-auto px-4 sm:py-4 lg:max-w-7xl">
-              <p className="text-3xl text-center my-4 text-gray-600">{title}</p>
+              {title && <p className="text-3xl text-center my-4 text-gray-600">{title}</p>}
               {products[0]?.price ? (
                 <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-5">
                   {products.map((product) => (
