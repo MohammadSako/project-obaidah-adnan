@@ -85,7 +85,7 @@ export default function CategoriesPage({ data }) {
                   ))}
                 </div>
               ) : (
-                <div className="flex flex-col flex-wrap gap-x-4 gap-y-10 sm:flex-row xl:gap-x-8">
+                <div className="flex flex-col flex-wrap gap-x-4 sm:gap-y-10 gap-y-2 sm:flex-row xl:gap-x-8">
                   {products.map((product) => (
                     <CategoriesCard
                       key={product.id}
