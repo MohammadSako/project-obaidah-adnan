@@ -10,7 +10,6 @@ import { Suspense, useEffect, useState } from "react";
 export default function CategoriesPage({ data }) {
   const [products, setProducts] = useState([]);
   const pathname = usePathname();
-  console.log(">>>>>>>>>", products);
   
   useEffect(() => {
     const pathMapping = {
