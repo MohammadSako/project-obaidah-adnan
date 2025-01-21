@@ -72,16 +72,16 @@ function ProductCard({
           </div>
           <div className="mt-4 flex justify-between">
             <div>
-              <p className="text-lg text-gray-700 font-sans">{title}</p>
-              <p className="mt-1 text-lg text-gray-500">{color}</p>
+              <p className="text-md text-gray-700 font-sans truncate w-32">{title}</p>
+              <p className="mt-1 text-md text-gray-500">{color}</p>
             </div>
             {dashboardType ? (
               <div className="bg-yellow-400 max-h-8 p-2 shadow-lg flex items-center">
                 <p className="font-medium text-gray-900">
-                  <span className="text-2xl font-semibold text-red-600">
+                  <span className="text-xl font-semibold text-red-600">
                     {price}
                   </span>{" "}
-                  <span className="text-xl -mt-2">{t("product.price")}</span>
+                  <span className="text-sm -mt-2">{t("product.price")}</span>
                 </p>
               </div>
             ) : (

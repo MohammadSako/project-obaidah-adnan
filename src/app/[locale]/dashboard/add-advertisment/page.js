@@ -4,7 +4,7 @@ import {
   CarouselListSkeleton,
 } from "@/components/UI/skeletons";
 import AddAdvertisment from "../components/add-advertisment";
-import AdvertismentList from "../../../components/dashboard/advertisement-list";
+import AdvertismentList from "@/components/dashboard/advertisement-list";
 import { getAdvertisment } from "@/lib/db/products";
 
 export default async function AddAdvertismentPage() {

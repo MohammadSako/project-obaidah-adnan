@@ -42,12 +42,12 @@ export function Landing({ data }) {
     <section className="relative flex flex-col w-full items-start justify-center h-96">
       <div className="flex flex-col z-10 container mx-auto gap-6 px-[2rem]">
         {data[activeBanner].title && (
-          <h1 className="text-4xl lg:text-8xl ltr:font-display text-forest text-gray-300 font-bold max-w-screen-lg">
+          <h1 className="text-4xl lg:text-8xl ltr:font-display text-forest text-gray-400 font-bold max-w-screen-lg">
             {data[activeBanner]?.title}
           </h1>
         )}
         {data[activeBanner].description && (
-          <h2 className="text-forest text-lg lg:text-2xl max-w-3xl mb-6 text-gray-500">
+          <h2 className="text-forest text-lg lg:text-2xl max-w-3xl mb-6 text-gray-400 font-bold">
             {data[activeBanner]?.description}
           </h2>
         )}

@@ -75,7 +75,7 @@ export function CardDetails({
       <div className="mt-4 flex md:flex-row flex-col sm:justify-between space-y-7">
         <div className="basis-2/3">
           {/* <p className="sm:text-lg text-5xl text-gray-700 font-semibold">{title}</p> */}
-          <p className="sm:text-lg text-3xl text-gray-700 w-auto">
+          <p className="sm:text-lg text-3xl text-gray-700 truncate w-32">
             {description}
           </p>
           <p className="mt-1 sm:text-lg text-2xl text-gray-500">{color}</p>

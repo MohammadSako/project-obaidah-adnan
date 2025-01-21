@@ -1,3 +1,4 @@
+import { useCurrentLocale } from "@/locales/client";
 import {
   Disclosure,
   DisclosureButton,
@@ -26,7 +27,7 @@ function classNames(...classes) {
 
 export function DashNav() {
   const pathname = usePathname();
-
+  const locale = useCurrentLocale();
   return (
     <>
       <div className="min-h-full">
@@ -38,7 +39,7 @@ export function DashNav() {
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {navigation.map((item) => {
-                      const isActive = pathname === item.href;
+                      const isActive = pathname === `/${locale}${item.href}`;
                       return (
                         <Link
                           key={item.name}

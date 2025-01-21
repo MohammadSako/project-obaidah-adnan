@@ -84,7 +84,7 @@ export function DataTable({ data }: DataTableProps) {
         );
       },
       cell: ({ row }) => (
-        <div className="capitalize font-bold text-red-500">
+        <div className="capitalize font-bold truncate max-w-32 text-red-500">
           {row.getValue("title")}
         </div>
       ),
@@ -332,14 +332,14 @@ export function DataTable({ data }: DataTableProps) {
       accessorKey: "description",
       header: "Description",
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("description")}</div>
+        <div className="capitalize truncate w-20">{row.getValue("description")}</div>
       ),
     },
     {
       accessorKey: "details",
       header: "Details",
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("details")}</div>
+        <div className="capitalize truncate w-20">{row.getValue("details")}</div>
       ),
     },
     {

@@ -1,7 +1,7 @@
 "use client";
 
 import { addProduct } from "@/lib/db/products";
-import { DashForm } from "../../../components/dashboard/dash-form";
+import { DashForm } from "@/components/dashboard/dash-form";
 import { Suspense } from "react";
 import { FormSkeleton } from "@/components/UI/skeletons";
 import { useRouter } from "next/navigation";
