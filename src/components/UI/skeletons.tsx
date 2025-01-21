@@ -243,6 +243,19 @@ export function CarouselPageSkeleton() {
     </>
   );
 }
+export function CarouselSkeleton() {
+  return (
+    <>
+      <div
+        className={`${shimmer} animate-pulse mx-10 w-full mt-10 relative overflow-hidden bg-gray-100 p-2 shadow-sm`}
+      >
+        <div className="flex flex-col items-center justify-center truncate bg-white px-4 py-4 space-y-2">
+          <div className="h-[400px] w-full rounded-md bg-gray-100" />
+        </div>
+      </div>
+    </>
+  );
+}
 export function CarouselListSkeleton() {
   return (
     <>

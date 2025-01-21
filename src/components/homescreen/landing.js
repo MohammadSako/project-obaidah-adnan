@@ -1,10 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import Fade from "embla-carousel-fade";
-import Autoplay from "embla-carousel-autoplay";
 import { useEffect, useState } from "react";
 import { useCurrentLocale, useI18n } from "@/locales/client";
 import {
@@ -16,8 +13,6 @@ import {
 import { Button } from "../UI/button";
 
 export function Landing({ data }) {
-  const options = { loop: false, duration: 30 };
-  const [emblaRef] = useEmblaCarousel(options, [Fade(), Autoplay()]);
   const [activeBanner, setActiveBanner] = useState(0);
   const t = useI18n();
   const currentLocale = useCurrentLocale();

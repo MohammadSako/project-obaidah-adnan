@@ -16,7 +16,7 @@ import Discounted from "@/components/homescreen/discounted";
 import OurBrands from "@/components/homescreen/our-brands";
 import { Metadata } from "next";
 import { Suspense } from "react";
-import { CardSkeleton } from "@/components/UI/skeletons";
+import { CarouselSkeleton } from "@/components/UI/skeletons";
 
 export const metadata: Metadata = {
   title: "Obaidah Shop",
@@ -35,7 +35,7 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center overflow-x-hidden">
-      <Suspense fallback={<CardSkeleton />}>
+      <Suspense fallback={<CarouselSkeleton />}>
         {carouselData.length > 0 && <Landing data={carouselData} />}
         <YourFavoriteItems />
         {bestSellers.length > 0 && <BestSellers data={bestSellers} />}

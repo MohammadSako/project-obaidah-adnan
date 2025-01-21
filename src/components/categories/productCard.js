@@ -6,8 +6,6 @@ import React, { useCallback, useMemo } from "react";
 import { TbShoppingBagPlus, TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
 import { useToast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/UI/toast";
-import { useRouter } from "next/navigation";
 import { useI18n } from "@/locales/client";
 
 function ProductCard({
@@ -24,7 +22,6 @@ function ProductCard({
 }) {
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const { toast } = useToast();
-  const router = useRouter();
   const t = useI18n();
 
   // Memoize isFavorite value to prevent unnecessary re-renders
