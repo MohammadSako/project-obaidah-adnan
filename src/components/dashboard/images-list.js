@@ -24,15 +24,24 @@ const ImagesList = ({ data }) => {
                 key={image.id}
                 className="flex flex-row justify-between items-center"
               >
-                <div className="w-96">
+                <div className="flex flex-row gap-4 h-20">
                   <Image
                     alt={image.image}
                     src={image.image}
                     width={200}
                     height={30}
-                    className="w-full rounded-lg"
+                    className="rounded-lg"
                   />
+                  <div className="flex flex-col">
+                    <p className="text-2xl text-gray-500">
+                      {image.title}
+                    </p>
+                    <p className="text-md text-gray-500">
+                      {image.description}
+                    </p>
+                  </div>
                 </div>
+
                 <div className="">
                   <MdDelete
                     size={50}

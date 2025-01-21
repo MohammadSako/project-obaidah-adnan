@@ -32,7 +32,7 @@ export function Advertisement({ data }) {
                   src={product.image}
                   width={1500}
                   height={400}
-                  alt="Picture of the author"
+                  alt={product.title}
                 />
               </div>
             ))}

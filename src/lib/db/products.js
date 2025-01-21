@@ -401,6 +401,7 @@ export async function addCarousel(carousel) {
     const product = await prisma.carouselImages.create({
       data: {
         title: carousel.title,
+        description: carousel.description,
         image: carousel.image,
         alt: carousel.alt,
         imageid: carousel.imageid,

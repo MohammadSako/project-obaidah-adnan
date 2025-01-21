@@ -22,8 +22,11 @@ import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
 
 const formSchema = z.object({
-  title: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  title: z.string().min(0, {
+    message: "title must be at least 2 characters.",
+  }),
+  description: z.string().min(0, {
+    message: "description must be at least 2 characters.",
   }),
 });
 
@@ -45,6 +48,7 @@ export function CarouselForm({ onAddCarousel }: AddFormProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
+      description: "",
     },
   });
 
@@ -103,6 +107,7 @@ export function CarouselForm({ onAddCarousel }: AddFormProps) {
       const { image, image_id } = uploadResult;
       const data = {
         title: values.title,
+        description: values.description,
         image: image,
         imageid: image_id, //we usa this to delete the image
         alt: values.title,
@@ -124,6 +129,7 @@ export function CarouselForm({ onAddCarousel }: AddFormProps) {
         onAddCarousel(data);
         form.reset({
           title: "",
+          description: "",
         });
         setUploadedImageUrl("");
         setImagePreview("");
@@ -207,6 +213,21 @@ export function CarouselForm({ onAddCarousel }: AddFormProps) {
                       <FormLabel>Carousel Title</FormLabel>
                       <FormControl>
                         <Input placeholder="Carousel title" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Carousel Description</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Carousel description" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

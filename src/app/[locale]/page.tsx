@@ -34,7 +34,7 @@ export default async function Home() {
   const { brandData = [] } = await getBrand();
 
   return (
-    <div className="flex min-h-screen flex-col items-center font-display">
+    <div className="flex min-h-screen flex-col items-center overflow-x-hidden">
       <Suspense fallback={<CardSkeleton />}>
         {carouselData.length > 0 && <Landing data={carouselData} />}
         <YourFavoriteItems />
