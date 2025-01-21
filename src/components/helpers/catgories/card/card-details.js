@@ -3,7 +3,6 @@
 import React, { useCallback, useMemo } from "react";
 import { TbShoppingBagPlus, TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useToast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/UI/toast";
 import { useRouter } from "next/navigation";
 import { useItemStore } from "@/lib/store";
 import Image from "next/image";
@@ -35,64 +34,29 @@ export function CardDetails({
     [favorite, id]
   );
 
-  const handleToast = useCallback(
-    (message, actionText, linkName, actionOnClick) => {
-      toast({
-        title: message,
-        description: actionText,
-        action: (
-          <ToastAction altText={actionText} onClick={actionOnClick}>
-            {linkName}
-          </ToastAction>
-        ),
-      });
-    },
-    [toast]
-  );
-
   const addToFavorite = useCallback(() => {
     addFavorite({ id, title, description, image, price, color, alt, details });
-    handleToast(
-      `${title}`,
-      "has been Added to your Favorite's",
-      "go to your Favorite's",
-      () => router.push("/favorite")
-    );
-  }, [
-    addFavorite,
-    id,
-    title,
-    description,
-    image,
-    price,
-    color,
-    details,
-    handleToast,
-    router,
-    alt,
-  ]);
+    toast({
+      title: `${title}`,
+      description: t("common.favaddedmessage"),
+    });
+  }, [addFavorite, id, title, description, image, price, color, details, alt]);
+
+  const removeFromFavorite = useCallback(() => {
+    removeFavorite(id);
+    toast({
+      title: `${title}`,
+      description: t("common.favremovedmessage"),
+    });
+  }, [removeFavorite, id, title]);
 
   const addToCartHandler = useCallback(() => {
     addItem({ id, title, description, image, price, color, alt, details });
-    handleToast(
-      `${title}`,
-      "has been Added to your bag",
-      "go to your Bag",
-      () => router.push("/cart")
-    );
-  }, [
-    addItem,
-    id,
-    title,
-    description,
-    image,
-    price,
-    color,
-    details,
-    alt,
-    handleToast,
-    router,
-  ]);
+    toast({
+      title: `${title}`,
+      description: t("common.addedmessage"),
+    });
+  }, [addItem, id, title, description, image, price, color, details, alt]);
 
   return (
     <div className="sm:shadow-none sm:p-0 rounded-lg shadow-lg p-4 space-y-2">
@@ -140,7 +104,7 @@ export function CardDetails({
           <TbHeartFilled
             title="Remove from favorite"
             size={35}
-            onClick={() => removeFavorite(id)}
+            onClick={() => removeFromFavorite(id)}
             className={`${iconStyles} ${
               isFavorite
                 ? "text-red-500 hover:text-red-400"

@@ -49,6 +49,8 @@ export default {
   "common.movetocart": "Move To Cart",
   "common.delete": "Delete",
   "common.addedmessage": "Product Added To Cart!",
+  "common.favaddedmessage": "Product Added To Favorite!",
+  "common.favremovedmessage": "Product Removed To Favorite!",
   "errors.generic": "Something went wrong",
   "errors.noaddress": "Please add an address to checkout",
   "errors.weakpassword":

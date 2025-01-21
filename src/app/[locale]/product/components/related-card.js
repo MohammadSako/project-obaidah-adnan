@@ -3,11 +3,10 @@
 import { useCallback, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { TbShoppingBagPlus, TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useToast } from "@/hooks/use-toast";
-import { ToastAction } from "@/components/UI/toast";
 import { useItemStore } from "@/lib/store";
+import { useI18n } from "@/locales/client";
 
 function RelatedCard({
   id,
@@ -22,7 +21,7 @@ function RelatedCard({
 }) {
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const { toast } = useToast();
-  const router = useRouter();
+  const t = useI18n();
 
   // Memoize isFavorite value to prevent unnecessary re-renders
   const isFavorite = useMemo(
@@ -30,66 +29,32 @@ function RelatedCard({
     [favorite, id]
   );
 
-  const handleToast = useCallback(
-    (message, actionText, actionOnClick) => {
-      toast({
-        title: message,
-        description: actionText,
-        action: (
-          <ToastAction altText={actionText} onClick={actionOnClick}>
-            {actionText}
-          </ToastAction>
-        ),
-      });
-    },
-    [toast]
-  );
-
   const addToFavorite = useCallback(() => {
     addFavorite({ id, title, description, image, price, color, alt, details });
-    handleToast(`${title}`, "has been Added to your Favorite's", () =>
-      router.push("/favorite")
-    );
-  }, [
-    addFavorite,
-    id,
-    title,
-    description,
-    image,
-    price,
-    color,
-    details,
-    handleToast,
-    router,
-    alt,
-  ]);
+    toast({
+      title: `${title}`,
+      description: t("common.favaddedmessage"),
+    });
+  }, [addFavorite, id, title, description, image, price, color, details, alt]);
 
   const removeFromFavorite = useCallback(() => {
     removeFavorite(id);
-    handleToast(`${title}`, "has been removed from your Favorite's", () =>
-      router.push("/favorite")
-    );
-  }, [removeFavorite, id, title, handleToast, router]);
+    toast({
+      title: `${title}`,
+      description: t("common.favremovedmessage"),
+    });
+  }, [removeFavorite, id, title]);
 
   const addToCartHandler = useCallback(() => {
     addItem({ id, title, description, image, price, color, alt, details });
-    handleToast(`${title}`, "has been Added to your bag", () =>
-      router.push("/cart")
-    );
-  }, [
-    addItem,
-    id,
-    title,
-    description,
-    image,
-    price,
-    color,
-    details,
-    alt,
-    handleToast,
-    router,
-  ]);
+    toast({
+      title: `${title}`,
+      description: t("common.addedmessage"),
+    });
+  }, [addItem, id, title, description, image, price, color, details, alt]);
+
   const urls = url.replace("product/", "");
+
   return (
     <div>
       <Link href={urls}>

@@ -49,6 +49,8 @@ export default {
   "common.movetocart": "انقل إلى السلة",
   "common.delete": "حذف",
   "common.addedmessage": "تمت إضافة المنتج إلى السلة",
+  "common.favaddedmessage": "تمت إضافة المنتج إلى السلة المفضلة",
+  "common.favremovedmessage": "تمت إزالة المنتج إلى السلة المفضلة",
   "errors.generic": "هناك خطأ ما",
   "errors.noaddress": "الرجاء إضافة عنوان للمتابعة",
   "errors.weakpassword":
