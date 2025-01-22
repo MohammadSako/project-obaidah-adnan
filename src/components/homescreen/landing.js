@@ -3,15 +3,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useCurrentLocale, useI18n } from "@/locales/client";
+import { useCurrentLocale } from "@/locales/client";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { Button } from "../UI/button";
 
 export function Landing({ data }) {
   const [activeBanner, setActiveBanner] = useState(0);
-  const t = useI18n();
   const currentLocale = useCurrentLocale();
-  const isRtl = currentLocale === "ar";
 
   useEffect(() => {
     const timeout = setTimeout(() => {

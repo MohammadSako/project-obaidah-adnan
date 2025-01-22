@@ -38,7 +38,19 @@ function ProductDetailPage({ products }) {
       title: `${title}`,
       description: t("common.favaddedmessage"),
     });
-  }, [addFavorite, id, title, description, image, price, color, details, alt]);
+  }, [
+    addFavorite,
+    id,
+    title,
+    description,
+    image,
+    price,
+    color,
+    details,
+    alt,
+    toast,
+    t,
+  ]);
 
   const removeFromFavoriteHandler = useCallback(() => {
     removeFavorite(id);
@@ -46,7 +58,7 @@ function ProductDetailPage({ products }) {
       title: `${title}`,
       description: t("common.favremovedmessage"),
     });
-  }, [removeFavorite, id, title]);
+  }, [removeFavorite, id, title, toast, t]);
 
   const addToCartHandler = useCallback(() => {
     addItem({ id, title, description, image, price, color, alt, details });
@@ -54,7 +66,19 @@ function ProductDetailPage({ products }) {
       title: `${title}`,
       description: t("common.addedmessage"),
     });
-  }, [addItem, id, title, description, image, price, color, details, alt]);
+  }, [
+    addItem,
+    id,
+    title,
+    description,
+    image,
+    price,
+    color,
+    details,
+    alt,
+    toast,
+    t,
+  ]);
 
   useEffect(() => {
     switch (type) {
@@ -137,8 +161,8 @@ function ProductDetailPage({ products }) {
               </div>
               <div>
                 <div className="flex flex-col gap-1">
-                <h3 className="text-xl text-gray-500 font-bold">
-                {t("product.description")}:
+                  <h3 className="text-xl text-gray-500 font-bold">
+                    {t("product.description")}:
                   </h3>
                   <h4 className="w-fit text-lg text-gray-400 border-gray-800 capitalize">
                     {description || "N/A"}
