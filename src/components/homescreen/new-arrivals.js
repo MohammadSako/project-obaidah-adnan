@@ -8,12 +8,12 @@ import Autoplay from "embla-carousel-autoplay";
 import { useI18n } from "@/locales/client";
 
 function NewArrivals({ data }) {
-    const t = useI18n();
-  
+  const t = useI18n();
+
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+    initial={{ opacity: 0, translateY: 100 }}
+    whileInView={{ opacity: 1, translateY: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.3 }}
       className="flex flex-col items-center gap-4 w-full overflow-hidden origin-center"
@@ -23,7 +23,7 @@ function NewArrivals({ data }) {
           <div className="mx-auto max-w-2xl py-4 sm:py-20 lg:max-w-none lg:py-10">
             <div className="lg:col-span-2 lg:pr-8">
               <h1 className="text-4xl font-medium tracking-tighter text-center text-gray-900 sm:text-3xl">
-              {t("home.newarrivals")}
+                {t("home.newarrivals")}
               </h1>
               <Carousel
                 className="w-full max-w-fit mt-4"

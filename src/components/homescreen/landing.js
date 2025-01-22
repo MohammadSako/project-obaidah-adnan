@@ -4,12 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useCurrentLocale, useI18n } from "@/locales/client";
-import {
-  FaArrowLeft,
-  FaArrowRight,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa6";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { Button } from "../UI/button";
 
 export function Landing({ data }) {
@@ -35,28 +30,16 @@ export function Landing({ data }) {
   }
   return (
     <section className="relative flex flex-col w-full items-start justify-center h-96">
-      <div className="flex flex-col z-10 container mx-auto gap-6 px-[2rem]">
+      <div className="flex flex-col z-10 m-auto h-auto mx-auto gap-6 px-[2rem] text-center rounded-3xl bg-opacity-20 bg-gray-900">
         {data[activeBanner].title && (
-          <h1 className="text-4xl lg:text-8xl ltr:font-display text-forest text-gray-400 font-bold max-w-screen-lg">
+          <h1 className="text-4xl lg:text-8xl m-4 rtl:font-arabic text-white font-bold">
             {data[activeBanner]?.title}
           </h1>
         )}
         {data[activeBanner].description && (
-          <h2 className="text-forest text-lg lg:text-2xl max-w-3xl mb-6 text-gray-400 font-bold">
+          <h2 className="text-lg lg:text-5xl rtl:font-arabic mb-6 text-white font-bold">
             {data[activeBanner]?.description}
           </h2>
-        )}
-        {data[activeBanner]?.redirectURL && (
-          <Link href={data[activeBanner].redirectURL} className="w-40 h-[45px]">
-            <Button
-              variant="secondary"
-              size="xl"
-              className="w-40 font-medium ltr:uppercase z-10 cursor-pointer min-w-fit "
-            >
-              <span className="rtl:pt-1">{t("home.shopnow")}</span>
-              {isRtl ? <FaArrowLeft /> : <FaArrowRight />}
-            </Button>
-          </Link>
         )}
       </div>
       <AnimatePresence>
@@ -87,7 +70,7 @@ export function Landing({ data }) {
         )}
       </AnimatePresence>
       {data.length > 1 && (
-        <div className="absolute flex bottom-10 w-[50%] items-center gap-10 justify-between self-center z-40">
+        <div className="absolute flex bottom-10 w-[50%] items-center gap-10 justify-between self-center z-10">
           <Button
             variant="secondary"
             onClick={() =>

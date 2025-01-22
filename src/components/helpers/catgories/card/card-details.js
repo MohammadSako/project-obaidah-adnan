@@ -3,7 +3,6 @@
 import React, { useCallback, useMemo } from "react";
 import { TbShoppingBagPlus, TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 import { useItemStore } from "@/lib/store";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,11 +23,9 @@ export function CardDetails({
   details,
 }) {
   const { toast } = useToast();
-  const router = useRouter();
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const t = useI18n();
 
-  // Effect to determine if the item is in the favorites
   const isFavorite = useMemo(
     () => favorite.some((item) => item.id === id),
     [favorite, id]
@@ -40,7 +37,19 @@ export function CardDetails({
       title: `${title}`,
       description: t("common.favaddedmessage"),
     });
-  }, [addFavorite, id, title, description, image, price, color, details, alt]);
+  }, [
+    addFavorite,
+    id,
+    title,
+    description,
+    image,
+    price,
+    color,
+    details,
+    alt,
+    toast,
+    t,
+  ]);
 
   const removeFromFavorite = useCallback(() => {
     removeFavorite(id);
@@ -48,7 +57,7 @@ export function CardDetails({
       title: `${title}`,
       description: t("common.favremovedmessage"),
     });
-  }, [removeFavorite, id, title]);
+  }, [removeFavorite, id, title, toast, t]);
 
   const addToCartHandler = useCallback(() => {
     addItem({ id, title, description, image, price, color, alt, details });
@@ -56,7 +65,19 @@ export function CardDetails({
       title: `${title}`,
       description: t("common.addedmessage"),
     });
-  }, [addItem, id, title, description, image, price, color, details, alt]);
+  }, [
+    addItem,
+    id,
+    title,
+    description,
+    image,
+    price,
+    color,
+    details,
+    alt,
+    toast,
+    t,
+  ]);
 
   return (
     <div className="sm:shadow-none sm:p-0 rounded-lg shadow-lg p-4 space-y-2">

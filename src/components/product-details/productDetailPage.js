@@ -120,32 +120,32 @@ function ProductDetailPage({ products }) {
 
             <div className="basis-1/2 space-y-4">
               <div className="flex justify-between">
-                <h1 className="sm:text-4xl text-4xl font-bold text-gray-900 capitalize">
+                <h1 className="text-3xl font-bold text-gray-900 capitalize">
                   {title || "No Title"}
                 </h1>
               </div>
 
               <div>
-                <div className="flex flex-row gap-1">
-                  <h3 className="text-xl text-gray-400">
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-xl text-gray-500 font-bold">
                     {t("product.details")}:
                   </h3>
-                  <h4 className="w-fit text-xl font-medium text-gray-400 border-gray-800 capitalize">
+                  <h4 className="w-fit text-lg text-gray-400 border-gray-800 capitalize">
                     {details || "N/A"}
                   </h4>
                 </div>
               </div>
               <div>
-                <div className="flex flex-row gap-1">
-                  <h3 className="text-xl text-gray-400">
-                    {t("product.description")}:
+                <div className="flex flex-col gap-1">
+                <h3 className="text-xl text-gray-500 font-bold">
+                {t("product.description")}:
                   </h3>
-                  <h4 className="w-fit text-xl font-medium text-gray-400 border-gray-800 capitalize">
+                  <h4 className="w-fit text-lg text-gray-400 border-gray-800 capitalize">
                     {description || "N/A"}
                   </h4>
                 </div>
               </div>
-              <h4 className="text-lg text-gray-500 mt-2">
+              <h4 className="text-lg text-blue-500 font-bold mt-2">
                 <span className="capitalize">{clotheType}</span>{" "}
                 {gender === "men"
                   ? t("categories.formen")
@@ -157,7 +157,7 @@ function ProductDetailPage({ products }) {
                   <h3 className="text-xl text-gray-800">
                     {t("product.color")}
                   </h3>
-                  <h4 className="w-fit text-xl font-medium text-gray-600 border-gray-800 border rounded-md px-4 py-1 capitalize">
+                  <h4 className="w-fit text-xl font-medium text-blue-600 border-gray-800 border rounded-md px-4 py-1 capitalize">
                     {color || "N/A"}
                   </h4>
                 </div>
@@ -165,7 +165,7 @@ function ProductDetailPage({ products }) {
               <div>
                 <div className="flex flex-col gap-1">
                   <h3 className="text-xl text-gray-800">{t("product.size")}</h3>
-                  <h4 className="w-fit text-xl text-gray-600 border-gray-800 border rounded-md px-4 py-1 ">
+                  <h4 className="w-fit text-xl text-blue-600 font-bold border-gray-800 border rounded-md px-4 py-1 ">
                     {size || "N/A"}
                   </h4>
                 </div>

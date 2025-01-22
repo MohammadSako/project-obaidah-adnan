@@ -39,7 +39,7 @@ export default {
   "common.proceedtocheckout": "اذهب إلى السداد",
   "common.apply": "تطبيق",
   "common.subtotal": "المجموع الفرعي",
-  "common.discount": "تخفيض",
+  "common.discount": "تخفيضات على الأسعار",
   "common.shipping": "الشحن",
   "common.shippinginfo": "سيتم احتساب الشحن والضرائب عند إتمام عملية الشراء.",
   "common.shippingagree":
@@ -90,7 +90,7 @@ export default {
   "home.shopnow": "تسوق الآن",
   "home.bestsellers": "الأكثر مبيعاً",
   "home.newarrivals": "وصل حديثاً",
-  "home.popularcategories": "اكتشف الأكثر شهرة",
+  "home.popularcategories": "اقسامنا",
   "home.ourbrands": "علاماتنا التجارية",
   "home.justforyou": "فقط من أجلك للحصول على بشرة مذهلة",
   "home.testimonials": "التوصيات",

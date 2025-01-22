@@ -34,12 +34,12 @@ export default async function Home() {
   const { brandData = [] } = await getBrand();
 
   return (
-    <div className="flex min-h-screen flex-col items-center overflow-x-hidden">
+    <div className="flex min-h-screen flex-col items-center overflow-x-hidden gap-16">
       <Suspense fallback={<CarouselSkeleton />}>
         {carouselData.length > 0 && <Landing data={carouselData} />}
-        <YourFavoriteItems />
         {bestSellers.length > 0 && <BestSellers data={bestSellers} />}
         {discounted.length > 0 && <Discounted data={discounted} />}
+        <YourFavoriteItems />
         {brandData.length > 0 && <OurBrands data={brandData} />}
         {newArrivals.length > 0 && <NewArrivals data={newArrivals} />}
         {advertismentData.length > 0 && (

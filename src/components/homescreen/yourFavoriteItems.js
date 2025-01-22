@@ -17,8 +17,8 @@ export function YourFavoriteItems() {
     <>
       {favorite.length > 0 && (
         <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, translateY: 100 }}
+          whileInView={{ opacity: 1, translateY: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex flex-col items-center my-2 gap-4 w-full overflow-hidden origin-center"
@@ -29,7 +29,7 @@ export function YourFavoriteItems() {
                 <div className="lg:col-span-2 lg:pr-8 text-center">
                   <Link href="/favorite">
                     <h1 className="text-4xl font-medium tracking-tighter text-gray-900 sm:text-3xl">
-                    {t("common.wishlist")} 
+                      {t("common.wishlist")}
                     </h1>
                   </Link>
                   <Carousel

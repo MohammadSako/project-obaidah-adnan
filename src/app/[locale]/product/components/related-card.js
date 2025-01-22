@@ -35,7 +35,19 @@ function RelatedCard({
       title: `${title}`,
       description: t("common.favaddedmessage"),
     });
-  }, [addFavorite, id, title, description, image, price, color, details, alt]);
+  }, [
+    addFavorite,
+    id,
+    title,
+    description,
+    image,
+    price,
+    color,
+    details,
+    alt,
+    toast,
+    t,
+  ]);
 
   const removeFromFavorite = useCallback(() => {
     removeFavorite(id);
@@ -43,7 +55,7 @@ function RelatedCard({
       title: `${title}`,
       description: t("common.favremovedmessage"),
     });
-  }, [removeFavorite, id, title]);
+  }, [removeFavorite, id, title, toast, t]);
 
   const addToCartHandler = useCallback(() => {
     addItem({ id, title, description, image, price, color, alt, details });
@@ -51,7 +63,19 @@ function RelatedCard({
       title: `${title}`,
       description: t("common.addedmessage"),
     });
-  }, [addItem, id, title, description, image, price, color, details, alt]);
+  }, [
+    addItem,
+    id,
+    title,
+    description,
+    image,
+    price,
+    color,
+    details,
+    alt,
+    toast,
+    t,
+  ]);
 
   const urls = url.replace("product/", "");
 
@@ -70,10 +94,10 @@ function RelatedCard({
           </div>
           <div className="mt-4 flex justify-between">
             <div>
-              <p className="text-sm text-gray-700">{title}</p>
-              <p className="mt-1 text-sm text-gray-500">{color}</p>
+              <p className="text-lg text-gray-700 w-32 truncate">{title}</p>
+              <p className="mt-1 text-lg text-gray-500">{color}</p>
             </div>
-            <div className="bg-yellow-400 p-2 shadow-lg">
+            <div className="bg-yellow-400 max-h-8 p-2 shadow-lg flex items-center">
               <p className="text-lg font-medium text-gray-900">
                 <span className="font-semibold text-red-700">{price}</span>{" "}
                 <span className="text-xs -mt-2">JD</span>

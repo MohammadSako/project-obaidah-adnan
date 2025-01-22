@@ -14,14 +14,14 @@ export function Advertisement({ data }) {
 
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, translateY: 100 }}
+      whileInView={{ opacity: 1, translateY: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.3 }}
       className="flex-col items-center gap-4 w-full overflow-hidden origin-center sm:block hidden"
     >
       <h1 className="text-4xl font-medium tracking-tighter text-center text-gray-900 sm:text-3xl mt-32">
-        {t("common.advertisements")} 
+        {t("common.advertisements")}
       </h1>
       <div className="flex items-center justify-center mt-10">
         <div className="overflow-hidden w-full max-w-7xl" ref={emblaRef}>

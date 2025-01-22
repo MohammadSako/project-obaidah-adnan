@@ -36,7 +36,19 @@ function ProductCard({
       title: `${title}`,
       description: t("common.favaddedmessage"),
     });
-  }, [addFavorite, id, title, description, image, price, color, details, alt]);
+  }, [
+    addFavorite,
+    id,
+    title,
+    description,
+    image,
+    price,
+    color,
+    details,
+    alt,
+    toast,
+    t,
+  ]);
 
   const removeFromFavorite = useCallback(() => {
     removeFavorite(id);
@@ -44,7 +56,7 @@ function ProductCard({
       title: `${title}`,
       description: t("common.favremovedmessage"),
     });
-  }, [removeFavorite, id, title]);
+  }, [removeFavorite, id, title, toast, t]);
 
   const addToCartHandler = useCallback(() => {
     addItem({ id, title, description, image, price, color, alt, details });
@@ -52,13 +64,25 @@ function ProductCard({
       title: `${title}`,
       description: t("common.addedmessage"),
     });
-  }, [addItem, id, title, description, image, price, color, details, alt]);
+  }, [
+    addItem,
+    id,
+    title,
+    description,
+    image,
+    price,
+    color,
+    details,
+    alt,
+    toast,
+    t,
+  ]);
 
   return (
     <div>
       <Link href={url}>
         <div className="group relative">
-          <div className="p-2 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 shadow-lg">
+          <div className="p-2 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
             <Image
               src={image}
               alt={alt}
@@ -69,8 +93,12 @@ function ProductCard({
           </div>
           <div className="mt-4 flex justify-between">
             <div>
-              <p className="text-md text-gray-700 font-sans truncate w-32">{title}</p>
-              <p className="mt-1 text-md text-gray-500">{color}</p>
+              <p className="rtl:font-arabic text-lg text-gray-900 font-sans truncate w-32">
+                {title}
+              </p>
+              <p className="rtl:font-arabic mt-1 text-lg text-gray-900">
+                {color}
+              </p>
             </div>
             {dashboardType ? (
               <div className="bg-yellow-400 max-h-8 p-2 shadow-lg flex items-center">
@@ -94,7 +122,7 @@ function ProductCard({
           </div>
         </div>
       </Link>
-      <div className="flex flex-row space-x-6">
+      <div className="flex flex-row gap-4">
         <TbShoppingBagPlus
           title="Add to bag"
           size={30}
