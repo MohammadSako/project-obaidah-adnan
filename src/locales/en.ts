@@ -16,7 +16,10 @@ export default {
   "common.needhelp": "Need Help?",
   "common.returnpolicy": "Our Return Policy",
   "common.form.name": "Name",
+  "common.form.lastname": "Last Name",
+  "common.form.country": "Country",
   "common.form.email": "Email",
+  "common.form.phonenumber": "Phone",
   "common.form.phone": "Phone: (+962) 777 935 735",
   "common.form.password": "Password",
   "common.form.city": "City / Town",
@@ -39,6 +42,7 @@ export default {
   "common.discount": "Discount",
   "common.shipping": "Shipping",
   "common.shippinginfo": "Shipping and taxes calculated at checkout.",
+  "common.policyagree": "By selecting this, you agree to our",
   "common.shippingagree":
     "By clicking check out you're agreeing to our Privacy Policy.",
   "common.secureshopping": "Secure shopping with SSL encryption",
@@ -123,14 +127,9 @@ export default {
   "product.comments#zero": "No Comments",
   "product.comments#one": "{count} Comment",
   "product.comments#other": "{count} Comments",
-  "about.content": `Welcome to BioNatural, your trusted partner in dermatology solutions.
-          Established in 2005, we have dedicated ourselves to becoming leaders
-          in both the marketing of dermatology products and the education
-          surrounding their proper use and care. At BioNatural, our commitment
-          to excellence has led to remarkable growth. Our headquarters now span
-          an impressive 400 square meters, reflecting the expansion of our
-          dynamic team and our renewed dedication to fostering collaboration and
-          creativity.
+  "about.contenttitle": "OBAIDAH",
+  "about.contenttitle2": "Online Shop",
+  "about.content": `located in Amman - Jordan, is dedicated to helping clients find exactly what they need through a diverse and extensive online store. We offer a wide range of products designed to meet the varied needs and preferences of our customers, all from the comfort of their homes.
 `,
   "about.storeexpansion": "Store Expansion",
   "about.expansiontext": `Step into our world at BioNatural, where our stores boast a total area
@@ -210,6 +209,9 @@ export default {
     "we are available online from 8:00 AM to 4:00 PM Talk with us now",
   "contact.call.cta": "CALL NOW",
   "contact.chat.cta": "CHAT NOW",
+  "contact.contactsales": "Contact sales",
+  "contact.inquiries":
+    "For any inquiries, work or collaboration proposals please don’t hesitate to get in touch",
   "help.select": "Select a Topic",
   "media.event": "Event",
   "media.blog": "Blog",
