@@ -27,8 +27,8 @@ export function Landing({ data }) {
     setActiveBanner((prev) => (prev === 0 ? data.length - 1 : prev - 1));
   }
   return (
-    <section className="relative flex flex-col w-full items-start justify-center h-96">
-      <div className="flex flex-col z-10 m-auto h-auto mx-auto gap-6 px-[2rem] text-center rounded-3xl bg-opacity-20 bg-gray-900">
+    <section className="relative flex flex-col w-full items-start justify-center sm:h-[600px] h-96">
+      <div className="flex flex-col z-10 capitalize h-full w-full gap-6 px-[2rem] justify-center text-center bg-opacity-10 bg-gray-900 shadow-md">
         {data[activeBanner].title && (
           <h1 className="text-4xl lg:text-8xl m-4 rtl:font-arabic text-white font-bold">
             {data[activeBanner]?.title}
