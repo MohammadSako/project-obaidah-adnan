@@ -62,7 +62,7 @@ export default function CategoriesPage({ data }) {
           <div className="bg-white">
             <div className="mx-auto px-4 sm:py-4 lg:max-w-7xl">
               {products[0]?.price ? (
-                <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-5">
+                <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-8">
                   {products.map((product) => (
                     <CategoriesCard
                       key={product.id}

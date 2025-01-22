@@ -234,6 +234,7 @@ export default {
   "success.thanks": "شكرا للتسوق معنا",
   "success.view": "عرض الطلبات",
   "success.back": "العودة إلى الرئيسية",
+  "success.backprev": "العودة إلى الصفحة السابقة",
   "unauthorized.title": "دخول غير مرخص",
   "unauthorized.desc": "يرجى تسجيل الدخول إلى حسابك مرة أخرى للمتابعة",
   "comments.unauthorized": "الرجاء تسجيل الدخول أو إنشاء حساب لترك تعليق",
