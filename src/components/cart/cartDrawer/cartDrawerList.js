@@ -43,9 +43,9 @@ export default function CartDrawerList({ onClick }) {
 
                   <div className="mx-4 flex flex-1 flex-col gap-2">
                     <div>
-                      <div className="flex justify-between text-base font-semibold text-gray-800">
-                        <h3>{product.title}</h3>
-                        <p className="ml-4 font-bold">
+                      <div className="flex flex-row justify-between text-base font-semibold text-gray-800">
+                        <h3 className="basis-3/4 truncate max-w-28">{product.title}</h3>
+                        <p className="basis-1/4 font-bold justify-end">
                           {t("product.price")}
                           <span> {product.price}</span>
                         </p>
