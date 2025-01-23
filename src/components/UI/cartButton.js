@@ -21,7 +21,7 @@ function CartButton({ quantity, id }) {
           onClick={() => increaseItemHandle(id)}
           className=" cursor-pointer"
         />
-        <p className="font-medium pointer-events-none flex items-center">{quantity}</p>
+        <p className="flex items-center font-medium pointer-events-none ">{quantity}</p>
         <FaMinus
           onClick={() => decreaseItemHandle(id)}
           className=" cursor-pointer"
