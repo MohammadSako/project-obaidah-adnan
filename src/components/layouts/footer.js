@@ -17,7 +17,7 @@ function Footer() {
             width: "100%",
           }}
         />
-        <footer className="flex sm:flex-row flex-col font-sans text-lg tracking-tight text-gray-600 justify-between my-10 gap-y-10">
+        <footer className="flex sm:flex-row flex-col rtl:font-arabic font-sans text-lg tracking-tight text-gray-600 justify-between my-10 gap-y-10">
           <div className="flex flex-col">
             <div className="flex lg:flex-row flex-col xl:basis-3/5 sm:basis-4/5 sm:gap-8 gap-4">
               <div className="flex flex-row gap-1">

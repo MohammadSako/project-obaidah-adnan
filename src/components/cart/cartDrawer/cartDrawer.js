@@ -20,9 +20,6 @@ export default function CartDrawer({ open, onClose, closeButton }) {
     closeButton();
   }
 
-
-
-  
   return (
     <Dialog open={open} onClose={onClose} className="relative z-10">
       <DialogBackdrop
