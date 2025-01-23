@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { TbShoppingBagPlus, TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
 import { useToast } from "@/hooks/use-toast";
 import { useI18n } from "@/locales/client";
+import Lottie from "lottie-react";
+import Loading from "@/loading.json";
 
 function ProductCard({
   id,
@@ -20,6 +22,7 @@ function ProductCard({
   alt,
   dashboardType,
 }) {
+  const [cartPending, setCartPending] = useState(false);
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const { toast } = useToast();
   const t = useI18n();
@@ -59,11 +62,16 @@ function ProductCard({
   }, [removeFavorite, id, title, toast, t]);
 
   const addToCartHandler = useCallback(() => {
+    setCartPending(true);
+
     addItem({ id, title, description, image, price, color, alt, details });
     toast({
       title: `${title}`,
       description: t("common.addedmessage"),
     });
+    setTimeout(() => {
+      setCartPending(false);
+    }, 2000);
   }, [
     addItem,
     id,
@@ -76,6 +84,7 @@ function ProductCard({
     alt,
     toast,
     t,
+    setCartPending,
   ]);
 
   return (
@@ -122,13 +131,19 @@ function ProductCard({
           </div>
         </div>
       </Link>
-      <div className="flex flex-row gap-4">
-        <TbShoppingBagPlus
-          title="Add to bag"
-          size={30}
-          onClick={addToCartHandler}
-          className="mt-2 text-lg font-sans tracking-wide text-gray-400 hover:text-gray-800"
-        />
+      <div className="flex flex-row gap-4 items-center">
+        {!cartPending && (
+          <TbShoppingBagPlus
+            title="Add to bag"
+            onClick={addToCartHandler}
+            className="mt-2 text-lg font-sans tracking-wide bg-blue-500 rounded-full w-10 h-10 text-white p-1.5 hover:bg-blue-800 cursor-pointer"
+          />
+        )}
+        {cartPending && (
+          <div className="w-10 h-10 mt-2">
+            <Lottie animationData={Loading} loop={true} />
+          </div>
+        )}
         {isFavorite ? (
           <TbHeartFilled
             title="Remove from favorite"
