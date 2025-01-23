@@ -17,9 +17,15 @@ function CartButton({ quantity, id }) {
   return (
     <>
       <div className="flex items-center py-1 px-1.5 border border-gray-400 rounded-md w-24 justify-between">
-        <FaPlus onClick={() => increaseItemHandle(id)} className=" cursor-pointer" />
-        <p className="font-medium pointer-events-none">{quantity}</p>
-        <FaMinus onClick={() => decreaseItemHandle(id)} className=" cursor-pointer"/>
+        <FaPlus
+          onClick={() => increaseItemHandle(id)}
+          className=" cursor-pointer"
+        />
+        <p className="font-medium pointer-events-none flex items-center">{quantity}</p>
+        <FaMinus
+          onClick={() => decreaseItemHandle(id)}
+          className=" cursor-pointer"
+        />
       </div>
     </>
   );
