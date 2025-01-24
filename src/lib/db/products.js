@@ -552,5 +552,28 @@ export async function deleteAdvertismentImage(imageid) {
     console.error("Error deleting image:", error);
   }
 }
+
+export async function addCustomerData(customerData) {
+  try {
+    const custData = await prisma.customersOrders.create({
+      data: {
+        firstname: customerData.firstname,
+        lastname: customerData.lastname,
+        phonenumber: customerData.phonenumber,
+        firstline: customerData.firstline,
+        secondline: customerData.secondline,
+        email: customerData.email,
+        city: customerData.city,
+        additional: customerData.additional,
+      },
+    });
+    // go to success page to show the bought items and the information when to deliver
+    // revalidatePath("/");
+    return { custData };
+  } catch (error) {
+    console.error("Error creating product:", error);
+    return { error: error.message || "An unexpected error occurred" };
+  }
+}
 // https://www.prisma.io/docs/orm/prisma-client/queries/crud#create
 // https://supabase.com/docs/reference/javascript/update

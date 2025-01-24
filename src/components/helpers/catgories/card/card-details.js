@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "@/locales/client";
 import Lottie from "lottie-react";
-import Loading from "@/loading.json";
+import Loading from "@/s3.json";
 // Reusable icon styles
 const iconStyles = "mt-2 text-lg font-sans tracking-wide cursor-pointer";
 
@@ -71,7 +71,7 @@ export function CardDetails({
     });
     setTimeout(() => {
       setCartPending(false);
-    }, 2000);
+    }, 2500);
   }, [
     addItem,
     id,

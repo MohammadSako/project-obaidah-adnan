@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import classes from "../helpers/HeaderButtonAnimation.module.css";
-import { TbShoppingBag } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
 import { NavLinkIcon } from "../helpers/navbar helpers/nav-link";
 import { useI18n } from "@/locales/client";
+import { FiShoppingCart } from "react-icons/fi";
 
 const HeaderCartButton = (props) => {
   const [cartEmpty, setCartEmpty] = useState(false);
@@ -51,7 +51,7 @@ const HeaderCartButton = (props) => {
         icon={
           <div>
             {!cartEmpty && (
-              <TbShoppingBag
+              <FiShoppingCart
                 size={30}
                 className="text-black hover:text-gray-400 mt-1"
               />
@@ -59,9 +59,9 @@ const HeaderCartButton = (props) => {
 
             {cartEmpty && (
               <div>
-                <TbShoppingBag size={30} className="text-red-500 -mt-2" />
+                <FiShoppingCart size={30} className="text-[#2462c4] -mt-1" />
 
-                <div className="-mt-8 ml-4 bg-red-500 w-5 h-5 rounded-full font-bold text-sm text-white flex justify-center">
+                <div className="-mt-8 sm:ml-0 ml-4 bg-[#2462c4] w-5 h-5 rounded-full font-bold text-sm text-white flex justify-center">
                   {quantity}
                 </div>
               </div>

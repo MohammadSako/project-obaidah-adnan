@@ -17,7 +17,7 @@ export default function Cart() {
         <HeaderCartButton
           onClick={() => setIsOpen(true)}
           size={30}
-          className="text-lg font-sans tracking-wide text-gray-400 hover:text-gray-800"
+          className="text-lg font-sans tracking-wide text-[#3b82f6] hover:text-gray-800"
         />
         <CartDrawer
           open={isOpen}

@@ -8,7 +8,7 @@ import { useItemStore } from "../../lib/store";
 import { useToast } from "@/hooks/use-toast";
 import { useI18n } from "@/locales/client";
 import Lottie from "lottie-react";
-import Loading from "@/loading.json";
+import Loading from "@/s3.json";
 
 function ProductCard({
   id,
@@ -71,7 +71,7 @@ function ProductCard({
     });
     setTimeout(() => {
       setCartPending(false);
-    }, 2000);
+    }, 2500);
   }, [
     addItem,
     id,

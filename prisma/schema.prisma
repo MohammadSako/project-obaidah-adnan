@@ -162,6 +162,19 @@ model Advertisements {
   description String   @db.Text
 }
 
+model CustomersOrders {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  firstname   String   @db.Text
+  lastname    String   @db.Text
+  phonenumber String   @db.Text
+  firstline   String   @db.Text
+  secondline  String   @db.Text
+  email       String   @db.Text
+  city        String   @db.Text
+  additional  String   @db.Text
+}
+
 // Faisal //
 // model ItemDetail {
 //   id          Int       @id @default(autoincrement())
@@ -261,6 +274,15 @@ model Advertisements {
 //   posts   Post[]
 //   profile Profile?
 // }
+
+
+
+//to add data without losing and data (chatgpt)
+// npx prisma generate
+// npx prisma migrate dev --name add_product_table => you new table name here
+// npx prisma migrate deploy
+
+
 
 // to create a database in supabase
 // npx prisma migrate dev --name init
