@@ -1,6 +1,6 @@
 "use client"
 
-import { addCustomerData } from "@/lib/db/products";
+// import { addCustomerData } from "@/lib/db/products";
 import { OrderSummary } from "../../../components/checkout";
 import { OrderCustomerForm } from "../../../components/checkout/order-customer-form";
 

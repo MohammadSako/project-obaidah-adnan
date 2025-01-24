@@ -94,7 +94,7 @@ function ProductDetailPage({ products }) {
       default:
         setClotheType("n/a");
     }
-  }, [type]);
+  }, [type, t]);
 
   return (
     <main className="sm:flex flex-col shadow-md rounded-md sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mb-20 p-10">
