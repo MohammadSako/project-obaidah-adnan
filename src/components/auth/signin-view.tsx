@@ -18,7 +18,7 @@ import { useCurrentLocale, useI18n } from "@/locales/client";
 import { cn } from "@/lib/utils";
 import { Button } from "../UI/button";
 import { Input } from "../UI/input";
-import { supabase } from "@/lib/supabase";
+// import { supabase } from "@/lib/supabase";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -40,31 +40,31 @@ export const SigninView = () => {
   // State to manage password visibility
   const [showPassword, setShowPassword] = useState(false);
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    // "use server";
-    try {
-      const datas = {
-        email: values.email,
-        password: values.password,
-      };
+  // async function onSubmit(values: z.infer<typeof formSchema>) {
+  //   // "use server";
+  //   try {
+  //     const datas = {
+  //       email: values.email,
+  //       password: values.password,
+  //     };
 
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: "example@email.com",
-        password: "example-password",
-        // options: {
-        //   redirectTo: origin
-        // }
-      });
+  //     const { data, error } = await supabase.auth.signInWithPassword({
+  //       email: "example@email.com",
+  //       password: "example-password",
+  //       // options: {
+  //       //   redirectTo: origin
+  //       // }
+  //     });
 
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  //     console.log(data);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
+      <form className="space-y-4 w-full">
         <FormField
           control={form.control}
           name="email"
