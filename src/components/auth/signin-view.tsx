@@ -18,6 +18,7 @@ import { useCurrentLocale, useI18n } from "@/locales/client";
 import { cn } from "@/lib/utils";
 import { Button } from "../UI/button";
 import { Input } from "../UI/input";
+import { supabase } from "@/lib/supabase";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -40,11 +41,21 @@ export const SigninView = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    "use server";
     try {
-      const data = {
+      const datas = {
         email: values.email,
         password: values.password,
       };
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: "example@email.com",
+        password: "example-password",
+        // options: {
+        //   redirectTo: origin
+        // }
+      });
+
       console.log(data);
     } catch (e) {
       console.log(e);

@@ -110,9 +110,9 @@ export function CardDetails({
         </div>
 
         <div className="basis-1/3 bg-yellow-400 sm:w-16 w-24 sm:h-[32px] text-center shadow-lg">
-          <p className="sm:text-2xl text-3xl font-medium text-gray-900">
+          <p className="sm:text-2xl text-3xl font-medium text-gray-900 justify-center flex gap-2">
             <span className="font-semibold text-red-700">{price}</span>{" "}
-            <span className="sm:text-lg text-xl">{t("product.price")}</span>
+            <span className="sm:text-lg text-xl mt-1">{t("product.price")}</span>
           </p>
         </div>
       </div>
