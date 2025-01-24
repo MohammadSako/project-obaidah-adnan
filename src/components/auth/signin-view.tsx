@@ -41,7 +41,7 @@ export const SigninView = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    "use server";
+    // "use server";
     try {
       const datas = {
         email: values.email,
