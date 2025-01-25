@@ -248,6 +248,7 @@ export default {
   "success.thanks": "Thank you for shopping with us",
   "success.view": "View Orders",
   "success.back": "Back To Home",
+  "success.backBtn": "Back",
   "success.backprev": "Back to the previous page",
   "unauthorized.title": "Unauthorized Access",
   "unauthorized.desc": "Please sign into your account again to continue",

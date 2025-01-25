@@ -19,15 +19,15 @@ export default function NotFound() {
           </h2>
           <button
             onClick={() => router.push(updatedPath)}
-            className="text-xl rtl:font-arabic text-blue-500 mt-4 font-sans hover:text-blue-400 border-2 px-4 py-1 rounded-lg shadow-md hover:shadow-none"
+            className="text-2xl rtl:font-arabic text-blue-500 mt-4 font-sans hover:text-blue-400 border-2 px-4 py-1 rounded-lg shadow-md hover:shadow-none"
           >
             {t("success.backprev")}
           </button>
           <button
             onClick={() => router.push("/")}
-            className="text-xl rtl:font-arabic text-gray-500 mt-4 font-sans hover:text-gray-400 px-4 py-1 rounded-lg"
+            className="text-lg rtl:font-arabic text-gray-500 mt-20 font-sans hover:text-red-400 px-4 py-1 rounded-lg"
           >
-            {t("success.back")}{" "}
+            {t("success.back")}
           </button>
         </div>
       </div>

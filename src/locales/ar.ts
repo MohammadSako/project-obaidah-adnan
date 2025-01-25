@@ -241,6 +241,7 @@ export default {
   "success.thanks": "شكرا للتسوق معنا",
   "success.view": "عرض الطلبات",
   "success.back": "العودة إلى الرئيسية",
+  "success.backBtn": "رجوع",
   "success.backprev": "العودة إلى الصفحة السابقة",
   "unauthorized.title": "دخول غير مرخص",
   "unauthorized.desc": "يرجى تسجيل الدخول إلى حسابك مرة أخرى للمتابعة",
