@@ -9,6 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useI18n } from "@/locales/client";
 import Lottie from "lottie-react";
 import Loading from "@/s3.json";
+// import dynamic from "next/dynamic";
+// const LottieComponent = dynamic(() => import('lottie-react'), { ssr: false });
 
 function ProductCard({
   id,
@@ -142,6 +144,8 @@ function ProductCard({
         {cartPending && (
           <div className="w-10 h-10 mt-2">
             <Lottie animationData={Loading} loop={true} />
+            {/* <LottieComponent animationData={Loading} /> */}
+
           </div>
         )}
         {isFavorite ? (

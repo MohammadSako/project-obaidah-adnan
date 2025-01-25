@@ -58,10 +58,6 @@ export function Landing({ data }) {
                   sizes="100vw"
                   alt="Banner"
                   className="object-cover"
-                  // src={banner.image}
-                  // width={1400}
-                  // height={500}
-                  // alt={banner.title}
                 />
               </motion.div>
             )
