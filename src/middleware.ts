@@ -1,5 +1,22 @@
+// import { createI18nMiddleware } from "next-international/middleware";
+// import { NextRequest } from "next/server";
+
+// const I18nMiddleware = createI18nMiddleware({
+//   locales: ["en", "ar"],
+//   defaultLocale: "en",
+//   urlMappingStrategy: "redirect",
+// });
+
+// export function middleware(request: NextRequest) {
+//   return I18nMiddleware(request);
+// }
+
+// export const config = {
+//   matcher: ["/((?!api|static|api-v1|.*\\..*|_next|favicon.ico|robots.txt).*)"],
+// };
 import { createI18nMiddleware } from "next-international/middleware";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { updateSession } from "./utils/supabase/middleware";
 
 const I18nMiddleware = createI18nMiddleware({
   locales: ["en", "ar"],
@@ -7,10 +24,38 @@ const I18nMiddleware = createI18nMiddleware({
   urlMappingStrategy: "redirect",
 });
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
+  const token = request.cookies.get("sb-zdyevmocczycunsqlkpo-auth-token");
+
+  
+  if (!token && request.nextUrl.pathname.startsWith("/ar/dashboard")) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+  if (!token && request.nextUrl.pathname.startsWith("/en/dashboard")) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+  if (token && request.nextUrl.pathname.startsWith("/en/login")) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+  if (token && request.nextUrl.pathname.startsWith("/ar/login")) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+  await updateSession(request);
   return I18nMiddleware(request);
 }
 
 export const config = {
-  matcher: ["/((?!api|static|api-v1|.*\\..*|_next|favicon.ico|robots.txt).*)"],
+  matcher: [
+    "/dashboard", // Protect the dashboard page
+    "/en/dashboard", // Protect the dashboard page
+    "/ar/dashboard", // Protect the dashboard page
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * Feel free to modify this pattern to include more paths.
+     */
+    "/((?!api|static|api-v1|.*\\..*|_next|favicon.ico|robots.txt).*)",
+  ],
 };

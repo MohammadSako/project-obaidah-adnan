@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCurrentLocale } from "@/locales/client";
 import {
   Disclosure,
@@ -5,8 +7,8 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { MdLogout } from "react-icons/md";
+import { logout } from "../../login/action";
 
 const navigation = [
   {
@@ -28,13 +30,25 @@ function classNames(...classes) {
 export function DashNav() {
   const pathname = usePathname();
   const locale = useCurrentLocale();
+
+  async function logoutHandler() {
+    await logout();
+  }
+
   return (
     <>
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-[#06b6d4]">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
-              <div className="flex items-center">
+              <div className="flex items-center  gap-4 ">
+                <MdLogout
+                  size={30}
+                  color="white"
+                  className="cursor-pointer"
+                  onClick={logoutHandler}
+                />
+
                 <p className="text-white text-2xl font-semibold">Dashboard</p>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
