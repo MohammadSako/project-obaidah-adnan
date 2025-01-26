@@ -8,12 +8,12 @@ function LogoutBackdrop() {
   const t = useI18n();
 
   async function logoutHandler() {
-    await logout();
     setIsAuthOpen(false);
+    await logout();
   }
 
   function BackDropClick() {
-    setIsAuthOpen(false)
+    setIsAuthOpen(false);
   }
 
   return (
@@ -22,7 +22,7 @@ function LogoutBackdrop() {
         onClick={BackDropClick}
         className="flex fixed top-0 w-[100%] h-[100vh] z-10 bg-gray-500 bg-opacity-40"
       />
-      <div className="flex fixed top-[30vh] left-[25%] w-[50%] z-20 overflow-hidden rounded-2xl shadow-lg bg-white">
+      <div className="flex fixed top-[30vh] sm:left-[25%] sm:w-[50%] mx-4 z-20 overflow-hidden rounded-2xl shadow-lg bg-white">
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
