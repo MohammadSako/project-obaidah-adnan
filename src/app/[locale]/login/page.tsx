@@ -18,7 +18,6 @@ import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/UI/button";
-import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -39,24 +38,17 @@ export default function LoginPage() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof formSchema>) {
     const userData = {
       email: values.email,
       password: values.password,
       locale: locale,
     };
-
-    try {
-      await login(userData); // Pass the form data to login
-      toast.success("Welcome Back");
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (e) {
-      toast.error(t("errors.generic"));
-    }
+    login(userData);
   }
 
   return (
-    <div className="flex flex-col mx-40  gap-4 mt-40 min-h-screen">
+    <div className="flex flex-col sm:mx-40 mx-4  gap-4 mt-40 min-h-screen">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField

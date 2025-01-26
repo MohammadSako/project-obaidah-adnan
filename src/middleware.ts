@@ -27,7 +27,6 @@ const I18nMiddleware = createI18nMiddleware({
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("sb-zdyevmocczycunsqlkpo-auth-token");
 
-  
   if (!token && request.nextUrl.pathname.startsWith("/ar/dashboard")) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
@@ -47,8 +46,8 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard", // Protect the dashboard page
-    "/en/dashboard", // Protect the dashboard page
-    "/ar/dashboard", // Protect the dashboard page
+    "/en/dashboard",
+    "/ar/dashboard",
     /*
      * Match all request paths except for the ones starting with:
      * - _next/static (static files)
