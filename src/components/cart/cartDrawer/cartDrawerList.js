@@ -10,6 +10,7 @@ export default function CartDrawerList({ onClick }) {
   const { items, totalQuantity, totalAllPrice } = useItemStore();
   const t = useI18n();
   const locale = useCurrentLocale();
+console.log(totalAllPrice);
 
   return (
     <>
