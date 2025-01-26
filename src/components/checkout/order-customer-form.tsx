@@ -40,7 +40,7 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
   const t = useI18n();
   const locale = useCurrentLocale();
   const dir = locale === "ar" ? "rtl" : "ltr";
-  const { totalQuantity, items, totalAllPrice } = useItemStore();
+  const { totalQuantity, items } = useItemStore();
   // const itemsid = items.map((item) => item.id);
 
   const formSchema = z.object({
