@@ -287,5 +287,6 @@ export default {
 "dashboard.addProd": "إضافة منتجات",
 "dashboard.addcaro": "إضافة سلايدر",
 "dashboard.addbrand": "إضافة علامات تجارية",
-"dashboard.addadver": "إضافة إعلانات"
+"dashboard.addadver": "إضافة إعلانات",
+"dashboard.login": "تسجيل الدخول إلى لوحة التحكم",
 } as const;

@@ -297,4 +297,5 @@ export default {
   "dashboard.addcaro": "Add Carousels",
   "dashboard.addbrand": "Add Brands",
   "dashboard.addadver": "Add Advertisments",
+  "dashboard.login": "Login to Dashboard",
 } as const;

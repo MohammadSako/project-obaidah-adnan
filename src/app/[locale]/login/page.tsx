@@ -48,7 +48,10 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex flex-col sm:mx-40 mx-4  gap-4 mt-40 min-h-screen">
+    <div className="flex flex-col sm:mx-40 mx-4 gap-4 mt-32 min-h-screen">
+      <p className="text-2xl text-[#06b6d4] font-bold text-center my-10">
+        {t("dashboard.login")}
+      </p>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField

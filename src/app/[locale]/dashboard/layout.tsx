@@ -6,8 +6,6 @@ import LogoutBackdrop from "./components/logout-backdrop";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const { isAuthOpen } = useAuthStore();
-console.log(isAuthOpen);
-
   return (
     <>
       {isAuthOpen && <LogoutBackdrop />}

@@ -46,6 +46,7 @@ export function DashNav() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center gap-4">
+
                 <div
                   style={{ cursor: "pointer" }}
                   onClick={() => setIsAuthOpen(true)}
@@ -155,7 +156,7 @@ const DashDrawer = ({ open, setOpen }) => {
                   <DialogTitle className="text-base font-semibold text-gray-900">
                     <div className="flex flex-row justify-center   gap-1">
                       <Link href="/">
-                        <p className="text-3xl font-sans tracking-tight font-bold text-[#06b6d4]">
+                        <p className="text-3xl tracking-tight font-bold text-[#06b6d4]">
                           {t("dashboard.title")}
                         </p>
                       </Link>
