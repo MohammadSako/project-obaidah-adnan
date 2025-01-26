@@ -41,6 +41,7 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
   const locale = useCurrentLocale();
   const dir = locale === "ar" ? "rtl" : "ltr";
   const { totalQuantity, items, totalAllPrice } = useItemStore();
+  // const itemsid = items.map((item) => item.id);
 
   const formSchema = z.object({
     firstname: z.string().min(2, {
@@ -92,7 +93,6 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
         email: values.email,
         city: values.city,
         additional: values.additional,
-        totalprice: totalAllPrice,
         items: items,
       };
       toast({

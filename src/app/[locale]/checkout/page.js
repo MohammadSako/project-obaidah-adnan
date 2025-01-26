@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 // import { addCustomerData } from "@/lib/db/products";
 import { OrderSummary } from "../../../components/checkout";
@@ -6,8 +6,7 @@ import { OrderCustomerForm } from "../../../components/checkout/order-customer-f
 
 export default function Checkout() {
   async function CustomerOrderHendler(customerData) {
-
-console.log("cxcxcx", customerData);
+    console.log("cxcxcx", customerData);
 
     // try {
     //   await addCustomerData(customerData);

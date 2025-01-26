@@ -565,11 +565,14 @@ export async function addCustomerData(customerData) {
         email: customerData.email,
         city: customerData.city,
         additional: customerData.additional,
+        items: customerData.items
       },
     });
     // go to success page to show the bought items and the information when to deliver
     // revalidatePath("/");
+    console.log(custData);
     return { custData };
+    
   } catch (error) {
     console.error("Error creating product:", error);
     return { error: error.message || "An unexpected error occurred" };
