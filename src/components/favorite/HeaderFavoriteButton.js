@@ -8,21 +8,8 @@ import { NavLinkIcon } from "../helpers/navbar helpers/nav-link";
 import { useI18n } from "@/locales/client";
 
 const HeaderFavoriteButton = (props) => {
-  const [cartEmpty, setCartEmpty] = useState(false);
-  const totalFavQuantity = useItemStore((state) => state.totalFavQuantity);
-  const totalAllFavoriteItems = useItemStore(
-    (state) => state.totalAllFavoriteItems
-  );
+  const { totalFavQuantity } = useItemStore();
   const t = useI18n();
-
-  useEffect(() => {
-    if (totalFavQuantity > 0) {
-      setCartEmpty(true);
-    } else {
-      setCartEmpty(false);
-    }
-    totalAllFavoriteItems();
-  }, [totalAllFavoriteItems, totalFavQuantity]);
 
   //cart Bump when clicked
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
@@ -50,27 +37,9 @@ const HeaderFavoriteButton = (props) => {
       onClick={props.onClick}
     >
       <NavLinkIcon
-        icon={
-          <div>
-            {!cartEmpty && (
-              <TbHeart
-                size={30}
-                className="text-lg mt-1 font-sans tracking-wide text-red-500 hover:text-red-300"
-              />
-            )}
-            {cartEmpty && (
-              <div>
-                <TbHeart
-                  size={30}
-                  className="text-lg font-sans tracking-wide text-red-500 -mt-2"
-                />
-                <div className="-mt-8 ml-4 bg-red-500 w-5 h-5 rounded-full font-bold text-sm text-white flex justify-center">
-                  {totalFavQuantity}
-                </div>{" "}
-              </div>
-            )}
-          </div>
-        }
+        icon={<TbHeart className="w-7 h-7 text-forest" />}
+        badgeCount={totalFavQuantity}
+        text=""
         tooltipTx={t("common.wishlist")}
       ></NavLinkIcon>
     </div>

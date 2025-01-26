@@ -35,6 +35,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../../UI/tooltip";
+import { cn } from "@/lib/utils";
 
 const NavLink = ({ text, className }) => {
   return (
@@ -48,16 +49,65 @@ const NavLink = ({ text, className }) => {
 };
 export default NavLink;
 
-export const NavLinkIcon = ({ tooltipTx, icon  }) => {
+// export const NavLinkIcon = ({ tooltipTx, icon  }) => {
+//   return (
+//     <TooltipProvider>
+//       <Tooltip delayDuration={100}>
+//         <TooltipTrigger>
+//           <div className="h-[35px] overflow-hidden">
+//             <motion.div whileHover={{ y: -35 }}>
+//               <div className="flex items-center h-[33px] gap-1">{icon}</div>
+//               <div className="flex items-center h-[33px] gap-1">{icon}</div>
+//             </motion.div>
+//           </div>
+//         </TooltipTrigger>
+//         {tooltipTx && (
+//           <TooltipContent side="bottom">
+//             <p>{tooltipTx}</p>
+//           </TooltipContent>
+//         )}
+//       </Tooltip>
+//     </TooltipProvider>
+//   );
+// };
+
+export const NavLinkIcon = ({
+  text,
+  icon,
+  tooltipTx,
+  textClassName,
+  onClick,
+  badgeCount,
+}) => {
   return (
     <TooltipProvider>
       <Tooltip delayDuration={100}>
         <TooltipTrigger>
-          <div className="h-[35px] overflow-hidden">
-            <motion.div whileHover={{ y: -35 }}>
-              <div className="flex items-center h-[33px] gap-1">{icon}</div>
-              <div className="flex items-center h-[33px] gap-1">{icon}</div>
-            </motion.div>
+          <div className="relative block h-[30px] font-medium cursor-pointer">
+            {!!badgeCount && (
+              <div className="absolute top-0 -right-2 w-4 h-4 bg-red-600 text-white font-medium z-10 rounded-full text-xs">
+                {badgeCount}
+              </div>
+            )}
+            <div
+              onClick={onClick}
+              className="relative block h-[30px] overflow-hidden font-medium cursor-pointer"
+            >
+              <motion.div whileHover={{ y: -30 }} className={textClassName}>
+                <div
+                  className={cn(
+                    `flex items-center h-[30px] text-gray-700 gap-1`
+                  )}
+                >
+                  {icon}
+                  {text}
+                </div>
+                <div className="flex items-center h-[30px] text-darkGreen gap-1">
+                  {icon}
+                  {text}
+                </div>
+              </motion.div>
+            </div>
           </div>
         </TooltipTrigger>
         {tooltipTx && (

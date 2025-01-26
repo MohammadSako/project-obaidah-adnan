@@ -42,7 +42,7 @@ export default function NavBar() {
 
 const FirstNav = () => {
   return (
-    <div className="relative flex h-16 items-center justify-center sm:justify-between gap-4">
+    <div className="relative flex h-16 items-center justify-center sm:justify-between gap-4 mx-4">
       <div>
         <BrandName />
       </div>

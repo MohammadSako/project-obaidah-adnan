@@ -8,19 +8,8 @@ import { useI18n } from "@/locales/client";
 import { FiShoppingCart } from "react-icons/fi";
 
 const HeaderCartButton = (props) => {
-  const [cartEmpty, setCartEmpty] = useState(false);
   const quantity = useItemStore((state) => state.totalQuantity);
-  const totalAllItems = useItemStore((state) => state.totalAllItems);
   const t = useI18n();
-
-  useEffect(() => {
-    if (quantity > 0) {
-      setCartEmpty(true);
-    } else {
-      setCartEmpty(false);
-    }
-    totalAllItems();
-  }, [totalAllItems, quantity]);
 
   //cart Bump when clicked
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
@@ -48,26 +37,9 @@ const HeaderCartButton = (props) => {
       onClick={props.onClick}
     >
       <NavLinkIcon
-        icon={
-          <div>
-            {!cartEmpty && (
-              <FiShoppingCart
-                size={30}
-                className="text-black hover:text-gray-400 mt-1"
-              />
-            )}
-
-            {cartEmpty && (
-              <div>
-                <FiShoppingCart size={30} className="text-[#2462c4] -mt-1" />
-
-                <div className="-mt-8 sm:ml-0 ml-4 bg-[#2462c4] w-5 h-5 rounded-full font-bold text-sm text-white flex justify-center">
-                  {quantity}
-                </div>
-              </div>
-            )}
-          </div>
-        }
+        icon={<FiShoppingCart className="w-7 h-7 text-forest" />}
+        badgeCount={quantity}
+        text=""
         tooltipTx={t("common.cart")}
       ></NavLinkIcon>
     </div>

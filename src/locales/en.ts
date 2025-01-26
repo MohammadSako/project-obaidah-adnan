@@ -288,4 +288,13 @@ export default {
   "categories.sneakers": "Sneakers",
   "categories.formen": "For Men",
   "categories.forwomen": "For Women",
+
+
+  "dashboard.title": "Dashboard Panel",
+  "dashboard.allprod": "All Products",
+  "dashboard.orders": "Customer Orders",
+  "dashboard.addProd": "Add Products",
+  "dashboard.addcaro": "Add Carousels",
+  "dashboard.addbrand": "Add Brands",
+  "dashboard.addadver": "Add Advertisments",
 } as const;

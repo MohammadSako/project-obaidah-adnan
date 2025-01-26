@@ -279,4 +279,13 @@ export default {
   "categories.sneakers": "الأحذية الرياضية",
   "categories.formen": "للرجال",
   "categories.forwomen": "للنساء",
+
+  
+"dashboard.title": "لوحة التحكم",
+"dashboard.allprod": "جميع المنتجات",
+"dashboard.orders": "طلبات العملاء",
+"dashboard.addProd": "إضافة منتجات",
+"dashboard.addcaro": "إضافة سلايدر",
+"dashboard.addbrand": "إضافة علامات تجارية",
+"dashboard.addadver": "إضافة إعلانات"
 } as const;
