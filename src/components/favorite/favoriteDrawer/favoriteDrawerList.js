@@ -38,12 +38,12 @@ export default function FavoriteDrawerList({ onClick }) {
 
                   <div className="mx-4 flex flex-1 flex-col gap-2">
                     <div>
-                      <div className="flex justify-between text-base font-semibold text-gray-800">
-                        <h3>{product.title}</h3>
-                        <p className="ml-4 font-bold">
-                          {t("product.price")}{" "}
-                          <span> {product.price}</span>
-                        </p>
+                      <div className="flex justify-between text-gray-800">
+                        <div>{product.title}</div>
+                        <div className="flex flex-row font-bold gap-1">
+                          <span className="text-lg">{product.price}</span>
+                          <span className="text-sm">{t("product.price")}</span>
+                        </div>
                       </div>
                       <p className="mt-1 text-sm text-gray-500">
                         {product.color}
