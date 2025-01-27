@@ -72,14 +72,16 @@ export default function CategoriesPage({ data }) {
   if (products.length === 0) {
     return <NotFound />;
   }
+  console.log(products);
 
   return (
     <>
       <Suspense fallback={<Loading />}>
         <main className="sm:flex min-h-screen flex-col items-center sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="bg-white">
-            {!products[0].category_id && <PreviousPageBtn />}
+            {products[0].backbtn && <PreviousPageBtn />}
             <div className="mx-auto px-4 sm:py-4 lg:max-w-7xl">
+              {products[0].price && <PreviousPageBtn />}
               <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-8">
                 {products.map((product) => (
                   <CategoriesCard

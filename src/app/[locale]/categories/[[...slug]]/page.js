@@ -21,6 +21,7 @@ export default function Page() {
             image: "/c3.avif",
             url: "/categories/men/clothing/top",
             category_id: 1,
+            backbtn: false,
             items: [
               {
                 id: 1,
@@ -29,6 +30,7 @@ export default function Page() {
                 url: "/categories/men/clothing/top/mtshirt",
                 itemid: "mtshirt",
                 sub_category_id: 1,
+                backbtn: true,
               },
               {
                 id: 3,
@@ -78,6 +80,7 @@ export default function Page() {
             image: "/jeans.avif",
             url: "/categories/men/clothing/lower",
             category_id: 1,
+            backbtn: false,
             items: [
               {
                 id: 13,
@@ -86,6 +89,7 @@ export default function Page() {
                 url: "/categories/men/clothing/lower/mjeans",
                 itemid: "mjeans",
                 sub_category_id: 2,
+                backbtn: true,
               },
               {
                 id: 15,
@@ -127,6 +131,7 @@ export default function Page() {
             image: "/c2.avif",
             url: "/categories/women/clothing/top",
             category_id: 2,
+            backbtn: false,
             items: [
               {
                 id: 2,
@@ -135,6 +140,7 @@ export default function Page() {
                 url: "/categories/women/clothing/top/wtshirt",
                 itemid: "wtshirt",
                 sub_category_id: 3,
+                backbtn: true,
               },
               {
                 id: 4,
@@ -184,6 +190,7 @@ export default function Page() {
             image: "/women jeans.avif",
             url: "/categories/women/clothing/lower",
             category_id: 2,
+            backbtn: false,
             items: [
               {
                 id: 14,
@@ -192,6 +199,7 @@ export default function Page() {
                 url: "/categories/women/clothing/lower/wjeans",
                 itemid: "wjeans",
                 sub_category_id: 4,
+                backbtn: true,
               },
               {
                 id: 16,
@@ -367,8 +375,4 @@ export default function Page() {
       <CategoriesPage data={categories} />;
     </Suspense>
   );
-  
-    
- 
- 
 }
