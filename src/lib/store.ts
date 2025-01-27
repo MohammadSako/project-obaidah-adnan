@@ -26,8 +26,6 @@ export type Actions = {
   removeItem: (id: string) => void;
   addFavorite: (item: Item) => void;
   removeFavorite: (id: string) => void;
-  totalAllItems: (item: Item) => void;
-  totalAllFavoriteItems: (item: Item) => void;
   increaseItem: (id: string) => void;
   decreaseItem: (id: string) => void;
 };
@@ -44,12 +42,10 @@ export const useItemStore = create<State & Actions>()(
 
       addItem: (item: Item) =>
         set((state) => {
-          const itemExists = state.items.some(
-            (existingItem) => existingItem.id === item.id
-          );
+          const existingItem = state.items.find((i) => i.id === item.id);
 
-          if (!itemExists) {
-            return {
+          if (!existingItem) {
+            const newState = {
               items: [
                 ...state.items,
                 {
@@ -63,59 +59,59 @@ export const useItemStore = create<State & Actions>()(
                 },
               ],
               totalQuantity: state.totalQuantity + 1,
+              totalAllPrice: state.totalAllPrice + item.price,
             };
-          } else {
-            return {
-              items: state.items.map((existingItem) =>
-                existingItem.id === item.id
-                  ? {
-                      ...existingItem,
-                      quantity: existingItem.quantity + 1,
-                      totalPrice: existingItem.totalPrice + item.price,
-                    }
-                  : existingItem
-              ),
-              totalQuantity: state.totalQuantity + 1,
-            };
+            return newState;
           }
+
+          const updatedItems = state.items.map((existingItem) =>
+            existingItem.id === item.id
+              ? {
+                  ...existingItem,
+                  quantity: existingItem.quantity + 1,
+                  totalPrice: existingItem.totalPrice + item.price,
+                }
+              : existingItem
+          );
+
+          return {
+            items: updatedItems,
+            totalQuantity: state.totalQuantity + 1,
+            totalAllPrice: state.totalAllPrice + item.price,
+          };
         }),
 
       removeItem: (id: string) =>
         set((state) => {
-          const itemExists = state.items.some(
-            (existingItem) => existingItem.id === id
-          );
+          const existingItem = state.items.find((item) => item.id === id);
+          if (!existingItem) return state;
 
-          if (!itemExists) {
-            return state;
-          } else {
-            const updatedItems = state.items
-              .map((existingItem) =>
-                existingItem.id === id
-                  ? {
-                      ...existingItem,
-                      quantity: existingItem.quantity - 1,
-                      totalPrice: existingItem.totalPrice - existingItem.price,
-                    }
-                  : existingItem
-              )
-              .filter((existingItem) => existingItem.quantity > 0);
+          const updatedItems = state.items
+            .map((item) =>
+              item.id === id
+                ? {
+                    ...item,
+                    quantity: item.quantity - 1,
+                    totalPrice: item.totalPrice - item.price,
+                  }
+                : item
+            )
+            .filter((item) => item.quantity > 0);
 
-            return {
-              items: updatedItems,
-              totalQuantity: state.totalQuantity - 1,
-            };
-          }
+          return {
+            items: updatedItems,
+            totalQuantity: state.totalQuantity - 1,
+            totalAllPrice: state.totalAllPrice - existingItem.price,
+          };
         }),
 
       addFavorite: (item: Item) =>
         set((state) => {
-          const itemExists = state.favorite.some(
-            (existingItem) => existingItem.id === item.id
-          );
+          const existingItem = state.favorite.find((i) => i.id === item.id);
 
-          if (!itemExists) {
+          if (!existingItem) {
             return {
+              ...state,
               favorite: [
                 ...state.favorite,
                 {
@@ -129,132 +125,94 @@ export const useItemStore = create<State & Actions>()(
                 },
               ],
               totalFavQuantity: state.totalFavQuantity + 1,
-            };
-          } else {
-            return {
-              favorite: state.favorite.map((existingItem) =>
-                existingItem.id === item.id
-                  ? {
-                      ...existingItem,
-                      quantity: existingItem.quantity + 1,
-                      totalPrice: existingItem.totalPrice + item.price,
-                    }
-                  : existingItem
-              ),
-              totalFavQuantity: state.totalFavQuantity + 1,
+              totalFavAllPrice: state.totalFavAllPrice + item.price,
             };
           }
+
+          const updatedFavorites = state.favorite.map((favItem) =>
+            favItem.id === item.id
+              ? {
+                  ...favItem,
+                  quantity: favItem.quantity + 1,
+                  totalPrice: favItem.totalPrice + item.price,
+                }
+              : favItem
+          );
+
+          return {
+            ...state,
+            favorite: updatedFavorites,
+            totalFavQuantity: state.totalFavQuantity + 1,
+            totalFavAllPrice: state.totalFavAllPrice + item.price,
+          };
         }),
 
       removeFavorite: (id: string) =>
         set((state) => {
-          const itemExists = state.favorite.some(
-            (existingItem) => existingItem.id === id
-          );
+          const existingItem = state.favorite.find((item) => item.id === id);
+          if (!existingItem) return state;
 
-          if (!itemExists) {
-            return state;
-          } else {
-            const updatedItems = state.favorite
-              .map((existingItem) =>
-                existingItem.id === id
-                  ? {
-                      ...existingItem,
-                      quantity: existingItem.quantity - 1,
-                      totalPrice: existingItem.totalPrice - existingItem.price,
-                    }
-                  : existingItem
-              )
-              .filter((existingItem) => existingItem.quantity > 0);
+          const updatedFavorites = state.favorite
+            .map((item) =>
+              item.id === id
+                ? {
+                    ...item,
+                    quantity: item.quantity - 1,
+                    totalPrice: item.totalPrice - item.price,
+                  }
+                : item
+            )
+            .filter((item) => item.quantity > 0);
 
-            return {
-              favorite: updatedItems,
-              totalFavQuantity: state.totalFavQuantity - 1,
-            };
-          }
+          return {
+            ...state,
+            favorite: updatedFavorites,
+            totalFavQuantity: state.totalFavQuantity - 1,
+            totalFavAllPrice: state.totalFavAllPrice - existingItem.price,
+          };
         }),
 
       increaseItem: (id: string) =>
         set((state) => {
-          const itemExists = state.items.some(
-            (existingItem) => existingItem.id === id
-          );
+          const existingItem = state.items.find((item) => item.id === id);
+          if (!existingItem) return state;
 
-          if (itemExists) {
-            return {
-              items: state.items.map((existingItem) =>
-                existingItem.id === id
-                  ? {
-                      ...existingItem,
-                      quantity: existingItem.quantity + 1,
-                      totalPrice: existingItem.totalPrice + existingItem.price,
-                    }
-                  : existingItem
-              ),
-              totalQuantity: state.totalQuantity + 1,
-              totalAllPrice:
-                state.totalAllPrice +
-                state.items.find((item) => item.id === id)!.price,
-            };
-          }
-          return state; // No update if item doesn't exist
+          return {
+            items: state.items.map((item) =>
+              item.id === id
+                ? {
+                    ...item,
+                    quantity: item.quantity + 1,
+                    totalPrice: item.totalPrice + item.price,
+                  }
+                : item
+            ),
+            totalQuantity: state.totalQuantity + 1,
+            totalAllPrice: state.totalAllPrice + existingItem.price,
+          };
         }),
+
       decreaseItem: (id: string) =>
         set((state) => {
-          const itemExists = state.items.some(
-            (existingItem) => existingItem.id === id
-          );
-
-          if (!itemExists) return state; // No action if item doesn't exist
+          const existingItem = state.items.find((item) => item.id === id);
+          if (!existingItem) return state;
 
           const updatedItems = state.items
-            .map((existingItem) =>
-              existingItem.id === id
+            .map((item) =>
+              item.id === id
                 ? {
-                    ...existingItem,
-                    quantity: existingItem.quantity - 1,
-                    totalPrice: existingItem.totalPrice - existingItem.price,
+                    ...item,
+                    quantity: item.quantity - 1,
+                    totalPrice: item.totalPrice - item.price,
                   }
-                : existingItem
+                : item
             )
-            .filter((existingItem) => existingItem.quantity > 0);
+            .filter((item) => item.quantity > 0);
 
           return {
             items: updatedItems,
             totalQuantity: state.totalQuantity - 1,
-            totalAllPrice:
-              state.totalAllPrice -
-              state.items.find((item) => item.id === id)!.price,
-          };
-        }),
-
-      totalAllItems: () =>
-        set((state) => {
-          let amount = 0;
-          let total = 0;
-
-          state.items.forEach((item) => {
-            amount += item.quantity;
-            total += item.quantity * item.price;
-          });
-          return {
-            totalQuantity: amount,
-            totalAllPrice: total,
-          };
-        }),
-
-      totalAllFavoriteItems: () =>
-        set((state) => {
-          let amount = 0;
-          let total = 0;
-
-          state.favorite.forEach((item) => {
-            amount += item.quantity;
-            total += item.quantity * item.price;
-          });
-          return {
-            totalFavQuantity: amount,
-            totalFavAllPrice: total,
+            totalAllPrice: state.totalAllPrice - existingItem.price,
           };
         }),
     }),

@@ -76,6 +76,7 @@ export default function Checkout({
   pagePath,
   onClick,
 }) {
+  
   const { addItem, favorite } = useItemStore();
   const t = useI18n();
   return (
@@ -83,7 +84,7 @@ export default function Checkout({
       <p className="text-lg font-semibold my-2">{t("checkout.ordersummary")}</p>
       <div className="flex flex-row justify-between">
         <p>
-          {t("product.products")} ({totalQuantity})
+          {t("product.products")} ( {totalQuantity} )
         </p>
         <p>JD{allPrice}</p>
       </div>
@@ -91,7 +92,7 @@ export default function Checkout({
         <div className="flex justify-between text-base font-medium text-gray-900">
           <p className="font-bold">{t("checkout.subtotalvat")}</p>
           <p className="text-2xl font-bold">
-            <span className="text-sm">JD</span>
+            <span className="text-sm">{t("product.price")}</span>
             {allPrice}
           </p>
         </div>

@@ -118,7 +118,7 @@ model ItemDetail {
   title             String           @db.Text
   color             String           @db.Text
   size              String           @db.Text
-  price             String           @db.Text
+  price             Int              @db.Integer
   image             String           @db.Text
   alt               String           @db.Text
   gender            String           @db.Text
