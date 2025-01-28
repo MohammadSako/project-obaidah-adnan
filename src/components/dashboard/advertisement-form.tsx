@@ -22,10 +22,10 @@ import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
 
 const formSchema = z.object({
-  title: z.string().min(2, {
+  title: z.string().min(0, {
     message: "title must be at least 2 characters.",
   }),
-  description: z.string().min(2, {
+  description: z.string().min(0, {
     message: "description must be at least 2 characters.",
   }),
 });

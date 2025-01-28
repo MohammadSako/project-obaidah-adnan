@@ -6,15 +6,20 @@ import { CardDetails } from "./card/card-details";
 
 function CategoriesCard({
   id,
-  category,
+  title,
   description,
   image,
   price,
   color,
-  details,
   url,
+  details,
   alt,
-  title,
+  dashboardType,
+  size,
+  gender,
+  type,
+  imageid,
+  category,
 }) {
   return (
     <div>
@@ -40,6 +45,11 @@ function CategoriesCard({
               price={price}
               url={url}
               alt={alt}
+              dashboardType={dashboardType}
+              size={size}
+              gender={gender}
+              type={type}
+              imageid={imageid}
             />
           )}
         </div>

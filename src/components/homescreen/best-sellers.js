@@ -48,6 +48,12 @@ function BestSellers({ data }) {
                         url={product.url}
                         details={product.details}
                         description={product.description}
+                        size={product.size}
+                        gender={product.gender}
+                        type={product.type}
+                        dashboardType={product.dashboardType}
+                        imageid={product.imageid}
+                        category={product.category}
                       />
                     </CarouselItem>
                   ))}

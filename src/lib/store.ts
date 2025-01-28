@@ -6,10 +6,19 @@ export type Item = {
   title: string;
   description?: string;
   image: string;
+  alt: string;
+  imageid: string;
   price: number;
-  color: string;
-  quantity: number;
   totalPrice: number;
+  size: string;
+  color: string;
+  gender: string;
+  quantity: number;
+  url: string;
+  details: string;
+  type: string;
+  category: string;
+  dashboardType: string;
 };
 
 export type State = {
@@ -56,6 +65,16 @@ export const useItemStore = create<State & Actions>()(
                   title: item.title,
                   image: item.image,
                   color: item.color,
+                  description: item.description,
+                  url: item.url,
+                  details: item.details,
+                  alt: item.alt,
+                  dashboardType: item.dashboardType,
+                  size: item.size,
+                  gender: item.gender,
+                  type: item.type,
+                  imageid: item.imageid,
+                  category: item.category,
                 },
               ],
               totalQuantity: state.totalQuantity + 1,
@@ -122,6 +141,16 @@ export const useItemStore = create<State & Actions>()(
                   title: item.title,
                   image: item.image,
                   color: item.color,
+                  description: item.description,
+                  url: item.url,
+                  details: item.details,
+                  alt: item.alt,
+                  dashboardType: item.dashboardType,
+                  size: item.size,
+                  gender: item.gender,
+                  type: item.type,
+                  imageid: item.imageid,
+                  category: item.category,
                 },
               ],
               totalFavQuantity: state.totalFavQuantity + 1,

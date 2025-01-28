@@ -87,15 +87,20 @@ export default function CategoriesPage({ data }) {
                   <CategoriesCard
                     key={product.id}
                     id={product.id}
-                    category={product.category}
                     title={product.title}
-                    description={product.description}
-                    details={product.details}
                     image={product.image}
+                    alt={product.alt}
                     price={product.price}
                     color={product.color}
                     url={product.url}
-                    alt={product.alt}
+                    details={product.details}
+                    description={product.description}
+                    size={product.size}
+                    gender={product.gender}
+                    type={product.type}
+                    dashboardType={product.dashboardType}
+                    imageid={product.imageid}
+                    category={product.category}
                   />
                 ))}
               </div>

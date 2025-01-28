@@ -272,13 +272,14 @@ export async function getDiscounted() {
 // Add Products
 export async function addProduct(productData) {
   const itemid = parseInt(productData.category);
+  const priceInt = parseInt(productData.price);
   try {
     const product = await prisma.itemDetail.create({
       data: {
         title: productData.title,
         color: productData.color,
         size: productData.size,
-        price: productData.price,
+        price: priceInt,
         image: productData.image,
         alt: productData.alt,
         gender: productData.gender,
@@ -565,18 +566,92 @@ export async function addCustomerData(customerData) {
         email: customerData.email,
         city: customerData.city,
         additional: customerData.additional,
-        items: customerData.items
+        items: {
+          create: customerData.items.map(item => ({
+            title: item.title,
+            color: item.color,
+            size: item.size,
+            price: parseInt(item.price),
+            image: item.image,
+            alt: item.alt,
+            gender: item.gender,
+            type: item.type,
+            description: item.description,
+            details: item.details,
+            dashboardType: item.dashboardType,
+            url: item.url,
+            imageid: item.imageid,
+            category: parseInt(item.category),
+            quantity: parseInt(item.quantity),
+            totalPrice: parseInt(item.totalPrice),
+          }))
+        }
       },
+      include: {
+        items: true
+      }
     });
-    // go to success page to show the bought items and the information when to deliver
-    // revalidatePath("/");
-    console.log(custData);
+
+    console.log("Customer order created:", custData);
     return { custData };
-    
   } catch (error) {
-    console.error("Error creating product:", error);
+    console.error("Error creating customer order:", error);
     return { error: error.message || "An unexpected error occurred" };
   }
 }
+// export async function addCustomerData(customerData) {
+//   try {
+//     // Create the customer order first
+//     const custData = await prisma.customersOrders.create({
+//       data: {
+//         firstname: customerData.firstname,
+//         lastname: customerData.lastname,
+//         phonenumber: customerData.phonenumber,
+//         firstline: customerData.firstline,
+//         secondline: customerData.secondline,
+//         email: customerData.email,
+//         city: customerData.city,
+//         additional: customerData.additional,
+//         items: {
+//           create: customerData.items.map((item) => {
+//             const priceInt = parseInt(item.price); // Parse price for each item
+//             const cateInt = parseInt(item.category); // Parse category for each item
+//             const quantityInt = parseInt(item.quantity); // Parse quantity for each item
+//             const totalPriceInt = parseInt(item.totalPrice); // Calculate total price for each item
+
+//             return {
+//               title: item.title,
+//               color: item.color,
+//               size: item.size,
+//               price: priceInt,
+//               image: item.image,
+//               alt: item.alt,
+//               gender: item.gender,
+//               type: item.type,
+//               description: item.description,
+//               details: item.details,
+//               dashboardType: item.dashboardType,
+//               url: item.url,
+//               imageid: item.imageid,
+//               category: cateInt,
+//               quantity: quantityInt,
+//               totalPrice: totalPriceInt,
+//             };
+//           }),
+//         },
+//       },
+//       include: {
+//         items: true, // Include the items in the response for confirmation
+//       },
+//     });
+
+//     console.log(custData); // Log the full customer data along with the items
+//     return { custData };
+//   } catch (error) {
+//     console.error("Error creating customer order:", error);
+//     return { error: error.message || "An unexpected error occurred" };
+//   }
+// }
+
 // https://www.prisma.io/docs/orm/prisma-client/queries/crud#create
 // https://supabase.com/docs/reference/javascript/update

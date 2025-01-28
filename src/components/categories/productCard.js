@@ -23,6 +23,11 @@ function ProductCard({
   details,
   alt,
   dashboardType,
+  size,
+  gender,
+  type,
+  imageid,
+  category,
 }) {
   const [cartPending, setCartPending] = useState(false);
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
@@ -36,7 +41,21 @@ function ProductCard({
   );
 
   const addToFavorite = useCallback(() => {
-    addFavorite({ id, title, description, image, price, color, alt, details });
+    addFavorite({
+      id,
+      title,
+      description,
+      image,
+      price,
+      color,
+      alt,
+      details,
+      size,
+      gender,
+      type,
+      imageid,
+      category,
+    });
     toast({
       title: `${title}`,
       description: t("common.favaddedmessage"),
@@ -51,6 +70,11 @@ function ProductCard({
     color,
     details,
     alt,
+    size,
+    gender,
+    type,
+    imageid,
+    category,
     toast,
     t,
   ]);
@@ -66,7 +90,21 @@ function ProductCard({
   const addToCartHandler = useCallback(() => {
     setCartPending(true);
 
-    addItem({ id, title, description, image, price, color, alt, details });
+    addItem({
+      id,
+      title,
+      description,
+      image,
+      price,
+      color,
+      alt,
+      details,
+      size,
+      gender,
+      type,
+      imageid,
+      category,
+    });
     toast({
       title: `${title}`,
       description: t("common.addedmessage"),
@@ -84,6 +122,11 @@ function ProductCard({
     color,
     details,
     alt,
+    size,
+    gender,
+    type,
+    imageid,
+    category,
     toast,
     t,
     setCartPending,
@@ -145,7 +188,6 @@ function ProductCard({
           <div className="w-10 h-10 mt-2">
             <Lottie animationData={Loading} loop={true} />
             {/* <LottieComponent animationData={Loading} /> */}
-
           </div>
         )}
         {isFavorite ? (

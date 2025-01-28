@@ -20,8 +20,14 @@ export function CardDetails({
   price,
   color,
   url,
-  alt,
   details,
+  alt,
+  dashboardType,
+  size,
+  gender,
+  type,
+  imageid,
+  category,
 }) {
   const [cartPending, setCartPending] = useState(false);
   const { toast } = useToast();
@@ -34,7 +40,23 @@ export function CardDetails({
   );
 
   const addToFavorite = useCallback(() => {
-    addFavorite({ id, title, description, image, price, color, alt, details });
+    addFavorite({
+      id,
+      title,
+      description,
+      image,
+      price,
+      color,
+      url,
+      details,
+      alt,
+      dashboardType,
+      size,
+      gender,
+      type,
+      imageid,
+      category,
+    });
     toast({
       title: `${title}`,
       description: t("common.favaddedmessage"),
@@ -47,8 +69,15 @@ export function CardDetails({
     image,
     price,
     color,
+    url,
     details,
     alt,
+    dashboardType,
+    size,
+    gender,
+    type,
+    imageid,
+    category,
     toast,
     t,
   ]);
@@ -64,7 +93,23 @@ export function CardDetails({
   const addToCartHandler = useCallback(() => {
     setCartPending(true);
 
-    addItem({ id, title, description, image, price, color, alt, details });
+    addItem({
+      id,
+      title,
+      description,
+      image,
+      price,
+      color,
+      url,
+      details,
+      alt,
+      dashboardType,
+      size,
+      gender,
+      type,
+      imageid,
+      category,
+    });
     toast({
       title: `${title}`,
       description: t("common.addedmessage"),
@@ -80,8 +125,15 @@ export function CardDetails({
     image,
     price,
     color,
+    url,
     details,
     alt,
+    dashboardType,
+    size,
+    gender,
+    type,
+    imageid,
+    category,
     toast,
     t,
   ]);
@@ -112,7 +164,9 @@ export function CardDetails({
         <div className="basis-1/3 bg-yellow-400 sm:w-auto w-24 sm:h-[32px] text-center shadow-lg">
           <p className="sm:text-2xl text-3xl px-1 font-medium text-gray-900 justify-center flex gap-2">
             <span className="font-semibold text-red-700">{price}</span>{" "}
-            <span className="sm:text-lg text-xl mt-1">{t("product.price")}</span>
+            <span className="sm:text-lg text-xl mt-1">
+              {t("product.price")}
+            </span>
           </p>
         </div>
       </div>
