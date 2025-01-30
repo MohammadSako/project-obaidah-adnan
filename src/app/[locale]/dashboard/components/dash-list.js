@@ -4,6 +4,7 @@ import { DataTable } from "@/components/dashboard/data-table";
 
 async function DashList() {
   const { products = [] } = await getProducts();
+  
   return (
     <div className="mt-6">
       <DataTable data={products} />

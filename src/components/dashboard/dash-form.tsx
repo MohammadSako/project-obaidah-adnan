@@ -163,12 +163,11 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const uuid = uuidv4();
     try {
       const uploadResult = await handleUpload();
 
       if (!uploadResult || !uploadResult.image_id) {
-        throw new Error("URL is missing from the upload response");
+        throw new Error("image data is missing from the upload response");
       }
       const { image, image_id } = uploadResult;
       const data = {
@@ -185,7 +184,6 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         imageid: image_id,
         category: values.category,
         alt: values.title,
-        url: `product/${uuid}`,
       };
       if (!imagePreview && !uploadedImageUrl) {
         setUploadedImageError(true);

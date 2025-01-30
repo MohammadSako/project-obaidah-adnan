@@ -14,61 +14,6 @@ export const getProducts = cache(async function () {
   }
 });
 
-// To get the menu categories
-export const getAllCategory = cache(async function () {
-  try {
-    // Fetch all categories with their types and items
-    const categories = await prisma.category.findMany({
-      include: {
-        SubCategory: {
-          include: {
-            items: true, // Include all items for each type
-          },
-        },
-      },
-    });
-    return { categories }; // Return the categories object
-  } catch (error) {
-    return { error: error.message || error }; // Handle errors
-  }
-});
-
-export async function getProductByCategory(data) {
-  try {
-    const productByCategory = await prisma.item.findMany({
-      where: {
-        category: data,
-      },
-      include: {
-        details: true,
-      },
-    });
-    return { productByCategory };
-  } catch (error) {
-    return { error: error.message || error }; // Handle errors
-  }
-}
-
-export async function getProductByUrl(url) {
-  try {
-    const productByUrl = await prisma.category.findMany({
-      where: {
-        url: url,
-      },
-      include: {
-        SubCategory: {
-          include: {
-            items: true,
-          },
-        },
-      },
-    });
-    return { productByUrl };
-  } catch (error) {
-    return { error: error.message || error }; // Handle errors
-  }
-}
-
 export async function getProductByItemId(itemId) {
   try {
     const productByItemId = await prisma.item.findMany({
@@ -203,25 +148,6 @@ export async function searchedRelatedProducts(values) {
   }
 }
 
-//Get By Url
-export async function getSearchedProductUrl(id) {
-  try {
-    const productUrl = await prisma.itemDetail.findMany({
-      where: {
-        id: id,
-      },
-      select: {
-        url: true,
-      },
-    });
-    return { productUrl };
-  } catch (error) {
-    return { error: error.message || error }; // Handle errors
-  }
-}
-
-// fix best seller page by getting data from dashboardType.....
-
 //Get By dashboardType
 export async function getBestSellers() {
   try {
@@ -271,25 +197,22 @@ export async function getDiscounted() {
 
 // Add Products
 export async function addProduct(productData) {
-  const itemid = parseInt(productData.category);
-  const priceInt = parseInt(productData.price);
   try {
     const product = await prisma.itemDetail.create({
       data: {
         title: productData.title,
         color: productData.color,
         size: productData.size,
-        price: priceInt,
+        price: parseInt(productData.price),
         image: productData.image,
         alt: productData.alt,
         gender: productData.gender,
         type: productData.type,
-        category: itemid,
+        category: parseInt(productData.category),
         description: productData.description,
         details: productData.details,
         dashboardType: productData.dashboardtype,
         imageid: productData.imageid,
-        url: productData.url,
       },
     });
     revalidatePath("/");
@@ -340,7 +263,6 @@ export async function updateProductById(id, productData) {
         details: productData.details,
         category: parseInt(productData.category),
         dashboardType: productData.dashboardtype,
-        url: productData.url,
       },
     });
     revalidatePath("/");
@@ -363,35 +285,6 @@ export async function deleteImageByUrl(imageURL) {
     console.log("successfully deleted", data);
   } catch (error) {
     console.error("Error deleting image:", error);
-  }
-}
-
-//Update Image
-export async function updateImageByUrl(imageURL, file) {
-  try {
-    const { data } = await supabase.storage
-      .from("shopimages")
-      .update([imageURL], file, {
-        cacheControl: "3600",
-        upsert: true,
-      });
-    console.log("successfully updated", data);
-  } catch (error) {
-    console.error("Error updating image:", error);
-  }
-}
-
-//Get By Pathname
-export async function getProductByPathname(path) {
-  try {
-    const product = await prisma.itemDetail.findMany({
-      where: {
-        url: path,
-      },
-    });
-    return { product };
-  } catch (error) {
-    return { error };
   }
 }
 
@@ -587,7 +480,6 @@ export async function addCustomerData(customerData) {
             description: item.description,
             details: item.details,
             dashboardType: item.dashboardType,
-            url: item.url,
             imageid: item.imageid,
             category: item.category,
             quantity: item.quantity,

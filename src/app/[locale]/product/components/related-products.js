@@ -48,7 +48,6 @@ function RelatedProducts({ data }) {
                         alt={product.alt}
                         price={product.price}
                         color={product.color}
-                        url={product.url}
                         details={product.details}
                         description={product.description}
                         category={product.category}

@@ -45,7 +45,6 @@ function NewArrivals({ data }) {
                         alt={product.alt}
                         price={product.price}
                         color={product.color}
-                        url={product.url}
                         details={product.details}
                         description={product.description}
                         size={product.size}

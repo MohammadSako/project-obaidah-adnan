@@ -14,7 +14,6 @@ export type Item = {
   color: string;
   gender: string;
   quantity: number;
-  url: string;
   details: string;
   type: string;
   category: string;
@@ -73,7 +72,6 @@ export const useItemStore = create<State & Actions>()(
                   image: item.image,
                   color: item.color,
                   description: item.description,
-                  url: item.url,
                   details: item.details,
                   alt: item.alt,
                   dashboardType: item.dashboardType,
@@ -149,7 +147,6 @@ export const useItemStore = create<State & Actions>()(
                   image: item.image,
                   color: item.color,
                   description: item.description,
-                  url: item.url,
                   details: item.details,
                   alt: item.alt,
                   dashboardType: item.dashboardType,

@@ -1,8 +1,8 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 import ProductDetailPage from "../../../../components/product-details/productDetailPage";
-import { getProductByPathname, searchedRelatedProducts } from "@/lib/db/products";
+import { getProductsById, searchedRelatedProducts } from "@/lib/db/products";
 import NotFound from "@/app/not-found";
 import RelatedProducts from "../components/related-products";
 import { ProductDetailsSkeleton } from "@/components/UI/skeletons";
@@ -10,18 +10,18 @@ import { ProductDetailsSkeleton } from "@/components/UI/skeletons";
 function ProductDetails() {
   const [products, setproducts] = useState([]);
   const [related, setRelated] = useState([]);
-  const pathname = usePathname();
-  const path = pathname.slice(4); // Remove the first character
+  const param = useParams()
+  
   useEffect(() => {
     async function getDetails() {
-      const { product } = await getProductByPathname(path);
-      const value = product[0].type;
+      const { products } = await getProductsById(param.id);
+      const value = products.type;
       const response = await searchedRelatedProducts([value]);
-      setproducts(product[0]);
+      setproducts(products);
       setRelated(response.combinedResults);
     }
     getDetails();
-  }, [path]);
+  }, [param.id]);
 
   if (!products) {
     return <NotFound />;

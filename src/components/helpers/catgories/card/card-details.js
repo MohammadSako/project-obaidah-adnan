@@ -140,7 +140,7 @@ export function CardDetails({
 
   return (
     <div className="sm:shadow-none sm:p-0 rounded-lg shadow-lg p-4 space-y-2">
-      <Link href={`/${url}`}>
+      <Link href={`/product/${id}`}>
         <div className="p-4 aspect-h-1 aspect-w-1 md:w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75">
           <Image
             src={image}

@@ -44,7 +44,6 @@ model Item {
 
 model ItemDetail {
   id            String   @id @default(uuid())
-  // id            Int      @id @default(autoincrement())
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   title         String   @db.Text
@@ -58,7 +57,6 @@ model ItemDetail {
   description   String   @db.Text
   details       String   @db.Text
   dashboardType String   @db.Text
-  url           String   @unique
   imageid       String   @db.Text
   category      Int
   item          Item     @relation(fields: [category], references: [id], onDelete: Cascade)
@@ -123,7 +121,6 @@ model CustomersItem {
   description       String           @db.Text
   details           String           @db.Text
   dashboardType     String           @db.Text
-  url               String           @db.Text
   imageid           String           @db.Text
   category          Int
   quantity          Int

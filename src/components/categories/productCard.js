@@ -19,7 +19,6 @@ function ProductCard({
   image,
   price,
   color,
-  url,
   details,
   alt,
   dashboardType,
@@ -56,7 +55,6 @@ function ProductCard({
       imageid,
       category,
       dashboardType,
-      url,
     });
     toast({
       title: `${title}`,
@@ -78,7 +76,6 @@ function ProductCard({
     imageid,
     category,
     dashboardType,
-    url,
     toast,
     t,
   ]);
@@ -109,7 +106,6 @@ function ProductCard({
       imageid,
       category,
       dashboardType,
-      url,
     });
     toast({
       title: `${title}`,
@@ -134,7 +130,6 @@ function ProductCard({
     imageid,
     category,
     dashboardType,
-    url,
     toast,
     t,
     setCartPending,
@@ -142,7 +137,7 @@ function ProductCard({
 
   return (
     <div>
-      <Link href={url}>
+      <Link href={`product/${id}`}>
         <div className="group relative">
           <div className="p-2 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
             <Image

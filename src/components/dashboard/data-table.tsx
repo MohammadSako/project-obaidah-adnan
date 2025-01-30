@@ -51,7 +51,6 @@ export type Product = {
   description: string;
   details: string;
   category: string;
-  url: string;
   dashboardType: "product" | "discounted" | "bestseller" | "newarrival";
 };
 

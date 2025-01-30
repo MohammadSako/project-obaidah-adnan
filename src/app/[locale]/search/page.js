@@ -56,7 +56,6 @@ export default function SearchResult() {
                         image={product.image}
                         price={product.price}
                         color={product.color}
-                        url={product.url}
                         alt={product.alt}
                         size={product.size}
                       />

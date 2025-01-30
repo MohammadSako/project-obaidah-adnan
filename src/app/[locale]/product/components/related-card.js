@@ -15,7 +15,6 @@ function RelatedCard({
   image,
   price,
   color,
-  url,
   details,
   alt,
   dashboardType,
@@ -43,7 +42,6 @@ function RelatedCard({
       image,
       price,
       color,
-      url,
       details,
       alt,
       dashboardType,
@@ -65,7 +63,6 @@ function RelatedCard({
     image,
     price,
     color,
-    url,
     details,
     alt,
     dashboardType,
@@ -94,7 +91,6 @@ function RelatedCard({
       image,
       price,
       color,
-      url,
       details,
       alt,
       dashboardType,
@@ -116,7 +112,6 @@ function RelatedCard({
     image,
     price,
     color,
-    url,
     details,
     alt,
     dashboardType,
@@ -129,11 +124,9 @@ function RelatedCard({
     t,
   ]);
 
-  const urls = url.replace("product/", "");
-
   return (
     <div>
-      <Link href={urls}>
+      <Link href={`product/${id}`}>
         <div className="group relative">
           <div className="p-2 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 shadow-lg">
             <Image

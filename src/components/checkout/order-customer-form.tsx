@@ -98,7 +98,6 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
       description: item.description,
       details: item.details,
       dashboardType: item.dashboardType,
-      url: item.url,
       imageid: item.imageid,
       category: item.category,
       quantity: item.quantity,
