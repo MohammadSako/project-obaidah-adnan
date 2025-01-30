@@ -49,6 +49,13 @@ export const useItemStore = create<State & Actions>()(
       totalFavQuantity: 0,
       totalFavAllPrice: 0,
 
+      clearCart: () =>
+        set({
+          items: [],
+          totalQuantity: 0,
+          totalAllPrice: 0,
+        }),
+        
       addItem: (item: Item) =>
         set((state) => {
           const existingItem = state.items.find((i) => i.id === item.id);

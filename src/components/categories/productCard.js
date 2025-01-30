@@ -55,6 +55,8 @@ function ProductCard({
       type,
       imageid,
       category,
+      dashboardType,
+      url,
     });
     toast({
       title: `${title}`,
@@ -75,6 +77,8 @@ function ProductCard({
     type,
     imageid,
     category,
+    dashboardType,
+    url,
     toast,
     t,
   ]);
@@ -104,6 +108,8 @@ function ProductCard({
       type,
       imageid,
       category,
+      dashboardType,
+      url,
     });
     toast({
       title: `${title}`,
@@ -127,6 +133,8 @@ function ProductCard({
     type,
     imageid,
     category,
+    dashboardType,
+    url,
     toast,
     t,
     setCartPending,

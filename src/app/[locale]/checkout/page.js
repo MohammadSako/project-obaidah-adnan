@@ -3,13 +3,16 @@
 import { addCustomerData } from "@/lib/db/products";
 import { OrderSummary } from "../../../components/checkout";
 import { OrderCustomerForm } from "../../../components/checkout/order-customer-form";
+// import { useItemStore } from "@/lib/store";
 
 export default function Checkout() {
+  // const { clearCart } = useItemStore();
   async function CustomerOrderHendler(customerData) {
-    console.log("cxcxcx", customerData);
+    console.log(customerData);
 
     try {
       await addCustomerData(customerData);
+      // clearCart();
     } catch (error) {
       console.error("Error adding product:", error);
     }

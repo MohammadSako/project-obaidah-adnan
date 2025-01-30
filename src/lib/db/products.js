@@ -331,7 +331,7 @@ export async function updateProductById(id, productData) {
         title: productData.title,
         color: productData.color,
         size: productData.size,
-        price: productData.price,
+        price: parseInt(productData.price),
         image: productData.image,
         alt: productData.alt,
         gender: productData.gender,
@@ -555,7 +555,15 @@ export async function deleteAdvertismentImage(imageid) {
 }
 
 export async function addCustomerData(customerData) {
+  console.log("Received Customer Data:", customerData);
+
+  if (!customerData || !Array.isArray(customerData.items)) {
+    console.error("Invalid customer data format.");
+    return { error: "Invalid customer data format." };
+  }
+
   try {
+    // Create the customer order first
     const custData = await prisma.customersOrders.create({
       data: {
         firstname: customerData.firstname,
@@ -567,11 +575,11 @@ export async function addCustomerData(customerData) {
         city: customerData.city,
         additional: customerData.additional,
         items: {
-          create: customerData.items.map(item => ({
+          create: customerData.items.map((item) => ({
             title: item.title,
             color: item.color,
             size: item.size,
-            price: parseInt(item.price),
+            price: item.price,
             image: item.image,
             alt: item.alt,
             gender: item.gender,
@@ -581,77 +589,24 @@ export async function addCustomerData(customerData) {
             dashboardType: item.dashboardType,
             url: item.url,
             imageid: item.imageid,
-            category: parseInt(item.category),
-            quantity: parseInt(item.quantity),
-            totalPrice: parseInt(item.totalPrice),
-          }))
-        }
+            category: item.category,
+            quantity: item.quantity,
+            totalPrice: item.totalPrice,
+          })),
+        },
       },
       include: {
-        items: true
-      }
+        items: true, // Ensure the related items are included in the response
+      },
     });
-
-    console.log("Customer order created:", custData);
+    revalidatePath("/");
+    console.log("Customer Order Created:", custData);
     return { custData };
   } catch (error) {
     console.error("Error creating customer order:", error);
     return { error: error.message || "An unexpected error occurred" };
   }
 }
-// export async function addCustomerData(customerData) {
-//   try {
-//     // Create the customer order first
-//     const custData = await prisma.customersOrders.create({
-//       data: {
-//         firstname: customerData.firstname,
-//         lastname: customerData.lastname,
-//         phonenumber: customerData.phonenumber,
-//         firstline: customerData.firstline,
-//         secondline: customerData.secondline,
-//         email: customerData.email,
-//         city: customerData.city,
-//         additional: customerData.additional,
-//         items: {
-//           create: customerData.items.map((item) => {
-//             const priceInt = parseInt(item.price); // Parse price for each item
-//             const cateInt = parseInt(item.category); // Parse category for each item
-//             const quantityInt = parseInt(item.quantity); // Parse quantity for each item
-//             const totalPriceInt = parseInt(item.totalPrice); // Calculate total price for each item
-
-//             return {
-//               title: item.title,
-//               color: item.color,
-//               size: item.size,
-//               price: priceInt,
-//               image: item.image,
-//               alt: item.alt,
-//               gender: item.gender,
-//               type: item.type,
-//               description: item.description,
-//               details: item.details,
-//               dashboardType: item.dashboardType,
-//               url: item.url,
-//               imageid: item.imageid,
-//               category: cateInt,
-//               quantity: quantityInt,
-//               totalPrice: totalPriceInt,
-//             };
-//           }),
-//         },
-//       },
-//       include: {
-//         items: true, // Include the items in the response for confirmation
-//       },
-//     });
-
-//     console.log(custData); // Log the full customer data along with the items
-//     return { custData };
-//   } catch (error) {
-//     console.error("Error creating customer order:", error);
-//     return { error: error.message || "An unexpected error occurred" };
-//   }
-// }
 
 // https://www.prisma.io/docs/orm/prisma-client/queries/crud#create
 // https://supabase.com/docs/reference/javascript/update

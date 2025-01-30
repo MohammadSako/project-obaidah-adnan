@@ -13,74 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// OLD Method:
-// model Category {
-//   id    Int     @id @default(autoincrement())
-//   name  String
-//   image String?
-//   url   String
-//   types Type[] // One-to-many relationship with Type
-// }
-
-// model Type {
-//   id         Int      @id @default(autoincrement())
-//   name       String
-//   image      String?
-//   categoryId Int
-//   url        String
-//   category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-//   items      Item[] // One-to-many relationship with Item
-// }
-
-// model Item {
-//   id       Int          @id @default(autoincrement())
-//   name     String
-//   image    String?
-//   typeId   Int
-//   url      String
-//   category String       @unique
-//   type     Type         @relation(fields: [typeId], references: [id], onDelete: Cascade)
-//   details  ItemDetail[] // One-to-many relationship with ItemDetail
-// }
-
-// model ItemDetail {
-//   id            Int      @id @default(autoincrement())
-//   createdAt     DateTime @default(now())
-//   updatedAt     DateTime @updatedAt
-//   title         String   @db.VarChar(255)
-//   color         String
-//   size          String
-//   price         String
-//   image         String
-//   alt           String
-//   gender        String
-//   type          String
-//   description   String
-//   details       String
-//   category      String
-//   dashboardType String
-//   url           String
-//   item          Item     @relation(fields: [category], references: [category], onDelete: Cascade)
-// }
-
-// model items {
-//   id            String   @id @default(uuid()) @db.Uuid
-//   createdAt     DateTime @default(now())
-//   updatedAt     DateTime @updatedAt
-//   title         String   @db.VarChar(255)
-//   color         String
-//   size          String
-//   price         String
-//   image         String
-//   alt           String
-//   gender        String
-//   type          String
-//   description   String
-//   details       String
-//   category      String
-//   dashboardType String
-// }
-
 model Category {
   id          Int           @id @default(autoincrement())
   title       String        @db.Text
@@ -177,27 +109,27 @@ model CustomersOrders {
 }
 
 model CustomersItem {
-  id            String   @id @default(uuid())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  title         String   @db.Text
-  color         String   @db.Text
-  size          String   @db.Text
-  price         Int      @db.Integer
-  image         String   @db.Text
-  alt           String   @db.Text
-  gender        String   @db.Text
-  type          String   @db.Text
-  description   String   @db.Text
-  details       String   @db.Text
-  dashboardType String   @db.Text
-  url           String   @unique
-  imageid       String   @db.Text
-  category      Int
-  quantity      Int
-  totalPrice      Int
-  CustomersOrders   CustomersOrders? @relation(fields: [customersOrdersId], references: [id])
-  customersOrdersId Int?
+  id                String           @id @default(uuid())
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  title             String           @db.Text
+  color             String           @db.Text
+  size              String           @db.Text
+  price             Int              @db.Integer
+  image             String           @db.Text
+  alt               String           @db.Text
+  gender            String           @db.Text
+  type              String           @db.Text
+  description       String           @db.Text
+  details           String           @db.Text
+  dashboardType     String           @db.Text
+  url               String           @db.Text
+  imageid           String           @db.Text
+  category          Int
+  quantity          Int
+  totalPrice        Int
+  customersOrdersId Int?             @default(autoincrement())
+  customersOrders   CustomersOrders? @relation(fields: [customersOrdersId], references: [id], onDelete: Cascade)
 }
 
 // Faisal //
@@ -257,53 +189,12 @@ model CustomersItem {
 //   dashboardType String
 // }
 
-// Query Example: Use Prisma Client in your application:
-// const categories = await prisma.category.findMany({
-//   include: {
-//     types: {
-//       include: {
-//         items: {
-//           include: {
-//             details: true
-//           }
-//         }
-//       }
-//     }
-//   }
-// });
-// console.log(categories);
-
-// Example:
-// model Post {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   title     String   @db.VarChar(255)
-//   content   String?
-//   published Boolean  @default(false)
-//   author    User     @relation(fields: [authorId], references: [id])
-//   authorId  Int
-// }
-
-// model Profile {
-//   id     Int     @id @default(autoincrement())
-//   bio    String?
-//   user   User    @relation(fields: [userId], references: [id])
-//   userId Int     @unique
-// }
-
-// model User {
-//   id      Int      @id @default(autoincrement())
-//   email   String   @unique
-//   name    String?
-//   posts   Post[]
-//   profile Profile?
-// }
-
 //to add data without losing and data (chatgpt)
 // npx prisma generate
 // npx prisma migrate dev --name add_product_table => you new table name here
 // npx prisma migrate deploy
+
+//ex: npx prisma migrate dev --name customersItem
 
 // to create a database in supabase
 // npx prisma migrate dev --name init

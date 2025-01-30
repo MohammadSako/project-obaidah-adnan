@@ -83,6 +83,26 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    
+    const customerItems = items.map((item) => ({
+      title: item.title,
+      color: item.color,
+      size: item.size,
+      price: item.price,
+      image: item.image,
+      alt: item.alt,
+      gender: item.gender,
+      type: item.type,
+      description: item.description,
+      details: item.details,
+      dashboardType: item.dashboardType,
+      url: item.url,
+      imageid: item.imageid,
+      category: item.category,
+      quantity: item.quantity,
+      totalPrice: item.totalPrice,
+    }));
+
     try {
       const data = {
         firstname: values.firstname,
@@ -93,7 +113,7 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
         email: values.email,
         city: values.city,
         additional: values.additional,
-        items: items,
+        items: customerItems,
       };
       toast({
         title: "You submitted the following values:",

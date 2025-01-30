@@ -18,6 +18,7 @@ export type Item = {
 
 export const OrderSummary = () => {
   const { items, totalAllPrice } = useItemStore();
+
   const t = useI18n();
 
   return (

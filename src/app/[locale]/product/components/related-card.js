@@ -18,6 +18,12 @@ function RelatedCard({
   url,
   details,
   alt,
+  dashboardType,
+  size,
+  gender,
+  type,
+  imageid,
+  category,
 }) {
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const { toast } = useToast();
@@ -30,7 +36,23 @@ function RelatedCard({
   );
 
   const addToFavorite = useCallback(() => {
-    addFavorite({ id, title, description, image, price, color, alt, details });
+    addFavorite({
+      id,
+      title,
+      description,
+      image,
+      price,
+      color,
+      url,
+      details,
+      alt,
+      dashboardType,
+      size,
+      gender,
+      type,
+      imageid,
+      category,
+    });
     toast({
       title: `${title}`,
       description: t("common.favaddedmessage"),
@@ -43,8 +65,15 @@ function RelatedCard({
     image,
     price,
     color,
+    url,
     details,
     alt,
+    dashboardType,
+    size,
+    gender,
+    type,
+    imageid,
+    category,
     toast,
     t,
   ]);
@@ -58,7 +87,23 @@ function RelatedCard({
   }, [removeFavorite, id, title, toast, t]);
 
   const addToCartHandler = useCallback(() => {
-    addItem({ id, title, description, image, price, color, alt, details });
+    addItem({
+      id,
+      title,
+      description,
+      image,
+      price,
+      color,
+      url,
+      details,
+      alt,
+      dashboardType,
+      size,
+      gender,
+      type,
+      imageid,
+      category,
+    });
     toast({
       title: `${title}`,
       description: t("common.addedmessage"),
@@ -71,8 +116,15 @@ function RelatedCard({
     image,
     price,
     color,
+    url,
     details,
     alt,
+    dashboardType,
+    size,
+    gender,
+    type,
+    imageid,
+    category,
     toast,
     t,
   ]);
