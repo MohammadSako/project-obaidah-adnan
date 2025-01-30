@@ -608,5 +608,18 @@ export async function addCustomerData(customerData) {
   }
 }
 
+export const getOrders = cache(async function () {
+  try {
+    const orders = await prisma.customersOrders.findMany({
+      include: {
+        customersItem: true,
+      },
+    });
+    return { orders };
+  } catch (error) {
+    return { error: error.message || error }; // Handle errors
+  }
+});
+
 // https://www.prisma.io/docs/orm/prisma-client/queries/crud#create
 // https://supabase.com/docs/reference/javascript/update

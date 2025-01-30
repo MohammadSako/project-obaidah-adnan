@@ -28,7 +28,6 @@ function UpdateProduct() {
 
   async function UpdateProductHandle(productData) {
     setData(true);
-
     try {
       const response = await updateProductById(id, productData);
       router.push("/dashboard");

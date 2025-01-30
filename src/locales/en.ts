@@ -204,6 +204,7 @@ export default {
   "checkout.ordersummary": "Order summary",
   "checkout.orders.empty": "No Products Found",
   "checkout.orders.success": "Order placed successfully",
+  "checkout.orders.success2": "We will reach out to you to arrange the delivery of your order.",
   "checkout.orders.confirm": "Confirm Order",
   "checkout.promo.placeholder": "Discount Code",
   "checkout.promo.success": "Promo code applied successfully",

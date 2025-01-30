@@ -4,6 +4,7 @@ import { useItemStore } from "@/lib/store";
 import { useI18n } from "@/locales/client";
 // import { Button } from "../UI/button";
 import Image from "next/image";
+import { FaMoneyBill1Wave } from "react-icons/fa6";
 
 export type Item = {
   id: string;
@@ -96,6 +97,15 @@ export const OrderSummary = () => {
           <p className="flex flex-row gap-2 text-md font-semibold">
             <span>{totalAllPrice}</span>
             <span>{t("product.price")}</span>
+          </p>
+        </div>
+        <div className="flex justify-between my-3">
+          <p className="text-md font-semibold">
+            {t("checkout.payment.methods")}
+          </p>
+          <p className="flex flex-row gap-2 text-md font-semibold">
+            <FaMoneyBill1Wave className="text-xl text-green-600" />
+            <span>{t("checkout.payments.cash")}</span>
           </p>
         </div>
       </div>

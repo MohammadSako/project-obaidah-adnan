@@ -1,7 +1,10 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useCurrentLocale, useI18n } from "@/locales/client";
+import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
   Form,
@@ -10,12 +13,11 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/UI/form";
-
 import { Input } from "@/components/UI/input";
-import { useToast } from "@/hooks/use-toast";
-import { useCurrentLocale, useI18n } from "@/locales/client";
 import { useItemStore } from "@/lib/store";
 import { Textarea } from "@/components/UI/textarea";
+import { Button } from "../UI/button";
+import { RxReload } from "react-icons/rx";
 
 interface AddFormProps {
   onAddCustomerOrder: (data: FormValues) => void;
@@ -36,11 +38,11 @@ interface AddFormProps {
 }
 
 export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
-  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+  const { totalQuantity, items } = useItemStore();
   const t = useI18n();
   const locale = useCurrentLocale();
   const dir = locale === "ar" ? "rtl" : "ltr";
-  const { totalQuantity, items } = useItemStore();
   // const itemsid = items.map((item) => item.id);
 
   const formSchema = z.object({
@@ -83,7 +85,7 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    
+    setIsLoading(true);
     const customerItems = items.map((item) => ({
       title: item.title,
       color: item.color,
@@ -115,17 +117,10 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
         additional: values.additional,
         items: customerItems,
       };
-      toast({
-        title: "You submitted the following values:",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">
-              {JSON.stringify(values, null, 2)}
-            </code>
-          </pre>
-        ),
-      });
+      toast.success(t("checkout.orders.success"));
+
       onAddCustomerOrder(data);
+      setIsLoading(false);
       form.reset({
         firstname: "",
         lastname: "",
@@ -137,6 +132,7 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
         additional: "",
       });
     } catch (error) {
+      setIsLoading(false);
       console.error("Error uploading image:", error);
     }
   }
@@ -324,14 +320,18 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
               </div>
             </div>
 
-            <div className="mt-4">
-              <button
-                type="submit"
-                className="flex items-center justify-center shadow-md hover:shadow rounded-full border border-transparent bg-[#014F93] px-6 py-3 text-base font-medium text-white hover:bg-[#014780]"
-              >
-                {t("checkout.orders.confirm")}
-              </button>
-            </div>
+            <Button
+              disabled={!items?.length || isLoading}
+              type="submit"
+              variant="default"
+              className="w-full mt-5 bg-[#014F93] hover:bg-[#014780]"
+            >
+              {isLoading ? (
+                <RxReload className="animate-spin" />
+              ) : (
+                <span>{t("checkout.orders.confirm")}</span>
+              )}
+            </Button>
           </form>
         </Form>
       </div>

@@ -1,8 +1,12 @@
 import { Suspense } from "react";
 import DashList from "../components/dash-list";
 import { TableSkeleton } from "@/components/UI/skeletons";
+import { getOrders } from "@/lib/db/products";
 
-export default function CustomersOrders() {
+export default async function CustomersOrders() {
+  const { orders = [] } = await getOrders();
+console.log("orders", orders);
+
   return (
     <>
       <header>
@@ -13,7 +17,7 @@ export default function CustomersOrders() {
         </div>
       </header>
       <Suspense fallback={<TableSkeleton />}>
-        <DashList />
+        {/* <DashList data={orders} /> */}
       </Suspense>
     </>
   );

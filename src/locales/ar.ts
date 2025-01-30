@@ -27,12 +27,18 @@ export default {
   "common.form.confirm": "تأكيد كلمة المرور",
   "common.form.gender": "جنس",
   "common.form.additional": "تفاصيل اضافية",
-  "common.formvalidation.firstname": "يجب أن يتكون الاسم الأول من حرفين على الأقل.",
-  "common.formvalidation.lastname": "يجب أن يتكون الاسم الأخير من حرفين على الأقل.",
-  "common.formvalidation.phone": "يجب أن يتكون رقم الهاتف من 10 أحرف على الأقل.",
-  "common.formvalidation.add1": "يجب أن يتكون العنوان الأول من حرفين على الأقل.",
-  "common.formvalidation.add2": "يجب أن يتكون العنوان الثاني من حرفين على الأقل.",
-  "common.formvalidation.email": "يجب أن يتكون البريد الإلكتروني من 7 أحرف على الأقل ويتضمن الرمز '@'.",
+  "common.formvalidation.firstname":
+    "يجب أن يتكون الاسم الأول من حرفين على الأقل.",
+  "common.formvalidation.lastname":
+    "يجب أن يتكون الاسم الأخير من حرفين على الأقل.",
+  "common.formvalidation.phone":
+    "يجب أن يتكون رقم الهاتف من 10 أحرف على الأقل.",
+  "common.formvalidation.add1":
+    "يجب أن يتكون العنوان الأول من حرفين على الأقل.",
+  "common.formvalidation.add2":
+    "يجب أن يتكون العنوان الثاني من حرفين على الأقل.",
+  "common.formvalidation.email":
+    "يجب أن يتكون البريد الإلكتروني من 7 أحرف على الأقل ويتضمن الرمز '@'.",
   "common.formvalidation.city": "يجب أن يتكون اسم المدينة من 3 أحرف على الأقل.",
   "common.viewall": "عرض الكل",
   "common.aboutus": "معلومات عنا",
@@ -198,6 +204,7 @@ export default {
   "checkout.ordersummary": "ملخص الطلب",
   "checkout.orders.empty": "لم يتم العثور على منتجات",
   "checkout.orders.success": "تم تقديم الطلب بنجاح",
+  "checkout.orders.success2": "سنتواصل معك لترتيب تسليم طلبك.",
   "checkout.orders.confirm": "أكد الطلب",
   "checkout.promo.placeholder": "الرقم التسلسلي للخصم",
   "checkout.promo.success": "تم تطبيق الخصم بنجاح",
@@ -280,13 +287,12 @@ export default {
   "categories.formen": "للرجال",
   "categories.forwomen": "للنساء",
 
-  
-"dashboard.title": "لوحة التحكم",
-"dashboard.allprod": "جميع المنتجات",
-"dashboard.orders": "طلبات العملاء",
-"dashboard.addProd": "إضافة منتجات",
-"dashboard.addcaro": "إضافة سلايدر",
-"dashboard.addbrand": "إضافة علامات تجارية",
-"dashboard.addadver": "إضافة إعلانات",
-"dashboard.login": "تسجيل الدخول إلى لوحة التحكم",
+  "dashboard.title": "لوحة التحكم",
+  "dashboard.allprod": "جميع المنتجات",
+  "dashboard.orders": "طلبات العملاء",
+  "dashboard.addProd": "إضافة منتجات",
+  "dashboard.addcaro": "إضافة سلايدر",
+  "dashboard.addbrand": "إضافة علامات تجارية",
+  "dashboard.addadver": "إضافة إعلانات",
+  "dashboard.login": "تسجيل الدخول إلى لوحة التحكم",
 } as const;
