@@ -228,6 +228,7 @@ export default {
   "settings.password": "Password",
   "settings.logout": "Logout",
   "settings.orderslist": "Orders List",
+  "settings.orderslistfor": "Orders List for",
   "settings.track": "Track Your Orders",
   "account.profile.success": "Profile updated successfully",
   "account.profile.edit": "Edit Profile",
@@ -299,4 +300,6 @@ export default {
   "dashboard.addbrand": "Add Brands",
   "dashboard.addadver": "Add Advertisments",
   "dashboard.login": "Login to Dashboard",
+  "dashboard.typeofitem": "Type of item",
+  "dashboard.category": "Item category",
 } as const;

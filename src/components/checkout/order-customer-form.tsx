@@ -39,11 +39,10 @@ interface AddFormProps {
 
 export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const { totalQuantity, items } = useItemStore();
+  const { totalQuantity, items, totalAllPrice } = useItemStore();
   const t = useI18n();
   const locale = useCurrentLocale();
   const dir = locale === "ar" ? "rtl" : "ltr";
-  // const itemsid = items.map((item) => item.id);
 
   const formSchema = z.object({
     firstname: z.string().min(2, {
@@ -115,6 +114,7 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
         city: values.city,
         additional: values.additional,
         items: customerItems,
+        totalall: totalAllPrice,
       };
       toast.success(t("checkout.orders.success"));
 

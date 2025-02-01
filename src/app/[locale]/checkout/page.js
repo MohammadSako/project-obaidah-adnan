@@ -16,7 +16,6 @@ export default function Checkout() {
   async function CustomerOrderHendler(customerData) {
     try {
       setIsLoading(true);
-
       await addCustomerData(customerData);
       clearCart();
       setIsLoading(false);

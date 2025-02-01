@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import prisma from "./prisma";
 import { cache } from "react";
 import { supabase } from "../supabase";
+import { log } from "node:console";
 
 export const getProducts = cache(async function () {
   try {
@@ -467,6 +468,7 @@ export async function addCustomerData(customerData) {
         email: customerData.email,
         city: customerData.city,
         additional: customerData.additional,
+        totalall: customerData.totalall,
         items: {
           create: customerData.items.map((item) => ({
             title: item.title,
@@ -500,18 +502,30 @@ export async function addCustomerData(customerData) {
   }
 }
 
-export const getOrders = cache(async function () {
+export const getCustomers = cache(async function () {
   try {
-    const orders = await prisma.customersOrders.findMany({
+    const customers = await prisma.customersOrders.findMany();
+    return { customers };
+  } catch (error) {
+    return { error: error.message || error }; // Handle errors
+  }
+});
+
+export async function getOrdersById(id) {
+  try {
+    const orders = await prisma.customersOrders.findUnique({
+      where: {
+        id: id,
+      },
       include: {
-        customersItem: true,
+        items: true,
       },
     });
     return { orders };
   } catch (error) {
     return { error: error.message || error }; // Handle errors
   }
-});
+}
 
 // https://www.prisma.io/docs/orm/prisma-client/queries/crud#create
 // https://supabase.com/docs/reference/javascript/update

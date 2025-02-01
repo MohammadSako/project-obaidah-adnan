@@ -228,6 +228,7 @@ export default {
   "settings.password": "كلمة المرور",
   "settings.logout": "تسجيل خروج",
   "settings.orderslist": "قائمة الطلبات",
+  "settings.orderslistfor": "قائمة طلبات لـ",
   "settings.track": "تتبع طلباتك",
   "account.profile.success": "تم تحديث الملف الشخصي بنجاح",
   "account.profile.edit": "تعديل الملف الشخصي",
@@ -295,4 +296,7 @@ export default {
   "dashboard.addbrand": "إضافة علامات تجارية",
   "dashboard.addadver": "إضافة إعلانات",
   "dashboard.login": "تسجيل الدخول إلى لوحة التحكم",
+  "dashboard.typeofitem": "نوع السلعة",
+  "dashboard.category": "تصنيف السلعة",
+
 } as const;

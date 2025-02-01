@@ -103,6 +103,7 @@ model CustomersOrders {
   email       String          @db.Text
   city        String          @db.Text
   additional  String          @db.Text
+  totalall    Int             @db.Integer
   items       CustomersItem[]
 }
 
@@ -125,7 +126,7 @@ model CustomersItem {
   category          Int
   quantity          Int
   totalPrice        Int
-  customersOrdersId Int?             @default(autoincrement())
+  customersOrdersId Int?
   customersOrders   CustomersOrders? @relation(fields: [customersOrdersId], references: [id], onDelete: Cascade)
 }
 
