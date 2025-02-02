@@ -146,7 +146,7 @@ function OrderDetails({ data }) {
                   {t("checkout.indelivery")}
                 </p>
               ) : (
-                <p className="flex justify-end text-blue-600">
+                <p className="flex justify-center p-2 text-3xl text-blue-600 bg-yellow-300 rounded-lg shadow-lg">
                   {t("checkout.delivered")}
                 </p>
               )}
@@ -162,6 +162,7 @@ function OrderDetails({ data }) {
             </div>
           </div>
         </div>
+
         {orders.items && (
           <div className="mt-6 p-4 rounded-md shadow-lg shadow-gray-500">
             {orders.items.map((item, index) => (
