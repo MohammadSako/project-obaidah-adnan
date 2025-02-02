@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache";
 import prisma from "./prisma";
 import { cache } from "react";
 import { supabase } from "../supabase";
-import { log } from "node:console";
 
 export const getProducts = cache(async function () {
   try {
