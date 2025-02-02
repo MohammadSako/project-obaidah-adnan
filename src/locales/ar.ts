@@ -206,6 +206,9 @@ export default {
   "checkout.orders.success": "تم تقديم الطلب بنجاح",
   "checkout.orders.success2": "سنتواصل معك لترتيب تسليم طلبك.",
   "checkout.orders.confirm": "أكد الطلب",
+  "checkout.indelivery": "جاري التوصيل",
+  "checkout.delivered": "تم التسليم",
+  "checkout.setdelivered": "هل أنت متأكد أنك تريد تغيير حالة الطلبية إلى تم التسليم؟",
   "checkout.promo.placeholder": "الرقم التسلسلي للخصم",
   "checkout.promo.success": "تم تطبيق الخصم بنجاح",
   "checkout.promo.invalid": "الخصم غير صالح",
@@ -243,6 +246,8 @@ export default {
   "orders.id": "معرف الطلب",
   "orders.date": "التاريخ",
   "orders.status": "الحالة",
+  "orders.delete": "هل أنت متأكد أنك تريد حذف هذه الطلبية؟",
+  "orders.confirm": "نعم",
   "track.title": "اتصل بنا للحصول على معلومات حول طلبك",
   "logout.title": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
   "success.placed": "تم تقديم طلبك بنجاح",
@@ -298,5 +303,4 @@ export default {
   "dashboard.login": "تسجيل الدخول إلى لوحة التحكم",
   "dashboard.typeofitem": "نوع السلعة",
   "dashboard.category": "تصنيف السلعة",
-
 } as const;

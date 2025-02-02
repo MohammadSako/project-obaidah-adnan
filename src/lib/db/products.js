@@ -469,6 +469,7 @@ export async function addCustomerData(customerData) {
         city: customerData.city,
         additional: customerData.additional,
         totalall: customerData.totalall,
+        delivered: customerData.delivered,
         items: {
           create: customerData.items.map((item) => ({
             title: item.title,
@@ -524,6 +525,36 @@ export async function getOrdersById(id) {
     return { orders };
   } catch (error) {
     return { error: error.message || error }; // Handle errors
+  }
+}
+
+export async function deleteOrderById(id) {
+  try {
+    const carouselData = await prisma.customersOrders.delete({ where: { id } });
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    return { carouselData };
+  } catch (error) {
+    return { error };
+  }
+}
+
+export async function updateOrderById(id) {
+  try {
+    const result = await prisma.customersOrders.update({
+      where: { id },
+      data: {
+        delivered: true,
+      },
+    });
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    console.log("customer data updated successfully:", result);
+  } catch (error) {
+    console.error("Error updating customer data:", error);
+    return {
+      error: error.message || "An error occurred while updating customer data",
+    };
   }
 }
 

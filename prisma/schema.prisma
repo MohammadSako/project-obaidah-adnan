@@ -104,6 +104,7 @@ model CustomersOrders {
   city        String          @db.Text
   additional  String          @db.Text
   totalall    Int             @db.Integer
+  delivered   Boolean         @default(false)
   items       CustomersItem[]
 }
 

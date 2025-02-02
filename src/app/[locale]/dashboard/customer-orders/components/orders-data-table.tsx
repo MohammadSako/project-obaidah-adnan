@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import * as React from "react";
 import {
@@ -191,7 +191,9 @@ export function DataTable({ data }: DataTableProps) {
       accessorKey: "additional",
       header: "additional",
       cell: ({ row }) => (
-        <div className="capitalize ">{row.getValue("additional")}</div>
+        <div className="capitalize truncate max-w-60">
+          {row.getValue("additional")}
+        </div>
       ),
     },
   ];

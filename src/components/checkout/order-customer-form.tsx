@@ -115,6 +115,7 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
         additional: values.additional,
         items: customerItems,
         totalall: totalAllPrice,
+        delivered: false
       };
       toast.success(t("checkout.orders.success"));
 
