@@ -14,15 +14,18 @@ export default function Checkout() {
   const { clearCart } = useItemStore();
 
   async function CustomerOrderHendler(customerData) {
-    try {
-      setIsLoading(true);
-      await addCustomerData(customerData);
-      clearCart();
-      setIsLoading(false);
-      router.push("/success");
-    } catch (error) {
-      console.error("Error adding product:", error);
-    }
+
+    console.log(customerData);
+    
+    // try {
+    //   setIsLoading(true);
+    //   await addCustomerData(customerData);
+    //   clearCart();
+    //   setIsLoading(false);
+    //   router.push("/success");
+    // } catch (error) {
+    //   console.error("Error adding product:", error);
+    // }
   }
 
   return (

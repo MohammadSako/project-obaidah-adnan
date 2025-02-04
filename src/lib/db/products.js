@@ -482,7 +482,7 @@ export async function deleteAdvertismentImage(imageid) {
   }
 }
 
-export async function addCustomerData(customerData, id) {
+export async function addCustomerData(customerData) {
   if (!customerData || !Array.isArray(customerData.items)) {
     console.error("Invalid customer data format.");
     return { error: "Invalid customer data format." };
@@ -492,38 +492,38 @@ export async function addCustomerData(customerData, id) {
     // Create the customer order in the database
     const custData = await prisma.customersOrders.create({
       data: {
+        additional: customerData.additional,
+        city: customerData.city,
+        delivered: customerData.delivered,
+        email: customerData.email,
+        firstline: customerData.firstline,
         firstname: customerData.firstname,
         lastname: customerData.lastname,
         phonenumber: customerData.phonenumber,
-        firstline: customerData.firstline,
         secondline: customerData.secondline,
-        email: customerData.email,
-        city: customerData.city,
-        additional: customerData.additional,
-        totalall: customerData.totalall,
-        delivered: customerData.delivered,
+        totalall: parseInt(customerData.totalall),
         items: {
           create: customerData.items.map((item) => ({
-            title: item.title,
-            titleAr: item.titleAr,
+            alt: item.alt,
+            category: parseInt(item.category),
             color: item.color,
             colorAr: item.colorAr,
-            size: item.size,
-            price: item.price,
-            image: item.image,
-            alt: item.alt,
-            gender: item.gender,
-            type: item.type,
+            dashboardType: item.dashboardType,
             description: item.description,
             descriptionAr: item.descriptionAr,
             details: item.details,
             detailsAr: item.detailsAr,
-            dashboardType: item.dashboardType,
-            imageid: item.imageid,
-            category: item.category,
-            quantity: item.quantity,
-            totalPrice: item.totalPrice,
+            gender: item.gender,
             id: item.id,
+            image: item.image,
+            imageid: item.imageid,
+            price: parseInt(item.price),
+            quantity: parseInt(item.quantity),
+            size: item.size,
+            title: item.title,
+            titleAr: item.titleAr,
+            totalPrice: parseInt(item.totalPrice),
+            type: item.type,
           })),
         },
       },
@@ -531,7 +531,6 @@ export async function addCustomerData(customerData, id) {
         items: true,
       },
     });
-
     // Update item quantities in the database for each item
     const updateQtyPromises = customerData.items.map((item) =>
       prisma.itemDetail.update({

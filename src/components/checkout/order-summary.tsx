@@ -43,14 +43,14 @@ export const OrderSummary = () => {
             <div className="flex flex-1 flex-col gap-6">
               <div>
                 <div className="flex justify-between text-base font-medium text-gray-900">
-                  <h3>{locale === "ar" ? product.titleAr : product.title}</h3>
+                  <p>{locale === "ar" ? product.titleAr : product.title}</p>
                   <p className="">
                     {product.price} {t("product.price")}
                   </p>
                 </div>
-                <p className="mt-1 text-sm text-gray-500">
-                  <h3>{locale === "ar" ? product.colorAr : product.color}</h3>
-                </p>
+                <div className="mt-1 text-sm text-gray-500">
+                  <p>{locale === "ar" ? product.colorAr : product.color}</p>
+                </div>
                 <p className="mt-1 text-sm text-gray-500">
                   {locale === "ar"
                     ? product.descriptionAr

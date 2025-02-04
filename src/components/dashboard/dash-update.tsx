@@ -54,6 +54,9 @@ const formSchema = z.object({
   price: z.string().min(1, {
     message: "Username must be at least 1 characters.",
   }),
+  qty: z.string().min(1, {
+    message: "Username must be at least 1 characters.",
+  }),
   size: z.string().min(1, { message: "Please select the product size." }),
   gender: z.string().min(1, {
     message: "Username must be at least 2 characters.",
@@ -95,6 +98,7 @@ interface EditData {
   color: string;
   colorAr: string;
   price: string;
+  qty: string;
   image: string;
   url: string;
   size: string;
@@ -132,6 +136,7 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
       color: editData.color || "",
       colorAr: editData.colorAr || "",
       price: editData.price || "",
+      qty: editData.qty || "",
       size: editData.size || "",
       gender: editData.gender || "",
       type: editData.type || "",
@@ -238,6 +243,7 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
         dashboardtype: values.dashboardtype,
         image: uploadedImage,
         alt: values.title,
+        qty: values.qty,
       };
       toast({
         title: "You submitted the following values:",
@@ -265,6 +271,7 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
         details: "",
         detailsAr: "",
         dashboardtype: "",
+        qty: "",
       });
       setUploadedImageUrl("");
       setImagePreview("");
@@ -465,6 +472,25 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
               <div className="sm:col-span-6 md:col-span-3">
                 <FormField
                   control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Price</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Product price"
+                          type="number"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
                   name="title"
                   render={({ field }) => (
                     <FormItem>
@@ -516,25 +542,6 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
                       <FormLabel>Color Ar</FormLabel>
                       <FormControl>
                         <Input placeholder="Product color Ar" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="sm:col-span-6 md:col-span-3">
-                <FormField
-                  control={form.control}
-                  name="price"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Price</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Product price"
-                          type="number"
-                          {...field}
-                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -605,6 +612,28 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
                         <Textarea
                           placeholder="Product details Ar"
                           className="resize-none"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3 mt-2.5">
+                <FormField
+                  control={form.control}
+                  name="qty"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-left flex" dir="ltr">
+                        Amount of Product or Quantity Available
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="ltr"
+                          placeholder="Product Quantity"
+                          type="number"
                           {...field}
                         />
                       </FormControl>

@@ -110,8 +110,6 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   const [isUploading, setIsUploading] = useState(false); // Track upload state
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { toast } = useToast();
-  const locale = useCurrentLocale();
-  const dir = locale === "ar" ? "rtl" : "ltr";
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
