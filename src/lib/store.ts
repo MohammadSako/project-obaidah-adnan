@@ -57,6 +57,8 @@ export const useItemStore = create<State & Actions>()(
           items: [],
           totalQuantity: 0,
           totalAllPrice: 0,
+          totalFavQuantity: 0,
+          totalFavAllPrice: 0,
         }),
         
       addItem: (item: Item) =>

@@ -50,7 +50,7 @@ export function CardImagesSkeleton() {
 }
 export function ProductDetailsSkeleton() {
   return (
-    <main className="animate-pulse container flex mx-auto mt-8">
+    <main className="animate-pulse container flex mx-auto mt-8 min-h-screen">
       <div className=" flex flex-row h-[500px] sm:w-[1100px] w-80 mx-auto rounded-md bg-gray-100 shadow-lg">
         <div className="basis-1/2 p-6">
           <div className="h-[450px] w-[500px] bg-gray-200"></div>

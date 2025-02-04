@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useRouter } from "next/navigation";
 import { addCustomerData, decrementCustomerData } from "@/lib/db/products";
@@ -14,7 +14,8 @@ export default function Checkout() {
   const { clearCart } = useItemStore();
 
   async function CustomerOrderHendler(customerData) {
-
+    console.log(customerData);
+    
     try {
       setIsLoading(true);
       await addCustomerData(customerData);

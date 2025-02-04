@@ -1,20 +1,19 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useToast } from "@/hooks/use-toast";
 import { useItemStore } from "@/lib/store";
 import { useCurrentLocale, useI18n } from "@/locales/client";
+import { CardSkeleton, ImageSkeleton, ProductDetailsSkeleton } from "../UI/skeletons";
 
 function ProductDetailPage({ products }) {
   const { toast } = useToast();
-  const [isFavorite, setIsFavorite] = useState(false);
   const [clotheType, setClotheType] = useState("");
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const t = useI18n();
   const locale = useCurrentLocale();
-
   const {
     id,
     title,
@@ -34,9 +33,7 @@ function ProductDetailPage({ products }) {
     qty,
   } = products;
 
-  useEffect(() => {
-    setIsFavorite(favorite.some((item) => item.id === id));
-  }, [favorite, id]);
+  const isFavorite = favorite.some((item) => item.id === id);
 
   const addToFavoriteHandler = useCallback(() => {
     addFavorite({
@@ -124,20 +121,17 @@ function ProductDetailPage({ products }) {
   ]);
 
   useEffect(() => {
-    switch (type) {
-      case "top":
-        setClotheType(t("categories.top"));
-        break;
-      case "lower":
-        setClotheType(t("categories.lower"));
-        break;
-      case "shoes":
-        setClotheType(t("categories.shoes"));
-        break;
-      default:
-        setClotheType("n/a");
-    }
+    const clotheTypes = {
+      top: t("categories.top"),
+      lower: t("categories.lower"),
+      shoes: t("categories.shoes"),
+    };
+    setClotheType(clotheTypes[type] || "n/a");
   }, [type, t]);
+
+  if (!image) {
+    return <ProductDetailsSkeleton />;
+  }
 
   return (
     <main className="sm:flex flex-col shadow-md rounded-md sm:mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mb-20 p-10">
