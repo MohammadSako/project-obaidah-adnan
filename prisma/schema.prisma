@@ -159,9 +159,9 @@ model CustomersItem {
   detailsAr         String           @db.Text
   dashboardType     String           @db.Text
   imageid           String           @db.Text
-  category          Int
-  quantity          Int
-  totalPrice        Int
+  category          Int              @db.Integer
+  quantity          Int              @db.Integer
+  totalPrice        Int              @db.Integer
   customersOrdersId Int?
   customersOrders   CustomersOrders? @relation(fields: [customersOrdersId], references: [id], onDelete: Cascade)
 }

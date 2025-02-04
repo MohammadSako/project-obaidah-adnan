@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { addCustomerData } from "@/lib/db/products";
+import { addCustomerData, decrementCustomerData } from "@/lib/db/products";
 import { OrderSummary } from "../../../components/checkout";
 import { OrderCustomerForm } from "../../../components/checkout/order-customer-form";
 import { useItemStore } from "@/lib/store";
@@ -14,9 +14,11 @@ export default function Checkout() {
   const { clearCart } = useItemStore();
 
   async function CustomerOrderHendler(customerData) {
+
     try {
       setIsLoading(true);
       await addCustomerData(customerData);
+      await decrementCustomerData(customerData);
       clearCart();
       setIsLoading(false);
       router.push("/success");
