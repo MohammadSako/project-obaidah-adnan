@@ -52,6 +52,7 @@ model ItemDetail {
   colorAr       String   @db.Text
   size          String   @db.Text
   price         Int      @db.Integer
+  qty           Int      @db.Integer
   image         String   @db.Text
   alt           String   @db.Text
   gender        String   @db.Text

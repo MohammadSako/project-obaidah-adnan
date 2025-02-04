@@ -19,7 +19,6 @@ export default function Checkout() {
       await addCustomerData(customerData);
       clearCart();
       setIsLoading(false);
-
       router.push("/success");
     } catch (error) {
       console.error("Error adding product:", error);

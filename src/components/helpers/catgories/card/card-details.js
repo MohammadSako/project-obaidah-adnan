@@ -32,6 +32,7 @@ export function CardDetails({
   type,
   imageid,
   category,
+  qty,
 }) {
   const [cartPending, setCartPending] = useState(false);
   const { toast } = useToast();
@@ -196,45 +197,53 @@ export function CardDetails({
           </p>
         </div>
       </div>
+      {qty === 0 ? (
+        <p className="bg-blue-500 w-fit rounded-md px-2 text-white mt-2">
+          {t("product.outstock")}
+        </p>
+      ) : (
+        <p className="mt-2 text-blue-500">{t("product.instock")}</p>
+      )}
+      {qty > 0 && (
+        <div className="flex flex-row gap-4 items-center">
+          {!cartPending && (
+            <TbShoppingBagPlus
+              title="Add to bag"
+              onClick={addToCartHandler}
+              className="mt-2 text-lg font-sans tracking-wide bg-blue-500 rounded-full w-10 h-10 text-white p-1.5 hover:bg-blue-800 cursor-pointer"
+            />
+          )}
+          {cartPending && (
+            <div className="w-10 h-10 mt-2">
+              <Lottie animationData={Loading} loop={true} />
+            </div>
+          )}
 
-      <div className="flex flex-row gap-4 items-center">
-        {!cartPending && (
-          <TbShoppingBagPlus
-            title="Add to bag"
-            onClick={addToCartHandler}
-            className="mt-2 text-lg font-sans tracking-wide bg-blue-500 rounded-full w-10 h-10 text-white p-1.5 hover:bg-blue-800 cursor-pointer"
-          />
-        )}
-        {cartPending && (
-          <div className="w-10 h-10 mt-2">
-            <Lottie animationData={Loading} loop={true} />
-          </div>
-        )}
-
-        {isFavorite ? (
-          <TbHeartFilled
-            title="Remove from favorite"
-            size={35}
-            onClick={() => removeFromFavorite(id)}
-            className={`${iconStyles} ${
-              isFavorite
-                ? "text-red-500 hover:text-red-400"
-                : "text-gray-400 hover:text-red-500"
-            }`}
-          />
-        ) : (
-          <TbHeart
-            title="Add to favorite"
-            size={35}
-            onClick={addToFavorite}
-            className={`${iconStyles} ${
-              isFavorite
-                ? "text-red-500 hover:text-red-400"
-                : "text-gray-400 hover:text-red-500"
-            }`}
-          />
-        )}
-      </div>
+          {isFavorite ? (
+            <TbHeartFilled
+              title="Remove from favorite"
+              size={35}
+              onClick={() => removeFromFavorite(id)}
+              className={`${iconStyles} ${
+                isFavorite
+                  ? "text-red-500 hover:text-red-400"
+                  : "text-gray-400 hover:text-red-500"
+              }`}
+            />
+          ) : (
+            <TbHeart
+              title="Add to favorite"
+              size={35}
+              onClick={addToFavorite}
+              className={`${iconStyles} ${
+                isFavorite
+                  ? "text-red-500 hover:text-red-400"
+                  : "text-gray-400 hover:text-red-500"
+              }`}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }

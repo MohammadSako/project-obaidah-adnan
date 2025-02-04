@@ -86,6 +86,7 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     const customerItems = items.map((item) => ({
+      id: item.id,
       title: item.title,
       titleAr: item.titleAr,
       color: item.color,

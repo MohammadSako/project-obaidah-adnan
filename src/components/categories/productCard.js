@@ -9,8 +9,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useCurrentLocale, useI18n } from "@/locales/client";
 import Lottie from "lottie-react";
 import Loading from "@/s3.json";
-// import dynamic from "next/dynamic";
-// const LottieComponent = dynamic(() => import('lottie-react'), { ssr: false });
 
 function ProductCard({
   id,
@@ -31,6 +29,7 @@ function ProductCard({
   type,
   imageid,
   category,
+  qty,
 }) {
   const [cartPending, setCartPending] = useState(false);
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
@@ -38,12 +37,10 @@ function ProductCard({
   const t = useI18n();
   const locale = useCurrentLocale();
 
-  // Memoize isFavorite value to prevent unnecessary re-renders
   const isFavorite = useMemo(
     () => favorite.some((item) => item.id === id),
     [favorite, id]
   );
-
   const addToFavorite = useCallback(() => {
     addFavorite({
       id,
@@ -105,7 +102,6 @@ function ProductCard({
 
   const addToCartHandler = useCallback(() => {
     setCartPending(true);
-
     addItem({
       id,
       title,
@@ -203,35 +199,44 @@ function ProductCard({
           </div>
         </div>
       </Link>
-      <div className="flex flex-row gap-4 items-center">
-        {!cartPending && (
-          <TbShoppingBagPlus
-            title="Add to bag"
-            onClick={addToCartHandler}
-            className="mt-2 text-lg font-sans tracking-wide bg-blue-500 rounded-full w-10 h-10 text-white p-1.5 hover:bg-blue-800 cursor-pointer"
-          />
-        )}
-        {cartPending && (
-          <div className="w-10 h-10 mt-2">
-            <Lottie animationData={Loading} loop={true} />
-          </div>
-        )}
-        {isFavorite ? (
-          <TbHeartFilled
-            title="Remove from favorite"
-            size={30}
-            onClick={removeFromFavorite}
-            className="mt-2 text-lg font-sans tracking-wide text-red-500 hover:text-red-400"
-          />
-        ) : (
-          <TbHeart
-            title="Add to favorite"
-            size={30}
-            onClick={addToFavorite}
-            className="mt-2 text-lg font-sans tracking-wide text-gray-400 hover:text-red-500"
-          />
-        )}
-      </div>
+      {qty === 0 ? (
+        <p className="bg-blue-500 w-fit rounded-md px-2 text-white mt-2">
+          {t("product.outstock")}
+        </p>
+      ) : (
+        <p className="mt-2 text-blue-500">{t("product.instock")}</p>
+      )}
+      {qty > 0 && (
+        <div className="flex flex-row gap-4 items-center">
+          {!cartPending && (
+            <TbShoppingBagPlus
+              title="Add to bag"
+              onClick={addToCartHandler}
+              className="mt-2 text-lg font-sans tracking-wide bg-blue-500 rounded-full w-10 h-10 text-white p-1.5 hover:bg-blue-800 cursor-pointer"
+            />
+          )}
+          {cartPending && (
+            <div className="w-10 h-10 mt-2">
+              <Lottie animationData={Loading} loop={true} />
+            </div>
+          )}
+          {isFavorite ? (
+            <TbHeartFilled
+              title="Remove from favorite"
+              size={30}
+              onClick={removeFromFavorite}
+              className="mt-2 text-lg font-sans tracking-wide text-red-500 hover:text-red-400"
+            />
+          ) : (
+            <TbHeart
+              title="Add to favorite"
+              size={30}
+              onClick={addToFavorite}
+              className="mt-2 text-lg font-sans tracking-wide text-gray-400 hover:text-red-500"
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }

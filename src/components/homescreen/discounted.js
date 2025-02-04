@@ -57,6 +57,7 @@ function Discounted({ data }) {
                         dashboardType={product.dashboardType}
                         imageid={product.imageid}
                         category={product.category}
+                        qty={product.qty}
                       />
                     </CarouselItem>
                   ))}

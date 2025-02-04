@@ -31,6 +31,7 @@ function ProductDetailPage({ products }) {
     alt,
     gender,
     type,
+    qty,
   } = products;
 
   useEffect(() => {
@@ -247,13 +248,22 @@ function ProductDetailPage({ products }) {
                 </div>
               </div>
               <div className="border-t border-gray-400" />
-
-              <button
-                onClick={addToCartHandler}
-                className="mt-6 w-full h-10 px-8 text-lg font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
-              >
-                {t("product.addtocart")}
-              </button>
+              {qty === 0 ? (
+                <button
+                  disabled
+                  onClick={addToCartHandler}
+                  className="mt-6 w-full h-10 px-8 text-lg font-bold text-white bg-blue-400 rounded-full focus:ring-2 focus:ring-blue-500"
+                >
+                  {t("product.outstock")}
+                </button>
+              ) : (
+                <button
+                  onClick={addToCartHandler}
+                  className="mt-6 w-full h-10 px-8 text-lg font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
+                >
+                  {t("product.addtocart")}
+                </button>
+              )}
             </div>
           </div>
         </div>

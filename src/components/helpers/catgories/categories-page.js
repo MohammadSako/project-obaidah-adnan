@@ -72,7 +72,6 @@ export default function CategoriesPage({ data }) {
   if (products.length === 0) {
     return <NotFound />;
   }
-  console.log(products);
 
   return (
     <>
@@ -105,6 +104,7 @@ export default function CategoriesPage({ data }) {
                     dashboardType={product.dashboardType}
                     imageid={product.imageid}
                     category={product.category}
+                    qty={product.qty}
                   />
                 ))}
               </div>

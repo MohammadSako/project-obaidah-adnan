@@ -236,6 +236,7 @@ export async function addProduct(productData) {
         detailsAr: productData.detailsAr,
         dashboardType: productData.dashboardtype,
         imageid: productData.imageid,
+        qty: parseInt(productData.qty),
       },
     });
     revalidatePath("/");
@@ -290,6 +291,7 @@ export async function updateProductById(id, productData) {
         detailsAr: productData.detailsAr,
         category: parseInt(productData.category),
         dashboardType: productData.dashboardtype,
+        qty: parseInt(productData.qty),
       },
     });
     revalidatePath("/");
@@ -480,16 +482,14 @@ export async function deleteAdvertismentImage(imageid) {
   }
 }
 
-export async function addCustomerData(customerData) {
-  console.log("Received Customer Data:", customerData);
-
+export async function addCustomerData(customerData, id) {
   if (!customerData || !Array.isArray(customerData.items)) {
     console.error("Invalid customer data format.");
     return { error: "Invalid customer data format." };
   }
 
   try {
-    // Create the customer order first
+    // Create the customer order in the database
     const custData = await prisma.customersOrders.create({
       data: {
         firstname: customerData.firstname,
@@ -523,21 +523,42 @@ export async function addCustomerData(customerData) {
             category: item.category,
             quantity: item.quantity,
             totalPrice: item.totalPrice,
+            id: item.id,
           })),
         },
       },
       include: {
-        items: true, // Ensure the related items are included in the response
+        items: true,
       },
     });
+
+    // Update item quantities in the database for each item
+    const updateQtyPromises = customerData.items.map((item) =>
+      prisma.itemDetail.update({
+        where: { id: item.id }, // Corrected: match the item by its ID
+        data: {
+          qty: {
+            decrement: item.quantity, // Decrease by the quantity of the ordered item
+          },
+        },
+      })
+    );
+
+    // Wait for all quantity updates to complete
+    const updateQtyResults = await Promise.all(updateQtyPromises);
+
+    // Revalidate path after successful update
     revalidatePath("/");
+
     console.log("Customer Order Created:", custData);
+    console.log("Updated Item Quantities:", updateQtyResults);
     return { custData };
   } catch (error) {
     console.error("Error creating customer order:", error);
     return { error: error.message || "An unexpected error occurred" };
   }
 }
+
 
 export const getCustomers = cache(async function () {
   try {

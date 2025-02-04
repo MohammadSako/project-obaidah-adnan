@@ -43,19 +43,22 @@ const formSchema = z.object({
     message: "Please select the product dashboard type.",
   }),
   title: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "title must be at least 2 characters.",
   }),
   titleAr: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "titleAr must be at least 2 characters.",
   }),
   color: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "color must be at least 2 characters.",
   }),
   colorAr: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "colorAr must be at least 2 characters.",
   }),
   price: z.string().min(1, {
-    message: "Username must be at least 1 characters.",
+    message: "price must be at least 1 characters.",
+  }),
+  qty: z.string().min(1, {
+    message: "qty must be at least 1 characters.",
   }),
   size: z.string().min(1, { message: "Please select the product size." }),
   gender: z.string().min(1, {
@@ -127,6 +130,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
       details: "",
       detailsAr: "",
       dashboardtype: "",
+      qty: "",
     },
   });
 
@@ -211,6 +215,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         image: image,
         imageid: image_id,
         category: values.category,
+        qty: values.qty,
         alt: values.title,
       };
       if (!imagePreview && !uploadedImageUrl) {
@@ -243,6 +248,7 @@ export function DashForm({ onAddProduct }: AddFormProps) {
           details: "",
           detailsAr: "",
           dashboardtype: "",
+          qty: "",
         });
         setUploadedImageUrl("");
         setImagePreview("");
@@ -636,6 +642,28 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                           dir="rtl"
                           placeholder="تفاصيل المنتج باللغة العربية"
                           className="resize-none"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3 mt-2.5">
+                <FormField
+                  control={form.control}
+                  name="qty"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-left flex" dir="ltr">
+                        Amount of Product or Quantity Available
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="ltr"
+                          placeholder="Product Quantity"
+                          type="number"
                           {...field}
                         />
                       </FormControl>

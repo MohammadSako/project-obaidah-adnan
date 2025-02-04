@@ -89,6 +89,23 @@ export function DataTable({ data }: DataTableProps) {
       ),
     },
     {
+      accessorKey: "qty",
+      header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Available Quantity
+            <ArrowUpDown />
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        <div className="capitalize font-bold">{row.getValue("qty")}</div>
+      ),
+    },
+    {
       accessorKey: "dashboardType",
       header: ({ column }) => {
         return (

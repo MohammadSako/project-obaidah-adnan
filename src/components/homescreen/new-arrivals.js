@@ -12,8 +12,8 @@ function NewArrivals({ data }) {
 
   return (
     <motion.section
-    initial={{ opacity: 0, translateY: 100 }}
-    whileInView={{ opacity: 1, translateY: 0 }}
+      initial={{ opacity: 0, translateY: 100 }}
+      whileInView={{ opacity: 1, translateY: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: 0.3 }}
       className="flex flex-col items-center gap-4 w-full overflow-hidden origin-center"
@@ -57,6 +57,7 @@ function NewArrivals({ data }) {
                         colorAr={product.colorAr}
                         detailsAr={product.detailsAr}
                         descriptionAr={product.descriptionAr}
+                        qty={product.qty}
                       />
                     </CarouselItem>
                   ))}
