@@ -11,10 +11,13 @@ const ProductList = ({ products }) => {
                 key={product.id}
                 id={product.id}
                 title={product.title}
+                titleAr={product.titleAr}
                 description={product.description}
+                descriptionAr={product.descriptionAr}
+                color={product.color}
+                colorAr={product.colorAr}
                 image={product.image}
                 price={product.price}
-                color={product.color}
               />
             ))}
           </div>

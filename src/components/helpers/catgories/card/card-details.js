@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useItemStore } from "@/lib/store";
 import Image from "next/image";
 import Link from "next/link";
-import { useI18n } from "@/locales/client";
+import { useCurrentLocale, useI18n } from "@/locales/client";
 import Lottie from "lottie-react";
 import Loading from "@/s3.json";
 // Reusable icon styles
@@ -16,11 +16,15 @@ export function CardDetails({
   id,
   title,
   description,
+  color,
+  details,
+  titleAr,
+  descriptionAr,
+  colorAr,
+  detailsAr,
   image,
   price,
-  color,
   url,
-  details,
   alt,
   dashboardType,
   size,
@@ -33,6 +37,7 @@ export function CardDetails({
   const { toast } = useToast();
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const t = useI18n();
+  const locale = useCurrentLocale();
 
   const isFavorite = useMemo(
     () => favorite.some((item) => item.id === id),
@@ -44,11 +49,15 @@ export function CardDetails({
       id,
       title,
       description,
+      titleAr,
+      descriptionAr,
       image,
       price,
       color,
+      colorAr,
       url,
       details,
+      detailsAr,
       alt,
       dashboardType,
       size,
@@ -58,19 +67,25 @@ export function CardDetails({
       category,
     });
     toast({
-      title: `${title}`,
+      title: `${locale === "ar" ? titleAr : title}`,
       description: t("common.favaddedmessage"),
+      style: { backgroundColor: "#ff5454", color: "white" },
     });
   }, [
+    locale,
     addFavorite,
     id,
     title,
     description,
+    titleAr,
+    descriptionAr,
     image,
     price,
     color,
+    colorAr,
     url,
     details,
+    detailsAr,
     alt,
     dashboardType,
     size,
@@ -85,10 +100,10 @@ export function CardDetails({
   const removeFromFavorite = useCallback(() => {
     removeFavorite(id);
     toast({
-      title: `${title}`,
+      title: `${locale === "ar" ? titleAr : title}`,
       description: t("common.favremovedmessage"),
     });
-  }, [removeFavorite, id, title, toast, t]);
+  }, [removeFavorite, id, title, , locale, titleAr, toast, t]);
 
   const addToCartHandler = useCallback(() => {
     setCartPending(true);
@@ -97,11 +112,15 @@ export function CardDetails({
       id,
       title,
       description,
+      titleAr,
+      descriptionAr,
       image,
       price,
       color,
+      colorAr,
       url,
       details,
+      detailsAr,
       alt,
       dashboardType,
       size,
@@ -111,7 +130,7 @@ export function CardDetails({
       category,
     });
     toast({
-      title: `${title}`,
+      title: `${locale === "ar" ? titleAr : title}`,
       description: t("common.addedmessage"),
     });
     setTimeout(() => {
@@ -122,11 +141,15 @@ export function CardDetails({
     id,
     title,
     description,
+    titleAr,
+    descriptionAr,
     image,
     price,
     color,
+    colorAr,
     url,
     details,
+    detailsAr,
     alt,
     dashboardType,
     size,
@@ -135,6 +158,7 @@ export function CardDetails({
     imageid,
     category,
     toast,
+    locale,
     t,
   ]);
 
@@ -156,9 +180,11 @@ export function CardDetails({
         <div className="basis-2/3">
           {/* <p className="sm:text-lg text-5xl text-gray-700 font-semibold">{title}</p> */}
           <p className="sm:text-lg text-lg text-gray-700 h-20 sm:w-28 w-auto sm:text-wrap overflow-hidden ">
-            {description}
+            {locale === "ar" ? descriptionAr : description}
           </p>
-          <p className="mt-1 sm:text-lg text-2xl text-gray-500">{color}</p>
+          <p className="mt-1 sm:text-lg text-2xl text-gray-500">
+            {locale === "ar" ? colorAr : color}
+          </p>
         </div>
 
         <div className="basis-1/3 bg-yellow-400 sm:w-auto w-24 sm:h-[32px] text-center shadow-lg">

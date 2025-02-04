@@ -3,13 +3,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Carousel, CarouselContent, CarouselItem } from "../UI/carousel";
-import Link from "next/link";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
-import { useI18n } from "@/locales/client";
+import { useCurrentLocale, useI18n } from "@/locales/client";
 
 function OurBrands({ data }) {
   const t = useI18n();
+  const locale = useCurrentLocale();
 
   return (
     <motion.section
@@ -23,11 +23,9 @@ function OurBrands({ data }) {
         <div className="mx-auto max-w-7xl h-[300px]">
           <div className="mx-auto max-w-2xl  lg:max-w-none">
             <div className="lg:col-span-2 text-center ">
-              <Link href="/favorite">
-                <h1 className="text-4xl font-medium tracking-tighter text-gray-900 sm:text-3xl mt-32">
-                  {t("home.ourbrands")}
-                </h1>
-              </Link>
+              <h1 className="text-4xl font-medium tracking-tighter text-gray-900 sm:text-3xl mt-32">
+                {t("home.ourbrands")}
+              </h1>
               <Carousel
                 className="w-full max-w-fit mt-10"
                 opts={{ align: "center", dragFree: true }}
@@ -47,6 +45,16 @@ function OurBrands({ data }) {
                         alt="our brands"
                         style={{ width: "auto", height: "auto" }}
                       />
+                      <div className="space-y-2">
+                        <p className="text-xl font-bold text-gray-700">
+                          {locale === "ar" ? product.titleAr : product.title}
+                        </p>
+                        <p className="text-lg text-gray-700">
+                          {locale === "ar"
+                            ? product.descriptionAr
+                            : product.description}
+                        </p>
+                      </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>

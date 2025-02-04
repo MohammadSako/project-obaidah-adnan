@@ -10,6 +10,7 @@ import { Button } from "../UI/button";
 export function Landing({ data }) {
   const [activeBanner, setActiveBanner] = useState(0);
   const currentLocale = useCurrentLocale();
+  const locale = useCurrentLocale();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -31,12 +32,16 @@ export function Landing({ data }) {
       <div className="flex flex-col z-10 capitalize h-full w-full gap-6 px-[2rem] justify-center text-center bg-opacity-10 bg-gray-900">
         {data[activeBanner].title && (
           <h1 className="text-4xl lg:text-8xl m-4 rtl:font-arabic text-white font-bold">
-            {data[activeBanner]?.title}
+            {locale === "ar"
+              ? data[activeBanner]?.titleAr
+              : data[activeBanner]?.title}
           </h1>
         )}
         {data[activeBanner].description && (
           <h2 className="text-lg lg:text-5xl rtl:font-arabic mb-6 text-white font-bold">
-            {data[activeBanner]?.description}
+            {locale === "ar"
+              ? data[activeBanner]?.descriptionAr
+              : data[activeBanner]?.description}
           </h2>
         )}
       </div>

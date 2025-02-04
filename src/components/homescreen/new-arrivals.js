@@ -53,6 +53,10 @@ function NewArrivals({ data }) {
                         dashboardType={product.dashboardType}
                         imageid={product.imageid}
                         category={product.category}
+                        titleAr={product.titleAr}
+                        colorAr={product.colorAr}
+                        detailsAr={product.detailsAr}
+                        descriptionAr={product.descriptionAr}
                       />
                     </CarouselItem>
                   ))}

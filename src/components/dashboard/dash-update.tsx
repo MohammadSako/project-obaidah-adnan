@@ -45,6 +45,12 @@ const formSchema = z.object({
   color: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
+  titleAr: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  colorAr: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
   price: z.string().min(1, {
     message: "Username must be at least 1 characters.",
   }),
@@ -61,7 +67,18 @@ const formSchema = z.object({
   description: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
+  descriptionAr: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
   details: z
+    .string()
+    .min(2, {
+      message: "Details must be at least 10 characters.",
+    })
+    .max(160, {
+      message: "Details must not be longer than 30 characters.",
+    }),
+  detailsAr: z
     .string()
     .min(2, {
       message: "Details must be at least 10 characters.",
@@ -74,7 +91,9 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 interface EditData {
   title: string;
+  titleAr: string;
   color: string;
+  colorAr: string;
   price: string;
   image: string;
   url: string;
@@ -83,7 +102,9 @@ interface EditData {
   type: string;
   category: string;
   description: string;
+  descriptionAr: string;
   details: string;
+  detailsAr: string;
   dashboardType: string;
 }
 interface AddFormProps {
@@ -107,14 +128,18 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: editData.title || "",
+      titleAr: editData.titleAr || "",
       color: editData.color || "",
+      colorAr: editData.colorAr || "",
       price: editData.price || "",
       size: editData.size || "",
       gender: editData.gender || "",
       type: editData.type || "",
       category: String(editData.category) || "",
       description: editData.description || "",
+      descriptionAr: editData.descriptionAr || "",
       details: editData.details || "",
+      detailsAr: editData.detailsAr || "",
       dashboardtype: editData.dashboardType || "",
     },
   });
@@ -188,28 +213,31 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
         ? await handleUpload()
         : { image: imagePreview, url: uploadedImageUrl };
 
-      if (!uploadResult || !uploadResult.image || !uploadResult.url) {
+      if (!uploadResult || !uploadResult.image) {
         throw new Error(
           "Missing data from the upload response. Check the handleUpload function!"
         );
       }
 
-      const { image: uploadedImage, url: uploadedUrl } = uploadResult;
+      const { image: uploadedImage } = uploadResult;
 
       const data = {
         category: values.category,
         color: values.color,
+        colorAr: values.colorAr,
         description: values.description,
+        descriptionAr: values.descriptionAr,
         details: values.details,
+        detailsAr: values.detailsAr,
         gender: values.gender,
         price: values.price,
         size: values.size,
         title: values.title,
+        titleAr: values.titleAr,
         type: values.type,
         dashboardtype: values.dashboardtype,
         image: uploadedImage,
         alt: values.title,
-        url: uploadedUrl,
       };
       toast({
         title: "You submitted the following values:",
@@ -224,14 +252,18 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
       onUpdateProduct(data);
       form.reset({
         title: "",
+        titleAr: "",
         color: "",
+        colorAr: "",
         price: "",
         size: "",
         gender: "",
         type: "",
         category: "",
         description: "",
+        descriptionAr: "",
         details: "",
+        detailsAr: "",
         dashboardtype: "",
       });
       setUploadedImageUrl("");
@@ -448,12 +480,42 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
               <div className="sm:col-span-6 md:col-span-3">
                 <FormField
                   control={form.control}
+                  name="titleAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name Ar</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Product name Ar" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
                   name="color"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Color</FormLabel>
                       <FormControl>
                         <Input placeholder="Product color" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="colorAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Color Ar</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Product color Ar" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -498,6 +560,24 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
               <div className="sm:col-span-6 md:col-span-3">
                 <FormField
                   control={form.control}
+                  name="descriptionAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Description Ar</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Product description Ar"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
                   name="details"
                   render={({ field }) => (
                     <FormItem>
@@ -505,6 +585,25 @@ export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {
                       <FormControl>
                         <Textarea
                           placeholder="Product details"
+                          className="resize-none"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="detailsAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Details</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Product details Ar"
                           className="resize-none"
                           {...field}
                         />

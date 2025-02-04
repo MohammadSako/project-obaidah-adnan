@@ -6,7 +6,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { TbShoppingBagPlus, TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useItemStore } from "../../lib/store";
 import { useToast } from "@/hooks/use-toast";
-import { useI18n } from "@/locales/client";
+import { useCurrentLocale, useI18n } from "@/locales/client";
 import Lottie from "lottie-react";
 import Loading from "@/s3.json";
 // import dynamic from "next/dynamic";
@@ -15,11 +15,15 @@ import Loading from "@/s3.json";
 function ProductCard({
   id,
   title,
+  titleAr,
   description,
+  descriptionAr,
   image,
   price,
   color,
+  colorAr,
   details,
+  detailsAr,
   alt,
   dashboardType,
   size,
@@ -32,6 +36,7 @@ function ProductCard({
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const { toast } = useToast();
   const t = useI18n();
+  const locale = useCurrentLocale();
 
   // Memoize isFavorite value to prevent unnecessary re-renders
   const isFavorite = useMemo(
@@ -43,12 +48,16 @@ function ProductCard({
     addFavorite({
       id,
       title,
+      titleAr,
       description,
+      descriptionAr,
       image,
       price,
       color,
+      colorAr,
       alt,
       details,
+      detailsAr,
       size,
       gender,
       type,
@@ -57,18 +66,23 @@ function ProductCard({
       dashboardType,
     });
     toast({
-      title: `${title}`,
+      title: `${locale === "ar" ? titleAr : title}`,
       description: t("common.favaddedmessage"),
+      style: { backgroundColor: "#ff5454", color: "white" },
     });
   }, [
     addFavorite,
     id,
     title,
+    titleAr,
     description,
+    descriptionAr,
     image,
     price,
     color,
+    colorAr,
     details,
+    detailsAr,
     alt,
     size,
     gender,
@@ -78,15 +92,16 @@ function ProductCard({
     dashboardType,
     toast,
     t,
+    locale,
   ]);
 
   const removeFromFavorite = useCallback(() => {
     removeFavorite(id);
     toast({
-      title: `${title}`,
+      title: `${locale === "ar" ? titleAr : title}`,
       description: t("common.favremovedmessage"),
     });
-  }, [removeFavorite, id, title, toast, t]);
+  }, [removeFavorite, id, title, toast, t, locale, titleAr]);
 
   const addToCartHandler = useCallback(() => {
     setCartPending(true);
@@ -95,11 +110,15 @@ function ProductCard({
       id,
       title,
       description,
+      titleAr,
+      descriptionAr,
       image,
       price,
       color,
+      colorAr,
       alt,
       details,
+      detailsAr,
       size,
       gender,
       type,
@@ -108,7 +127,7 @@ function ProductCard({
       dashboardType,
     });
     toast({
-      title: `${title}`,
+      title: `${locale === "ar" ? titleAr : title}`,
       description: t("common.addedmessage"),
     });
     setTimeout(() => {
@@ -119,10 +138,14 @@ function ProductCard({
     id,
     title,
     description,
+    titleAr,
+    descriptionAr,
     image,
     price,
     color,
+    colorAr,
     details,
+    detailsAr,
     alt,
     size,
     gender,
@@ -133,6 +156,7 @@ function ProductCard({
     toast,
     t,
     setCartPending,
+    locale,
   ]);
 
   return (
@@ -151,10 +175,10 @@ function ProductCard({
           <div className="mt-4 flex justify-between">
             <div>
               <p className="rtl:font-arabic text-lg text-gray-900 font-sans truncate w-32">
-                {title}
+                {locale === "ar" ? titleAr : title}
               </p>
               <p className="rtl:font-arabic mt-1 text-lg text-gray-900">
-                {color}
+                {locale === "ar" ? colorAr : color}
               </p>
             </div>
             {dashboardType ? (
@@ -190,7 +214,6 @@ function ProductCard({
         {cartPending && (
           <div className="w-10 h-10 mt-2">
             <Lottie animationData={Loading} loop={true} />
-            {/* <LottieComponent animationData={Loading} /> */}
           </div>
         )}
         {isFavorite ? (

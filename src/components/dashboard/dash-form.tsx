@@ -36,6 +36,7 @@ import {
 import { supabase } from "@/lib/supabase";
 import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
+import { useCurrentLocale } from "@/locales/client";
 
 const formSchema = z.object({
   dashboardtype: z.string().min(1, {
@@ -44,7 +45,13 @@ const formSchema = z.object({
   title: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
+  titleAr: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
   color: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  colorAr: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
   price: z.string().min(1, {
@@ -63,7 +70,18 @@ const formSchema = z.object({
   description: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
+  descriptionAr: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
   details: z
+    .string()
+    .min(2, {
+      message: "Details must be at least 10 characters.",
+    })
+    .max(160, {
+      message: "Details must not be longer than 30 characters.",
+    }),
+  detailsAr: z
     .string()
     .min(2, {
       message: "Details must be at least 10 characters.",
@@ -89,19 +107,25 @@ export function DashForm({ onAddProduct }: AddFormProps) {
   const [isUploading, setIsUploading] = useState(false); // Track upload state
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { toast } = useToast();
+  const locale = useCurrentLocale();
+  const dir = locale === "ar" ? "rtl" : "ltr";
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
+      titleAr: "",
       color: "",
+      colorAr: "",
       price: "",
       size: "",
       gender: "",
       type: "",
       category: "",
       description: "",
+      descriptionAr: "",
       details: "",
+      detailsAr: "",
       dashboardtype: "",
     },
   });
@@ -172,12 +196,16 @@ export function DashForm({ onAddProduct }: AddFormProps) {
       const { image, image_id } = uploadResult;
       const data = {
         color: values.color,
+        colorAr: values.colorAr,
         description: values.description,
+        descriptionAr: values.descriptionAr,
         details: values.details,
+        detailsAr: values.detailsAr,
         gender: values.gender,
         price: values.price,
         size: values.size,
         title: values.title,
+        titleAr: values.titleAr,
         type: values.type,
         dashboardtype: values.dashboardtype,
         image: image,
@@ -202,14 +230,18 @@ export function DashForm({ onAddProduct }: AddFormProps) {
         onAddProduct(data);
         form.reset({
           title: "",
+          titleAr: "",
           color: "",
+          colorAr: "",
           price: "",
           size: "",
           gender: "",
           type: "",
           category: "",
           description: "",
+          descriptionAr: "",
           details: "",
+          detailsAr: "",
           dashboardtype: "",
         });
         setUploadedImageUrl("");
@@ -420,15 +452,64 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                   />
                 </div>
               )}
+              <div className="sm:col-span-6 md:col-span-3 mt-2.5">
+                <FormField
+                  control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-left flex" dir="ltr">
+                        Price
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="ltr"
+                          placeholder="Product price"
+                          type="number"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
               <div className="sm:col-span-6 md:col-span-3">
                 <FormField
                   control={form.control}
                   name="title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel className="text-lg text-left flex" dir="ltr">
+                        Name
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Product name" {...field} />
+                        <Input
+                          dir="ltr"
+                          placeholder="Product name"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="titleAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg text-right flex" dir="rtl">
+                        الاسم
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="اسم المنتج باللغة العربية"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -441,26 +522,13 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                   name="color"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Color</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Product color" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="sm:col-span-6 md:col-span-3">
-                <FormField
-                  control={form.control}
-                  name="price"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Price</FormLabel>
+                      <FormLabel className="text-lg text-left flex" dir="ltr">
+                        Color
+                      </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Product price"
-                          type="number"
+                          dir="ltr"
+                          placeholder="Product color"
                           {...field}
                         />
                       </FormControl>
@@ -469,16 +537,63 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                   )}
                 />
               </div>
-
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="colorAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg text-right flex" dir="rtl">
+                        اللون
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="لون المنتج باللغة العربية"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
               <div className="sm:col-span-6 md:col-span-3">
                 <FormField
                   control={form.control}
                   name="description"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Description</FormLabel>
+                      <FormLabel className="text-lg text-left flex" dir="ltr">
+                        Description
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Product description" {...field} />
+                        <Input
+                          dir="ltr"
+                          placeholder="Product description"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="descriptionAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg text-right flex" dir="rtl">
+                        الوصف
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="وصف المنتج باللغة العربية"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -491,10 +606,35 @@ export function DashForm({ onAddProduct }: AddFormProps) {
                   name="details"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Details</FormLabel>
+                      <FormLabel className="text-lg text-left flex" dir="ltr">
+                        Details
+                      </FormLabel>
                       <FormControl>
                         <Textarea
+                          dir="ltr"
                           placeholder="Product details"
+                          className="resize-none"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="detailsAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg text-right flex" dir="rtl">
+                        التفاصيل
+                      </FormLabel>
+                      <FormControl>
+                        <Textarea
+                          dir="rtl"
+                          placeholder="تفاصيل المنتج باللغة العربية"
                           className="resize-none"
                           {...field}
                         />

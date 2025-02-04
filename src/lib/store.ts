@@ -5,16 +5,20 @@ export type Item = {
   id: string;
   title: string;
   description?: string;
+  color: string;
+  details: string;
+  titleAr: string;
+  descriptionAr?: string;
+  colorAr: string;
+  detailsAr: string;
   image: string;
   alt: string;
   imageid: string;
   price: number;
   totalPrice: number;
   size: string;
-  color: string;
   gender: string;
   quantity: number;
-  details: string;
   type: string;
   category: string;
   dashboardType: string;
@@ -73,6 +77,10 @@ export const useItemStore = create<State & Actions>()(
                   color: item.color,
                   description: item.description,
                   details: item.details,
+                  titleAr: item.titleAr,
+                  colorAr: item.colorAr,
+                  descriptionAr: item.descriptionAr,
+                  detailsAr: item.detailsAr,
                   alt: item.alt,
                   dashboardType: item.dashboardType,
                   size: item.size,
@@ -146,6 +154,10 @@ export const useItemStore = create<State & Actions>()(
                   title: item.title,
                   image: item.image,
                   color: item.color,
+                  titleAr: item.titleAr,
+                  colorAr: item.colorAr,
+                  descriptionAr: item.descriptionAr,
+                  detailsAr: item.detailsAr,
                   description: item.description,
                   details: item.details,
                   alt: item.alt,

@@ -44,17 +44,21 @@ export default function CartDrawerList({ onClick }) {
                   <div className="mx-4 flex flex-1 flex-col gap-2">
                     <div>
                       <div className="flex flex-row justify-between text-base font-semibold text-gray-800">
-                        <h3 className="basis-3/4 truncate max-w-28">{product.title}</h3>
+                        <h3 className="basis-3/4 truncate max-w-28">
+                          {locale === "ar" ? product.titleAr : product.title}
+                        </h3>
                         <p className="basis-1/4 font-bold justify-end">
                           {t("product.price")}
                           <span> {product.price}</span>
                         </p>
                       </div>
                       <p className="mt-1 text-sm text-gray-500">
-                        {product.color}
+                        {locale === "ar" ? product.colorAr : product.color}
                       </p>
                       <p className="mt-1 text-sm text-gray-500">
-                        {product.description}
+                        {locale === "ar"
+                          ? product.descriptionAr
+                          : product.description}
                       </p>
                       <p className="mt-1 text-xs text-gray-500">
                         {product.price} {t("product.perunit")}

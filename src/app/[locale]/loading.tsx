@@ -1,12 +1,11 @@
-import Spinner from "@/components/UI/spinner";
+import { RxReload } from "react-icons/rx";
 
 export default function Loading() {
   return (
-    <>
-      <div className="flex fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 z-50" />
-      <div className="flex fixed top-0 left-0 w-full h-full justify-center items-center z-50">
-        <Spinner />
+    <div className="flex flex-col min-h-screen items-center justify-center w-full">
+      <div className="animate-in animate-spin flex flex-col items-center justify-center">
+        <RxReload className="animate-spin text-xl" />
       </div>
-    </>
+    </div>
   );
 }

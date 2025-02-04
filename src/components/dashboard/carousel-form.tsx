@@ -28,6 +28,12 @@ const formSchema = z.object({
   description: z.string().min(0, {
     message: "description must be at least 2 characters.",
   }),
+  titleAr: z.string().min(0, {
+    message: "title must be at least 2 characters.",
+  }),
+  descriptionAr: z.string().min(0, {
+    message: "description must be at least 2 characters.",
+  }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -49,6 +55,8 @@ export function CarouselForm({ onAddCarousel }: AddFormProps) {
     defaultValues: {
       title: "",
       description: "",
+      titleAr: "",
+      descriptionAr: "",
     },
   });
 
@@ -107,7 +115,9 @@ export function CarouselForm({ onAddCarousel }: AddFormProps) {
       const { image, image_id } = uploadResult;
       const data = {
         title: values.title,
+        titleAr: values.titleAr,
         description: values.description,
+        descriptionAr: values.descriptionAr,
         image: image,
         imageid: image_id, //we usa this to delete the image
         alt: values.title,
@@ -130,6 +140,8 @@ export function CarouselForm({ onAddCarousel }: AddFormProps) {
         form.reset({
           title: "",
           description: "",
+          titleAr: "",
+          descriptionAr: "",
         });
         setUploadedImageUrl("");
         setImagePreview("");
@@ -210,9 +222,15 @@ export function CarouselForm({ onAddCarousel }: AddFormProps) {
                   name="title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Carousel Title</FormLabel>
+                      <FormLabel className="text-left flex" dir="ltr">
+                        Carousel Title
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Carousel title" {...field} />
+                        <Input
+                          dir="ltr"
+                          placeholder="Carousel title"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -225,9 +243,57 @@ export function CarouselForm({ onAddCarousel }: AddFormProps) {
                   name="description"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Carousel Description</FormLabel>
+                      <FormLabel className="text-left flex" dir="ltr">
+                        Carousel Description
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Carousel description" {...field} />
+                        <Input
+                          dir="ltr"
+                          placeholder="Carousel description"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="titleAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg text-right flex" dir="rtl">
+                        عنوان العرض التقديمي
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="عنوان العرض التقديمي باللغة العربية"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="descriptionAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg text-right flex" dir="rtl">
+                        وصف العرض التقديمي
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="وصف العرض التقديمي باللغة العربية"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

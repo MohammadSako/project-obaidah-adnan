@@ -5,7 +5,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "../../../../components/UI/carousel";
+} from "../../../../../components/UI/carousel";
 import RelatedCard from "./related-card";
 import Autoplay from "embla-carousel-autoplay";
 import { useI18n } from "@/locales/client";
@@ -44,12 +44,16 @@ function RelatedProducts({ data }) {
                         key={product.id}
                         id={product.id}
                         title={product.title}
+                        titleAr={product.titleAr}
                         image={product.image}
                         alt={product.alt}
                         price={product.price}
                         color={product.color}
                         details={product.details}
                         description={product.description}
+                        colorAr={product.colorAr}
+                        detailsAr={product.detailsAr}
+                        descriptionAr={product.descriptionAr}
                         category={product.category}
                         dashboardType={product.dashboardType}
                         size={product.size}

@@ -3,12 +3,13 @@
 import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/UI/button";
-import { useI18n } from "@/locales/client";
+import { useCurrentLocale, useI18n } from "@/locales/client";
 import { useOrderStore } from "@/lib/orderStore";
 
 function OrderDetails({ data }) {
   const [orders, setOrders] = useState(null);
   const t = useI18n();
+  const locale = useCurrentLocale();
   const { setIsBackdropOpen, setId } = useOrderStore();
 
   useEffect(() => {
@@ -171,7 +172,7 @@ function OrderDetails({ data }) {
                   <div className="basis-1/2 space-y-4 sm:text-2xl text-xl capitalize font-bold">
                     <div className="flex flex-row gap-4 items-center">
                       <h1 className="sm:text-3xl font-bold text-gray-900 capitalize">
-                        {item.title || "No Title"}
+                        {locale === "ar" ? item.titleAr : item.title}
                       </h1>
                       <div className="h-25 w-25 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                         <Image
@@ -193,7 +194,7 @@ function OrderDetails({ data }) {
                         {t("product.color")}
                       </h3>
                       <h4 className="w-fit text-lg sm:text-xl font-medium text-blue-600 border-gray-800 border rounded-md px-2 py-1 capitalize">
-                        {item.color || "N/A"}
+                        {locale === "ar" ? item.colorAr : item.color}
                       </h4>
                     </div>
                     <div className="flex flex-row gap-2 items-center">
@@ -247,13 +248,15 @@ function OrderDetails({ data }) {
                     <div className="flex flex-row gap-2">
                       <p>{t("product.description")}:</p>
                       <p className="font-medium text-blue-600">
-                        {item.description || "N/A"}
+                        {locale === "ar"
+                          ? item.descriptionAr
+                          : item.description}
                       </p>
                     </div>
                     <div className="flex flex-row gap-2">
                       <p>{t("product.details")}:</p>
                       <p className="font-medium text-blue-600">
-                        {item.details || "N/A"}
+                        {locale === "ar" ? item.detailsAr : item.details}
                       </p>
                     </div>
                     <div className="flex flex-row gap-2">

@@ -1,4 +1,8 @@
 "use client";
+import {
+  deleteAdvertismentById,
+  deleteAdvertismentImage,
+} from "@/lib/db/products";
 import Image from "next/image";
 import { MdDelete } from "react-icons/md";
 
@@ -15,23 +19,35 @@ const AdvertismentList = ({ data }) => {
   return (
     <div className="mt-20">
       <h2 className="text-2xl text-gray-700 my-4">Advertisment Images</h2>
-      <div className="border-2 border-gray-200 rounded-lg p-4">
-        <div className="h-auto">
+      <div className="">
+        <div className="flex flex-col h-auto gap-2">
           {data.map((image) => (
             <div key={image.id}>
               <div
                 key={image.id}
-                className="flex flex-row justify-between items-center"
+                className="flex flex-row justify-between items-center border-2 border-gray-200 rounded-lg p-4"
               >
-                <div className="w-96">
+                <div className="flex md:flex-row flex-col gap-4 md:h-20">
                   <Image
                     alt={image.image}
                     src={image.image}
                     width={200}
                     height={30}
-                    className="w-full rounded-lg"
+                    className="rounded-lg"
                   />
+                  <div className="flex flex-col w-60 items-center justify-center">
+                    <p className="text-2xl text-gray-500">{image.title}</p>
+                    <p className="text-md text-gray-500">{image.description}</p>
+                  </div>
+                  <div className="border-r-2 border-gray-200" />
+                  <div className="flex flex-col w-60 items-center justify-center">
+                    <p className="text-2xl text-gray-500">{image.titleAr}</p>
+                    <p className="text-md text-gray-500">
+                      {image.descriptionAr}
+                    </p>
+                  </div>
                 </div>
+
                 <div className="">
                   <MdDelete
                     size={50}
@@ -42,7 +58,6 @@ const AdvertismentList = ({ data }) => {
                   />
                 </div>
               </div>
-              <div className="border-t my-4" />
             </div>
           ))}
         </div>

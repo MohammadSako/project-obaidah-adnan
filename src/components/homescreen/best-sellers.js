@@ -41,12 +41,16 @@ function BestSellers({ data }) {
                         key={product.id}
                         id={product.id}
                         title={product.title}
+                        titleAr={product.titleAr}
                         image={product.image}
                         alt={product.alt}
                         price={product.price}
                         color={product.color}
+                        colorAr={product.colorAr}
                         details={product.details}
+                        detailsAr={product.detailsAr}
                         description={product.description}
+                        descriptionAr={product.descriptionAr}
                         size={product.size}
                         gender={product.gender}
                         type={product.type}

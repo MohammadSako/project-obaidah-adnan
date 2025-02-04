@@ -28,6 +28,12 @@ const formSchema = z.object({
   description: z.string().min(0, {
     message: "description must be at least 2 characters.",
   }),
+  titleAr: z.string().min(0, {
+    message: "title must be at least 2 characters.",
+  }),
+  descriptionAr: z.string().min(0, {
+    message: "description must be at least 2 characters.",
+  }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -49,6 +55,8 @@ export function AdvertismentForm({ onAddAdvertisment }: AddFormProps) {
     defaultValues: {
       title: "",
       description: "",
+      titleAr: "",
+      descriptionAr: "",
     },
   });
 
@@ -107,7 +115,9 @@ export function AdvertismentForm({ onAddAdvertisment }: AddFormProps) {
       const { image, image_id } = uploadResult;
       const data = {
         title: values.title,
+        titleAr: values.titleAr,
         description: values.description,
+        descriptionAr: values.descriptionAr,
         image: image,
         imageid: image_id, //we usa this to delete the image
         alt: values.title,
@@ -130,6 +140,8 @@ export function AdvertismentForm({ onAddAdvertisment }: AddFormProps) {
         form.reset({
           title: "",
           description: "",
+          titleAr: "",
+          descriptionAr: "",
         });
         setUploadedImageUrl("");
         setImagePreview("");
@@ -199,7 +211,7 @@ export function AdvertismentForm({ onAddAdvertisment }: AddFormProps) {
           </p>
         )}
       </div>
-      <div className="">
+      <div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
@@ -209,9 +221,11 @@ export function AdvertismentForm({ onAddAdvertisment }: AddFormProps) {
                   name="title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Advertisment Name</FormLabel>
+                      <FormLabel className="text-left flex" dir="ltr">
+                        Advertisment Title
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Advertisment title" {...field} />
+                        <Input dir="ltr" placeholder="Brand title" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -224,10 +238,55 @@ export function AdvertismentForm({ onAddAdvertisment }: AddFormProps) {
                   name="description"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Advertisment Description</FormLabel>
+                      <FormLabel className="text-left flex" dir="ltr">
+                        Advertisment Description
+                      </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Advertisment description"
+                          dir="ltr"
+                          placeholder="Brand description"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="titleAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg text-right flex" dir="rtl">
+                        عنوان الإعلان
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="عنوان العرض التقديمي باللغة العربية"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="descriptionAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg text-right flex" dir="rtl">
+                        وصف الإعلان
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="وصف العرض التقديمي باللغة العربية"
                           {...field}
                         />
                       </FormControl>
@@ -241,7 +300,7 @@ export function AdvertismentForm({ onAddAdvertisment }: AddFormProps) {
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-              Add a advertisment name
+              Add a advertisment name{" "}
             </button>
           </form>
         </Form>

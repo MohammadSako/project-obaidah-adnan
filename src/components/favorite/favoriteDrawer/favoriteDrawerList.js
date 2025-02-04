@@ -39,17 +39,21 @@ export default function FavoriteDrawerList({ onClick }) {
                   <div className="mx-4 flex flex-1 flex-col gap-2">
                     <div>
                       <div className="flex justify-between text-gray-800">
-                        <div>{product.title}</div>
+                        <div>
+                          {locale === "ar" ? product.titleAr : product.title}
+                        </div>
                         <div className="flex flex-row font-bold gap-1">
                           <span className="text-lg">{product.price}</span>
                           <span className="text-sm">{t("product.price")}</span>
                         </div>
                       </div>
                       <p className="mt-1 text-sm text-gray-500">
-                        {product.color}
+                        {locale === "ar" ? product.colorAr : product.color}
                       </p>
                       <p className="mt-1 text-sm text-gray-500">
-                        {product.description}
+                        {locale === "ar"
+                          ? product.descriptionAr
+                          : product.description}
                       </p>
                       <p className="mt-1 text-xs text-gray-500">
                         {product.price} {t("product.perunit")}

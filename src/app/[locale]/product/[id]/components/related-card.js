@@ -6,16 +6,20 @@ import Image from "next/image";
 import { TbShoppingBagPlus, TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useToast } from "@/hooks/use-toast";
 import { useItemStore } from "@/lib/store";
-import { useI18n } from "@/locales/client";
+import { useCurrentLocale, useI18n } from "@/locales/client";
 
 function RelatedCard({
   id,
   title,
   description,
-  image,
-  price,
   color,
   details,
+  titleAr,
+  descriptionAr,
+  colorAr,
+  detailsAr,
+  image,
+  price,
   alt,
   dashboardType,
   size,
@@ -27,6 +31,7 @@ function RelatedCard({
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const { toast } = useToast();
   const t = useI18n();
+  const locale = useCurrentLocale();
 
   // Memoize isFavorite value to prevent unnecessary re-renders
   const isFavorite = useMemo(
@@ -50,12 +55,18 @@ function RelatedCard({
       type,
       imageid,
       category,
+      titleAr,
+      descriptionAr,
+      colorAr,
+      detailsAr,
     });
     toast({
-      title: `${title}`,
+      title: `${locale === "ar" ? titleAr : title}`,
       description: t("common.favaddedmessage"),
+      style: {backgroundColor: "#ff5454", color: "white"}
     });
   }, [
+    locale,
     addFavorite,
     id,
     title,
@@ -70,6 +81,10 @@ function RelatedCard({
     gender,
     type,
     imageid,
+    titleAr,
+    descriptionAr,
+    colorAr,
+    detailsAr,
     category,
     toast,
     t,
@@ -78,10 +93,10 @@ function RelatedCard({
   const removeFromFavorite = useCallback(() => {
     removeFavorite(id);
     toast({
-      title: `${title}`,
+      title: `${locale === "ar" ? titleAr : title}`,
       description: t("common.favremovedmessage"),
     });
-  }, [removeFavorite, id, title, toast, t]);
+  }, [locale, removeFavorite, id, title, toast, t, titleAr]);
 
   const addToCartHandler = useCallback(() => {
     addItem({
@@ -99,12 +114,17 @@ function RelatedCard({
       type,
       imageid,
       category,
+      titleAr,
+      descriptionAr,
+      colorAr,
+      detailsAr,
     });
     toast({
-      title: `${title}`,
+      title: `${locale === "ar" ? titleAr : title}`,
       description: t("common.addedmessage"),
     });
   }, [
+    locale,
     addItem,
     id,
     title,
@@ -120,13 +140,17 @@ function RelatedCard({
     type,
     imageid,
     category,
+    titleAr,
+    descriptionAr,
+    colorAr,
+    detailsAr,
     toast,
     t,
   ]);
 
   return (
     <div>
-      <Link href={`product/${id}`}>
+      <Link href={id}>
         <div className="group relative">
           <div className="p-2 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 shadow-lg">
             <Image
@@ -139,8 +163,12 @@ function RelatedCard({
           </div>
           <div className="mt-4 flex justify-between">
             <div>
-              <p className="text-lg text-gray-700 w-32 truncate">{title}</p>
-              <p className="mt-1 text-lg text-gray-500">{color}</p>
+              <p className="text-lg text-gray-700 w-32 truncate">
+                {locale === "ar" ? titleAr : title}
+              </p>
+              <p className="mt-1 text-lg text-gray-500">
+                {locale === "ar" ? colorAr : color}
+              </p>
             </div>
             <div className="bg-yellow-400 max-h-8 p-2 shadow-lg flex items-center">
               <p className="text-lg font-medium text-gray-900">

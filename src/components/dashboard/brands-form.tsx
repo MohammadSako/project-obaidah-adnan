@@ -22,10 +22,16 @@ import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
 
 const formSchema = z.object({
-  title: z.string().min(2, {
+  title: z.string().min(0, {
     message: "title must be at least 2 characters.",
   }),
-  description: z.string().min(2, {
+  description: z.string().min(0, {
+    message: "description must be at least 2 characters.",
+  }),
+  titleAr: z.string().min(0, {
+    message: "title must be at least 2 characters.",
+  }),
+  descriptionAr: z.string().min(0, {
     message: "description must be at least 2 characters.",
   }),
 });
@@ -49,6 +55,8 @@ export function BrandForm({ onAddBrand }: AddFormProps) {
     defaultValues: {
       title: "",
       description: "",
+      titleAr: "",
+      descriptionAr: "",
     },
   });
 
@@ -107,7 +115,9 @@ export function BrandForm({ onAddBrand }: AddFormProps) {
       const { image, image_id } = uploadResult;
       const data = {
         title: values.title,
+        titleAr: values.titleAr,
         description: values.description,
+        descriptionAr: values.descriptionAr,
         image: image,
         imageid: image_id, //we usa this to delete the image
         alt: values.title,
@@ -130,6 +140,8 @@ export function BrandForm({ onAddBrand }: AddFormProps) {
         form.reset({
           title: "",
           description: "",
+          titleAr: "",
+          descriptionAr: "",
         });
         setUploadedImageUrl("");
         setImagePreview("");
@@ -209,9 +221,11 @@ export function BrandForm({ onAddBrand }: AddFormProps) {
                   name="title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Brand Name</FormLabel>
+                      <FormLabel className="text-left flex" dir="ltr">
+                        Brand Title
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="brand title" {...field} />
+                        <Input dir="ltr" placeholder="Brand title" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -224,9 +238,57 @@ export function BrandForm({ onAddBrand }: AddFormProps) {
                   name="description"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Brand Description</FormLabel>
+                      <FormLabel className="text-left flex" dir="ltr">
+                        Brand Description
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="brand description" {...field} />
+                        <Input
+                          dir="ltr"
+                          placeholder="Brand description"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="titleAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg text-right flex" dir="rtl">
+                        اسم العلامة التجارية
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="عنوان العرض التقديمي باللغة العربية"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-6 md:col-span-3">
+                <FormField
+                  control={form.control}
+                  name="descriptionAr"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg text-right flex" dir="rtl">
+                        وصف العلامة التجارية
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          dir="rtl"
+                          placeholder="وصف العرض التقديمي باللغة العربية"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -238,7 +300,7 @@ export function BrandForm({ onAddBrand }: AddFormProps) {
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-              Add a brand name
+              Add Brand
             </button>
           </form>
         </Form>

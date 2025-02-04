@@ -28,7 +28,7 @@ export default function Checkout() {
 
   return (
     <>
-    {isLoading && <Loading />}
+      {isLoading && <Loading />}
       <div className="container mx-auto m-10 p-4 min-h-screen">
         <div className="flex lg:flex-row flex-col lg:gap-10">
           <div className="w-full basis-3/5 lg:shadow-lg lg:rounded-lg p-6">

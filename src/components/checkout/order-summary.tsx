@@ -1,7 +1,7 @@
 "use client";
 
 import { useItemStore } from "@/lib/store";
-import { useI18n } from "@/locales/client";
+import { useCurrentLocale, useI18n } from "@/locales/client";
 // import { Button } from "../UI/button";
 import Image from "next/image";
 import { FaMoneyBill1Wave } from "react-icons/fa6";
@@ -10,17 +10,20 @@ export type Item = {
   id: string;
   title: string;
   description?: string;
+  titleAr: string;
+  descriptionAr?: string;
   image: string;
   price: number;
   color: string;
+  colorAr: string;
   quantity: number;
   totalPrice: number;
 };
 
 export const OrderSummary = () => {
   const { items, totalAllPrice } = useItemStore();
-
   const t = useI18n();
+  const locale = useCurrentLocale();
 
   return (
     <form>
@@ -40,14 +43,18 @@ export const OrderSummary = () => {
             <div className="flex flex-1 flex-col gap-6">
               <div>
                 <div className="flex justify-between text-base font-medium text-gray-900">
-                  <h3>{product.title}</h3>
+                  <h3>{locale === "ar" ? product.titleAr : product.title}</h3>
                   <p className="">
                     {product.price} {t("product.price")}
                   </p>
                 </div>
-                <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                 <p className="mt-1 text-sm text-gray-500">
-                  {product.description}
+                  <h3>{locale === "ar" ? product.colorAr : product.color}</h3>
+                </p>
+                <p className="mt-1 text-sm text-gray-500">
+                  {locale === "ar"
+                    ? product.descriptionAr
+                    : product.description}
                 </p>
                 <p className="text-gray-500">
                   {t("product.quantity")}{" "}
@@ -58,28 +65,6 @@ export const OrderSummary = () => {
           </li>
         </div>
       ))}
-
-      {/* Discount */}
-      {/* <div className="sm:col-span-4 mt-8">
-        <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-          <input
-            type="text"
-            name="username"
-            id="username"
-            autoComplete="username"
-            className="block flex-1  px-3 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-            placeholder="Discount code"
-          />
-          <span>
-            <Button
-              variant="default"
-              className="px-9 py-6 font-sans font-medium z-10 cursor-pointer rounded-l-none"
-            >
-              Apply
-            </Button>
-          </span>
-        </div>
-      </div> */}
       <div className="flex flex-col mt-5">
         <div className="flex justify-between">
           <p className="text-md text-slate-600">{t("common.subtotal")}</p>

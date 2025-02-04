@@ -87,7 +87,9 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
     setIsLoading(true);
     const customerItems = items.map((item) => ({
       title: item.title,
+      titleAr: item.titleAr,
       color: item.color,
+      colorAr: item.colorAr,
       size: item.size,
       price: item.price,
       image: item.image,
@@ -96,6 +98,8 @@ export function OrderCustomerForm({ onAddCustomerOrder }: AddFormProps) {
       type: item.type,
       description: item.description,
       details: item.details,
+      descriptionAr: item.descriptionAr,
+      detailsAr: item.detailsAr,
       dashboardType: item.dashboardType,
       imageid: item.imageid,
       category: item.category,

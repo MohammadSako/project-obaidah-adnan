@@ -47,7 +47,9 @@ model ItemDetail {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   title         String   @db.Text
+  titleAr       String   @db.Text
   color         String   @db.Text
+  colorAr       String   @db.Text
   size          String   @db.Text
   price         Int      @db.Integer
   image         String   @db.Text
@@ -55,41 +57,69 @@ model ItemDetail {
   gender        String   @db.Text
   type          String   @db.Text
   description   String   @db.Text
+  descriptionAr String   @db.Text
   details       String   @db.Text
+  detailsAr     String   @db.Text
   dashboardType String   @db.Text
   imageid       String   @db.Text
   category      Int
   item          Item     @relation(fields: [category], references: [id], onDelete: Cascade)
 }
 
+// model ItemDetail {
+//   id            String   @id @default(uuid())
+//   createdAt     DateTime @default(now())
+//   updatedAt     DateTime @updatedAt
+//   title         String   @db.Text
+//   color         String   @db.Text
+//   size          String   @db.Text
+//   price         Int      @db.Integer
+//   image         String   @db.Text
+//   alt           String   @db.Text
+//   gender        String   @db.Text
+//   type          String   @db.Text
+//   description   String   @db.Text
+//   details       String   @db.Text
+//   dashboardType String   @db.Text
+//   imageid       String   @db.Text
+//   category      Int
+//   item          Item     @relation(fields: [category], references: [id], onDelete: Cascade)
+// }
+
 model CarouselImages {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  title       String   @db.Text
-  description String   @db.Text
-  image       String   @db.Text
-  alt         String   @db.Text
-  imageid     String   @db.Text
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  title         String   @db.Text
+  titleAr       String   @db.Text
+  description   String   @db.Text
+  descriptionAr String   @db.Text
+  image         String   @db.Text
+  alt           String   @db.Text
+  imageid       String   @db.Text
 }
 
 model BrandsImages {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  title       String   @db.Text
-  image       String   @db.Text
-  alt         String   @db.Text
-  imageid     String   @db.Text
-  description String   @db.Text
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  title         String   @db.Text
+  titleAr       String   @db.Text
+  image         String   @db.Text
+  alt           String   @db.Text
+  imageid       String   @db.Text
+  description   String   @db.Text
+  descriptionAr String   @db.Text
 }
 
 model Advertisements {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  title       String   @db.Text
-  image       String   @db.Text
-  alt         String   @db.Text
-  imageid     String   @db.Text
-  description String   @db.Text
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  title         String   @db.Text
+  titleAr       String   @db.Text
+  image         String   @db.Text
+  alt           String   @db.Text
+  imageid       String   @db.Text
+  description   String   @db.Text
+  descriptionAr String   @db.Text
 }
 
 model CustomersOrders {
@@ -113,7 +143,9 @@ model CustomersItem {
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
   title             String           @db.Text
+  titleAr           String           @db.Text
   color             String           @db.Text
+  colorAr           String           @db.Text
   size              String           @db.Text
   price             Int              @db.Integer
   image             String           @db.Text
@@ -121,7 +153,9 @@ model CustomersItem {
   gender            String           @db.Text
   type              String           @db.Text
   description       String           @db.Text
+  descriptionAr     String           @db.Text
   details           String           @db.Text
+  detailsAr         String           @db.Text
   dashboardType     String           @db.Text
   imageid           String           @db.Text
   category          Int
@@ -130,63 +164,6 @@ model CustomersItem {
   customersOrdersId Int?
   customersOrders   CustomersOrders? @relation(fields: [customersOrdersId], references: [id], onDelete: Cascade)
 }
-
-// Faisal //
-// model ItemDetail {
-//   id          Int       @id @default(autoincrement())
-//   createdAt   DateTime  @default(now())
-//   updatedAt   DateTime  @updatedAt
-//   title       String    @db.VarChar(255)
-//   // color         String
-//   // size          String
-//   // price         String
-//   image       String
-//   alt         String
-//   imageId     String
-//   // gender        String  => men / women
-//   // type          String  => Top/Lower/Shoes
-//   description String
-//   details     String
-//   category    String
-//   // dashboardType String => discounted/ bestSeller/ new arrival
-//   filters     Filters[]
-//   item        Item      @relation(fields: [category], references: [category], onDelete: Cascade)
-// }
-
-// model Filters {
-//   id           Int           @id @default(autoincrement())
-//   itemDetailId Int?
-//   createdAt    DateTime      @default(now())
-//   name         String
-//   filterValues FilterValue[] // One-to-many relationship with FilterValue
-//   ItemDetail   ItemDetail   @relation(fields: [itemDetailId], references: [id])
-// }
-
-// model FilterValue {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   value      String
-//   filterId  Int // Added foreign key for Filter
-//   filter    Filters  @relation(fields: [filterId], references: [id], onDelete: Cascade)
-// }
-
-// model Orders {
-//   id            Int      @id @default(autoincrement())
-//   createdAt     DateTime @default(now())
-//   updatedAt     DateTime @updatedAt
-//   title         String   @db.VarChar(255)
-//   color         String
-//   size          String
-//   price         String
-//   image         String
-//   alt           String
-//   gender        String
-//   type          String
-//   description   String
-//   note          String
-//   category      String
-//   dashboardType String
-// }
 
 //to add data without losing and data (chatgpt)
 // npx prisma generate

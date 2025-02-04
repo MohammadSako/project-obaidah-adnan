@@ -35,14 +35,29 @@ export async function searchInProducts(value) {
   try {
     const itemDetails = await prisma.itemDetail.findMany({
       where: {
-        title: {
-          contains: value,
-          mode: "insensitive",
-        },
+        OR: [
+          {
+            title: {
+              contains: value,
+              mode: "insensitive",
+            },
+          },
+          {
+            titleAr: {
+              contains: value,
+              mode: "insensitive",
+            },
+          },
+        ],
       },
       select: {
         title: true,
+        titleAr: true,
         id: true,
+        image: true,
+        description: true,
+        descriptionAr: true,
+        price: true,
       },
     });
     // const items = await prisma.item.findMany({
@@ -85,6 +100,10 @@ export async function searchedProducts(values) {
       where: {
         OR: values.map((value) => ({
           title: {
+            contains: value,
+            mode: "insensitive",
+          },
+          titleAr: {
             contains: value,
             mode: "insensitive",
           },
@@ -201,7 +220,9 @@ export async function addProduct(productData) {
     const product = await prisma.itemDetail.create({
       data: {
         title: productData.title,
+        titleAr: productData.titleAr,
         color: productData.color,
+        colorAr: productData.colorAr,
         size: productData.size,
         price: parseInt(productData.price),
         image: productData.image,
@@ -210,7 +231,9 @@ export async function addProduct(productData) {
         type: productData.type,
         category: parseInt(productData.category),
         description: productData.description,
+        descriptionAr: productData.descriptionAr,
         details: productData.details,
+        detailsAr: productData.detailsAr,
         dashboardType: productData.dashboardtype,
         imageid: productData.imageid,
       },
@@ -252,7 +275,9 @@ export async function updateProductById(id, productData) {
       where: { id },
       data: {
         title: productData.title,
+        titleAr: productData.titleAr,
         color: productData.color,
+        colorAr: productData.colorAr,
         size: productData.size,
         price: parseInt(productData.price),
         image: productData.image,
@@ -260,7 +285,9 @@ export async function updateProductById(id, productData) {
         gender: productData.gender,
         type: productData.type,
         description: productData.description,
+        descriptionAr: productData.descriptionAr,
         details: productData.details,
+        detailsAr: productData.detailsAr,
         category: parseInt(productData.category),
         dashboardType: productData.dashboardtype,
       },
@@ -295,7 +322,9 @@ export async function addCarousel(carousel) {
     const product = await prisma.carouselImages.create({
       data: {
         title: carousel.title,
+        titleAr: carousel.titleAr,
         description: carousel.description,
+        descriptionAr: carousel.descriptionAr,
         image: carousel.image,
         alt: carousel.alt,
         imageid: carousel.imageid,
@@ -347,10 +376,12 @@ export async function addBrand(brand) {
     const product = await prisma.brandsImages.create({
       data: {
         title: brand.title,
+        titleAr: brand.titleAr,
+        description: brand.description,
+        descriptionAr: brand.descriptionAr,
         image: brand.image,
         alt: brand.alt,
         imageid: brand.imageid,
-        description: brand.description,
       },
     });
     revalidatePath("/");
@@ -399,10 +430,12 @@ export async function addAdvertisment(advertisement) {
     const product = await prisma.advertisements.create({
       data: {
         title: advertisement.title,
+        titleAr: advertisement.titleAr,
+        description: advertisement.description,
+        descriptionAr: advertisement.descriptionAr,
         image: advertisement.image,
         alt: advertisement.alt,
         imageid: advertisement.imageid,
-        description: advertisement.description,
       },
     });
     revalidatePath("/");
@@ -472,7 +505,9 @@ export async function addCustomerData(customerData) {
         items: {
           create: customerData.items.map((item) => ({
             title: item.title,
+            titleAr: item.titleAr,
             color: item.color,
+            colorAr: item.colorAr,
             size: item.size,
             price: item.price,
             image: item.image,
@@ -480,7 +515,9 @@ export async function addCustomerData(customerData) {
             gender: item.gender,
             type: item.type,
             description: item.description,
+            descriptionAr: item.descriptionAr,
             details: item.details,
+            detailsAr: item.detailsAr,
             dashboardType: item.dashboardType,
             imageid: item.imageid,
             category: item.category,

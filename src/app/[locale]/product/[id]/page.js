@@ -4,8 +4,8 @@ import { useParams } from "next/navigation";
 import ProductDetailPage from "../../../../components/product-details/productDetailPage";
 import { getProductsById, searchedRelatedProducts } from "@/lib/db/products";
 import NotFound from "@/app/not-found";
-import RelatedProducts from "../components/related-products";
 import { ProductDetailsSkeleton } from "@/components/UI/skeletons";
+import RelatedProducts from "./components/related-products";
 
 function ProductDetails() {
   const [products, setproducts] = useState([]);
