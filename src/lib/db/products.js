@@ -483,10 +483,10 @@ export async function deleteAdvertismentImage(imageid) {
 }
 
 export async function addCustomerData(customerData) {
-  if (!customerData || !Array.isArray(customerData.items)) {
-    console.error("Invalid customer data format.");
-    return { error: "Invalid customer data format." };
-  }
+  // if (!customerData || !Array.isArray(customerData.items)) {
+  //   console.error("Invalid customer data format.");
+  //   return { error: "Invalid customer data format." };
+  // }
 
   try {
     // Create the customer order in the database
@@ -532,25 +532,25 @@ export async function addCustomerData(customerData) {
       },
     });
     // Update item quantities in the database for each item
-    const updateQtyPromises = customerData.items.map((item) =>
-      prisma.itemDetail.update({
-        where: { id: item.id }, // Corrected: match the item by its ID
-        data: {
-          qty: {
-            decrement: item.quantity, // Decrease by the quantity of the ordered item
-          },
-        },
-      })
-    );
+    // const updateQtyPromises = customerData.items.map((item) =>
+    //   prisma.itemDetail.update({
+    //     where: { id: item.id }, // Corrected: match the item by its ID
+    //     data: {
+    //       qty: {
+    //         decrement: item.quantity, // Decrease by the quantity of the ordered item
+    //       },
+    //     },
+    //   })
+    // );
 
     // Wait for all quantity updates to complete
-    const updateQtyResults = await Promise.all(updateQtyPromises);
+    // const updateQtyResults = await Promise.all(updateQtyPromises);
 
     // Revalidate path after successful update
     revalidatePath("/");
 
     console.log("Customer Order Created:", custData);
-    console.log("Updated Item Quantities:", updateQtyResults);
+    // console.log("Updated Item Quantities:", updateQtyResults);
     return { custData };
   } catch (error) {
     console.error("Error creating customer order:", error);
