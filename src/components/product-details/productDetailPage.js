@@ -6,7 +6,7 @@ import { TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useToast } from "@/hooks/use-toast";
 import { useItemStore } from "@/lib/store";
 import { useCurrentLocale, useI18n } from "@/locales/client";
-import { CardSkeleton, ImageSkeleton, ProductDetailsSkeleton } from "../UI/skeletons";
+import { ProductDetailsSkeleton } from "../UI/skeletons";
 
 function ProductDetailPage({ products }) {
   const { toast } = useToast();
