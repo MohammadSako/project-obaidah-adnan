@@ -36,7 +36,6 @@ import {
 import { supabase } from "@/lib/supabase";
 import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
-import { useCurrentLocale } from "@/locales/client";
 
 const formSchema = z.object({
   dashboardtype: z.string().min(1, {
