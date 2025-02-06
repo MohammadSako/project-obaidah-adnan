@@ -46,9 +46,6 @@ export default async function Home() {
           <Advertisement data={advertismentData} />
         )}
         <Categories />
-        {/* <MediaHub /> */}
-        {/* <Testimonials /> */}
-        {/* <Logos /> */}
       </Suspense>
     </div>
   );

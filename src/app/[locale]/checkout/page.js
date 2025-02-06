@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useRouter } from "next/navigation";
 import { addCustomerData, decrementCustomerData } from "@/lib/db/products";
@@ -13,16 +13,22 @@ export default function Checkout() {
   const [isLoading, setIsLoading] = useState(false);
   const { clearCart } = useItemStore();
 
-  async function CustomerOrderHendler(customerData) {
+  async function CustomerOrderHandler(customerData) {
+    if (!customerData || typeof customerData !== "object") {
+      console.error("Invalid customer data:", customerData);
+      return;
+    }
+    setIsLoading(true);
     try {
-      setIsLoading(true);
       await addCustomerData(customerData);
       await decrementCustomerData(customerData);
       clearCart();
-      setIsLoading(false);
       router.push("/success");
     } catch (error) {
-      console.error("Error adding product:", error);
+      console.error("Error during order handling:", error.message);
+      alert(`Error: ${error.message}`);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -32,7 +38,7 @@ export default function Checkout() {
       <div className="container mx-auto m-10 p-4 min-h-screen">
         <div className="flex lg:flex-row flex-col lg:gap-10">
           <div className="w-full basis-3/5 lg:shadow-lg lg:rounded-lg p-6">
-            <OrderCustomerForm onAddCustomerOrder={CustomerOrderHendler} />
+            <OrderCustomerForm onAddCustomerOrder={CustomerOrderHandler} />
           </div>
           <div className="w-full basis-2/5 lg:shadow-lg lg:rounded-lg p-6">
             <OrderSummary />
