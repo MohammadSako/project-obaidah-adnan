@@ -11,7 +11,6 @@ const config: Config = {
     fontFamily: {
       arabic: ["var(--font-tajawal)"],
       sans: ["var(--font-montserrat)"],
-    //   display: ["var(--font-playfair)"],
       serif: ["var(--font-angelo)"],
     },
     extend: {

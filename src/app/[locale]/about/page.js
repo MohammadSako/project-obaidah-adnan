@@ -3,14 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/locales/client";
-// import { SendEmail } from "@/app/api/send/route";
 
 function About() {
   const t = useI18n();
-  // function emailHandler() {
-  //   SendEmail();
-  // }
-  return (
+   return (
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}

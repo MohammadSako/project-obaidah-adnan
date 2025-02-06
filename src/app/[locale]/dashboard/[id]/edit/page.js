@@ -66,6 +66,3 @@ function UpdateProduct() {
   );
 }
 export default UpdateProduct;
-
-// // https://supabase.com/docs/reference/javascript/storage-from-update
-// // https://supabase.com/docs/reference/javascript/update

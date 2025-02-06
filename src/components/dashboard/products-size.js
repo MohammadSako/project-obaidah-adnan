@@ -14,37 +14,6 @@ import {
   SelectValue,
 } from "@/components/UI/select";
 
-// the shortcut code, not compelete
-// export function FormCategories({
-//   formLabel,
-//   onValueChange,
-//   defaultValue,
-//   placeHolder,
-//   items,
-// }) {
-//   return (
-//     <FormItem>
-//       <FormLabel>{formLabel}</FormLabel>
-//       <Select onValueChange={onValueChange} defaultValue={defaultValue}>
-//         <FormControl>
-//           <SelectTrigger>
-//             <SelectValue placeholder={placeHolder} />
-//           </SelectTrigger>
-//         </FormControl>
-//         <SelectContent>
-//           {items.map((item) => (
-//             <SelectItem key={item.title} value={item.value}>
-//               {item.title}
-//             </SelectItem>
-//           ))}
-//         </SelectContent>
-//       </Select>
-//       <FormMessage />
-//     </FormItem>
-//   );
-// }
-
-
 export function ItemType({ onValueChange, defaultValue }) {
   return (
     <FormItem>

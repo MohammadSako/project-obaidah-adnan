@@ -113,7 +113,7 @@ interface EditData {
 }
 interface AddFormProps {
   onUpdateProduct: (data: FormValues) => void;
-  editData: Partial<EditData>; // Use Partial if not all fields are guaranteed
+  editData: Partial<EditData>;
 }
 
 export function UpdateForm({ editData, onUpdateProduct }: AddFormProps) {

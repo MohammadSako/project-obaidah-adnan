@@ -170,11 +170,6 @@ export function DataTable({ data }: DataTableProps) {
           </Button>
         );
       },
-      // cell: ({ row }) => (
-      //   <div className="capitalize">{row.getValue("category")}</div>
-      // ),
-
-      // from ChatGpt
       cell: ({ row }) => {
         const category = row.getValue("category");
         let categoryLabel: string;
@@ -335,7 +330,6 @@ export function DataTable({ data }: DataTableProps) {
       cell: ({ row }) => {
         const amount = parseFloat(row.getValue("price"));
 
-        // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-JO", {
           style: "currency",
           currency: "JOD",
@@ -372,7 +366,6 @@ export function DataTable({ data }: DataTableProps) {
         const product = row.original;
         const imageid = product.imageid;
 
-        // Delete Product //////////
         async function onDeleteHandle(id: string) {
           try {
             await deleteImageByUrl(imageid);
