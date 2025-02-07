@@ -37,13 +37,13 @@ function OurBrands({ data }) {
               >
                 <CarouselContent>
                   {data.map((product) => (
-                    <CarouselItem className="max-w-fit" key={product.id}>
+                    <CarouselItem className="max-w-fit mx-20 sm:mx-32" key={product.id}>
                       <Image
                         src={product.image}
                         width={400}
                         height={200}
                         alt="our brands"
-                        style={{ width: "auto", height: "auto" }}
+                        style={{ width: "auto", height: "70px" }}
                       />
                       <div className="space-y-2">
                         <p className="text-xl font-bold text-gray-700">

@@ -21,13 +21,17 @@ function RelatedCard({
     <div>
       <Link href={id}>
         <div className="group relative">
-          <div className="p-2 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 shadow-lg">
+          <div className=" aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 shadow-lg">
             <Image
               src={image}
               alt={alt}
               width={200}
               height={200}
-              style={{ width: "400", height: "400" }}
+              style={{
+                width: "200px",
+                height: "200px",
+                objectFit: "contain",
+              }}
             />
           </div>
           <div className="mt-4 flex justify-between">

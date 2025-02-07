@@ -172,6 +172,7 @@ export function BrandForm({ onAddBrand }: AddFormProps) {
                     <>
                       <div>
                         <p>Upload a brand image</p>
+                        <p>W-400px x H-200px Approx</p>
                       </div>
 
                       <Input

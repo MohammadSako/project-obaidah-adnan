@@ -165,7 +165,11 @@ function ProductCard({
               alt={alt}
               width={200}
               height={200}
-              style={{ width: "400", height: "400" }}
+              style={{
+                width: "200px",
+                height: "200px",
+                objectFit: "contain",
+              }}
             />
           </div>
           <div className="mt-4 flex justify-between">
