@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import * as React from "react";
 import {
@@ -31,6 +31,7 @@ import {
   TableRow,
 } from "@/components/UI/table";
 import { useRouter } from "next/navigation";
+import { useI18n } from "@/locales/client";
 
 export type Customer = {
   id: number;
@@ -57,6 +58,7 @@ export function DataTable({ data }: DataTableProps) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const t = useI18n();
 
   const columns: ColumnDef<Customer>[] = [
     {
@@ -67,7 +69,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            First name
+            {t("common.form.name")}
             <ArrowUpDown />
           </Button>
         );
@@ -86,7 +88,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Last name
+            {t("common.form.lastname")}
             <ArrowUpDown />
           </Button>
         );
@@ -105,7 +107,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Phone
+            {t("common.form.phonenumber")}
             <ArrowUpDown />
           </Button>
         );
@@ -120,7 +122,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            First line
+            {t("checkout.address.firstline")}
             <ArrowUpDown />
           </Button>
         );
@@ -139,7 +141,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Second line
+            {t("checkout.address.secondline")}
             <ArrowUpDown />
           </Button>
         );
@@ -158,7 +160,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            City
+            {t("common.form.city")}
             <ArrowUpDown />
           </Button>
         );
@@ -177,7 +179,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Email
+            {t("common.form.email")}
             <ArrowUpDown />
           </Button>
         );
@@ -188,11 +190,19 @@ export function DataTable({ data }: DataTableProps) {
     },
     {
       accessorKey: "additional",
-      header: "additional",
+      header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            {t("common.form.additional")}
+            <ArrowUpDown />
+          </Button>
+        );
+      },
       cell: ({ row }) => (
-        <div className="capitalize truncate max-w-60">
-          {row.getValue("additional")}
-        </div>
+        <div className="truncate">{row.getValue("additional")}</div>
       ),
     },
   ];
@@ -221,11 +231,15 @@ export function DataTable({ data }: DataTableProps) {
   }
 
   return (
-    <div className="w-full">
-      {/* Table Filter */}
+    <div className="w-full mt-4">
+      <div className="mx-auto py-6">
+        <h1 className="text-3xl font-bold tracking-tight text-blue-700">
+          {t("settings.orderslist")}
+        </h1>
+      </div>
       <div className="flex items-center py-4 gap-4">
         <Input
-          placeholder="Filter Product Name..."
+          placeholder={t("dashboard.list.filter")}
           value={
             (table.getColumn("firstname")?.getFilterValue() as string) ?? ""
           }
@@ -237,7 +251,7 @@ export function DataTable({ data }: DataTableProps) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
+              {t("dashboard.list.columns")} <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -261,8 +275,6 @@ export function DataTable({ data }: DataTableProps) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-
-      {/* The list */}
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -308,7 +320,7 @@ export function DataTable({ data }: DataTableProps) {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  {t("common.noresults")}
                 </TableCell>
               </TableRow>
             )}
@@ -319,7 +331,7 @@ export function DataTable({ data }: DataTableProps) {
       {/* last section */}
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-lg text-muted-foreground">
-          Total Orders:{" "}
+          {t("dashboard.orders")}:{" "}
           <span className="font-bold">
             {table.getFilteredRowModel().rows.length}
           </span>
@@ -331,7 +343,7 @@ export function DataTable({ data }: DataTableProps) {
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            {t("common.previous")}
           </Button>
           <Button
             variant="outline"
@@ -339,7 +351,7 @@ export function DataTable({ data }: DataTableProps) {
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            {t("common.next")}
           </Button>
         </div>
       </div>

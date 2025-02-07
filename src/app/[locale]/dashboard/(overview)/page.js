@@ -1,20 +1,15 @@
+import React from "react";
 import { Suspense } from "react";
-import DashList from "../components/dash-list";
 import { TableSkeleton } from "@/components/UI/skeletons";
+import { getProducts } from "@/lib/db/products";
+import { DataTable } from "@/components/dashboard/data-table";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const { products = [] } = await getProducts();
+
   return (
-    <>
-      <main>
-        <div className="mx-auto py-6">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-800">
-            Products List
-          </h1>
-        </div>
-      </main>
-      <Suspense fallback={<TableSkeleton />}>
-        <DashList />
-      </Suspense>
-    </>
+    <Suspense fallback={<TableSkeleton />}>
+      <DataTable data={products} />
+    </Suspense>
   );
 }

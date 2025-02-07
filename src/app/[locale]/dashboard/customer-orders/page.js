@@ -1,19 +1,13 @@
 import { Suspense } from "react";
-import OrdersList from "./components/orders-lists";
+import { getCustomers } from "@/lib/db/products";
+import { DataTable } from "./components/orders-data-table";
 import { TableSkeleton } from "@/components/UI/skeletons";
 export default async function CustomersOrders() {
+  const { customers = [] } = await getCustomers();
+
   return (
-    <>
-      <main>
-        <div className="mx-auto py-6">
-          <h1 className="text-3xl font-bold tracking-tight text-blue-700">
-            Orders List
-          </h1>
-        </div>
-      </main>
-      <Suspense fallback={<TableSkeleton />}>
-        <OrdersList />
-      </Suspense>
-    </>
+    <Suspense fallback={<TableSkeleton />}>
+      <DataTable data={customers} />
+    </Suspense>
   );
 }

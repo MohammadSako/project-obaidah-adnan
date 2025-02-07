@@ -36,11 +36,14 @@ import {
 import Image from "next/image";
 import { deleteImageByUrl, deleteProductById } from "@/lib/db/products";
 import { useRouter } from "next/navigation";
+import { useCurrentLocale, useI18n } from "@/locales/client";
 
 export type Product = {
   id: string;
   title: string;
+  titleAr: string;
   color: string;
+  colorAr: string;
   size: string;
   price: string;
   image: string;
@@ -49,7 +52,9 @@ export type Product = {
   gender: string;
   type: string;
   description: string;
+  descriptionAr: string;
   details: string;
+  detailsAr: string;
   category: string;
   dashboardType: "product" | "discounted" | "bestseller" | "newarrival";
 };
@@ -67,24 +72,26 @@ export function DataTable({ data }: DataTableProps) {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const router = useRouter();
+  const t = useI18n();
+  const locale = useCurrentLocale();
 
   const columns: ColumnDef<Product>[] = [
     {
-      accessorKey: "title",
+      accessorKey: locale === "ar" ? "titleAr" : "title",
       header: ({ column }) => {
         return (
           <Button
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Name
+            {t("dashboard.list.name")}
             <ArrowUpDown />
           </Button>
         );
       },
       cell: ({ row }) => (
         <div className="capitalize font-bold truncate max-w-32 text-red-500">
-          {row.getValue("title")}
+          {row.getValue(locale === "ar" ? "titleAr" : "title")}
         </div>
       ),
     },
@@ -96,7 +103,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Available Quantity
+            {t("dashboard.list.availableQty")}
             <ArrowUpDown />
           </Button>
         );
@@ -113,7 +120,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Type
+            {t("dashboard.list.type")}
             <ArrowUpDown />
           </Button>
         );
@@ -130,7 +137,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Gender
+            {t("common.form.gender")}
             <ArrowUpDown />
           </Button>
         );
@@ -148,7 +155,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Top/Lower
+            {t("dashboard.list.toplow")}
             <ArrowUpDown />
           </Button>
         );
@@ -165,7 +172,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Category
+            {t("dashboard.list.category")}
             <ArrowUpDown />
           </Button>
         );
@@ -175,103 +182,103 @@ export function DataTable({ data }: DataTableProps) {
         let categoryLabel: string;
         switch (category) {
           case 1:
-            categoryLabel = "men T-Shirts";
+            categoryLabel = t("categories.tshirts");
             break;
           case 2:
-            categoryLabel = "Women T-Shirts";
+            categoryLabel = t("categories.tshirts");
             break;
           case 3:
-            categoryLabel = "Men Shirts";
+            categoryLabel = t("categories.shirts");
             break;
           case 4:
-            categoryLabel = "Women Shirts";
+            categoryLabel = t("categories.shirts");
             break;
           case 5:
-            categoryLabel = "Men Wool blouses";
+            categoryLabel = t("categories.woolblouses");
             break;
           case 6:
-            categoryLabel = "Women Wool blouses";
+            categoryLabel = t("categories.woolblouses");
             break;
           case 7:
-            categoryLabel = "Men Hats";
+            categoryLabel = t("categories.hats");
             break;
           case 8:
-            categoryLabel = "Women Hats";
+            categoryLabel = t("categories.hats");
             break;
           case 9:
-            categoryLabel = "Men Watches";
+            categoryLabel = t("categories.watches");
             break;
           case 10:
-            categoryLabel = "Women Watches";
+            categoryLabel = t("categories.watches");
             break;
           case 11:
-            categoryLabel = "Men Bags";
+            categoryLabel = t("categories.bags");
             break;
           case 12:
-            categoryLabel = "Women Bags";
+            categoryLabel = t("categories.bags");
             break;
           case 13:
-            categoryLabel = "Men Jeans";
+            categoryLabel = t("categories.jeans");
             break;
           case 14:
-            categoryLabel = "Women Jeans";
+            categoryLabel = t("categories.jeans");
             break;
           case 15:
-            categoryLabel = "Men Pants";
+            categoryLabel = t("categories.pants");
             break;
           case 16:
-            categoryLabel = "Women Pants";
+            categoryLabel = t("categories.pants");
             break;
           case 17:
-            categoryLabel = "Men Socks";
+            categoryLabel = t("categories.socks");
             break;
           case 18:
-            categoryLabel = "Women Socks";
+            categoryLabel = t("categories.socks");
             break;
           case 19:
-            categoryLabel = "Men Belts";
+            categoryLabel = t("categories.belts");
             break;
           case 20:
-            categoryLabel = "Women Belts";
+            categoryLabel = t("categories.belts");
             break;
           case 21:
-            categoryLabel = "Men Work & Safty Shoes";
+            categoryLabel = t("categories.safty");
             break;
           case 22:
-            categoryLabel = "Men Loafers & Slip-Ons";
+            categoryLabel = t("categories.loafers");
             break;
           case 23:
-            categoryLabel = "Women Loafers & Slip-Ons";
+            categoryLabel = t("categories.loafers");
             break;
           case 24:
-            categoryLabel = "Men Snow Boots";
+            categoryLabel = t("categories.snow");
             break;
           case 25:
-            categoryLabel = "Women Snow Boots";
+            categoryLabel = t("categories.snow");
             break;
           case 26:
-            categoryLabel = "Men Casual Shoes";
+            categoryLabel = t("categories.casual");
             break;
           case 27:
-            categoryLabel = "Men Boots";
+            categoryLabel = t("categories.boots");
             break;
           case 28:
-            categoryLabel = "Men Sandals";
+            categoryLabel = t("categories.sandals");
             break;
           case 29:
-            categoryLabel = "Men Others";
+            categoryLabel = t("categories.others");
             break;
           case 30:
-            categoryLabel = "Women Others";
+            categoryLabel = t("categories.others");
             break;
           case 31:
-            categoryLabel = "Women Flats";
+            categoryLabel = t("categories.flats");
             break;
           case 32:
-            categoryLabel = "Women Slippers";
+            categoryLabel = t("categories.slippers");
             break;
           case 33:
-            categoryLabel = "Women Sneakers";
+            categoryLabel = t("categories.sneakers");
             break;
           default:
             categoryLabel = String(category); // Fallback if the category doesn't match
@@ -288,7 +295,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Size
+            {t("product.size")}
             <ArrowUpDown />
           </Button>
         );
@@ -298,20 +305,22 @@ export function DataTable({ data }: DataTableProps) {
       ),
     },
     {
-      accessorKey: "color",
+      accessorKey: locale === "ar" ? "colorAr" : "color",
       header: ({ column }) => {
         return (
           <Button
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Color
+            {t("product.color")}
             <ArrowUpDown />
           </Button>
         );
       },
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("color")}</div>
+        <div className="capitalize">
+          {row.getValue(locale === "ar" ? "colorAr" : "color")}
+        </div>
       ),
     },
     {
@@ -322,7 +331,7 @@ export function DataTable({ data }: DataTableProps) {
             variant="ghost"
             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
-            Price
+            {t("product.price")}
             <ArrowUpDown />
           </Button>
         );
@@ -339,22 +348,26 @@ export function DataTable({ data }: DataTableProps) {
       },
     },
     {
-      accessorKey: "description",
-      header: "Description",
+      accessorKey: locale === "ar" ? "descriptionAr" : "description",
+      header: t("product.description"),
       cell: ({ row }) => (
-        <div className="capitalize truncate w-20">{row.getValue("description")}</div>
+        <div className="capitalize truncate w-20">
+          {row.getValue(locale === "ar" ? "descriptionAr" : "description")}
+        </div>
       ),
     },
     {
-      accessorKey: "details",
-      header: "Details",
+      accessorKey: locale === "ar" ? "detailsAr" : "details",
+      header: t("product.details"),
       cell: ({ row }) => (
-        <div className="capitalize truncate w-20">{row.getValue("details")}</div>
+        <div className="capitalize truncate w-20">
+          {row.getValue(locale === "ar" ? "detailsAr" : "details")}
+        </div>
       ),
     },
     {
       accessorKey: "image",
-      header: "Image",
+      header: t("dashboard.list.image"),
       cell: ({ row }) => (
         <Image src={row.getValue("image")} width={50} height={50} alt="image" />
       ),
@@ -384,7 +397,7 @@ export function DataTable({ data }: DataTableProps) {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem onClick={() => onDeleteHandle(product.id)}>
-                Delete Product
+                {t("dashboard.list.deleteprod")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
@@ -392,7 +405,7 @@ export function DataTable({ data }: DataTableProps) {
                   router.push("/dashboard/" + product.id + "/edit");
                 }}
               >
-                Update Product
+                {t("dashboard.list.updateprod")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -420,20 +433,31 @@ export function DataTable({ data }: DataTableProps) {
     },
   });
   return (
-    <div className="w-full">
+    <div className="w-full mt-4">
+      <div className="mx-auto py-6">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-800">
+          {t("dashboard.productlist")}
+        </h1>
+      </div>
       <div className="flex items-center py-4 gap-4">
         <Input
-          placeholder="Filter Product Name..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          placeholder={t("dashboard.list.filter")}
+          value={
+            (table
+              .getColumn(locale === "ar" ? "titleAr" : "title")
+              ?.getFilterValue() as string) ?? ""
+          }
           onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
+            table
+              .getColumn(locale === "ar" ? "titleAr" : "title")
+              ?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
+              {t("dashboard.list.columns")} <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -500,7 +524,7 @@ export function DataTable({ data }: DataTableProps) {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  {t("common.noresults")}
                 </TableCell>
               </TableRow>
             )}
@@ -509,7 +533,7 @@ export function DataTable({ data }: DataTableProps) {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-lg text-muted-foreground">
-          Total Items:{" "}
+          {t("dashboard.list.totalitems")}:{" "}
           <span className="font-bold">
             {table.getFilteredRowModel().rows.length}
           </span>
@@ -521,7 +545,7 @@ export function DataTable({ data }: DataTableProps) {
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            {t("common.previous")}
           </Button>
           <Button
             variant="outline"
@@ -529,7 +553,7 @@ export function DataTable({ data }: DataTableProps) {
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            {t("common.next")}
           </Button>
         </div>
       </div>
