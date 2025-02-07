@@ -64,7 +64,7 @@ export function DashNav() {
 
                 <p className="text-white text-2xl font-semibold">Dashboard</p>
                 <div className="hidden md:block">
-                  <div className="ml-10 flex items-center  space-x-4">
+                  <div className="ml-10 flex items-center space-x-4">
                     {navigation.map((item) => {
                       const isActive = pathname === `/${locale}${item.href}`;
                       return (
@@ -76,7 +76,7 @@ export function DashNav() {
                             isActive
                               ? "bg-white text-[#06b6d4]"
                               : "text-white hover:bg-white hover:text-[#06b6d4] font-bold",
-                            "rounded-md px-3 py-2 xl:text-lg lg:text-sm text-xs font-medium"
+                            "rounded-md px-3 py-2 xl:text-md lg:text-sm text-xs font-medium"
                           )}
                         >
                           {item.name}

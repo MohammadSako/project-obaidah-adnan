@@ -372,7 +372,7 @@ export default function Page() {
   );
   return (
     <Suspense fallback={<CategoryImagesSkeleton />}>
-      <CategoriesPage data={categories} />;
+      <CategoriesPage data={categories} />
     </Suspense>
   );
 }
