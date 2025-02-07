@@ -103,7 +103,7 @@ function OrderDetails({ data }) {
   return (
     <>
       <Suspense fallback={<p>Loading...</p>}>
-        <div className="mt-6 p-4 rounded-md shadow-lg shadow-blue-200 capitalize">
+        <div className="mt-6 p-4 rounded-md shadow-md shadow-blue-200 capitalize">
           <div className="flex lg:flex-row flex-col justify-between gap-4">
             <div className="space-y-2 sm:text-2xl font-bold">
               <p>
@@ -151,7 +151,7 @@ function OrderDetails({ data }) {
                   {t("checkout.delivered")}
                 </p>
               )}
-              <p className="flex justify-end gap-2">
+              <div className="flex justify-end gap-2">
                 {t("product.total")}:
                 <p className="bg-yellow-300 px-2 rounded-md">
                   <span className="text-blue-600">{orders.totalall} </span>
@@ -159,13 +159,13 @@ function OrderDetails({ data }) {
                     {t("product.price")}
                   </span>
                 </p>
-              </p>
+              </div>
             </div>
           </div>
         </div>
 
         {orders.items && (
-          <div className="mt-6 p-4 rounded-md shadow-lg shadow-gray-500">
+          <div className="mt-6 p-4 rounded-md shadow-md shadow-blue-200">
             {orders.items.map((item, index) => (
               <div key={item.id}>
                 <div className="flex lg:flex-row flex-col gap-4">
@@ -176,8 +176,8 @@ function OrderDetails({ data }) {
                       </h1>
                       <div className="h-25 w-25 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                         <Image
-                          width={50}
-                          height={50}
+                          width={100}
+                          height={100}
                           alt={item.image}
                           src={item.image}
                         />

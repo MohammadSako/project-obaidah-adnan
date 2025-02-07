@@ -421,7 +421,7 @@ export function DataTable({ data }: DataTableProps) {
   });
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 gap-4">
         <Input
           placeholder="Filter Product Name..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
@@ -514,7 +514,7 @@ export function DataTable({ data }: DataTableProps) {
             {table.getFilteredRowModel().rows.length}
           </span>
         </div>
-        <div className="space-x-2">
+        <div className="flex gap-2">
           <Button
             variant="outline"
             size="sm"

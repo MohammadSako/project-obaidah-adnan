@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import * as React from "react";
 import {
@@ -14,7 +14,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown } from "lucide-react";
-
 import { Button } from "@/components/UI/button";
 import {
   DropdownMenu,
@@ -224,7 +223,7 @@ export function DataTable({ data }: DataTableProps) {
   return (
     <div className="w-full">
       {/* Table Filter */}
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 gap-4">
         <Input
           placeholder="Filter Product Name..."
           value={
@@ -325,7 +324,7 @@ export function DataTable({ data }: DataTableProps) {
             {table.getFilteredRowModel().rows.length}
           </span>
         </div>
-        <div className="space-x-2">
+        <div className="flex gap-2">
           <Button
             variant="outline"
             size="sm"

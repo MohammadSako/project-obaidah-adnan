@@ -45,11 +45,13 @@ function UpdateProduct() {
             Go back
           </button>
           <div className="flex sm:flex-row flex-col justify-between mx-auto py-6 gap-8">
-            <h1 className="text-xl sm:text-3xl font-bold tracking-tight text-slate-800">
-              {t("settings.orderslistfor")}{" "}
-              <span className="font-medium capitalize text-gray-600 border-2 py-2 px-4 border-blue-600 rounded-lg">
-                {newData.firstname} {newData.lastname}
-              </span>
+            <h1 className="flex sm:flex-row flex-col text-xl sm:text-3xl font-bold tracking-tight text-slate-800 gap-4">
+              <p>{t("settings.orderslistfor")}: </p>
+              <p>
+                <span className="font-medium capitalize text-gray-600 border-2 py-2 px-4 border-blue-600 rounded-lg">
+                  {newData.firstname} {newData.lastname}
+                </span>
+              </p>
             </h1>
             {!newData.delivered && (
               <Button
