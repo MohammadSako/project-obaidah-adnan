@@ -482,42 +482,93 @@ export async function deleteAdvertismentImage(imageid) {
   }
 }
 
-export async function addCustomerData(customerData) {
+// export async function addCustomerData(customerData) {
+//   try {
+//     const custData = await prisma.customersOrders.create({
+//       data: {
+//         additional: customerData.additional,
+//         city: customerData.city,
+//         delivered: customerData.delivered,
+//         email: customerData.email,
+//         firstline: customerData.firstline,
+//         firstname: customerData.firstname,
+//         lastname: customerData.lastname,
+//         phonenumber: customerData.phonenumber,
+//         secondline: customerData.secondline,
+//         totalall: parseInt(customerData.totalall),
+//         items: {
+//           create: customerData.items.map((item) => ({
+//             alt: item.alt,
+//             category: parseInt(item.category),
+//             color: item.color,
+//             colorAr: item.colorAr,
+//             dashboardType: item.dashboardType,
+//             description: item.description,
+//             descriptionAr: item.descriptionAr,
+//             details: item.details,
+//             detailsAr: item.detailsAr,
+//             gender: item.gender,
+//             id: item.id,
+//             image: item.image,
+//             imageid: item.imageid,
+//             price: parseInt(item.price),
+//             quantity: parseInt(item.quantity),
+//             size: item.size,
+//             title: item.title,
+//             titleAr: item.titleAr,
+//             totalPrice: parseInt(item.totalPrice),
+//             type: item.type,
+//           })),
+//         },
+//       },
+//       include: {
+//         items: true,
+//       },
+//     });
+//     revalidatePath("/");
+//     console.log("Customer Order Created:", custData);
+//     return { custData };
+//   } catch (error) {
+//     console.error("Error creating customer order:", error);
+//     return { error: error.message || "An unexpected error occurred" };
+//   }
+// }
+export async function addCustomerData(orderData) {
   try {
-    const custData = await prisma.customersOrders.create({
+    // Create the order
+    const order = await prisma.customersOrders.create({
       data: {
-        additional: customerData.additional,
-        city: customerData.city,
-        delivered: customerData.delivered,
-        email: customerData.email,
-        firstline: customerData.firstline,
-        firstname: customerData.firstname,
-        lastname: customerData.lastname,
-        phonenumber: customerData.phonenumber,
-        secondline: customerData.secondline,
-        totalall: parseInt(customerData.totalall),
+        firstname: orderData.firstname,
+        lastname: orderData.lastname,
+        phonenumber: orderData.phonenumber,
+        firstline: orderData.firstline,
+        secondline: orderData.secondline,
+        email: orderData.email,
+        city: orderData.city,
+        additional: orderData.additional,
+        totalall: orderData.totalall,
+        delivered: orderData.delivered,
         items: {
-          create: customerData.items.map((item) => ({
-            alt: item.alt,
-            category: parseInt(item.category),
-            color: item.color,
-            colorAr: item.colorAr,
-            dashboardType: item.dashboardType,
-            description: item.description,
-            descriptionAr: item.descriptionAr,
-            details: item.details,
-            detailsAr: item.detailsAr,
-            gender: item.gender,
-            id: item.id,
-            image: item.image,
-            imageid: item.imageid,
-            price: parseInt(item.price),
-            quantity: parseInt(item.quantity),
-            size: item.size,
+          create: orderData.items.map((item) => ({
             title: item.title,
             titleAr: item.titleAr,
-            totalPrice: parseInt(item.totalPrice),
+            color: item.color,
+            colorAr: item.colorAr,
+            size: item.size,
+            price: item.price,
+            image: item.image,
+            alt: item.alt,
+            gender: item.gender,
             type: item.type,
+            description: item.description,
+            details: item.details,
+            descriptionAr: item.descriptionAr,
+            detailsAr: item.detailsAr,
+            dashboardType: item.dashboardType,
+            imageid: item.imageid,
+            category: item.category,
+            quantity: item.quantity,
+            totalPrice: item.totalPrice,
           })),
         },
       },
@@ -526,16 +577,15 @@ export async function addCustomerData(customerData) {
       },
     });
     revalidatePath("/");
-    console.log("Customer Order Created:", custData);
-    return { custData };
+    return { order };
   } catch (error) {
-    console.error("Error creating customer order:", error);
+    console.error("Error creating order:", error);
     return { error: error.message || "An unexpected error occurred" };
   }
 }
-export async function decrementCustomerData(customerData) {
+export async function decrementCustomerData(orderData) {
   try {
-    const updateQtyPromises = customerData.items.map((item) =>
+    const updateQtyPromises = orderData.items.map((item) =>
       prisma.itemDetail.update({
         where: { id: item.id },
         data: {
@@ -547,8 +597,9 @@ export async function decrementCustomerData(customerData) {
     );
     const updateQtyResults = await Promise.all(updateQtyPromises);
     revalidatePath("/");
+    revalidatePath("/dashboard");
     console.log("Updated Item Quantities:", updateQtyResults);
-    return { custData };
+    return { updateQtyResults };
   } catch (error) {
     console.error("Error creating customer order:", error);
     return { error: error.message || "An unexpected error occurred" };

@@ -59,9 +59,9 @@ export function Advertisement({ data }) {
               >
                 <Image
                   src={banner.image}
+                  alt="Banner"
                   fill
                   sizes="100vw"
-                  alt="Banner"
                   className="object-cover"
                 />
               </motion.div>

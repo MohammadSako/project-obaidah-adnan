@@ -13,15 +13,17 @@ export default function Checkout() {
   const [isLoading, setIsLoading] = useState(false);
   const { clearCart } = useItemStore();
 
-  async function CustomerOrderHandler(customerData) {
-    if (!customerData || typeof customerData !== "object") {
-      console.error("Invalid customer data:", customerData);
+  async function CustomerOrderHandler(orderData) {
+    console.log(orderData);
+
+    if (!orderData || typeof orderData !== "object") {
+      console.error("Invalid customer data:", orderData);
       return;
     }
     setIsLoading(true);
     try {
-      await addCustomerData(customerData);
-      await decrementCustomerData(customerData);
+      await addCustomerData(orderData);
+      await decrementCustomerData(orderData);
       clearCart();
       router.push("/success");
     } catch (error) {
