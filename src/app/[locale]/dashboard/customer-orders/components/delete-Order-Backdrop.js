@@ -1,29 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { useI18n } from "@/locales/client";
 import { useOrderStore } from "@/lib/orderStore";
 import { deleteOrderById } from "@/lib/db/products";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/[locale]/loading";
 
 function OrderDeleteBackdrop() {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { setIsBackdropOpen, id } = useOrderStore();
   const t = useI18n();
 
   async function deleteHandler() {
+    setIsLoading(true);
+    setIsBackdropOpen(false);
     try {
       await deleteOrderById(id);
-      setIsBackdropOpen(false);
       router.push("/dashboard/customer-orders");
     } catch (error) {
       console.error("Error deleting order:", error);
+    } finally {
+      setIsLoading(false);
     }
   }
+  
   function BackDropClick() {
     setIsBackdropOpen(false);
   }
 
   return (
     <>
+      {isLoading && <Loading />}
       <div
         onClick={BackDropClick}
         className="flex fixed top-0 w-[100%] h-[100vh] z-10 bg-gray-500 bg-opacity-40"

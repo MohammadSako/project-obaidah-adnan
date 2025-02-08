@@ -14,14 +14,12 @@ export default function Checkout() {
   const { clearCart } = useItemStore();
 
   async function CustomerOrderHandler(orderData) {
-    console.log(orderData);
-
     if (!orderData || typeof orderData !== "object") {
       console.error("Invalid customer data:", orderData);
       return;
     }
-    setIsLoading(true);
     try {
+      setIsLoading(true);
       await addCustomerData(orderData);
       await decrementCustomerData(orderData);
       clearCart();

@@ -15,7 +15,7 @@ function UpdateProduct() {
   const param = useParams();
   const t = useI18n();
   const id = parseInt(param.id);
-  const { setIsDeliverdBackdrop, setId } = useOrderStore();
+  const { setIsDeliverdBackdrop, setIsCancelBackdrop, setId } = useOrderStore();
 
   useEffect(() => {
     async function fetch() {
@@ -32,6 +32,10 @@ function UpdateProduct() {
   function deliveredHandle() {
     setId(id);
     setIsDeliverdBackdrop(true);
+  }
+  function canceldeliveryHandle() {
+    setId(id);
+    setIsCancelBackdrop(true);
   }
 
   return (
@@ -54,12 +58,24 @@ function UpdateProduct() {
               </p>
             </h1>
             {!newData.delivered && (
-              <Button
-                onClick={deliveredHandle}
-                className="bg-blue-600 hover:bg-blue-400 text-lg shadow-md hover:shadow-inner"
-              >
-                {t("checkout.delivered")}
-              </Button>
+              <div className="flex flex-col gap-2">
+                <div className="text-gray-500">
+                  {t("checkout.confirmdelivery")}
+                </div>
+                <Button
+                  onClick={deliveredHandle}
+                  className="bg-blue-600 hover:bg-blue-400 text-lg shadow-md hover:shadow-inner"
+                >
+                  {t("checkout.confirmdelivery")}
+                </Button>
+                <p className="text-center">{t("checkout.or")}</p>
+                <Button
+                  onClick={canceldeliveryHandle}
+                  className="bg-white text-red-600  border-red-600 border hover:bg-red-600 hover:text-white text-lg shadow-md hover:shadow-inner"
+                >
+                  {t("checkout.orders.cancel")}
+                </Button>
+              </div>
             )}
           </div>
         </header>

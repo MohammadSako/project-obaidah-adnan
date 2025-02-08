@@ -50,9 +50,9 @@ export function CardImagesSkeleton() {
 export function ProductDetailsSkeleton() {
   return (
     <main className="animate-pulse container flex mx-auto mt-8 min-h-screen">
-      <div className=" flex flex-row h-[500px] sm:w-[1100px] w-80 mx-auto rounded-md bg-gray-100 shadow-lg">
+      <div className=" flex sm:flex-row flex-col sm:h-[500px] h-[300px] sm:w-[1100px] w-80 mx-auto rounded-md bg-gray-100 shadow-lg">
         <div className="basis-1/2 p-6">
-          <div className="h-[450px] w-[500px] bg-gray-200"></div>
+          <div className="sm:h-[450px] h-64 sm:w-[500px] bg-gray-200"></div>
         </div>
         <div className="basis-1/2 flex flex-col p-6 gap-10">
           <div className="h-[40px] w-[200px] rounded-lg bg-gray-200" />
@@ -61,7 +61,7 @@ export function ProductDetailsSkeleton() {
           <div className="h-[20px] w-[200px] rounded-lg bg-gray-200" />
           <div className="h-[40px] w-[100px] rounded-lg bg-gray-200" />
           <div className="h-[40px] w-[100px] rounded-lg bg-gray-200" />
-          <div className="h-[40px] w-[400px] rounded-full bg-gray-200" />
+          <div className="h-[40px] sm:w-[400px] rounded-full bg-gray-200" />
         </div>
       </div>
     </main>

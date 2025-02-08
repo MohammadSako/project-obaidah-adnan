@@ -161,14 +161,14 @@ const DrawerNav = ({ open, setOpen }) => {
                   <DialogTitle className="text-base font-semibold text-gray-900">
                     <div className="flex flex-row justify-center   gap-1">
                       <Link href="/">
-                        <h1 className="text-3xl font-sans tracking-tight">
+                        <h1
+                          onClick={() => setOpen(false)}
+                          className="text-3xl font-sans tracking-tight"
+                        >
                           OBAIDAH{" "}
                           <span className="font-bold text-[#06b6d4]">Shop</span>
                         </h1>
                       </Link>
-                      {/* <div className="mt-2">
-                        <FaRegCopyright size={10} />
-                      </div> */}
                     </div>
                   </DialogTitle>
                 </div>

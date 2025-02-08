@@ -27,12 +27,18 @@ export default {
   "common.form.confirm": "Confirm Password",
   "common.form.gender": "Gender",
   "common.form.additional": "Additional Details",
-  "common.formvalidation.firstname": "First name must be at least 2 characters long.",
-  "common.formvalidation.lastname": "Last name must be at least 2 characters long.",
-  "common.formvalidation.phone": "Phone number must be at least 10 characters long.",
-  "common.formvalidation.add1": "Address Line 1 must be at least 2 characters long.",
-  "common.formvalidation.add2": "Address Line 2 must be at least 2 characters long.",
-  "common.formvalidation.email": "The email must be at least 7 characters long and include the '@' symbol.",
+  "common.formvalidation.firstname":
+    "First name must be at least 2 characters long.",
+  "common.formvalidation.lastname":
+    "Last name must be at least 2 characters long.",
+  "common.formvalidation.phone":
+    "Phone number must be at least 10 characters long.",
+  "common.formvalidation.add1":
+    "Address Line 1 must be at least 2 characters long.",
+  "common.formvalidation.add2":
+    "Address Line 2 must be at least 2 characters long.",
+  "common.formvalidation.email":
+    "The email must be at least 7 characters long and include the '@' symbol.",
   "common.formvalidation.city": "The city must be at least 3 characters long.",
   "common.viewall": "View All",
   "common.aboutus": "About Us",
@@ -203,11 +209,18 @@ export default {
   "checkout.ordersummary": "Order summary",
   "checkout.orders.empty": "No Products Found",
   "checkout.orders.success": "Order placed successfully",
-  "checkout.orders.success2": "We will reach out to you to arrange the delivery of your order.",
+  "checkout.orders.success2":
+    "We will reach out to you to arrange the delivery of your order.",
   "checkout.orders.confirm": "Confirm Order",
+  "checkout.orders.cancel": "Cancel This Order",
   "checkout.indelivery": "In Delivery",
-  "checkout.delivered": "Delivered",
-  "checkout.setdelivered": "Are you sure you want to set this order to Delivered state?",
+  "checkout.confirmdelivery": "Confirm the delivery",
+  "checkout.or": "or",
+  "checkout.delivered": "Is Delivered?",
+  "checkout.setdelivered":
+    "Are you sure you want to set this order to Delivered state?",
+  "checkout.setCanceldelivery":
+    "Are you sure you want to cancel this order?",
   "checkout.promo.placeholder": "Discount Code",
   "checkout.promo.success": "Promo code applied successfully",
   "checkout.promo.invalid": "Invalid promo code",
@@ -295,7 +308,6 @@ export default {
   "categories.formen": "For Men",
   "categories.forwomen": "For Women",
 
-
   "dashboard.title": "Dashboard Panel",
   "dashboard.allprod": "All Products",
   "dashboard.orders": "Customer Orders",
@@ -322,5 +334,4 @@ export default {
   "dashboard.list.deleteprod": "Delete Product",
   "dashboard.list.updateprod": "Update Product",
   "dashboard.list.totalitems": "Total Items",
-  
 } as const;

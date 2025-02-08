@@ -6,7 +6,7 @@ import { useI18n } from "@/locales/client";
 
 function About() {
   const t = useI18n();
-   return (
+  return (
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -16,11 +16,11 @@ function About() {
     >
       <main className="flex min-h-screen flex-col items-center mx-auto max-w-7xl px-6 sm:px-6 lg:px-14 ">
         <div className="sm:mt-28 mt-10">
-          <p className="text-ellipsis sm:text-7xl text-3xl font-bold ">
-            <span className="text-gray-700 font-light">
+          <p className="text-ellipsis sm:text-7xl text-3xl">
+            <span className=" text-[#06b6d4] font-bold">
               {t("about.contenttitle")}
             </span>{" "}
-            <span className="text-[#06b6d4]">{t("about.contenttitle2")}</span>{" "}
+            <span className="text-gray-500">{t("about.contenttitle2")}</span>{" "}
           </p>
           <p className="text-ellipsis sm:text-5xl text-2xl font-bold sm:indent-10 mt-4">
             <span className="text-gray-600">{t("about.content")}</span>

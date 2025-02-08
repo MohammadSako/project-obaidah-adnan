@@ -205,10 +205,15 @@ export default {
   "checkout.orders.success": "تم تقديم الطلب بنجاح",
   "checkout.orders.success2": "سنتواصل معك لترتيب تسليم طلبك.",
   "checkout.orders.confirm": "أكد الطلب",
+  "checkout.or": "أو",
+  "checkout.orders.cancel": "إلغاء الطلب",
   "checkout.indelivery": "جاري التوصيل",
+  "checkout.confirmdelivery": "تأكيد أن الطلب تم تسليمه",
   "checkout.delivered": "تم التسليم",
   "checkout.setdelivered":
     "هل أنت متأكد أنك تريد تغيير حالة الطلبية إلى تم التسليم؟",
+  "checkout.setCanceldelivery":
+    "هل أنت متأكد أنك تريد إلغاء الطلبية؟",
   "checkout.promo.placeholder": "الرقم التسلسلي للخصم",
   "checkout.promo.success": "تم تطبيق الخصم بنجاح",
   "checkout.promo.invalid": "الخصم غير صالح",

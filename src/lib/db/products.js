@@ -606,6 +606,30 @@ export async function decrementCustomerData(orderData) {
   }
 }
 
+export async function incrementCustomerData(orderData) {
+  
+  try {
+    const incrementQtyPromises = orderData.items.map((item) =>
+      prisma.itemDetail.update({
+        where: { id: item.id },
+        data: {
+          qty: {
+            increment: item.quantity,
+          },
+        },
+      })
+    );
+    const incrementQtyResults = await Promise.all(incrementQtyPromises);
+    revalidatePath("/");
+    revalidatePath("/dashboard");
+    console.log("Updated Item Quantities:", incrementQtyResults);
+    return { incrementQtyResults };
+  } catch (error) {
+    console.error("Error creating customer order:", error);
+    return { error: error.message || "An unexpected error occurred" };
+  }
+}
+
 export const getCustomers = cache(async function () {
   try {
     const customers = await prisma.customersOrders.findMany();
