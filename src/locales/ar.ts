@@ -26,6 +26,9 @@ export default {
   "common.form.bod": "تاريخ الميلاد",
   "common.form.confirm": "تأكيد كلمة المرور",
   "common.form.gender": "جنس",
+  "common.form.delivery": "التوصيل",
+  "common.form.isDelivered": "تم التوصيل",
+  "common.form.notDelivered": "لم يتم التوصيل",
   "common.form.additional": "تفاصيل اضافية",
   "common.formvalidation.firstname":
     "يجب أن يتكون الاسم الأول من حرفين على الأقل.",
@@ -206,14 +209,14 @@ export default {
   "checkout.orders.success2": "سنتواصل معك لترتيب تسليم طلبك.",
   "checkout.orders.confirm": "أكد الطلب",
   "checkout.or": "أو",
-  "checkout.orders.cancel": "إلغاء الطلب",
+  "checkout.orders.cancel": "إلغاء تسليم الطلب",
   "checkout.indelivery": "جاري التوصيل",
-  "checkout.confirmdelivery": "تأكيد أن الطلب تم تسليمه",
+  "checkout.confirmdelivery": "اضغط هنا إذا تم تسليم الطلبية",
   "checkout.delivered": "تم التسليم",
   "checkout.setdelivered":
     "هل أنت متأكد أنك تريد تغيير حالة الطلبية إلى تم التسليم؟",
-  "checkout.setCanceldelivery":
-    "هل أنت متأكد أنك تريد إلغاء الطلبية؟",
+  "checkout.setCanceldelivery": "هل أنت متأكد أنك تريد إلغاء الطلبية؟",
+  "checkout.setCanceldeliveryWarning": "سيتم إزالة هذا الطلب من قائمة الطلبات",
   "checkout.promo.placeholder": "الرقم التسلسلي للخصم",
   "checkout.promo.success": "تم تطبيق الخصم بنجاح",
   "checkout.promo.invalid": "الخصم غير صالح",

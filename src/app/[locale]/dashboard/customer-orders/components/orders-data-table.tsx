@@ -38,6 +38,7 @@ export type Customer = {
   firstname: string;
   lastname: string;
   phonenumber: string;
+  delivered: boolean;
   firstline: string;
   secondline: string;
   email: string;
@@ -96,6 +97,27 @@ export function DataTable({ data }: DataTableProps) {
       cell: ({ row }) => (
         <div className="capitalize font-bold truncate max-w-32 text-gray-700">
           {row.getValue("lastname")}
+        </div>
+      ),
+    },
+    {
+      accessorKey: "delivered",
+      header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            {t("common.form.delivery")}
+            <ArrowUpDown />
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        <div className="capitalize font-bold truncate max-w-32 text-gray-700">
+          {row.getValue("delivered")
+            ? t("common.form.isDelivered")
+            : t("common.form.notDelivered")}
         </div>
       ),
     },

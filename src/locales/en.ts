@@ -26,6 +26,9 @@ export default {
   "common.form.bod": "Birthday",
   "common.form.confirm": "Confirm Password",
   "common.form.gender": "Gender",
+  "common.form.delivery": "Delivery",
+  "common.form.isDelivered": "Delivered",
+  "common.form.notDelivered": "Not delivered",
   "common.form.additional": "Additional Details",
   "common.formvalidation.firstname":
     "First name must be at least 2 characters long.",
@@ -214,13 +217,15 @@ export default {
   "checkout.orders.confirm": "Confirm Order",
   "checkout.orders.cancel": "Cancel This Order",
   "checkout.indelivery": "In Delivery",
-  "checkout.confirmdelivery": "Confirm the delivery",
+  "checkout.confirmdelivery": "Click to Confirm the delivery",
   "checkout.or": "or",
   "checkout.delivered": "Is Delivered?",
   "checkout.setdelivered":
     "Are you sure you want to set this order to Delivered state?",
   "checkout.setCanceldelivery":
     "Are you sure you want to cancel this order?",
+  "checkout.setCanceldeliveryWarning":
+   "This order will be removed from the list of orders",
   "checkout.promo.placeholder": "Discount Code",
   "checkout.promo.success": "Promo code applied successfully",
   "checkout.promo.invalid": "Invalid promo code",

@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useI18n } from "@/locales/client";
 import { useOrderStore } from "@/lib/orderStore";
-import { getOrdersById, incrementCustomerData } from "@/lib/db/products";
+import {
+  deleteOrderById,
+  getOrdersById,
+  incrementCustomerData,
+} from "@/lib/db/products";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/[locale]/loading";
 
@@ -11,7 +15,6 @@ function OrderCancelBackdrop() {
   const router = useRouter();
   const { setIsCancelBackdrop, id } = useOrderStore();
   const t = useI18n();
-  console.log(newData);
 
   useEffect(() => {
     async function fetchOrderData() {
@@ -36,6 +39,7 @@ function OrderCancelBackdrop() {
     setIsCancelBackdrop(false);
     try {
       await incrementCustomerData(newData);
+      await deleteOrderById(id);
       router.push("/dashboard/customer-orders");
     } catch (error) {
       console.error("Error deleting order:", error);
@@ -63,7 +67,7 @@ function OrderCancelBackdrop() {
           >
             &times;
           </button>
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm gap-4">
             <h2 className="text-center text-2xl/9 font-bold tracking-tight text-gray-900">
               {t("checkout.setCanceldelivery")}
             </h2>
@@ -72,12 +76,15 @@ function OrderCancelBackdrop() {
             <div>
               <button
                 onClick={cancelHandler}
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-xl/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 {t("orders.confirm")}
               </button>
             </div>
           </div>
+          <h3 className="text-center text-lg font-bold mt-4 text-red-600">
+            {t("checkout.setCanceldeliveryWarning")}
+          </h3>
         </div>
       </div>
     </>

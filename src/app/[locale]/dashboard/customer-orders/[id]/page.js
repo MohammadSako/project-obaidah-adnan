@@ -8,9 +8,12 @@ import { FormSkeleton } from "@/components/UI/skeletons";
 import { useI18n } from "@/locales/client";
 import { Button } from "@/components/UI/button";
 import { useOrderStore } from "@/lib/orderStore";
+import Loading from "@/app/[locale]/loading";
 
 function UpdateProduct() {
   const [newData, setNewData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
   const param = useParams();
   const t = useI18n();
@@ -18,12 +21,16 @@ function UpdateProduct() {
   const { setIsDeliverdBackdrop, setIsCancelBackdrop, setId } = useOrderStore();
 
   useEffect(() => {
+    setIsLoading(true);
+
     async function fetch() {
       try {
         const { orders } = await getOrdersById(id);
         setNewData(orders);
       } catch (error) {
         return { error };
+      } finally {
+        setIsLoading(false);
       }
     }
     fetch();
@@ -40,6 +47,7 @@ function UpdateProduct() {
 
   return (
     <>
+      {isLoading && <Loading />}
       <Suspense fallback={<FormSkeleton />}>
         <header>
           <button
@@ -57,11 +65,8 @@ function UpdateProduct() {
                 </span>
               </p>
             </h1>
-            {!newData.delivered && (
-              <div className="flex flex-col gap-2">
-                <div className="text-gray-500">
-                  {t("checkout.confirmdelivery")}
-                </div>
+            {!newData.delivered && !isLoading && (
+              <div className="flex flex-col text-center gap-2">
                 <Button
                   onClick={deliveredHandle}
                   className="bg-blue-600 hover:bg-blue-400 text-lg shadow-md hover:shadow-inner"
