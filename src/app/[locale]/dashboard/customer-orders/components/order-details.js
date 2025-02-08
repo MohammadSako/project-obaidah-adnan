@@ -143,7 +143,7 @@ function OrderDetails({ data }) {
             </div>
             <div className="grid content-between capitalize sm:text-2xl font-bold gap-4">
               {!orders.delivered ? (
-                <p className="flex justify-end text-red-600">
+                <p className="flex justify-end text-blue-600">
                   {t("checkout.indelivery")}
                 </p>
               ) : (
@@ -277,6 +277,7 @@ function OrderDetails({ data }) {
         <div className="my-10">
           <Button
             size={"lg"}
+            disabled={!orders.delivered}
             onClick={() => orderDeleteHandler(orders.id)}
             className="bg-red-500 hover:bg-red-700 text-xl rounded-full shadow-md"
           >

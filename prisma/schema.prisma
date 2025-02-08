@@ -133,6 +133,7 @@ model CustomersItem {
   detailsAr         String           @db.Text
   dashboardType     String           @db.Text
   imageid           String           @db.Text
+  originalItemId    String           @db.Text
   category          Int              @db.Integer
   quantity          Int              @db.Integer
   totalPrice        Int              @db.Integer

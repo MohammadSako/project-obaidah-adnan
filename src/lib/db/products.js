@@ -482,57 +482,6 @@ export async function deleteAdvertismentImage(imageid) {
   }
 }
 
-// export async function addCustomerData(customerData) {
-//   try {
-//     const custData = await prisma.customersOrders.create({
-//       data: {
-//         additional: customerData.additional,
-//         city: customerData.city,
-//         delivered: customerData.delivered,
-//         email: customerData.email,
-//         firstline: customerData.firstline,
-//         firstname: customerData.firstname,
-//         lastname: customerData.lastname,
-//         phonenumber: customerData.phonenumber,
-//         secondline: customerData.secondline,
-//         totalall: parseInt(customerData.totalall),
-//         items: {
-//           create: customerData.items.map((item) => ({
-//             alt: item.alt,
-//             category: parseInt(item.category),
-//             color: item.color,
-//             colorAr: item.colorAr,
-//             dashboardType: item.dashboardType,
-//             description: item.description,
-//             descriptionAr: item.descriptionAr,
-//             details: item.details,
-//             detailsAr: item.detailsAr,
-//             gender: item.gender,
-//             id: item.id,
-//             image: item.image,
-//             imageid: item.imageid,
-//             price: parseInt(item.price),
-//             quantity: parseInt(item.quantity),
-//             size: item.size,
-//             title: item.title,
-//             titleAr: item.titleAr,
-//             totalPrice: parseInt(item.totalPrice),
-//             type: item.type,
-//           })),
-//         },
-//       },
-//       include: {
-//         items: true,
-//       },
-//     });
-//     revalidatePath("/");
-//     console.log("Customer Order Created:", custData);
-//     return { custData };
-//   } catch (error) {
-//     console.error("Error creating customer order:", error);
-//     return { error: error.message || "An unexpected error occurred" };
-//   }
-// }
 export async function addCustomerData(orderData) {
   try {
     // Create the order
@@ -550,6 +499,7 @@ export async function addCustomerData(orderData) {
         delivered: orderData.delivered,
         items: {
           create: orderData.items.map((item) => ({
+            originalItemId: item.originalItemId,
             title: item.title,
             titleAr: item.titleAr,
             color: item.color,
@@ -583,11 +533,12 @@ export async function addCustomerData(orderData) {
     return { error: error.message || "An unexpected error occurred" };
   }
 }
+
 export async function decrementCustomerData(orderData) {
   try {
     const updateQtyPromises = orderData.items.map((item) =>
       prisma.itemDetail.update({
-        where: { id: item.id },
+        where: { id: item.originalItemId },
         data: {
           qty: {
             decrement: item.quantity,
@@ -611,7 +562,7 @@ export async function incrementCustomerData(orderData) {
   try {
     const incrementQtyPromises = orderData.items.map((item) =>
       prisma.itemDetail.update({
-        where: { id: item.id },
+        where: { id: item.originalItemId },
         data: {
           qty: {
             increment: item.quantity,
