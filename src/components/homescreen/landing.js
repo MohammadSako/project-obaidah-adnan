@@ -55,7 +55,7 @@ export function Landing({ data }) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1 }}
-                className="flex-col items-center gap-4 w-full overflow-hidden origin-center"
+                className="absolute inset-0"
               >
                 <Image
                   src={banner.image}
@@ -63,6 +63,7 @@ export function Landing({ data }) {
                   sizes="100vw"
                   alt="Banner"
                   className="object-cover"
+                  priority
                 />
               </motion.div>
             )

@@ -14,6 +14,7 @@ const CategoriesLayout = ({ children }: { children: React.ReactNode }) => {
             sizes="100vw"
             alt="Store Image"
             style={{ objectFit: "cover" }}
+            priority
           />
         </div>
       <div className="flex flex-col w-full">

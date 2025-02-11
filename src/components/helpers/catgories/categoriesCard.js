@@ -28,27 +28,16 @@ function CategoriesCard({
   qty,
 }) {
   const locale = useCurrentLocale();
+  const displayTitle = locale === "ar" ? titleAr || title : title;
 
   return (
     <div>
       <div key={id} className="group relative">
-        {titleAr && (
-          <h2 className="mt-10 sm:h-16 h-10 font-arabic text-2xl sm:text-2xl sm:w-[200px] w-auto my-6 text-gray-700 capitalize text-center">
-            {locale === "ar" ? titleAr : title}
-          </h2>
-        )}
-        {!titleAr && (
-          <h2 className="mt-10 sm:h-16 h-10 font-arabic text-2xl sm:text-2xl sm:w-[200px] w-auto my-6 text-gray-700 capitalize text-center">
-            {title}
-          </h2>
-        )}
+        <h2 className="mt-10 sm:h-16 h-10 font-arabic text-2xl sm:w-[200px] w-auto my-6 text-gray-700 capitalize text-center">
+          {displayTitle}
+        </h2>
         <div className="md:block flex flex-col gap-8 sm:w-[200px]">
-          {!price && (
-            <Link href={url}>
-              <CardImage image={image} />
-            </Link>
-          )}
-          {price && (
+          {price ? (
             <CardDetails
               color={color}
               description={description}
@@ -71,6 +60,10 @@ function CategoriesCard({
               imageid={imageid}
               qty={qty}
             />
+          ) : (
+            <Link href={url}>
+              <CardImage image={image} />
+            </Link>
           )}
         </div>
       </div>

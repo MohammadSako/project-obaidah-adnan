@@ -66,6 +66,7 @@ export function Categories() {
                         width={100}
                         height={100}
                         alt={categ.alt}
+                        priority
                       />
                     </div>
 

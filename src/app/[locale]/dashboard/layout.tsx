@@ -10,19 +10,22 @@ import { useOrderStore } from "@/lib/orderStore";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const { isAuthOpen } = useAuthStore();
-  const { isBackdropOpen, isDeliverdBackdrop, isCancelBackdrop } = useOrderStore();
+  const orderStore = useOrderStore();
+
+  const backdrops = [
+    isAuthOpen && <LogoutBackdrop key="logout" />,
+    orderStore.isBackdropOpen && <OrderDeleteBackdrop key="deleteOrder" />,
+    orderStore.isDeliverdBackdrop && <DeliveredBackdrop key="delivered" />,
+    orderStore.isCancelBackdrop && <OrderCancelBackdrop key="cancelOrder" />,
+  ];
+
   return (
     <>
-      {isAuthOpen && <LogoutBackdrop />}
-      {isBackdropOpen && <OrderDeleteBackdrop />}
-      {isDeliverdBackdrop && <DeliveredBackdrop />}
-      {isCancelBackdrop && <OrderCancelBackdrop />}
+      {backdrops}
       <DashNav />
-      <div className="flex flex-col px-10 min-h-screen w-full">{children}</div>
+      <main className="flex flex-col px-10 min-h-screen w-full">{children}</main>
     </>
   );
 };
 
 export default DashboardLayout;
-
-//https://payloadcms.com/

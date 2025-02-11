@@ -56,6 +56,7 @@ export function YourFavoriteItems() {
                                   width={200}
                                   height={200}
                                   alt={product.image}
+                                  priority
                                 />
                               </div>
                             </div>

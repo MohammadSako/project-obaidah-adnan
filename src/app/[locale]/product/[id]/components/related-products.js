@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import {
   Carousel,
@@ -12,6 +12,20 @@ import { useI18n } from "@/locales/client";
 
 function RelatedProducts({ data }) {
   const t = useI18n();
+
+  const renderedProducts = useMemo(
+    () =>
+      data.map((product) => (
+        <CarouselItem className="max-w-fit" key={product.id}>
+          <RelatedCard {...product} />
+        </CarouselItem>
+      )),
+    [data]
+  );
+  if (!data || data.length === 0) {
+    return null;
+  }
+  const autoplay = Autoplay({ delay: 2000, stopOnInteraction: true });
 
   return (
     <motion.section
@@ -31,39 +45,9 @@ function RelatedProducts({ data }) {
               <Carousel
                 className="w-full max-w-fit mt-4"
                 opts={{ align: "center", dragFree: true }}
-                plugins={[
-                  Autoplay({
-                    delay: 2000,
-                  }),
-                ]}
+                plugins={[autoplay]}
               >
-                <CarouselContent>
-                  {data.map((product) => (
-                    <CarouselItem className="max-w-fit" key={product.id}>
-                      <RelatedCard
-                        key={product.id}
-                        id={product.id}
-                        title={product.title}
-                        titleAr={product.titleAr}
-                        image={product.image}
-                        alt={product.alt}
-                        price={product.price}
-                        color={product.color}
-                        details={product.details}
-                        description={product.description}
-                        colorAr={product.colorAr}
-                        detailsAr={product.detailsAr}
-                        descriptionAr={product.descriptionAr}
-                        category={product.category}
-                        dashboardType={product.dashboardType}
-                        size={product.size}
-                        gender={product.gender}
-                        type={product.type}
-                        imageid={product.imageid}
-                      />
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
+                <CarouselContent>{renderedProducts}</CarouselContent>
               </Carousel>
             </div>
           </div>

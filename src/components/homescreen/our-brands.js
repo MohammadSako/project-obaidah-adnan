@@ -44,6 +44,7 @@ function OurBrands({ data }) {
                         height={200}
                         alt="our brands"
                         style={{ width: "auto", height: "70px" }}
+                        priority
                       />
                       <div className="space-y-2">
                         <p className="text-xl font-bold text-gray-700">

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: "Obaidah Shop",
   description:
     "Browse & discover many of products. we ship to you. Shop top brands in clothing and more.",
-  keywords: ["products", "body", "shirt", "shoes", "jeans", "clothes"],
+  keywords: ["products", "shirt", "shoes", "jeans", "clothes", "men", "women", "shop"],
 };
 
 export default async function Home() {
@@ -37,16 +37,14 @@ export default async function Home() {
     <div className="flex min-h-screen flex-col items-center overflow-x-hidden gap-16">
       <Suspense fallback={<CarouselSkeleton />}>
         {carouselData.length > 0 && <Landing data={carouselData} />}
-        {bestSellers.length > 0 && <BestSellers data={bestSellers} />}
-        {discounted.length > 0 && <Discounted data={discounted} />}
-        <YourFavoriteItems />
-        {brandData.length > 0 && <OurBrands data={brandData} />}
-        {newArrivals.length > 0 && <NewArrivals data={newArrivals} />}
-        {advertismentData.length > 0 && (
-          <Advertisement data={advertismentData} />
-        )}
-        <Categories />
       </Suspense>
+      {bestSellers.length > 0 && <BestSellers data={bestSellers} />}
+      {discounted.length > 0 && <Discounted data={discounted} />}
+      <YourFavoriteItems />
+      {brandData.length > 0 && <OurBrands data={brandData} />}
+      {newArrivals.length > 0 && <NewArrivals data={newArrivals} />}
+      {advertismentData.length > 0 && <Advertisement data={advertismentData} />}
+      <Categories />
     </div>
   );
 }

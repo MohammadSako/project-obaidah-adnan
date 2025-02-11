@@ -10,7 +10,7 @@ import { ProductDetailsSkeleton } from "../UI/skeletons";
 
 function ProductDetailPage({ products }) {
   const { toast } = useToast();
-  const [clotheType, setClotheType] = useState("");
+  // const [clotheType, setClotheType] = useState("");
   const { addItem, addFavorite, removeFavorite, favorite } = useItemStore();
   const t = useI18n();
   const locale = useCurrentLocale();
@@ -34,6 +34,12 @@ function ProductDetailPage({ products }) {
   } = products;
 
   const isFavorite = favorite.some((item) => item.id === id);
+  const clotheType =
+    {
+      top: t("categories.top"),
+      lower: t("categories.lower"),
+      shoes: t("categories.shoes"),
+    }[type] || "n/a";
 
   const addToFavoriteHandler = useCallback(() => {
     addFavorite({
@@ -120,15 +126,6 @@ function ProductDetailPage({ products }) {
     t,
   ]);
 
-  useEffect(() => {
-    const clotheTypes = {
-      top: t("categories.top"),
-      lower: t("categories.lower"),
-      shoes: t("categories.shoes"),
-    };
-    setClotheType(clotheTypes[type] || "n/a");
-  }, [type, t]);
-
   if (!image) {
     return <ProductDetailsSkeleton />;
   }
@@ -171,6 +168,7 @@ function ProductDetailPage({ products }) {
                         width: "100%",
                         height: "100%",
                       }}
+                      className="rounded-lg"
                     />
                   </div>
                 </>
@@ -207,12 +205,11 @@ function ProductDetailPage({ products }) {
                 </div>
               </div>
               <h4 className="text-lg text-blue-500 font-bold mt-2">
-                <span className="capitalize">{clotheType}</span>{" "}
+                {clotheType}{" "}
                 {gender === "men"
                   ? t("categories.formen")
                   : t("categories.forwomen")}
               </h4>
-
               <div>
                 <div className="flex flex-col gap-1">
                   <h3 className="text-xl text-gray-800">

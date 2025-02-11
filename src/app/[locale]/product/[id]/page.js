@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "next/navigation";
 import ProductDetailPage from "../../../../components/product-details/productDetailPage";
 import { getProductsById, searchedRelatedProducts } from "@/lib/db/products";
@@ -8,30 +8,50 @@ import { ProductDetailsSkeleton } from "@/components/UI/skeletons";
 import RelatedProducts from "./components/related-products";
 
 function ProductDetails() {
-  const [products, setproducts] = useState([]);
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
   const [related, setRelated] = useState([]);
-  const param = useParams()
-  
-  useEffect(() => {
-    async function getDetails() {
-      const { products } = await getProductsById(param.id);
-      const value = products.type;
-      const response = await searchedRelatedProducts([value]);
-      setproducts(products);
-      setRelated(response.combinedResults);
-    }
-    getDetails();
-  }, [param.id]);
+  const [loading, setLoading] = useState(true);
 
-  if (!products) {
+  const getDetails = useCallback(async () => {
+    if (!id) return;
+
+    setLoading(true);
+
+    try {
+      const { products } = await getProductsById(id);
+      if (!products) {
+        console.warn(`Product with ID ${id} not found.`);
+        setLoading(false);
+        return;
+      }
+
+      setProduct(products);
+
+      const response = await searchedRelatedProducts([products.type]);
+      setRelated(response?.combinedResults || []);
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    getDetails();
+  }, [getDetails]);
+
+  if (loading) {
+    return <ProductDetailsSkeleton />;
+  }
+
+  if (!product) {
     return <NotFound />;
   }
 
   return (
     <>
-      <Suspense fallback={<ProductDetailsSkeleton />}>
-        <ProductDetailPage products={products} />
-      </Suspense>
+      <ProductDetailPage products={product} />
       {related.length > 0 && <RelatedProducts data={related} />}
     </>
   );
