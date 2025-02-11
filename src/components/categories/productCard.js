@@ -165,11 +165,7 @@ function ProductCard({
               alt={alt}
               width={200}
               height={200}
-              style={{
-                width: "200px",
-                height: "200px",
-                objectFit: "contain",
-              }}
+              className="w-[200px] h-[200px] object-contain"
             />
           </div>
           <div className="mt-4 flex justify-between">
@@ -203,23 +199,23 @@ function ProductCard({
           </div>
         </div>
       </Link>
-      {qty === 0 ? (
-        <p className="bg-blue-500 w-fit rounded-md px-2 text-white mt-2">
-          {t("product.outstock")}
-        </p>
-      ) : (
-        <p className="mt-2 text-blue-500">{t("product.instock")}</p>
-      )}
+      <p
+        className={`mt-2 px-2 rounded-md w-fit ${
+          qty === 0 ? "bg-blue-500 text-white" : "text-blue-500"
+        }`}
+      >
+        {qty === 0 ? t("product.outstock") : t("product.instock")}
+      </p>
       {qty > 0 && (
         <div className="flex flex-row gap-4 items-center">
-          {!cartPending && (
+          {!cartPending ? (
             <TbShoppingBagPlus
               title="Add to bag"
               onClick={addToCartHandler}
               className="mt-2 text-lg font-sans tracking-wide bg-blue-500 rounded-full w-10 h-10 text-white p-1.5 hover:bg-blue-800 cursor-pointer"
+              aria-label="Add to cart"
             />
-          )}
-          {cartPending && (
+          ) : (
             <div className="w-10 h-10 mt-2">
               <Lottie animationData={Loading} loop={true} />
             </div>
@@ -230,6 +226,7 @@ function ProductCard({
               size={30}
               onClick={removeFromFavorite}
               className="mt-2 text-lg font-sans tracking-wide text-red-500 hover:text-red-400"
+              aria-label="Remove from favorite"
             />
           ) : (
             <TbHeart
@@ -237,6 +234,7 @@ function ProductCard({
               size={30}
               onClick={addToFavorite}
               className="mt-2 text-lg font-sans tracking-wide text-gray-400 hover:text-red-500"
+              aria-label="Add to favorite"
             />
           )}
         </div>
