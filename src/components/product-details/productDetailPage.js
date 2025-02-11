@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import Image from "next/image";
 import { TbHeart, TbHeartFilled } from "react-icons/tb";
 import { useToast } from "@/hooks/use-toast";
