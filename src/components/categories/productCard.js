@@ -201,10 +201,10 @@ function ProductCard({
       </Link>
       <p
         className={`mt-2 px-2 rounded-md w-fit ${
-          qty === 0 ? "bg-blue-500 text-white" : "text-blue-500"
+          qty <= 0 ? "bg-blue-500 text-white" : "text-blue-500"
         }`}
       >
-        {qty === 0 ? t("product.outstock") : t("product.instock")}
+        {qty <= 0 ? t("product.outstock") : t("product.instock")}
       </p>
       {qty > 0 && (
         <div className="flex flex-row gap-4 items-center">
