@@ -36,7 +36,6 @@ export default async function RootLayout({
         <Suspense fallback={<Loading />}>
           <Providers locale={locale}>
             <PageLine />
-            <Toaster />
             <NavBar />
             <Suspense fallback={<Loading />}>
               <main className="flex-grow flex-1">{children}</main>
@@ -44,6 +43,7 @@ export default async function RootLayout({
             <Footer />
           </Providers>
         </Suspense>
+        <Toaster />
       </body>
     </html>
   );
